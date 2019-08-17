@@ -1,14 +1,14 @@
 ﻿@page "/"
 
-@using System
-@using System.Collections.Generic
 @using System.Linq
 @using FlareSelect
+
+@FocusScript.Content
 
 @{
     Random rd = new Random(2);
 
-    List<Option> options = Generate.Contacts(5).Select(v => v.NameOption).ToList();
+    List<Option> options = Generate.Contacts(15).Select(v => v.NameOption).ToList();
 
     List<Option> optionsSingle = options.Select(v => v.Clone()).ToList();
 
@@ -18,8 +18,6 @@
         option.Selected = rd.Next() % 2 == 0;
         optionsMultiple.Add(option);
     }
-    
-    
 }
 
 <div class="BodyWrapper">
@@ -28,6 +26,11 @@
     <FlareSelectComponent Options="@optionsMultiple" Multiple="@true"/>
     
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
     
     <FlareSelectComponent Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@false"/>
     <br>

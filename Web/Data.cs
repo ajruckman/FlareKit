@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using Bogus;
 using Bogus.DataSets;
 
@@ -23,7 +21,7 @@ namespace FlareSelect
                 ID            = ID,
                 DropdownValue = $"{FirstName} {LastName}",
                 SelectedValue = FirstName,
-                Selected      = false
+                Selected      = true
             };
 
         public Option LongOption =>
@@ -49,7 +47,7 @@ namespace FlareSelect
                  .RuleFor(c => c.Gender,      f => f.PickRandom<Name.Gender>().ToString())
                  .RuleFor(c => c.FirstName,   f => f.Name.FirstName())
                  .RuleFor(c => c.LastName,    f => f.Name.LastName())
-                 .RuleFor(c => c.PhoneNumber, f => string.Concat(Enumerable.Repeat(f.Phone.PhoneNumber(), 10)))
+                 .RuleFor(c => c.PhoneNumber, f => string.Concat(Enumerable.Repeat(f.Phone.PhoneNumber(), 3)))
                  .RuleFor(c => c.Email,       f => f.Internet.ExampleEmail());
 
             return faker.Generate(amount);

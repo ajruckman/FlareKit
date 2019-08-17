@@ -9,13 +9,13 @@ namespace FlareTables
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public sealed class PageStateHandler
     {
-        private readonly Shared.StateHasChanged _stateUpdater;
-        private          int                    _current;
+        private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
+        private          int                               _current;
 
         private int _paginationRange;
         private int _rowCount;
 
-        internal PageStateHandler(Shared.StateHasChanged stateUpdater, int paginationRange, int pageSize)
+        internal PageStateHandler(FlareLib.FlareLib.StateHasChanged stateUpdater, int paginationRange, int pageSize)
         {
             Current         = 0;
             PaginationRange = paginationRange;
@@ -25,11 +25,10 @@ namespace FlareTables
 
         internal int PageSize { get; set; }
 
-        private int NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
-
-        public   bool CanNext => Current + 1 < NumPages;
-        public   bool CanPrev => Current - 1 >= 0;
-        internal int  Skip    => PageSize * Current;
+        private  int  NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
+        public   bool CanNext  => Current + 1 < NumPages;
+        public   bool CanPrev  => Current - 1 >= 0;
+        internal int  Skip     => PageSize * Current;
 
         public int Current
         {
@@ -50,7 +49,7 @@ namespace FlareTables
             }
         }
 
-        internal int PaginationRange
+        private int PaginationRange
         {
             get => _paginationRange;
             set

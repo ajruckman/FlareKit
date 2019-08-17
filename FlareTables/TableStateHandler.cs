@@ -7,11 +7,6 @@ using Microsoft.AspNetCore.Components;
 
 namespace FlareTables
 {
-    public static class Shared
-    {
-        public delegate void StateHasChanged();
-    }
-
     [SuppressMessage("ReSharper", "MemberCanBeInternal")]
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
@@ -20,17 +15,17 @@ namespace FlareTables
         private readonly Dictionary<string, Column> _columnData = new Dictionary<string, Column>();
         private readonly IEnumerable<object>        _data;
 
-        private readonly Type                    _dataType;
-        private readonly PropertyInfo[]          _props;
-        private readonly Shared.StateHasChanged  _stateUpdater;
+        private readonly Type                              _dataType;
+        private readonly PropertyInfo[]                    _props;
+        private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
 
         public readonly PageStateHandler Paginate;
 
         public TableStateHandler(
-            IEnumerable<object>     data,
-            Shared.StateHasChanged  stateHasChanged,
-            int                     paginationRange = 3,
-            int                     defaultPageSize = 25
+            IEnumerable<object>               data,
+            FlareLib.FlareLib.StateHasChanged stateHasChanged,
+            int                               paginationRange = 3,
+            int                               defaultPageSize = 25
         )
         {
             _data         = data;
