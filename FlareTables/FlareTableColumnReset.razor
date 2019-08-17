@@ -1,0 +1,11 @@
+@using System.Diagnostics.CodeAnalysis
+@using Microsoft.AspNetCore.Components
+@functions {
+
+    [Parameter]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+    public TableStateHandler TableState { get; set; }
+
+}
+
+<button class="FlareTableResetColumns" @onclick="@TableState.ResetSorting">Reset columns</button>

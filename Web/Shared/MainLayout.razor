@@ -1,0 +1,14 @@
+﻿@using FlareLib
+@inherits Microsoft.AspNetCore.Components.LayoutComponentBase
+
+@code {
+
+    public ElementClickHandler ElementClickHandler { get; set; } = new ElementClickHandler();
+
+}
+
+<CascadingValue Value="@ElementClickHandler">
+<div @onclick="@(() => ElementClickHandler.BodyClicked())">
+    @Body
+</div>
+</CascadingValue>

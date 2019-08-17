@@ -1,0 +1,161 @@
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using FlareLib
+@using Microsoft.AspNetCore.Components
+
+@code
+{
+
+    [CascadingParameter]
+    public ElementClickHandler ElementClickHandler { get; set; }
+    
+    [Parameter]
+    public IEnumerable<Option> Options { get; set; }
+
+    [Parameter]
+    public bool Multiple { get; set; }
+
+    [Parameter]
+    public bool? CloseOnSelect { get; set; }
+    
+    private Option _singleSelected;
+    private List<Option> _multiSelected;
+    private string _searchTerm;
+
+    private List<Option> Filtered =>
+        _searchTerm == null
+            ? Options.ToList()
+            : Options.Where(v => Match(v.DropdownValue.ToString(), _searchTerm)).ToList();
+
+    private bool _hasRun;
+    private string _uid;
+    
+    protected override void OnInitialized()
+    {
+        if (_hasRun)
+            return;
+        _hasRun = true;
+
+        _uid = Guid.NewGuid().ToString();
+        
+        if (!Multiple)
+            _singleSelected = Options.FirstOrDefault(v => v.Selected);
+        else
+            _multiSelected = Options.Where(v => v.Selected).ToList();
+
+        if (CloseOnSelect == null)
+            CloseOnSelect = !Multiple;
+
+        ElementClickHandler.OnBodyClick += () =>
+        {
+            if (_focused) _focused = false;
+        };
+
+        ElementClickHandler.OnElementClick += (source) =>
+        {
+            if (source != _uid)
+            {
+                _focused = false;
+            }
+        };
+    }
+
+    private void Select(Option option)
+    {
+        if (!CloseOnSelect.Value)
+            ElementClickHandler.BlockOne();
+        
+        if (!Multiple)
+            _singleSelected = option;
+        else
+            if (_multiSelected.Contains(option))
+            _multiSelected.Remove(option);
+        else
+            _multiSelected.Add(option);
+    }
+
+    private bool IsSelected(Option option)
+    {
+        return !Multiple
+            ? _singleSelected != null && _singleSelected.ID == option.ID
+            : _multiSelected.Contains(option);
+    }
+
+    private void Deselect(Option option)
+    {
+        if (!Multiple)
+        {
+            _singleSelected = null;
+        }
+        else
+            _multiSelected.Remove(option);
+    }
+
+    private void Focus()
+    {
+        ElementClickHandler.BlockOne();
+        ElementClickHandler.ElementClicked(_uid);
+        _focused = true;
+    }
+
+    private void Search(UIChangeEventArgs args)
+    {
+        var val = (string)args.Value;
+        _searchTerm = string.IsNullOrEmpty(val) ? null : val;
+    }
+
+    private static bool Match(string str, string term)
+    {
+        return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
+    private bool _focused;
+
+}
+
+<div class="FlareSelect_Pane" style="display: @(_focused ? "inline-block" : "none")" >
+    <div class="FlareSelect_SearchContainer">
+        <input class="FlareSelect_Search" type="text" @oninput="@Search" />
+    </div>
+
+    <div class="FlareSelect_OptionContainer">
+        @foreach (Option option in Filtered)
+        {
+            <div class="FlareSelect_Option" data-selected="@(IsSelected(option))" @onclick="@(() => Select(option))">
+                @option.DropdownValue
+            </div>
+        }
+    </div>
+</div>
+
+<br>
+
+@if (!Multiple)
+{
+    <div class="FlareSelect_SelectionContainer FlareSelect_SelectionContainer--Single" @onclick="@(() => Focus())">
+        @if (_singleSelected != null)
+        {
+            <div class="FlareSelect_Selection FlareSelect_Selection--Single">
+                @_singleSelected?.SelectedValue
+                <span class="FlareSelect_DeselectContainer">
+                    <span class="FlareSelect_Deselect" @onclick="@(() => Deselect(_singleSelected))"></span>
+                </span>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="FlareSelect_SelectionContainer FlareSelect_SelectionContainer--Multiple" @onclick="@(() => Focus())">
+        @foreach (Option option in _multiSelected)
+        {
+            <div class="FlareSelect_Selection FlareSelect_Selection--Multiple">
+                @option.SelectedValue
+                <span class="FlareSelect_DeselectContainer">
+                    <span class="FlareSelect_Deselect" @onclick="@(() => Deselect(option))"></span>
+                </span>
+            </div>
+        }
+    </div>
+}

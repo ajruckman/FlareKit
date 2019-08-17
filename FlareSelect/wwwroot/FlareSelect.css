@@ -1,0 +1,81 @@
+.FlareSelect_SelectionContainer {
+  align-content: flex-start;
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  min-height: calc(20px + 2 * 3px + 2 * 2px);
+  padding: 2px;
+  width: 300px; }
+  .FlareSelect_SelectionContainer .FlareSelect_Selection {
+    align-items: center;
+    background-color: #b8b8cc;
+    border-radius: 2px;
+    box-sizing: border-box;
+    display: flex;
+    margin: 3px;
+    min-height: 20px;
+    padding: 0 20px 0 2px;
+    word-break: break-word; }
+    .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer {
+      position: relative; }
+      .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect {
+        align-items: center;
+        display: flex;
+        height: 20px;
+        left: 0;
+        opacity: 0.3;
+        position: absolute;
+        top: -10px;
+        width: 20px; }
+        .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:hover {
+          opacity: 1; }
+        .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:before, .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:after {
+          background-color: #333333;
+          content: ' ';
+          height: 10px;
+          left: 10px;
+          position: absolute;
+          top: 5px;
+          width: 2px; }
+        .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:before {
+          transform: rotate(45deg); }
+        .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:after {
+          transform: rotate(-45deg); }
+
+.FlareSelect_Pane {
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 300px;
+  padding: 5px;
+  position: absolute;
+  z-index: 99; }
+  .FlareSelect_Pane .FlareSelect_SearchContainer {
+    border-bottom: 1px solid #555555;
+    padding: 0 0 5px 0; }
+    .FlareSelect_Pane .FlareSelect_SearchContainer .FlareSelect_Search {
+      border: 1px solid #555555;
+      border-radius: 4px;
+      box-sizing: border-box;
+      outline: none;
+      width: 100%; }
+  .FlareSelect_Pane .FlareSelect_OptionContainer {
+    background-color: #e6e6e6;
+    max-height: 300px;
+    overflow-y: scroll; }
+    .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option {
+      background-color: #d9d9d9;
+      border: 1px solid #555555;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+      .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option:hover {
+        background-color: #cccccc; }
+      .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option[data-selected] {
+        background-color: #b8b8cc; }
+
+/*# sourceMappingURL=FlareSelect.css.map */

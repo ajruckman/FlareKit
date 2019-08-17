@@ -1,0 +1,20 @@
+@using System.Diagnostics.CodeAnalysis
+@using Microsoft.AspNetCore.Components
+@functions {
+
+    [Parameter]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+    public TableStateHandler TableState { get; set; }
+
+}
+
+<div class="FlareTablePaginationPageSizeContainer">
+    <select class="FlareTablePaginateSizeSelector" @onchange="@(args => TableState.UpdatePageSize(args))">
+        <option selected="@(10 == TableState.Paginate.PageSize)" value="10">10</option>
+        <option selected="@(25 == TableState.Paginate.PageSize)" value="25">25</option>
+        <option selected="@(50 == TableState.Paginate.PageSize)" value="50">50</option>
+        <option selected="@(100 == TableState.Paginate.PageSize)" value="100">100</option>
+        <option selected="@(250 == TableState.Paginate.PageSize)" value="250">250</option>
+        <option selected="@(500 == TableState.Paginate.PageSize)" value="500">500</option>
+    </select>
+</div>

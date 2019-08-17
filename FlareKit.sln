@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlareTables", "FlareTables\FlareTables.csproj", "{0A7DFE70-2D7E-4B9F-8ED9-9B69FD83DAB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlareSelect", "FlareSelect\FlareSelect.csproj", "{09F69BD8-B775-485A-85F1-B3E129A7DF4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlareLib", "FlareLib\FlareLib.csproj", "{A80195F5-82AC-44C0-BE17-4C7271AE8E39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A7DFE70-2D7E-4B9F-8ED9-9B69FD83DAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7DFE70-2D7E-4B9F-8ED9-9B69FD83DAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7DFE70-2D7E-4B9F-8ED9-9B69FD83DAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7DFE70-2D7E-4B9F-8ED9-9B69FD83DAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F69BD8-B775-485A-85F1-B3E129A7DF4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F69BD8-B775-485A-85F1-B3E129A7DF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F69BD8-B775-485A-85F1-B3E129A7DF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F69BD8-B775-485A-85F1-B3E129A7DF4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80195F5-82AC-44C0-BE17-4C7271AE8E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80195F5-82AC-44C0-BE17-4C7271AE8E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80195F5-82AC-44C0-BE17-4C7271AE8E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80195F5-82AC-44C0-BE17-4C7271AE8E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

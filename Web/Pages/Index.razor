@@ -1,0 +1,35 @@
+﻿@page "/"
+
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using FlareSelect
+
+@{
+    Random rd = new Random(2);
+
+    List<Option> options = Generate.Contacts(5).Select(v => v.NameOption).ToList();
+
+    List<Option> optionsSingle = options.Select(v => v.Clone()).ToList();
+
+    List<Option> optionsMultiple = new List<Option>();
+    foreach (Option option in options)
+    {
+        option.Selected = rd.Next() % 2 == 0;
+        optionsMultiple.Add(option);
+    }
+    
+    
+}
+
+<div class="BodyWrapper">
+    <FlareSelectComponent Options="@optionsSingle" Multiple="@false"/>
+    <br>
+    <FlareSelectComponent Options="@optionsMultiple" Multiple="@true"/>
+    
+    <br>
+    
+    <FlareSelectComponent Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@false"/>
+    <br>
+    <FlareSelectComponent Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@true"/>
+</div>

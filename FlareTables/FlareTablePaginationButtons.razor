@@ -1,0 +1,26 @@
+@using System
+@using System.Diagnostics.CodeAnalysis
+@using Microsoft.AspNetCore.Components
+@functions {
+
+    [Parameter]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+    public TableStateHandler TableState { get; set; }
+
+}
+
+<div class="FlareTablePaginationButtonContainer">
+    <button @onclick="@TableState.Paginate.Previous" disabled="@(!TableState.Paginate.CanPrev)" class="FlareTablePaginateButton FlareTablePaginateButton_Previous">Previous</button>
+    @foreach (int i in TableState.Paginate.Pages())
+    {
+        if (i == -1)
+        {
+            <button class="FlareTablePaginateButton FlareTablePaginateButton_Skipped" disabled="disabled">...</button>
+        }
+        else
+        {
+            <button @onclick="@(() => TableState.Paginate.Jump(i))" class="FlareTablePaginateButton @(TableState.Paginate.Current == i ? "FlareTablePaginateButton_Current" : "")">@(i + 1)</button>
+        }
+    }
+    <button @onclick="@TableState.Paginate.Next" disabled="@(!TableState.Paginate.CanNext)" class="FlareTablePaginateButton FlareTablePaginateButton_Next">Next</button>
+</div>
