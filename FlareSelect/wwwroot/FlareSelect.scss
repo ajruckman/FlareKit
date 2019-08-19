@@ -1,16 +1,37 @@
-.FlareSelect_Wrapper {
+// Expected to be overridden
+$_ColorDefaultBorder:      #808080;
+$_ColorDefaultBackground1: #e8e8e8;
+$_ColorDefaultBackground2: #b8b8cc;
+$_ColorDefaultBackground3: #d9d9d9;
+$_ColorDefaultDeselect:    #333333;
+
+.FlareSelect_Container {
     position: relative;
 
+    &--Unfocused {
+    }
+
+    &--Focused {
+    }
+
+    &--Single {
+    }
+
+    &--Multiple {
+    }
+
     .FlareSelect_SelectionContainer {
-        background-color: #e8e8e8;
-        border-radius:    4px;
+        background-color: $_ColorDefaultBackground1;
         box-sizing:       border-box;
-        min-height:       calc(20px + 2 * 3px + 2 * 2px);
-        padding:          2px;
-        width:            300px;
+        min-height:       20px;
+
+        &--Unfocused {
+        }
+
+        &--Focused {
+        }
 
         &--Single {
-
         }
 
         &--Multiple {
@@ -22,14 +43,12 @@
 
         .FlareSelect_Selection {
             align-items:      center;
-            background-color: #b8b8cc;
-            border-radius:    2px;
+            background-color: $_ColorDefaultBackground2;
             box-sizing:       border-box;
             display:          flex;
             justify-content:  space-between;
             margin:           3px;
-            min-height:       20px; // #1
-            padding:          0 20px 0 2px; // #1
+            padding:          0 20px 0 2px;
             word-break:       break-word;
 
             .FlareSelect_SelectionValue {
@@ -42,22 +61,23 @@
                 .FlareSelect_Deselect {
                     align-items: center;
                     display:     flex;
-                    height:      20px; // #1
+                    height:      20px;
                     opacity:     0.3;
                     position:    absolute;
-                    right:       -20px; // -#1
-                    top:         -10px; // 20px/2 #1
-                    width:       20px; // #1
+                    right:       -20px;
+                    top:         -10px;
+                    width:       20px;
 
                     &:hover {
                         opacity: 1;
                     }
 
                     &:before, &:after {
-                        background-color: #333333;
+                        background-color: $_ColorDefaultDeselect;
+
                         content:          ' ';
-                        height:           10px; // 20px/2 #1
-                        left:             10px; // 20px/2 #1
+                        height:           10px;
+                        left:             10px;
                         position:         absolute;
                         top:              5px;
                         width:            2px;
@@ -79,9 +99,11 @@
 
             .FlareSelect_Search {
                 background:    transparent;
-                border:        none;
-                border-bottom: 1px solid grey;
-                height:        20px; // #1
+                border-bottom: 1px solid $_ColorDefaultBorder;
+                border-left:   none;
+                border-right:  none;
+                border-top:    none;
+                height:        20px;
                 line-height:   20px;
                 margin:        3px;
                 padding:       0 2px;
@@ -91,15 +113,29 @@
     }
 
     .FlareSelect_PaneContainer {
-        background:              #e8e8e8;
-        border-top-left-radius:  5px;
-        border-top-right-radius: 5px;
-        box-sizing:              border-box;
-        max-width:               100%;
+        background: $_ColorDefaultBackground1;
+        box-sizing: border-box;
+        max-width:  100%;
+        position:   absolute;
+        z-index:    5;
 
-        min-width:               300px;
-        position:                absolute;
-        z-index:                 5;
+        &--Unfocused {
+            display: none;
+        }
+
+        &--Focused {
+            display: inline-block;
+
+            .FlareSelect_Pane {
+                box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
+            }
+        }
+
+        &--Single {
+        }
+
+        &--Multiple {
+        }
 
         .FlareSelect_Pane {
             border-radius: 5px;
@@ -107,33 +143,26 @@
             z-index:       5;
 
             .FlareSelect_SearchContainer {
-                border-bottom: 1px solid #555555;
-                padding:       5px;
-
                 .FlareSelect_Search {
-                    border:        1px solid #555555;
-                    border-radius: 4px;
-                    box-sizing:    border-box;
-                    outline:       none;
-                    width:         100%;
+                    border:     1px solid $_ColorDefaultBorder;
+                    box-sizing: border-box;
+                    outline:    none;
+                    width:      100%;
                 }
             }
 
             .FlareSelect_OptionContainer {
-                border-radius: 5px;
-                max-height:    300px;
-                overflow-y:    scroll;
-                padding:       5px;
+                border:     1px solid $_ColorDefaultBorder;
+                overflow-y: scroll;
 
                 .FlareSelect_Option {
-                    background-color: #d9d9d9;
-                    border:           1px solid #555555;
+                    background-color: $_ColorDefaultBackground1;
                     overflow-x:       hidden;
                     text-overflow:    ellipsis;
                     white-space:      nowrap;
 
                     &:hover {
-                        background-color: #cccccc;
+                        background-color: $_ColorDefaultBackground3;
                     }
 
                     &[data-selected] {
@@ -143,16 +172,8 @@
             }
 
             .FlareSelect_NoResults {
-                border-bottom-left-radius:  5px;
-                border-bottom-right-radius: 5px;
-                padding:                    5px;
+                border: 1px solid $_ColorDefaultBorder;
             }
         }
     }
-
-    &--Focused .FlareSelect_Pane {
-        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
-    }
 }
-
-

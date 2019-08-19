@@ -7,64 +7,68 @@ namespace FlareLib
         private readonly object _mutex = new object();
         private          int    _blocks;
 
-        public event Action         OnBodyClick;
-        public event Action<string> OnElementClick;
-        public event Action<string> OnNoninteractiveClick;
+        public event Action         OnOuterClick;
+        public event Action<string> OnReactiveClick;
+        public event Action<string> OnNonreactiveClick;
 
         public void BlockOne()
         {
             lock (_mutex)
             {
-                Console.WriteLine($"     {_blocks} -> {++_blocks}");
+                _blocks++;
+//                Console.WriteLine($"     {_blocks} -> {++_blocks}");
             }
         }
 
-        public void BodyClicked()
+        public void OuterClick()
         {
             lock (_mutex)
             {
                 if (_blocks > 0)
                 {
-                    Console.WriteLine("Body locked");
-                    Console.WriteLine($"{_blocks} -> {--_blocks}");
+                    _blocks--;
+//                    Console.WriteLine("Body locked");
+//                    Console.WriteLine($"{_blocks} -> {--_blocks}");
                     return;
                 }
             }
 
-            Console.WriteLine("Body called");
-            OnBodyClick?.Invoke();
+//            Console.WriteLine("Body called");
+            OnOuterClick?.Invoke();
         }
 
-        public void ElementClicked(string source)
+        public void ReactiveClick(string source)
         {
             lock (_mutex)
             {
                 if (_blocks > 0)
                 {
-                    Console.WriteLine("Element locked");
-                    Console.WriteLine($"{_blocks} -> {--_blocks}");
+                    _blocks--;
+//                    Console.WriteLine("Element locked");
+//                    Console.WriteLine($"{_blocks} -> {--_blocks}");
                     return;
                 }
             }
 
-            Console.WriteLine("Element called");
-            OnElementClick?.Invoke(source);
+//            Console.WriteLine("Element called");
+            OnReactiveClick?.Invoke(source);
         }
 
-        public void NoninteractiveClicked(string source)
+        public void NonreactiveClick(string source)
         {
             lock (_mutex)
             {
                 if (_blocks > 0)
                 {
-                    Console.WriteLine("Noninteractive locked");
-                    Console.WriteLine($"{_blocks} -> {--_blocks}");
+                    _blocks--;
+//                    Console.WriteLine("Noninteractive locked");
+//                    Console.WriteLine($"{_blocks} -> {--_blocks}");
                     return;
                 }
             }
 
-            Console.WriteLine("Noninteractive called");
-            OnNoninteractiveClick?.Invoke(source);
+//            Console.WriteLine("Noninteractive called");
+            OnNonreactiveClick?.Invoke(source);
         }
     }
 }

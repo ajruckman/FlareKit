@@ -39,13 +39,15 @@ namespace FlareSelect
             if (CloseOnSelect == null)
                 CloseOnSelect = !Multiple;
 
-            ElementClickHandler.OnBodyClick += () => Focused = false;
+            ElementClickHandler.OnOuterClick += () => Focused = false;
 
-            ElementClickHandler.OnElementClick += source =>
+            ElementClickHandler.OnReactiveClick += source =>
             {
                 if (source != _uid) return;
 
                 Focused = true;
+
+                // Focus search input when dialog is opened
                 jsRuntime.InvokeAsync<object>("FlareSelect.focusElement", InputUID);
             };
         }
@@ -63,46 +65,60 @@ namespace FlareSelect
 
         internal void Select(Option option)
         {
-            Console.WriteLine("Select");
-            if (CloseOnSelect == false)
-                ElementClickHandler.BlockOne();
+            Console.WriteLine("Select ---");
 
             if (!Multiple)
             {
                 Selected.Clear();
                 Selected.Add(option);
             }
-            else if (Selected.Contains(option))
-            {
-                Selected.Remove(option);
-            }
             else
             {
-                Selected.Add(option);
+                if (Selected.Contains(option))
+                    Selected.Remove(option);
+                else
+                    Selected.Add(option);
             }
+
+            // Block OnOuterClick if CloseOnSelect is null or false
+            if (CloseOnSelect == false)
+                ElementClickHandler.BlockOne();
         }
 
         internal bool IsSelected(Option option) => Selected.Contains(option);
 
         internal void Deselect(Option option)
         {
+            Console.WriteLine("Deselect ---");
+
+            // If focused, don't block subsequent Focus() calls
+            if (!Focused)
+            {
+                // Never open dialog on deselect
+                ElementClickHandler.BlockOne();
+                ElementClickHandler.BlockOne();
+            }
+
             if (!Multiple)
                 Selected.Clear();
             else
                 Selected.Remove(option);
-
-            ElementClickHandler.BlockOne();
-            ElementClickHandler.NoninteractiveClicked(_uid);
         }
 
         internal void Focus()
         {
+            Console.WriteLine("Focus ---");
+
             if (!Focused)
             {
-                ElementClickHandler.BodyClicked();
-                ElementClickHandler.ElementClicked(_uid);
+                // Close others
+                ElementClickHandler.OuterClick();
+
+                // Should open dialog
+                ElementClickHandler.ReactiveClick(_uid);
             }
 
+            // Block OnOuterClick
             ElementClickHandler.BlockOne();
         }
 
@@ -116,12 +132,26 @@ namespace FlareSelect
 
         internal void SearchClick()
         {
+            Console.WriteLine("SearchClick ---");
+
+            // Don't close dialog when search input is clicked
             ElementClickHandler.BlockOne();
         }
 
         private static bool Match(string str, string term)
         {
             return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        internal string ContainerClasses(string containerName)
+        {
+            var result = "";
+            
+            result += $"FlareSelect_{containerName} ";
+            result += $"FlareSelect_{containerName}--{(!Focused ? "Unfocused" : "Focused")} ";
+            result += $"FlareSelect_{containerName}--{(!Multiple ? "Single" : "Multiple")}";
+
+            return result;
         }
     }
 }

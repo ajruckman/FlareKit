@@ -5,15 +5,11 @@ namespace FlareSelect
 {
     public static class FocusScript
     {
-        public static RenderFragment Content
+        private static void Script(RenderTreeBuilder builder)
         {
-            get
-            {
-                void Fragment(RenderTreeBuilder builder)
-                {
-                    builder.OpenElement(0, "script");
-                    builder.AddMarkupContent(1,
-                                             @"
+            builder.OpenElement(0, "script");
+            builder.AddMarkupContent(1,
+                                     @"
 window.FlareSelect = {
   focusElement : function (id) {
     setTimeout(function() {
@@ -21,11 +17,9 @@ window.FlareSelect = {
     }, 10);
   }
 }");
-                    builder.CloseElement();
-                }
-
-                return Fragment;
-            }
+            builder.CloseElement();
         }
+
+        public static RenderFragment Fragment => Script;
     }
 }

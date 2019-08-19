@@ -51,15 +51,11 @@
 
 }
 
-
-<br>
-
-<div class="FlareSelect_Wrapper @(SelectStateHandler.Focused ? "FlareSelect_Wrapper--Focused" : "")">
-
-    <div class="FlareSelect_SelectionContainer FlareSelect_SelectionContainer--@(Multiple ? "Multiple" : "Single")" @onclick="@(() => SelectStateHandler.Focus())">
+<div class="@SelectStateHandler.ContainerClasses("Container")">
+    <div class="@SelectStateHandler.ContainerClasses("SelectionContainer")" @onclick="@(() => SelectStateHandler.Focus())">
         @foreach (Option option in SelectStateHandler.Selected)
         {
-            <div class="FlareSelect_Selection FlareSelect_Selection--@(Multiple ? "Multiple" : "Single")">
+            <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
                 <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
                 <span class="FlareSelect_DeselectContainer">
                     <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
@@ -70,22 +66,19 @@
         @if (Multiple)
         {
             <div class="FlareSelect_SearchContainer FlareSelect_SearchContainer--Inline">
-                <input id="@SelectStateHandler.InputUID" class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search" />
+                <input id="@SelectStateHandler.InputUID" class="FlareSelect_Search FlareSelect_Search--Inline" type="text" @oninput="@SelectStateHandler.Search" />
             </div>
         }
     </div>
 
-    <div class="FlareSelect_PaneContainer" style="display: @(SelectStateHandler.Focused ? "inline-block" : "none")">
-
+    <div class="@SelectStateHandler.ContainerClasses("PaneContainer")">
         <div class="FlareSelect_Pane">
-
             @if (!Multiple)
             {
                 <div class="FlareSelect_SearchContainer">
                     <input id="@SelectStateHandler.InputUID" class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search" @onclick="@(() => SelectStateHandler.SearchClick())" />
                 </div>
             }
-
             @if (SelectStateHandler.Filtered.Any())
             {
                 <div class="FlareSelect_OptionContainer">
@@ -101,8 +94,6 @@
             {
                 <div class="FlareSelect_NoResults">No results</div>
             }
-
         </div>
     </div>
-
 </div>

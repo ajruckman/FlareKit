@@ -3,12 +3,12 @@
 
 @code {
 
-    public ElementClickHandler ElementClickHandler { get; set; } = new ElementClickHandler();
+    private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
 }
 
 <CascadingValue Value="@ElementClickHandler">
-<div @onclick="@(() => ElementClickHandler.BodyClicked())">
+<div @onclick="@(() => ElementClickHandler.OuterClick())">
     @Body
 </div>
 </CascadingValue>
