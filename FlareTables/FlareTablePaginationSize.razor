@@ -10,7 +10,7 @@
 }
 
 <div class="FlareTablePaginationPageSizeContainer">
-    <select class="FlareTablePaginateSizeSelector" @onchange="@(args => TableState.UpdatePageSize(args))">
+    <select class="FlareTablePaginateSizeSelector">
         <option selected="@(10 == TableState.Paginate.PageSize)" value="10">10</option>
         <option selected="@(25 == TableState.Paginate.PageSize)" value="25">25</option>
         <option selected="@(50 == TableState.Paginate.PageSize)" value="50">50</option>
