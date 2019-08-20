@@ -22,7 +22,11 @@
 
     [Parameter]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public bool? CloseOnSelect { get; set; }
+    
+    [Parameter]
+    public Events.OnUpdate OnUpdate { get; set; }
 
     [CascadingParameter]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
@@ -43,6 +47,7 @@
             Options,
             Multiple,
             CloseOnSelect,
+            OnUpdate,
             ElementClickHandler,
             StateHasChanged,
             JSRuntime

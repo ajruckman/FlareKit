@@ -21,9 +21,9 @@
 }
 
 <div class="BodyWrapper">
-    <FlareSelectComponent Options="@optionsSingle" Multiple="@false"/>
+    <FlareSelector Options="@optionsSingle" Multiple="@false"/>
     <br>
-    <FlareSelectComponent Options="@optionsMultiple" Multiple="@true"/>
+    <FlareSelector Options="@optionsMultiple" Multiple="@true"/>
     
     <br>
     <br>
@@ -32,7 +32,7 @@
     <br>
     <hr>
     
-    <FlareSelectComponent Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@false"/>
+    <FlareSelector Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@false"/>
     <br>
-    <FlareSelectComponent Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@true"/>
+    <FlareSelector Options="@Generate.Contacts(50).Select(v => v.LongOption).ToList()" Multiple="@true"/>
 </div>

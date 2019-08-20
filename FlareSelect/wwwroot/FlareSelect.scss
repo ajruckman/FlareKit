@@ -42,14 +42,17 @@ $_ColorDefaultDeselect:    #333333;
         }
 
         .FlareSelect_Selection {
-            align-items:      center;
-            background-color: $_ColorDefaultBackground2;
-            box-sizing:       border-box;
-            display:          flex;
-            justify-content:  space-between;
-            margin:           3px;
-            padding:          0 20px 0 2px;
-            word-break:       break-word;
+            box-sizing: border-box;
+            word-break: break-word;
+
+            &--Multiple {
+                align-items:      center;
+                background-color: $_ColorDefaultBackground2;
+                display:          flex;
+                justify-content:  space-between;
+                margin:           3px;
+                padding:          0 20px 0 2px;
+            }
 
             .FlareSelect_SelectionValue {
             }
