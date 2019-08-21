@@ -26,6 +26,13 @@
     public bool? CloseOnSelect { get; set; }
     
     [Parameter]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+    public bool Disabled { get; set; }
+    
+    [Parameter]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnUpdate OnUpdate { get; set; }
 
     [CascadingParameter]
@@ -47,9 +54,9 @@
             Options,
             Multiple,
             CloseOnSelect,
+            Disabled,
             OnUpdate,
             ElementClickHandler,
-            StateHasChanged,
             JSRuntime
             );
     }

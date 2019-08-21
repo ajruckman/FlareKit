@@ -10,7 +10,7 @@ namespace FlareSelect
     internal sealed class SelectStateHandler
     {
         private readonly  Events.OnUpdate                   _onUpdate;
-        private readonly  FlareLib.FlareLib.StateHasChanged _stateUpdater;
+        private readonly  bool                              _disabled;
         private readonly  string                            _uid;
         internal readonly string                            InputUID;
         internal readonly List<Option>                      Selected;
@@ -20,12 +20,12 @@ namespace FlareSelect
         internal SelectStateHandler(IEnumerable<Option>               options,
                                     bool                              multiple,
                                     bool?                             closeOnSelect,
+                                    bool                              disabled,
                                     Events.OnUpdate                   onUpdate,
                                     ElementClickHandler               elementClickHandler,
-                                    FlareLib.FlareLib.StateHasChanged stateUpdater,
                                     IJSRuntime                        jsRuntime)
         {
-            _stateUpdater       = stateUpdater;
+            _disabled           = disabled;
             Options             = options;
             Multiple            = multiple;
             CloseOnSelect       = closeOnSelect;
@@ -79,7 +79,6 @@ namespace FlareSelect
             {
                 if (IsSelected(option))
                     Selected.RemoveAll(v => v.ID == option.ID);
-//                    Selected.Remove(option);
                 else
                     Selected.Add(option);
             }
@@ -160,8 +159,9 @@ namespace FlareSelect
 
             result += $"FlareSelect_{containerName} ";
             result += $"FlareSelect_{containerName}--{(!_focused ? "Unfocused" : "Focused")} ";
-            result += $"FlareSelect_{containerName}--{(!Multiple ? "Single" : "Multiple")}";
-
+            result += $"FlareSelect_{containerName}--{(!Multiple ? "Single" : "Multiple")} ";
+            result += $"FlareSelect_{containerName}--{(!_disabled ? "Enabled" : "Disabled")}";
+            
             return result;
         }
     }
