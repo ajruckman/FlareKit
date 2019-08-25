@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 using Bogus.DataSets;
+using FlareSelect;
 
-namespace FlareSelect
+namespace Web
 {
     public class Contact
     {
@@ -42,7 +43,7 @@ namespace FlareSelect
                 new Faker<Contact>();
 
             faker.UseSeed(0);
-            
+
             faker.RuleFor(c => c.ID, f => f.IndexGlobal)
                  .RuleFor(c => c.Gender,      f => f.PickRandom<Name.Gender>().ToString())
                  .RuleFor(c => c.FirstName,   f => f.Name.FirstName())

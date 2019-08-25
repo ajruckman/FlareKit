@@ -12,18 +12,21 @@ namespace FlareTables
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public sealed class TableStateHandler
     {
-        private readonly Dictionary<string, Column> _columnData = new Dictionary<string, Column>();
-        private readonly IEnumerable<object>        _data;
+        public delegate string ValueGetter(object data, string id);
 
-        private readonly Type                              _dataType;
+        private readonly Dictionary<string, Column>        _columnData = new Dictionary<string, Column>();
+        private readonly IEnumerable<object>               _data;
+        private          Type                              _dataType;
         private readonly PropertyInfo[]                    _props;
         private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
+        private readonly ValueGetter                       _valueGetter;
 
         public readonly PageStateHandler Paginate;
 
         public TableStateHandler(
             IEnumerable<object>               data,
             FlareLib.FlareLib.StateHasChanged stateHasChanged,
+            ValueGetter                       valueGetter     = null,
             int                               paginationRange = 3,
             int                               defaultPageSize = 25
         )
@@ -31,35 +34,42 @@ namespace FlareTables
             _data         = data;
             _stateUpdater = stateHasChanged;
 
-            _dataType = data.GetType().GetGenericArguments()[0];
-            _props    = _dataType.GetProperties();
+            if (valueGetter == null)
+            {
+                _dataType    = data.GetType().GetGenericArguments()[0];
+                _props       = _dataType.GetProperties();
+                _valueGetter = DataValue;
+            }
+            else
+            {
+                _valueGetter = valueGetter;
+            }
 
             Paginate = new PageStateHandler(_stateUpdater, paginationRange, defaultPageSize);
         }
 
-        public void InitColumn(string name)
+        public void InitColumn(string id)
         {
-            if (_columnData.ContainsKey(name)) return;
-            if (_props.All(v => v.Name != name))
-                throw new ArgumentException(
-                    $"Field name '{name}' does not exist in type '{_dataType.Name}'");
-
-            _columnData[name] = new Column
-            {
-                Property = _props.First(v => v.Name == name)
-            };
+            if (_columnData.ContainsKey(id)) return;
+            _columnData[id] = new Column();
         }
 
-        public void UpdateColumn(UIChangeEventArgs args, string name)
+        public void UpdateColumn(UIChangeEventArgs args, string id)
         {
-            _columnData[name].Value = (string) args.Value == "" ? null : (string) args.Value;
+            _columnData[id].Value = (string) args.Value == "" ? null : (string) args.Value;
 
             _stateUpdater.Invoke();
         }
 
-        public string ColumnValue(string name)
+        private string DataValue(object data, string id)
         {
-            return _columnData[name].Value;
+            PropertyInfo prop = _props.FirstOrDefault(v => v.Name == id);
+
+            if (prop == null)
+                throw new ArgumentException(
+                    $"Field name '{id}' does not exist in type '{_dataType.Name}'");
+
+            return prop.GetValue(data)?.ToString();
         }
 
         public void UpdateSort(string name)
@@ -104,25 +114,24 @@ namespace FlareTables
 
             data = data.Where(v =>
             {
-                foreach ((string _, Column value) in _columnData)
+                foreach ((string id, Column value) in _columnData)
                 {
                     if (value.Value == null) continue;
 
-                    bool matches = Match(value.Property.GetValue(v)?.ToString(), value.Value);
+                    bool matches = Match(_valueGetter.Invoke(v, id), value.Value);
                     if (!matches) return false;
                 }
 
                 return true;
             }).ToList();
 
-            foreach ((string s, Column value) in _columnData)
+            foreach ((string id, Column value) in _columnData)
                 if (value.SortDir != null)
                 {
-                    PropertyInfo prop = _props.First(v => v.Name == s);
                     if (value.SortDir == 'a')
-                        Sort(ref data, prop, false);
+                        Sort(ref data, id, false);
                     else if (value.SortDir == 'd')
-                        Sort(ref data, prop, true);
+                        Sort(ref data, id, true);
                     break;
                 }
 
@@ -135,7 +144,7 @@ namespace FlareTables
             return data;
         }
 
-        private static void Sort(ref IEnumerable<object> data, PropertyInfo prop, bool desc)
+        private void Sort(ref IEnumerable<object> data, string id, bool desc)
         {
             IEnumerable<object> enumerable = data as object[] ?? data.ToArray();
 
@@ -145,13 +154,13 @@ namespace FlareTables
 
             if (!desc)
                 if (isSortable)
-                    data = enumerable.OrderBy(v => prop.GetValue(v)).ToList();
+                    data = enumerable.OrderBy(v => _valueGetter.Invoke(v, id)).ToList();
                 else
-                    data = enumerable.OrderBy(v => prop.GetValue(v)?.ToString());
+                    data = enumerable.OrderBy(v => _valueGetter.Invoke(v, id)?.ToString());
             else if (isSortable)
-                data = enumerable.OrderByDescending(v => prop.GetValue(v)).ToList();
+                data = enumerable.OrderByDescending(v => _valueGetter.Invoke(v, id)).ToList();
             else
-                data = enumerable.OrderByDescending(v => prop.GetValue(v)?.ToString());
+                data = enumerable.OrderByDescending(v => _valueGetter.Invoke(v, id)?.ToString());
         }
 
         private static bool Match(string str, string term)
@@ -161,9 +170,8 @@ namespace FlareTables
 
         private sealed class Column
         {
-            public PropertyInfo Property;
-            public char?        SortDir;
-            public string       Value;
+            public char?  SortDir;
+            public string Value;
         }
     }
 }

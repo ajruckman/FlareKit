@@ -1,7 +1,9 @@
 ﻿@page "/"
 
 @using System.Linq
+@using System.Reflection
 @using FlareSelect
+@using FlareTables
 
 @FocusScript.Fragment
 
@@ -19,6 +21,58 @@
         optionsMultiple.Add(option);
     }
 }
+
+@functions {
+
+    private TableStateHandler.ValueGetter _valueGetter;
+    
+    private IEnumerable<Contact> Data { get; set; }
+    private TableStateHandler _flareTable;
+    protected override void OnInitialized()
+    {
+        _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
+        
+        Data = Generate.Contacts(25);
+        _flareTable = new TableStateHandler(Data, StateHasChanged, _valueGetter);
+    }
+}
+
+<FlareTablePaginationButtons TableState="@_flareTable"></FlareTablePaginationButtons>
+<FlareTablePaginationSize TableState="@_flareTable"></FlareTablePaginationSize>
+<FlareTableColumnReset TableState="@_flareTable"></FlareTableColumnReset>
+
+<table>
+    <thead>
+    <tr>
+        @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList())
+        {
+            _flareTable.InitColumn(field.Name);
+            <th>@field.Name</th>
+        }
+    </tr>
+    <tr>
+        @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList())
+        {
+            <th>
+                <FlareTableColumnFilter TableState="@_flareTable" FieldID="@field.Name"></FlareTableColumnFilter>
+            </th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Contact row in _flareTable.Data())
+    {
+        <tr>
+            @foreach (var field in row.GetType().GetProperties().ToList())
+            {
+                <td>@field.GetValue(row)</td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
+
+<FlareTableInfo TableState="@_flareTable"></FlareTableInfo>
 
 <div class="BodyWrapper">
     <FlareSelector Options="@optionsSingle" Multiple="@false"/>

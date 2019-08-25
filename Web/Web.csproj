@@ -20,6 +20,7 @@
     <ItemGroup>
       <ProjectReference Include="..\FlareLib\FlareLib.csproj" />
       <ProjectReference Include="..\FlareSelect\FlareSelect.csproj" />
+      <ProjectReference Include="..\FlareTables\FlareTables.csproj" />
     </ItemGroup>
 
 </Project>
