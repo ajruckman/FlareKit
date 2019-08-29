@@ -60,6 +60,11 @@ namespace FlareTables
 
             _stateUpdater.Invoke();
         }
+        
+        public string ColumnValue(string id)
+        {
+            return _columnData[id].Value;
+        }
 
         private string DataValue(object data, string id)
         {
@@ -152,15 +157,22 @@ namespace FlareTables
 
             bool isSortable = enumerable.First() is IComparable;
 
+            string Val(object v, string _id)
+            {
+                return _valueGetter.Invoke(v, _id);
+            }
+            
             if (!desc)
                 if (isSortable)
-                    data = enumerable.OrderBy(v => _valueGetter.Invoke(v, id)).ToList();
+                    data = enumerable.OrderBy(v => Val(v, id).Length)
+                                     .ThenBy(v => Val(v, id)).ToList();
                 else
-                    data = enumerable.OrderBy(v => _valueGetter.Invoke(v, id)?.ToString());
+                    data = enumerable.OrderBy(v => Val(v, id).Length)
+                                     .ThenBy(v => Val(v, id)?.ToString());
             else if (isSortable)
-                data = enumerable.OrderByDescending(v => _valueGetter.Invoke(v, id)).ToList();
+                data = enumerable.OrderByDescending(v => Val(v, id).Length).ThenByDescending(v => Val(v, id)).ToList();
             else
-                data = enumerable.OrderByDescending(v => _valueGetter.Invoke(v, id)?.ToString());
+                data = enumerable.OrderByDescending(v => Val(v, id).Length).ThenByDescending(v => Val(v, id)?.ToString());
         }
 
         private static bool Match(string str, string term)
