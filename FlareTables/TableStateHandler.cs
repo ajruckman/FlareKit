@@ -12,11 +12,11 @@ namespace FlareTables
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public sealed class TableStateHandler
     {
-        public delegate string ValueGetter(object data, string id);
+        public delegate object ValueGetter(object data, string id);
 
         private readonly Dictionary<string, Column>        _columnData = new Dictionary<string, Column>();
         private readonly IEnumerable<object>               _data;
-        private          Type                              _dataType;
+        private readonly Type                              _dataType;
         private readonly PropertyInfo[]                    _props;
         private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
         private readonly ValueGetter                       _valueGetter;
@@ -60,7 +60,7 @@ namespace FlareTables
 
             _stateUpdater.Invoke();
         }
-        
+
         public string ColumnValue(string id)
         {
             return _columnData[id].Value;
@@ -123,7 +123,7 @@ namespace FlareTables
                 {
                     if (value.Value == null) continue;
 
-                    bool matches = Match(_valueGetter.Invoke(v, id), value.Value);
+                    bool matches = Match(Val(v, id), value.Value);
                     if (!matches) return false;
                 }
 
@@ -149,6 +149,11 @@ namespace FlareTables
             return data;
         }
 
+        string Val(object v, string _id)
+        {
+            return _valueGetter.Invoke(v, _id)?.ToString();
+        }
+
         private void Sort(ref IEnumerable<object> data, string id, bool desc)
         {
             IEnumerable<object> enumerable = data as object[] ?? data.ToArray();
@@ -157,22 +162,20 @@ namespace FlareTables
 
             bool isSortable = enumerable.First() is IComparable;
 
-            string Val(object v, string _id)
-            {
-                return _valueGetter.Invoke(v, _id);
-            }
-            
             if (!desc)
                 if (isSortable)
                     data = enumerable.OrderBy(v => Val(v, id).Length)
                                      .ThenBy(v => Val(v, id)).ToList();
                 else
-                    data = enumerable.OrderBy(v => Val(v, id).Length)
+                    data = enumerable.OrderBy(v => Val(v, id)?.Length)
                                      .ThenBy(v => Val(v, id)?.ToString());
+
             else if (isSortable)
-                data = enumerable.OrderByDescending(v => Val(v, id).Length).ThenByDescending(v => Val(v, id)).ToList();
+                data = enumerable.OrderByDescending(v => Val(v, id).Length)
+                                 .ThenByDescending(v => Val(v, id)).ToList();
             else
-                data = enumerable.OrderByDescending(v => Val(v, id).Length).ThenByDescending(v => Val(v, id)?.ToString());
+                data = enumerable.OrderByDescending(v => Val(v, id)?.Length)
+                                 .ThenByDescending(v => Val(v, id)?.ToString());
         }
 
         private static bool Match(string str, string term)
