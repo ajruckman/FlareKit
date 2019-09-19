@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -54,7 +55,7 @@ namespace FlareTables
             _columnData[id] = new Column();
         }
 
-        public void UpdateColumn(UIChangeEventArgs args, string id)
+        public void UpdateColumn(ChangeEventArgs args, string id)
         {
             _columnData[id].Value = (string) args.Value == "" ? null : (string) args.Value;
 
@@ -91,6 +92,8 @@ namespace FlareTables
 
         public void ResetSorting()
         {
+            Debug.WriteLine("Reset sorting");
+            
             foreach ((string key, Column _) in _columnData)
             {
                 _columnData[key].SortDir = null;
@@ -107,7 +110,7 @@ namespace FlareTables
             return _columnData[name].SortDir == 'a' ? "SortDirAsc" : "SortDirDesc";
         }
 
-        public void UpdatePageSize(UIChangeEventArgs args)
+        public void UpdatePageSize(ChangeEventArgs args)
         {
             Paginate.PageSize = int.Parse((string) args.Value);
             _stateUpdater.Invoke();

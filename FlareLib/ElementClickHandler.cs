@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace FlareLib
 {
@@ -22,6 +23,8 @@ namespace FlareLib
 
         public void OuterClick()
         {
+            Debug.WriteLine("OuterClick called");
+
             lock (_mutex)
             {
                 if (_blocks > 0)
@@ -33,12 +36,13 @@ namespace FlareLib
                 }
             }
 
-//            Console.WriteLine("Body called");
             OnOuterClick?.Invoke();
         }
 
         public void ReactiveClick(string source)
         {
+            Debug.WriteLine("ReactiveClick called");
+
             lock (_mutex)
             {
                 if (_blocks > 0)
@@ -50,12 +54,13 @@ namespace FlareLib
                 }
             }
 
-//            Console.WriteLine("Element called");
             OnReactiveClick?.Invoke(source);
         }
 
         public void NonreactiveClick(string source)
         {
+            Debug.WriteLine("NonreactiveClick called");
+
             lock (_mutex)
             {
                 if (_blocks > 0)
@@ -67,7 +72,6 @@ namespace FlareLib
                 }
             }
 
-//            Console.WriteLine("Noninteractive called");
             OnNonreactiveClick?.Invoke(source);
         }
     }

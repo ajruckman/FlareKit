@@ -132,7 +132,7 @@ namespace FlareSelect
             ElementClickHandler.BlockOne();
         }
 
-        internal void Search(UIChangeEventArgs args)
+        internal void Search(ChangeEventArgs args)
         {
             _focused = true;
 

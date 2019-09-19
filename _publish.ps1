@@ -1,5 +1,6 @@
 Clean-DotNETProject
 dotnet pack -c Debug
+Remove-Item -Force .\_published\*
 cp .\FlareLib\bin\Debug\FlareLib.*.nupkg .\_published\
 cp .\FlareSelect\bin\Debug\FlareSelect.*.nupkg .\_published\
 cp .\FlareTables\bin\Debug\FlareTables.*.nupkg .\_published\
