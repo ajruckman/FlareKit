@@ -1,26 +1,27 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.RenderTree;
+using System.Text;
 
 namespace FlareSelect
 {
     public static class FocusScript
     {
-        private static void Script(RenderTreeBuilder builder)
+        public static string Script
         {
-            builder.OpenElement(0, "script");
-            builder.AddMarkupContent(1,
-                                     @"
-window.FlareSelect = {
-  focusElement : function (id) {
-    setTimeout(function() {
-      document.getElementById(id).focus();
-    }, 10);
-  }
-}");
-            builder.CloseElement();
-        }
+            get
+            {
+                StringBuilder res = new StringBuilder();
 
-        public static RenderFragment Fragment => Script;
+                res.AppendLine("<script>");
+                res.AppendLine("    window.FlareSelect = {");
+                res.AppendLine("        focusElement : function (id) {");
+                res.AppendLine("            setTimeout(function() {");
+                res.AppendLine("                document.getElementById(id).focus();");
+                res.AppendLine("            }, 10);");
+                res.AppendLine("        }");
+                res.AppendLine("    }");
+                res.AppendLine("</script>");
+
+                return res.ToString();
+            }
+        }
     }
 }

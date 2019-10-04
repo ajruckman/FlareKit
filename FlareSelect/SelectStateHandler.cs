@@ -16,6 +16,7 @@ namespace FlareSelect
         internal readonly List<Option>                      Selected;
         private           string                            _searchTerm;
         private           bool                              _focused;
+        private IJSRuntime _jsRuntime;
 
         internal SelectStateHandler(IEnumerable<Option>               options,
                                     bool                              multiple,
@@ -31,6 +32,7 @@ namespace FlareSelect
             CloseOnSelect       = closeOnSelect;
             _onUpdate           = onUpdate;
             ElementClickHandler = elementClickHandler;
+            _jsRuntime = jsRuntime;
 
             _uid     = Guid.NewGuid().ToString();
             InputUID = _uid + "_Filter";
@@ -68,8 +70,6 @@ namespace FlareSelect
 
         internal void Select(Option option)
         {
-            Console.WriteLine("Select ---");
-
             if (!Multiple)
             {
                 Selected.Clear();
@@ -97,8 +97,6 @@ namespace FlareSelect
 
         internal void Deselect(Option option)
         {
-            Console.WriteLine("Deselect ---");
-
             // If focused, don't block subsequent Focus() calls
             if (!_focused)
             {
@@ -117,8 +115,6 @@ namespace FlareSelect
 
         internal void Focus()
         {
-            Console.WriteLine("Focus ---");
-
             if (!_focused)
             {
                 // Close others
@@ -142,8 +138,6 @@ namespace FlareSelect
 
         internal void SearchClick()
         {
-            Console.WriteLine("SearchClick ---");
-
             // Don't close dialog when search input is clicked
             ElementClickHandler.BlockOne();
         }

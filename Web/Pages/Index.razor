@@ -4,8 +4,7 @@
 @using System.Reflection
 @using FlareSelect
 @using FlareTables
-
-@FocusScript.Fragment
+@using Microsoft.AspNetCore.Components.Web
 
 @{
     Random rd = new Random(2);
@@ -63,7 +62,7 @@
     @foreach (Contact row in _flareTable.Data())
     {
         <tr>
-            @foreach (var field in row.GetType().GetProperties().ToList())
+            @foreach (PropertyInfo field in row.GetType().GetProperties().ToList())
             {
                 <td>@field.GetValue(row)</td>
             }

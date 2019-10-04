@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Components;
+using NaturalSort.Extension;
 
 namespace FlareTables
 {
@@ -83,7 +84,7 @@ namespace FlareTables
             foreach ((string key, Column _) in _columnData.Where(v => v.Key != name)) _columnData[key].SortDir = null;
 
             if (_columnData[name].SortDir == null)
-                _columnData[name].SortDir = 'a';
+                _columnData[name].SortDir = 'd';
             else
                 _columnData[name].SortDir = _columnData[name].SortDir == 'a' ? 'd' : 'a';
 
@@ -93,7 +94,7 @@ namespace FlareTables
         public void ResetSorting()
         {
             Debug.WriteLine("Reset sorting");
-            
+
             foreach ((string key, Column _) in _columnData)
             {
                 _columnData[key].SortDir = null;
@@ -118,7 +119,7 @@ namespace FlareTables
 
         public IEnumerable<object> Data()
         {
-            IEnumerable<object> data = _data;
+            List<object> data = _data.ToList();
 
             data = data.Where(v =>
             {
@@ -152,33 +153,26 @@ namespace FlareTables
             return data;
         }
 
-        string Val(object v, string _id)
+        private string Val(object v, string id)
         {
-            return _valueGetter.Invoke(v, _id)?.ToString();
+            return _valueGetter.Invoke(v, id)?.ToString();
         }
 
-        private void Sort(ref IEnumerable<object> data, string id, bool desc)
+        private void Sort(ref List<object> data, string id, bool desc)
         {
-            IEnumerable<object> enumerable = data as object[] ?? data.ToArray();
+            if (!data.Any()) return;
 
-            if (!enumerable.Any()) return;
 
-            bool isSortable = enumerable.First() is IComparable;
-
-            if (!desc)
-                if (isSortable)
-                    data = enumerable.OrderBy(v => Val(v, id).Length)
-                                     .ThenBy(v => Val(v, id)).ToList();
-                else
-                    data = enumerable.OrderBy(v => Val(v, id)?.Length)
-                                     .ThenBy(v => Val(v, id)?.ToString());
-
-            else if (isSortable)
-                data = enumerable.OrderByDescending(v => Val(v, id).Length)
-                                 .ThenByDescending(v => Val(v, id)).ToList();
+            if (desc)
+            {
+                data = data.OrderBy(v => Val(v, id).ToString(), StringComparer.OrdinalIgnoreCase.WithNaturalSort())
+                           .ToList();
+            }
             else
-                data = enumerable.OrderByDescending(v => Val(v, id)?.Length)
-                                 .ThenByDescending(v => Val(v, id)?.ToString());
+            {
+                data = data.OrderByDescending(v => Val(v, id).ToString(),
+                    StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
+            }
         }
 
         private static bool Match(string str, string term)
