@@ -32,7 +32,8 @@
         _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
         
         Data = Generate.Contacts(25);
-        _flareTable = new TableStateHandler(Data, StateHasChanged, _valueGetter);
+        Data.First().Date = new DateTime();
+        _flareTable = new TableStateHandler(Data, StateHasChanged);
     }
 }
 

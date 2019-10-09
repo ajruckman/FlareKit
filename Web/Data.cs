@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bogus;
@@ -10,11 +11,12 @@ namespace Web
     {
         public int ID { get; set; }
 
-        public string FirstName   { get; set; }
-        public string LastName    { get; set; }
-        public string Email       { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Gender      { get; set; }
+        public DateTime Date        { get; set; }
+        public string   FirstName   { get; set; }
+        public string   LastName    { get; set; }
+        public string   Email       { get; set; }
+        public string   PhoneNumber { get; set; }
+        public string   Gender      { get; set; }
 
         public Option NameOption =>
             new Option
@@ -45,6 +47,7 @@ namespace Web
             faker.UseSeed(0);
 
             faker.RuleFor(c => c.ID, f => f.IndexGlobal)
+                 .RuleFor(c => c.Date,        f => f.Date.Past(300))
                  .RuleFor(c => c.Gender,      f => f.PickRandom<Name.Gender>().ToString())
                  .RuleFor(c => c.FirstName,   f => f.Name.FirstName())
                  .RuleFor(c => c.LastName,    f => f.Name.LastName())

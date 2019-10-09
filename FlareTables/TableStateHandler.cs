@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
-using Microsoft.AspNetCore.Components;
 using NaturalSort.Extension;
 
 namespace FlareTables
@@ -56,9 +55,9 @@ namespace FlareTables
             _columnData[id] = new Column();
         }
 
-        public void UpdateColumn(ChangeEventArgs args, string id)
+        public void UpdateColumn(object value, string id)
         {
-            _columnData[id].Value = (string) args.Value == "" ? null : (string) args.Value;
+            _columnData[id].Value = value?.ToString() ?? "";
 
             _stateUpdater.Invoke();
         }
@@ -75,6 +74,9 @@ namespace FlareTables
             if (prop == null)
                 throw new ArgumentException(
                     $"Field name '{id}' does not exist in type '{_dataType.Name}'");
+
+            if (prop.PropertyType == typeof(DateTime))
+                return ((DateTime?) prop.GetValue(data))?.Ticks.ToString() ?? "";
 
             return prop.GetValue(data)?.ToString();
         }
@@ -111,9 +113,9 @@ namespace FlareTables
             return _columnData[name].SortDir == 'a' ? "SortDirAsc" : "SortDirDesc";
         }
 
-        public void UpdatePageSize(ChangeEventArgs args)
+        public void UpdatePageSize(int size)
         {
-            Paginate.PageSize = int.Parse((string) args.Value);
+            Paginate.PageSize = size;
             _stateUpdater.Invoke();
         }
 
