@@ -29,6 +29,7 @@
     private TableStateHandler _flareTable;
     protected override void OnInitialized()
     {
+        Console.WriteLine("ONINIT");
         _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
         
         Data = Generate.Contacts(25);

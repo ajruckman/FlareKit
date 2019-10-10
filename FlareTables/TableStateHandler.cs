@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -21,6 +20,7 @@ namespace FlareTables
         private readonly PropertyInfo[]                    _props;
         private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
         private readonly ValueGetter                       _valueGetter;
+        private          int                               _currentSortIndex = 0;
 
         public readonly PageStateHandler Paginate;
 
@@ -52,7 +52,7 @@ namespace FlareTables
         public void InitColumn(string id)
         {
             if (_columnData.ContainsKey(id)) return;
-            _columnData[id] = new Column();
+            _columnData[id] = new Column {ID = id};
         }
 
         public void UpdateColumn(object value, string id)
@@ -81,36 +81,44 @@ namespace FlareTables
             return prop.GetValue(data)?.ToString();
         }
 
-        public void UpdateSort(string name)
+        public void UpdateSort(string id)
         {
-            foreach ((string key, Column _) in _columnData.Where(v => v.Key != name)) _columnData[key].SortDir = null;
+//            foreach ((string key, Column _) in _columnData.Where(v => v.Key != name)) _columnData[key].SortDir = null;
 
-            if (_columnData[name].SortDir == null)
-                _columnData[name].SortDir = 'd';
+            if (_columnData[id].SortDir == null)
+                _columnData[id].SortDir = 'a';
+            else if (_columnData[id].SortDir == 'a')
+                _columnData[id].SortDir = 'd';
             else
-                _columnData[name].SortDir = _columnData[name].SortDir == 'a' ? 'd' : 'a';
+                _columnData[id].SortDir = null;
+
+            _columnData[id].SortIndex = _currentSortIndex;
+            _currentSortIndex++;
+
+            Console.WriteLine($"{id} -> {_columnData[id].SortDir}");
 
             _stateUpdater.Invoke();
         }
 
         public void ResetSorting()
         {
-            Debug.WriteLine("Reset sorting");
-
             foreach ((string key, Column _) in _columnData)
             {
-                _columnData[key].SortDir = null;
-                _columnData[key].Value   = null;
+                _columnData[key].SortDir   = null;
+                _columnData[key].SortIndex = null;
+                _columnData[key].Value     = null;
             }
+
+            _currentSortIndex = 0;
 
             _stateUpdater.Invoke();
         }
 
-        public string SortDir(string name)
+        public string SortDir(string id)
         {
-            if (_columnData[name].SortDir == null)
+            if (_columnData[id].SortDir == null)
                 return "SortDirNeutral";
-            return _columnData[name].SortDir == 'a' ? "SortDirAsc" : "SortDirDesc";
+            return _columnData[id].SortDir == 'a' ? "SortDirAsc" : "SortDirDesc";
         }
 
         public void UpdatePageSize(int size)
@@ -121,6 +129,7 @@ namespace FlareTables
 
         public IEnumerable<object> Data()
         {
+            Console.WriteLine("DATA");
             List<object> data = _data.ToList();
 
             data = data.Where(v =>
@@ -136,21 +145,14 @@ namespace FlareTables
                 return true;
             }).ToList();
 
-            foreach ((string id, Column value) in _columnData)
-                if (value.SortDir != null)
-                {
-                    if (value.SortDir == 'a')
-                        Sort(ref data, id, false);
-                    else if (value.SortDir == 'd')
-                        Sort(ref data, id, true);
-                    break;
-                }
+//            foreach ((string _, Column value) in _columnData)
+//                if (value.SortDir != null)
 
-            IEnumerable<object> enumerable = data.ToArray();
+            Sort(ref data);
 
-            Paginate.RowCount = enumerable.Count();
+            Paginate.RowCount = data.Count;
 
-            data = enumerable.Skip(Paginate.Skip).Take(Paginate.PageSize).ToList();
+            data = data.Skip(Paginate.Skip).Take(Paginate.PageSize).ToList();
 
             return data;
         }
@@ -160,21 +162,77 @@ namespace FlareTables
             return _valueGetter.Invoke(v, id)?.ToString();
         }
 
-        private void Sort(ref List<object> data, string id, bool desc)
+        private void Sort(ref List<object> data)
         {
             if (!data.Any()) return;
 
+            List<Column> indices = _columnData.Where(v => v.Value.SortDir != null).Select(v => v.Value)
+                                              .OrderBy(v => v.SortIndex).ToList();
 
-            if (desc)
+            if (indices.Any())
             {
-                data = data.OrderBy(v => Val(v, id).ToString(), StringComparer.OrdinalIgnoreCase.WithNaturalSort())
-                           .ToList();
+                IOrderedEnumerable<object> query;
+                bool                       desc;
+
+                Column first = indices.First();
+                desc = first.SortDir == 'd';
+
+                Console.WriteLine($"1 {first.ID} | {first.SortIndex} -> {first.Value} {(desc ? "desc" : "asc")}");
+
+                if (!desc)
+                    query = data.OrderBy(v => Val(v, first.ID).ToString(),
+                        StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                else
+                    query = data.OrderByDescending(v => Val(v, first.ID).ToString(),
+                        StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+
+                if (indices.Count > 1)
+                {
+                    foreach (Column index in indices.Skip(1))
+                    {
+                        desc = index.SortDir == 'd';
+
+                        Console.WriteLine(
+                            $"2 {index.ID} | {index.SortIndex} -> {index.Value} {(desc ? "desc" : "asc")}");
+
+                        if (!desc)
+                            query = query.ThenBy(v => Val(v, index.ID).ToString(),
+                                StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                        else
+                            query = query.ThenByDescending(v => Val(v, index.ID).ToString(),
+                                StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                    }
+                }
+
+                data = query.ToList();
             }
-            else
-            {
-                data = data.OrderByDescending(v => Val(v, id).ToString(),
-                    StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
-            }
+
+//            List<object> res = data;
+//
+//            foreach (Column index in indices)
+//            {
+//                bool desc = index.SortDir == 'd';
+//
+//                if (!desc)
+//                    data = data.OrderBy(v => Val(v, index.ID).ToString(),
+//                        StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
+//                else
+//                    data = data.OrderByDescending(v => Val(v, index.ID).ToString(),
+//                        StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
+//                
+//                
+//            }
+//
+//            if (desc)
+//            {
+//                data = data.OrderBy(v => Val(v, id).ToString(), StringComparer.OrdinalIgnoreCase.WithNaturalSort())
+//                           .ToList();
+//            }
+//            else
+//            {
+//                data = data.OrderByDescending(v => Val(v, id).ToString(),
+//                    StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
+//            }
         }
 
         private static bool Match(string str, string term)
@@ -184,7 +242,9 @@ namespace FlareTables
 
         private sealed class Column
         {
+            public string ID;
             public char?  SortDir;
+            public int?   SortIndex;
             public string Value;
         }
     }
