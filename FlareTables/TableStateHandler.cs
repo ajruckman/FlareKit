@@ -83,8 +83,6 @@ namespace FlareTables
 
         public void UpdateSort(string id)
         {
-//            foreach ((string key, Column _) in _columnData.Where(v => v.Key != name)) _columnData[key].SortDir = null;
-
             if (_columnData[id].SortDir == null)
                 _columnData[id].SortDir = 'a';
             else if (_columnData[id].SortDir == 'a')
@@ -94,8 +92,6 @@ namespace FlareTables
 
             _columnData[id].SortIndex = _currentSortIndex;
             _currentSortIndex++;
-
-            Console.WriteLine($"{id} -> {_columnData[id].SortDir}");
 
             _stateUpdater.Invoke();
         }
@@ -145,9 +141,6 @@ namespace FlareTables
                 return true;
             }).ToList();
 
-//            foreach ((string _, Column value) in _columnData)
-//                if (value.SortDir != null)
-
             Sort(ref data);
 
             Paginate.RowCount = data.Count;
@@ -177,8 +170,6 @@ namespace FlareTables
                 Column first = indices.First();
                 desc = first.SortDir == 'd';
 
-                Console.WriteLine($"1 {first.ID} | {first.SortIndex} -> {first.Value} {(desc ? "desc" : "asc")}");
-
                 if (!desc)
                     query = data.OrderBy(v => Val(v, first.ID).ToString(),
                         StringComparer.OrdinalIgnoreCase.WithNaturalSort());
@@ -192,9 +183,6 @@ namespace FlareTables
                     {
                         desc = index.SortDir == 'd';
 
-                        Console.WriteLine(
-                            $"2 {index.ID} | {index.SortIndex} -> {index.Value} {(desc ? "desc" : "asc")}");
-
                         if (!desc)
                             query = query.ThenBy(v => Val(v, index.ID).ToString(),
                                 StringComparer.OrdinalIgnoreCase.WithNaturalSort());
@@ -206,33 +194,6 @@ namespace FlareTables
 
                 data = query.ToList();
             }
-
-//            List<object> res = data;
-//
-//            foreach (Column index in indices)
-//            {
-//                bool desc = index.SortDir == 'd';
-//
-//                if (!desc)
-//                    data = data.OrderBy(v => Val(v, index.ID).ToString(),
-//                        StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
-//                else
-//                    data = data.OrderByDescending(v => Val(v, index.ID).ToString(),
-//                        StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
-//                
-//                
-//            }
-//
-//            if (desc)
-//            {
-//                data = data.OrderBy(v => Val(v, id).ToString(), StringComparer.OrdinalIgnoreCase.WithNaturalSort())
-//                           .ToList();
-//            }
-//            else
-//            {
-//                data = data.OrderByDescending(v => Val(v, id).ToString(),
-//                    StringComparer.OrdinalIgnoreCase.WithNaturalSort()).ToList();
-//            }
         }
 
         private static bool Match(string str, string term)
