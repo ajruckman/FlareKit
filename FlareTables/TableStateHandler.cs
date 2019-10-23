@@ -164,11 +164,10 @@ namespace FlareTables
 
             if (indices.Any())
             {
-                IOrderedEnumerable<object> query;
-                bool                       desc;
-
                 Column first = indices.First();
-                desc = first.SortDir == 'd';
+                bool   desc  = first.SortDir == 'd';
+
+                IOrderedEnumerable<object> query;
 
                 if (!desc)
                     query = data.OrderBy(v => Val(v, first.ID).ToString(),

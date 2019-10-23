@@ -9,22 +9,22 @@ namespace FlareSelect
 {
     internal sealed class SelectStateHandler
     {
-        private readonly  Events.OnUpdate                   _onUpdate;
-        private readonly  bool                              _disabled;
-        private readonly  string                            _uid;
-        internal readonly string                            InputUID;
-        internal readonly List<Option>                      Selected;
-        private           string                            _searchTerm;
-        private           bool                              _focused;
-        private IJSRuntime _jsRuntime;
+        private readonly  Events.OnUpdate _onUpdate;
+        private readonly  bool            _disabled;
+        private readonly  string          _uid;
+        internal readonly string          InputUID;
+        internal readonly List<Option>    Selected;
+        private           string          _searchTerm;
+        private           bool            _focused;
+        private           IJSRuntime      _jsRuntime;
 
-        internal SelectStateHandler(IEnumerable<Option>               options,
-                                    bool                              multiple,
-                                    bool?                             closeOnSelect,
-                                    bool                              disabled,
-                                    Events.OnUpdate                   onUpdate,
-                                    ElementClickHandler               elementClickHandler,
-                                    IJSRuntime                        jsRuntime)
+        internal SelectStateHandler(IEnumerable<Option> options,
+                                    bool                multiple,
+                                    bool?               closeOnSelect,
+                                    bool                disabled,
+                                    Events.OnUpdate     onUpdate,
+                                    ElementClickHandler elementClickHandler,
+                                    IJSRuntime          jsRuntime)
         {
             _disabled           = disabled;
             Options             = options;
@@ -32,7 +32,7 @@ namespace FlareSelect
             CloseOnSelect       = closeOnSelect;
             _onUpdate           = onUpdate;
             ElementClickHandler = elementClickHandler;
-            _jsRuntime = jsRuntime;
+            _jsRuntime          = jsRuntime;
 
             _uid     = Guid.NewGuid().ToString();
             InputUID = _uid + "_Filter";
@@ -44,7 +44,13 @@ namespace FlareSelect
             if (CloseOnSelect == null)
                 CloseOnSelect = !Multiple;
 
-            ElementClickHandler.OnOuterClick += () => _focused = false;
+            ElementClickHandler.OnOuterClick += () =>
+            {
+                if (!_focused) return;
+
+                _focused = false;
+                ElementClickHandler.OuterClickHandled();
+            };
 
             ElementClickHandler.OnReactiveClick += source =>
             {
@@ -155,7 +161,7 @@ namespace FlareSelect
             result += $"FlareSelect_{containerName}--{(!_focused ? "Unfocused" : "Focused")} ";
             result += $"FlareSelect_{containerName}--{(!Multiple ? "Single" : "Multiple")} ";
             result += $"FlareSelect_{containerName}--{(!_disabled ? "Enabled" : "Disabled")}";
-            
+
             return result;
         }
     }

@@ -11,6 +11,7 @@ namespace FlareLib
         private          int    _blocks;
 
         public event Action         OnOuterClick;
+        public event Action         OnOuterClickHandled;
         public event Action<string> OnReactiveClick;
         public event Action<string> OnNonreactiveClick;
 
@@ -34,6 +35,11 @@ namespace FlareLib
             }
 
             OnOuterClick?.Invoke();
+        }
+
+        public void OuterClickHandled()
+        {
+            OnOuterClickHandled?.Invoke();
         }
 
         public void ReactiveClick(string source)

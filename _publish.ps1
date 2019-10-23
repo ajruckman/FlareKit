@@ -26,9 +26,14 @@ if (!(Test-Path .\_published\))
 }
 rm -Force .\_published\*
 
-cp .\FlareLib\bin\Debug\FlareLib.*.nupkg .\_published\
-cp .\FlareSelect\bin\Debug\FlareSelect.*.nupkg .\_published\
-cp .\FlareTables\bin\Debug\FlareTables.*.nupkg .\_published\
+Get-ChildItem -Directory | foreach {
+	if (Test-Path "$($_.FullName)\bin") {
+		Get-ChildItem "$($_.FullName)\bin\" -Depth 1 -Filter *.nupkg | foreach {
+			Write-Output $_.Name
+			Copy-Item $_.FullName .\_published\
+		}
+	}
+}
 
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flarelib\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flareselect\
