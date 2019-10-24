@@ -61,6 +61,8 @@ namespace FlareSelect
                 // Focus search input when dialog is opened
                 jsRuntime.InvokeAsync<object>("FlareSelect.focusElement", InputUID);
             };
+            
+            _onUpdate?.Invoke(Selected);
         }
 
         private IEnumerable<Option> Options { get; }
