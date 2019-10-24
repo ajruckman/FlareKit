@@ -1,0 +1,1290 @@
+@charset "UTF-8";
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+*:not(.RDMNT_HeaderWrapper):not(.RDMNT_SubheaderWrapper) + .RDMNT_SubheaderWrapper {
+  border-top: 1px solid #bfd7f1;
+  margin-top: 7px; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+.EditableInfoTableLabelContainer label {
+  border-bottom: 1px dashed #651fff; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+.RDMNT_Project {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-start; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+.Validation, #components-reconnect-modal h5 {
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.025);
+  display: inline-block;
+  line-height: 18px;
+  position: relative;
+  z-index: 0; }
+  .Validation:not(:first-child), #components-reconnect-modal h5:not(:first-child) {
+    margin-left: 2px; }
+  .Validation .ValidationText, #components-reconnect-modal h5 .ValidationText {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0 3px;
+    white-space: pre-wrap; }
+  .Validation.Valid .ValidationText, #components-reconnect-modal h5.Valid .ValidationText {
+    background-color: green;
+    color: white; }
+  .Validation.Warning .ValidationText, #components-reconnect-modal h5.Warning .ValidationText {
+    background-color: yellow;
+    color: black; }
+  .Validation.Invalid .ValidationText, #components-reconnect-modal h5.Invalid .ValidationText {
+    background-color: red;
+    color: white; }
+  .Validation.Validating, #components-reconnect-modal h5 {
+    background-color: blue;
+    color: white; }
+    .Validation.Validating .Background, #components-reconnect-modal h5 .Background {
+      bottom: 1px;
+      left: 1px;
+      overflow: hidden;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      z-index: -1; }
+      .Validation.Validating .Background::before, #components-reconnect-modal h5 .Background::before {
+        animation: stripes 0.5s linear infinite;
+        background-image: repeating-linear-gradient(to right, blue 0, blue 8px, #0000d9 8px, #0000d9 16px);
+        background-repeat: repeat;
+        background-size: 16px;
+        content: '';
+        display: block;
+        height: 100%;
+        width: calc(100% + 16px); }
+
+@keyframes stripes {
+  from {
+    transform: translateX(-16px); }
+  to {
+    transform: translateX(0); } }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+body.RDMNT_HTML .RDMNT_DataTable table.FlareTable thead tr:nth-child(2) th:not(:last-child), body.RDMNT_HTML .RDMNT_DataTable table.FlareTable tbody tr td:not(:last-child), body.RDMNT_HTML .RDMNT_DataTable table thead tr:first-child th:not(:last-child), body.RDMNT_HTML .RDMNT_DataTable table tbody tr td:not(:last-child), body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable thead tr:nth-child(2) th:not(:last-child), body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable tbody tr td:not(:last-child), body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table thead tr:first-child th:not(:last-child), body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr td:not(:last-child) {
+  background-clip: padding-box;
+  position: relative; }
+  body.RDMNT_HTML .RDMNT_DataTable table.FlareTable thead tr:nth-child(2) th:not(:last-child):after, body.RDMNT_HTML .RDMNT_DataTable table.FlareTable tbody tr td:not(:last-child):after, body.RDMNT_HTML .RDMNT_DataTable table thead tr:first-child th:not(:last-child):after, body.RDMNT_HTML .RDMNT_DataTable table tbody tr td:not(:last-child):after, body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable thead tr:nth-child(2) th:not(:last-child):after, body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable tbody tr td:not(:last-child):after, body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table thead tr:first-child th:not(:last-child):after, body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr td:not(:last-child):after {
+    border-right: 1px solid #c0dbf5;
+    bottom: 8px;
+    content: "";
+    height: 10px;
+    line-height: 27px;
+    position: absolute;
+    right: 0; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+*:not(.PylonContainer):not(.RDMNT_HeaderWrapper):not(.RDMNT_SubheaderWrapper) + .PylonContainer {
+  border-top: 1px solid #c0dbf5; }
+
+.PylonContainer {
+  width: 100%; }
+  .PylonContainer > .PylonRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid #c0dbf5; }
+    .PylonContainer > .PylonRow > .Pylon {
+      flex-grow: 1;
+      flex-basis: 0;
+      padding: 4px 8px; }
+      .PylonContainer > .PylonRow > .Pylon:not(:first-child) {
+        border-left: 1px solid #c0dbf5; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Grow1 {
+        flex-grow: 1; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Grow2 {
+        flex-grow: 2; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Grow3 {
+        flex-grow: 3; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Grow4 {
+        flex-grow: 4; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Grow5 {
+        flex-grow: 5; }
+      .PylonContainer > .PylonRow > .Pylon.Pylon-Thin {
+        flex-grow: unset;
+        flex-shrink: 20; }
+      .PylonContainer > .PylonRow > .Pylon > .ContentContainer {
+        margin: 5px 7px 7px 7px; }
+        .PylonContainer > .PylonRow > .Pylon > .ContentContainer > .ContentHeader {
+          text-decoration: underline grey;
+          margin: 0 0 5px 0;
+          font-weight: 700;
+          font-size: 12pt; }
+        .PylonContainer > .PylonRow > .Pylon > .ContentContainer > .ContentInfo table tbody tr td:first-child {
+          padding: 2px 0;
+          color: #aaaaaa;
+          font-weight: 500;
+          vertical-align: top;
+          word-wrap: break-spaces; }
+        .PylonContainer > .PylonRow > .Pylon > .ContentContainer > .ContentInfo table tbody tr td:last-child {
+          padding: 2px 5px;
+          color: #dddddd; }
+        .PylonContainer > .PylonRow > .Pylon > .ContentContainer > .ContentPre {
+          white-space: pre-wrap; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+#components-reconnect-modal {
+  background-color: #000000 !important;
+  font-size: 15pt;
+  opacity: 0.8 !important; }
+  #components-reconnect-modal h5 {
+    color: white;
+    padding: 5px 10px;
+    width: unset !important; }
+    #components-reconnect-modal h5 a {
+      color: #dddddd;
+      font-size: 12pt; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+.EditableInfoTableLabelContainer label {
+  border-bottom: 1px dashed #651fff; }
+
+.flatpickr-calendar {
+  background-color: #ecf4fc !important;
+  border: none !important;
+  border-radius: 3px !important;
+  box-shadow: 0 7px 20px 7px rgba(0, 0, 0, 0.025) !important;
+  width: 309.875px !important; }
+  .flatpickr-calendar .numInputWrapper .arrowUp::after, .flatpickr-calendar .numInputWrapper .arrowDown::after {
+    border-bottom-color: #9768ff !important;
+    border-top-color: #9768ff !important; }
+  .flatpickr-calendar .flatpickr-months {
+    border: 1px solid #bfd7f1 !important;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+    .flatpickr-calendar .flatpickr-months .flatpickr-prev-month, .flatpickr-calendar .flatpickr-months .flatpickr-next-month {
+      fill: #9768ff !important; }
+      .flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover *, .flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover * {
+        fill: #b694ff !important; }
+    .flatpickr-calendar .flatpickr-months .flatpickr-monthDropdown-months {
+      background-color: #ecf4fc !important;
+      color: #53595f !important; }
+    .flatpickr-calendar .flatpickr-months .cur-year {
+      color: #53595f !important; }
+  .flatpickr-calendar .flatpickr-innerContainer {
+    border-bottom: 1px solid #bfd7f1 !important;
+    border-left: 1px solid #bfd7f1 !important;
+    border-right: 1px solid #bfd7f1 !important; }
+    .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-weekdays {
+      border-bottom: 1px solid #bfd7f1 !important; }
+      .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-weekdays .flatpickr-weekday {
+        color: #53595f !important;
+        font-weight: 600 !important; }
+    .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer {
+      align-content: stretch !important; }
+      .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day {
+        background-color: #e9f1fa !important;
+        border: 1px solid #bfd7f1 !important;
+        color: #404447 !important; }
+        .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day:hover {
+          background-color: #e1ecf8 !important;
+          border: 1px solid #b7d1ef !important;
+          box-sizing: border-box; }
+        .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.selected {
+          background-color: #651fff !important;
+          border: 1px solid #bbd3ea !important;
+          color: white !important; }
+          .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.selected:hover {
+            background-color: #7b3fff !important;
+            border: 1px solid #b3cde8 !important;
+            color: white !important; }
+        .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.prevMonthDay, .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.nextMonthDay {
+          background-color: #eff6fd !important;
+          color: #79848e !important; }
+          .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.prevMonthDay:hover, .flatpickr-calendar .flatpickr-innerContainer .flatpickr-rContainer .flatpickr-days .dayContainer .flatpickr-day.nextMonthDay:hover {
+            background-color: #e6f1fc !important; }
+  .flatpickr-calendar.showTimeInput.noCalendar .flatpickr-time {
+    border-top: 1px solid #bfd7f1 !important;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+  .flatpickr-calendar.showTimeInput .flatpickr-time {
+    border-left: 1px solid #bfd7f1 !important;
+    border-right: 1px solid #bfd7f1 !important;
+    border-top: none !important; }
+    .flatpickr-calendar.showTimeInput .flatpickr-time input, .flatpickr-calendar.showTimeInput .flatpickr-time .flatpickr-am-pm {
+      background-color: #ecf4fc !important;
+      color: #2c2e2f !important; }
+      .flatpickr-calendar.showTimeInput .flatpickr-time input:hover, .flatpickr-calendar.showTimeInput .flatpickr-time input:active, .flatpickr-calendar.showTimeInput .flatpickr-time input:focus, .flatpickr-calendar.showTimeInput .flatpickr-time .flatpickr-am-pm:hover, .flatpickr-calendar.showTimeInput .flatpickr-time .flatpickr-am-pm:active, .flatpickr-calendar.showTimeInput .flatpickr-time .flatpickr-am-pm:focus {
+        background-color: #e3effb !important;
+        border-bottom: 1px solid #651fff;
+        box-sizing: border-box; }
+    .flatpickr-calendar.showTimeInput .flatpickr-time input {
+      border-bottom: 1px solid transparent; }
+  .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper {
+    background-color: #ecf4fc !important;
+    border: 1px solid #bfd7f1;
+    box-sizing: border-box;
+    overflow: hidden; }
+    .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-label {
+      display: none; }
+    .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons {
+      justify-content: center;
+      width: 100%; }
+      .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button {
+        background-color: #ecf4fc;
+        border: 1px solid #c0dbf5;
+        border-radius: 3px;
+        color: #2c2e2f;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        height: 23px;
+        letter-spacing: 1px;
+        outline: none;
+        padding: 0 5px;
+        text-transform: uppercase;
+        transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+        .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button:hover {
+          background-color: #e3effb;
+          border-bottom: 1px solid #651fff;
+          border-left: 1px solid #b7d5f4;
+          border-right: 1px solid #b7d5f4;
+          border-top: 1px solid #b7d5f4;
+          outline: none;
+          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+        .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button:active {
+          background-color: #daeaf9;
+          border: 1px solid #651fff;
+          transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+        .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button:disabled, .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button.disabled {
+          background-color: #f6faff;
+          border: 1px solid #e6e6e6;
+          color: #79848e; }
+        .flatpickr-calendar .shortcut-buttons-flatpickr-wrapper .shortcut-buttons-flatpickr-buttons button::-moz-focus-inner {
+          border: 0; }
+  .flatpickr-calendar > div:last-child {
+    border-bottom: 1px solid #bfd7f1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; }
+
+/*!
+ * Copyright (c) McKee Foods Corporation 2019
+ * A.J. Ruckman - Systems and Database Administration
+ */
+.FlareTableResetColumns {
+  background-color: #ecf4fc;
+  border: 1px solid #c0dbf5;
+  border-radius: 3px;
+  color: #2c2e2f;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  height: 23px;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 0 5px;
+  text-transform: uppercase;
+  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+  .FlareTableResetColumns:hover {
+    background-color: #e3effb;
+    border-bottom: 1px solid #651fff;
+    border-left: 1px solid #b7d5f4;
+    border-right: 1px solid #b7d5f4;
+    border-top: 1px solid #b7d5f4;
+    outline: none;
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+  .FlareTableResetColumns:active {
+    background-color: #daeaf9;
+    border: 1px solid #651fff;
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+  .FlareTableResetColumns:disabled, .FlareTableResetColumns.disabled {
+    background-color: #f6faff;
+    border: 1px solid #e6e6e6;
+    color: #79848e; }
+  .FlareTableResetColumns::-moz-focus-inner {
+    border: 0; }
+
+.FlareTablePaginationPageSizeContainer select {
+  background-color: #ecf4fc;
+  border: 1px solid #c0dbf5;
+  border-radius: 3px;
+  color: #2c2e2f;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  height: 23px;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 0 5px;
+  text-transform: uppercase;
+  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+  .FlareTablePaginationPageSizeContainer select:hover {
+    background-color: #e3effb;
+    border-bottom: 1px solid #651fff;
+    border-left: 1px solid #b7d5f4;
+    border-right: 1px solid #b7d5f4;
+    border-top: 1px solid #b7d5f4;
+    outline: none;
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+  .FlareTablePaginationPageSizeContainer select:active {
+    background-color: #daeaf9;
+    border: 1px solid #651fff;
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+  .FlareTablePaginationPageSizeContainer select:disabled, .FlareTablePaginationPageSizeContainer select.disabled {
+    background-color: #f6faff;
+    border: 1px solid #e6e6e6;
+    color: #79848e; }
+  .FlareTablePaginationPageSizeContainer select::-moz-focus-inner {
+    border: 0; }
+
+.FlareTableInfo p {
+  margin: 9px 5px; }
+
+.FlareTablePaginationButtonContainer .FlareTablePaginateButton {
+  background-clip: padding-box;
+  background-color: #ecf4fc;
+  border: 1px solid #c0dbf5;
+  border-radius: 3px;
+  color: #2c2e2f;
+  font-family: 'Roboto Mono', monospace;
+  padding: 2px 8px;
+  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton::-moz-focus-inner {
+    border: 0; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:hover {
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:active {
+    outline: none;
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:focus {
+    outline: none; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton.FlareTablePaginateButton_Current {
+    background-color: #651fff;
+    color: white; }
+    .FlareTablePaginationButtonContainer .FlareTablePaginateButton.FlareTablePaginateButton_Current:hover {
+      background-color: #5619db;
+      color: white; }
+    .FlareTablePaginationButtonContainer .FlareTablePaginateButton.FlareTablePaginateButton_Current:active {
+      background-color: #4917b6; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:disabled {
+    background-color: #f6faff;
+    color: #79848e; }
+    .FlareTablePaginationButtonContainer .FlareTablePaginateButton:disabled:hover {
+      background-color: #f6faff;
+      color: #79848e; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:not(:disabled):not(.FlareTablePaginateButton_Current):hover {
+    background-color: #e3effb;
+    color: #2c2e2f;
+    border-bottom: 1px solid #651fff; }
+  .FlareTablePaginationButtonContainer .FlareTablePaginateButton:not(:disabled):not(.FlareTablePaginateButton_Current):active {
+    background-color: #daeaf9;
+    border: 1px solid #651fff; }
+
+.FlareTableInputContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between; }
+  .FlareTableInputContainer input.FlareTableFilterInput {
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #2c2e2f;
+    font-family: "Roboto Mono", monospace;
+    height: 20px;
+    outline: none;
+    padding: 0 2px;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    .FlareTableInputContainer input.FlareTableFilterInput:hover {
+      background-color: #e3effb;
+      border: 1px solid #b7d5f4;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareTableInputContainer input.FlareTableFilterInput:focus, .FlareTableInputContainer input.FlareTableFilterInput:active {
+      background-color: #daeaf9;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #aed0f2;
+      border-right: 1px solid #aed0f2;
+      border-top: 1px solid #aed0f2;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+  .FlareTableInputContainer .FlareTableSortDirIndicator {
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    border: none;
+    border-radius: 3px;
+    color: transparent;
+    filter: invert(0%);
+    height: 21px;
+    margin-right: 5px;
+    outline: none;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
+    width: 21px; }
+    .FlareTableInputContainer .FlareTableSortDirIndicator.SortDirNeutral {
+      background-image: url("/_content/Integrant.Rudiment/open-iconic/svg/align-center.svg"); }
+    .FlareTableInputContainer .FlareTableSortDirIndicator.SortDirAsc {
+      background-image: url("/_content/Integrant.Rudiment/open-iconic/svg/arrow-thick-top.svg"); }
+    .FlareTableInputContainer .FlareTableSortDirIndicator.SortDirDesc {
+      background-image: url("/_content/Integrant.Rudiment/open-iconic/svg/arrow-thick-bottom.svg"); }
+    .FlareTableInputContainer .FlareTableSortDirIndicator::-moz-focus-inner {
+      border: none;
+      outline: none; }
+    .FlareTableInputContainer .FlareTableSortDirIndicator:hover {
+      background-color: #e3effb;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+
+.FlareTableControlContainer {
+  display: flex;
+  margin: 5px; }
+  .FlareTableControlContainer .FlareTablePaginationButtonContainer {
+    margin-left: auto;
+    order: 3; }
+  .FlareTableControlContainer .FlareTablePaginationPageSizeContainer {
+    order: 1; }
+  .FlareTableControlContainer .FlareTableResetColumns {
+    margin-left: 5px;
+    order: 2; }
+
+.FlareSelect_Container {
+  font-family: "Roboto Mono", monospace !important; }
+  .FlareSelect_Container .FlareSelect_SelectionContainer {
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5 !important;
+    border-radius: 3px !important;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    .FlareSelect_Container .FlareSelect_SelectionContainer:hover {
+      background-color: #e3effb !important;
+      border: 1px solid #b7d5f4 !important;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareSelect_Container .FlareSelect_SelectionContainer--Single {
+      height: 23px; }
+    .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection {
+      border-radius: 3px !important;
+      transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+      .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection--Single {
+        background-color: unset;
+        border: 0;
+        display: flex;
+        line-height: 21px;
+        margin: 0; }
+        .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection--Single .FlareSelect_SelectionValue {
+          box-sizing: border-box;
+          height: 21px;
+          padding: 0 3px 3px 3px; }
+      .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection--Multiple {
+        background-color: #f6faff;
+        border: 1px solid #c3deff !important;
+        height: 20px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.025); }
+        .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection--Multiple:hover {
+          background-color: #ecf4ff !important;
+          border: 1px solid #b9d8ff !important;
+          border-bottom: 1px solid #651fff !important;
+          box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.025);
+          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+      .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:hover {
+        opacity: 0.7; }
+      .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:before, .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_Selection .FlareSelect_DeselectContainer .FlareSelect_Deselect:after {
+        background-color: #2c2e2f; }
+    .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_SearchContainer--Inline .FlareSelect_Search {
+      border-bottom: 1px solid #c0dbf5;
+      color: #2c2e2f;
+      transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+      .FlareSelect_Container .FlareSelect_SelectionContainer .FlareSelect_SearchContainer--Inline .FlareSelect_Search:focus {
+        border-bottom: 1px solid #651fff;
+        transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+  .FlareSelect_Container .FlareSelect_PaneContainer {
+    background: none;
+    background-clip: padding-box;
+    border: 1px solid #bfd7f1 !important;
+    border-radius: 3px;
+    overflow: hidden; }
+    .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_SearchContainer {
+      background-color: #e9f1fa;
+      border-bottom: 1px solid #c0dbf5 !important;
+      padding: 4px !important; }
+      .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_SearchContainer .FlareSelect_Search {
+        background-color: #ecf4fc !important;
+        border: 1px solid #c0dbf5 !important;
+        border-radius: 3px;
+        color: #2c2e2f;
+        font-family: "Roboto Mono", monospace;
+        height: 25px;
+        outline: none;
+        padding: 4px !important; }
+        .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_SearchContainer .FlareSelect_Search:hover {
+          background-color: #e3effb;
+          border: 1px solid #b7d5f4; }
+        .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_SearchContainer .FlareSelect_Search:focus {
+          background-color: #daeaf9;
+          border: 1px solid #aed0f2;
+          border-bottom: 1px solid #651fff !important; }
+    .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer {
+      border: none;
+      max-height: 350px; }
+      .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option {
+        padding: 6px 17px 6px 6px !important; }
+        .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option:not(:last-child) {
+          border-bottom: 1px solid #c0dbf5; }
+        .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option:not([data-selected]) {
+          background-color: #e9f1fa;
+          border-left: 2px solid transparent; }
+          .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option:not([data-selected]):hover {
+            background-color: #ecf4fc !important;
+            border-left: 2px solid #651fff;
+            color: #2c2e2f !important; }
+        .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option[data-selected] {
+          background-color: #651fff !important;
+          border-left: 2px solid #651fff;
+          color: white !important; }
+          .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_OptionContainer .FlareSelect_Option[data-selected]:hover {
+            background-color: #5619db !important;
+            color: white !important; }
+    .FlareSelect_Container .FlareSelect_PaneContainer .FlareSelect_Pane .FlareSelect_NoResults {
+      padding: 6px 17px 6px 6px !important;
+      background-color: #e9f1fa;
+      border: 0;
+      border-left: 2px solid red; }
+
+*:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-size: 10pt; }
+
+body.RDMNT_HTML {
+  background-color: #f6faff;
+  color: #404447;
+  font-family: 'Roboto', sans-serif;
+  margin: 0; }
+  body.RDMNT_HTML div.RDMNT_Header {
+    align-items: center;
+    background-color: #e2ecf6;
+    border-bottom: 1px solid #bbd3ea;
+    color: #171718;
+    display: flex;
+    height: 45px;
+    justify-content: space-between;
+    width: 100%; }
+    body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderTitle a.RDMNT_HeaderLink {
+      font-size: 18pt;
+      font-weight: 700;
+      line-height: 45px;
+      margin-left: 13px;
+      text-transform: uppercase;
+      color: #404447;
+      outline: none;
+      text-decoration: none;
+      transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+      body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderTitle a.RDMNT_HeaderLink:hover {
+        color: #53595f;
+        transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderLinkContainer {
+      align-items: center;
+      display: flex;
+      line-height: 45px;
+      margin-right: 19px; }
+      body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderLinkContainer a.RDMNT_HeaderLink {
+        color: #404447;
+        font-size: 13pt;
+        font-weight: 500;
+        line-height: 45px;
+        outline: none;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+        body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderLinkContainer a.RDMNT_HeaderLink:hover {
+          color: #53595f;
+          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+        body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderLinkContainer a.RDMNT_HeaderLink:not(:last-child) {
+          margin-right: 10px; }
+          body.RDMNT_HTML div.RDMNT_Header div.RDMNT_HeaderLinkContainer a.RDMNT_HeaderLink:not(:last-child):after {
+            content: '|';
+            margin-left: 10px;
+            margin-right: 0;
+            line-height: 45px;
+            color: #d9e3ed;
+            position: relative;
+            bottom: 1px; }
+  body.RDMNT_HTML div.RDMNT_SubheaderWrapper {
+    width: 100%; }
+    body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader {
+      align-items: center;
+      background-color: #e9f1fa;
+      border-bottom: 1px solid #bfd7f1;
+      color: #171718;
+      display: flex;
+      height: 35px;
+      justify-content: flex-start;
+      width: 100%; }
+      body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderTitle {
+        font-size: 12pt;
+        font-weight: 500;
+        line-height: 35px;
+        margin-left: 13px; }
+      body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderPathContainer {
+        align-items: center;
+        display: flex; }
+        body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderPathContainer .RDMNT_SubheaderPath {
+          line-height: 35px; }
+          body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderPathContainer .RDMNT_SubheaderPath:not(:last-child):after {
+            color: #d9e3ed;
+            content: "⯈";
+            line-height: 35px;
+            margin-left: 4px;
+            margin-right: 4px; }
+      body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderInfoContainer {
+        align-items: center;
+        display: flex;
+        line-height: 35px; }
+        body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderInfoContainer .MonoBlock {
+          margin-left: 7px; }
+      body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderTitle + div.RDMNT_SubheaderPathContainer::before,
+body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderTitle + div.RDMNT_SubheaderInfoContainer::before,
+body.RDMNT_HTML div.RDMNT_SubheaderWrapper > div.RDMNT_Subheader div.RDMNT_SubheaderPathContainer + div.RDMNT_SubheaderInfoContainer::before {
+        content: '|';
+        margin-left: 10px;
+        margin-right: 10px;
+        line-height: 35px;
+        color: #d9e3ed;
+        position: relative;
+        bottom: 1px; }
+  body.RDMNT_HTML span.MonoBlock {
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    padding: 1px 5px;
+    user-select: all; }
+  body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"]) {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.025);
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    box-sizing: content-box;
+    color: #2c2e2f;
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    font-size: 10pt;
+    height: calc(31px - (2 * 3px) - (2 * 4px) - (2 * 1px));
+    margin: 0;
+    outline: none;
+    padding: 3px 5px;
+    width: calc(351px - (2 * 5px) - (2 * 4px) - (2 * 1px));
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"])::-moz-focus-inner {
+      border: 0; }
+    body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"]):hover {
+      background-color: #e3effb;
+      border: 1px solid #b7d5f4;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"]):focus, body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"]):active {
+      background-color: #daeaf9;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #aed0f2;
+      border-right: 1px solid #aed0f2;
+      border-top: 1px solid #aed0f2;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML input.Input:not([type="submit"]):not([type="checkbox"]):disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+  body.RDMNT_HTML textarea.Input {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.025);
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    box-sizing: content-box;
+    color: #2c2e2f;
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    font-size: 10pt;
+    height: calc(31px - (2 * 3px) - (2 * 4px) - (2 * 1px));
+    margin: 0;
+    outline: none;
+    padding: 3px 5px;
+    width: calc(351px - (2 * 5px) - (2 * 4px) - (2 * 1px));
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
+    display: block;
+    height: 150px; }
+    body.RDMNT_HTML textarea.Input::-moz-focus-inner {
+      border: 0; }
+    body.RDMNT_HTML textarea.Input:hover {
+      background-color: #e3effb;
+      border: 1px solid #b7d5f4;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML textarea.Input:focus, body.RDMNT_HTML textarea.Input:active {
+      background-color: #daeaf9;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #aed0f2;
+      border-right: 1px solid #aed0f2;
+      border-top: 1px solid #aed0f2;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML textarea.Input:disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+  body.RDMNT_HTML input.Input[type="checkbox"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid #c0dbf5;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 2em;
+    height: 19px;
+    margin: 0 calc(4px - 1px) 0 calc(4px - 1px);
+    outline: none;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
+    width: 19px;
+    display: block; }
+    body.RDMNT_HTML input.Input[type="checkbox"]:hover:not(:active):not(:focus) {
+      border: 2px solid #b7d5f4;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML input.Input[type="checkbox"]:focus:not(:active) {
+      border-bottom: 2px solid #651fff;
+      border-left: 2px solid #aed0f2;
+      border-right: 2px solid #aed0f2;
+      border-top: 2px solid #aed0f2; }
+    body.RDMNT_HTML input.Input[type="checkbox"]:active {
+      border: 2px solid #651fff;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML input.Input[type="checkbox"]:checked {
+      position: relative; }
+      body.RDMNT_HTML input.Input[type="checkbox"]:checked:after {
+        color: #2c2e2f;
+        content: "✕";
+        font-family: 'Consolas', 'Calibri', sans-serif;
+        font-size: 10pt;
+        left: 2px;
+        position: absolute;
+        top: -2px; }
+    body.RDMNT_HTML input.Input[type="checkbox"]:disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+      body.RDMNT_HTML input.Input[type="checkbox"]:disabled:hover {
+        border: 1px solid #e6e6e6 !important; }
+  body.RDMNT_HTML select.Input {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.025);
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    box-sizing: content-box;
+    color: #2c2e2f;
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    font-size: 10pt;
+    height: calc(31px - (2 * 3px) - (2 * 4px) - (2 * 1px));
+    margin: 0;
+    outline: none;
+    padding: 3px 5px;
+    width: calc(351px - (2 * 5px) - (2 * 4px) - (2 * 1px));
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    body.RDMNT_HTML select.Input::-moz-focus-inner {
+      border: 0; }
+    body.RDMNT_HTML select.Input:hover {
+      background-color: #e3effb;
+      border: 1px solid #b7d5f4;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML select.Input:focus, body.RDMNT_HTML select.Input:active {
+      background-color: #daeaf9;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #aed0f2;
+      border-right: 1px solid #aed0f2;
+      border-top: 1px solid #aed0f2;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML select.Input:disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+    body.RDMNT_HTML select.Input:focus, body.RDMNT_HTML select.Input:active {
+      border: 1px solid #651fff; }
+  body.RDMNT_HTML input[type="submit"].Input {
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    color: #2c2e2f;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    height: 23px;
+    letter-spacing: 1px;
+    outline: none;
+    padding: 0 5px;
+    text-transform: uppercase;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
+    float: right;
+    margin: 5px; }
+    body.RDMNT_HTML input[type="submit"].Input:hover {
+      background-color: #e3effb;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #b7d5f4;
+      border-right: 1px solid #b7d5f4;
+      border-top: 1px solid #b7d5f4;
+      outline: none;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML input[type="submit"].Input:active {
+      background-color: #daeaf9;
+      border: 1px solid #651fff;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML input[type="submit"].Input:disabled, body.RDMNT_HTML input[type="submit"].Input.disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+    body.RDMNT_HTML input[type="submit"].Input::-moz-focus-inner {
+      border: 0; }
+  body.RDMNT_HTML .RDMNT_FormTable table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed; }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td:first-child {
+    color: #53595f;
+    font-weight: 500;
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    padding: 4px 4px 4px 0;
+    vertical-align: top;
+    width: calc(151px - (2 * 4px));
+    word-wrap: break-spaces; }
+    body.RDMNT_HTML .RDMNT_FormTable table tbody tr td:first-child.DisabledFieldLabel {
+      color: #838f9a; }
+    body.RDMNT_HTML .RDMNT_FormTable table tbody tr td:first-child.RequiredAndNull {
+      text-decoration: red underline; }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td:not(:first-child) {
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    vertical-align: middle;
+    width: calc(351px - (2 * 4px));
+    min-width: calc(351px - (2 * 4px));
+    padding: 4px 4px; }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td .RDMNT_Depth1 {
+    padding-left: calc(5 * 4px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td .RDMNT_Depth2 {
+    padding-left: calc(10 * 4px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td .RDMNT_Depth3 {
+    padding-left: calc(15 * 4px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td .RDMNT_Depth4 {
+    padding-left: calc(20 * 4px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr td .RDMNT_Depth5 {
+    padding-left: calc(25 * 4px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td {
+    border-top: none;
+    font-weight: unset;
+    height: calc(25px - (2 * 3px));
+    line-height: calc(25px - (2 * 3px));
+    padding: 0 4px 3px 3px; }
+    body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td .FieldValidationContainer {
+      display: flex;
+      height: calc(25px - (2 * 3px));
+      justify-content: flex-end;
+      line-height: 25px; }
+      body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td .FieldValidationContainer:empty::after {
+        color: #53595f;
+        content: "Validations";
+        display: inline-block;
+        font-size: 9pt;
+        font-style: italic;
+        margin-right: 4px; }
+      body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td .FieldValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td .FieldValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_FormTable table tbody tr.ValidationRow td .FieldValidationContainer h5:not(:first-child) {
+        margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .SubmissionResponseContainer {
+    float: right;
+    margin-top: 7.5px; }
+  body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .FormSubmitButton {
+    float: right;
+    margin: calc(5px - 2px); }
+  body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px; }
+    body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer .Validation:last-child, body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:last-child, #components-reconnect-modal body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer h5:last-child {
+      margin-right: 5px; }
+    body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_FormTable table tfoot tr td .OverallValidationContainer h5:not(:first-child) {
+      margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_FormTable form {
+    margin-block-end: 0; }
+  body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) {
+    width: 100%; }
+    body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed; }
+    body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table {
+      border: 1px solid #c0dbf5;
+      width: 100%; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table thead tr {
+        height: 25px; }
+        body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table thead tr th {
+          border-bottom: 1px solid #c0dbf5;
+          font-weight: 500;
+          overflow: hidden;
+          text-align: left;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          background-color: #e9f1fa; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr {
+        background-color: #f6faff; }
+        body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr td {
+          height: 25px;
+          overflow: hidden;
+          padding: 0 10px;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(even) td {
+        background-color: #f0f7ff; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(odd) td {
+        background-color: #ecf4fb; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(even):hover td {
+        background-color: #e6edf5; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(odd):hover td {
+        background-color: #e9f0f7; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Green:nth-child(even) td {
+        background-color: #bfe0bf; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Green:nth-child(odd) td {
+        background-color: #c3e6c3; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Green:nth-child(even):hover td {
+        background-color: #c7ebc7; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Green:nth-child(odd):hover td {
+        background-color: #d0f5d0; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Red:nth-child(even) td {
+        background-color: #e0bfbf; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Red:nth-child(odd) td {
+        background-color: #bfe0bf; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Red:nth-child(even):hover td {
+        background-color: #ebc7c7; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr.RDMNT_TR_Red:nth-child(odd):hover td {
+        background-color: #c7ebc7; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table thead tr:first-child th, body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr td {
+        padding: 0 10px; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr td {
+        border-bottom: 1px solid #c2ddf7; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table tbody tr:last-child td {
+        border-bottom: 1px solid #c0dbf5; }
+      body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable thead th {
+        border-top: 1px solid #c0dbf5; }
+        body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable thead th:first-child .FlareTableInputContainer input.FlareTableFilterInput {
+          margin: 0 2px;
+          width: calc(100% - 26px - 2px); }
+        body.RDMNT_HTML .RDMNT_ListTable:not(.RDMNT_DataTable) table.FlareTable thead th:not(:first-child) .FlareTableInputContainer input.FlareTableFilterInput {
+          margin: 0 2px 0 8px;
+          width: calc(100% - 26px - 8px); }
+  body.RDMNT_HTML .RDMNT_DataTable {
+    width: 100%; }
+    body.RDMNT_HTML .RDMNT_DataTable table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed; }
+    body.RDMNT_HTML .RDMNT_DataTable table {
+      border: 1px solid #c0dbf5;
+      width: 100%; }
+      body.RDMNT_HTML .RDMNT_DataTable table thead tr {
+        height: 25px; }
+        body.RDMNT_HTML .RDMNT_DataTable table thead tr th {
+          border-bottom: 1px solid #c0dbf5;
+          font-weight: 500;
+          overflow: hidden;
+          text-align: left;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          background-color: #e9f1fa; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr {
+        background-color: #f6faff; }
+        body.RDMNT_HTML .RDMNT_DataTable table tbody tr td {
+          height: 25px;
+          overflow: hidden;
+          padding: 0 10px;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(even) td {
+        background-color: #f0f7ff; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(odd) td {
+        background-color: #ecf4fb; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(even):hover td {
+        background-color: #e6edf5; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr:not(.RDMNT_TR_Green):not(.RDMNT_TR_Red):nth-child(odd):hover td {
+        background-color: #e9f0f7; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Green:nth-child(even) td {
+        background-color: #bfe0bf; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Green:nth-child(odd) td {
+        background-color: #c3e6c3; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Green:nth-child(even):hover td {
+        background-color: #c7ebc7; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Green:nth-child(odd):hover td {
+        background-color: #d0f5d0; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Red:nth-child(even) td {
+        background-color: #e0bfbf; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Red:nth-child(odd) td {
+        background-color: #bfe0bf; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Red:nth-child(even):hover td {
+        background-color: #ebc7c7; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr.RDMNT_TR_Red:nth-child(odd):hover td {
+        background-color: #c7ebc7; }
+      body.RDMNT_HTML .RDMNT_DataTable table thead tr:first-child th, body.RDMNT_HTML .RDMNT_DataTable table tbody tr td {
+        padding: 0 10px; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr td {
+        border-bottom: 1px solid #c2ddf7; }
+      body.RDMNT_HTML .RDMNT_DataTable table tbody tr:last-child td {
+        border-bottom: 1px solid #c0dbf5; }
+      body.RDMNT_HTML .RDMNT_DataTable table.FlareTable thead th {
+        border-top: 1px solid #c0dbf5; }
+        body.RDMNT_HTML .RDMNT_DataTable table.FlareTable thead th:first-child .FlareTableInputContainer input.FlareTableFilterInput {
+          margin: 0 2px;
+          width: calc(100% - 26px - 2px); }
+        body.RDMNT_HTML .RDMNT_DataTable table.FlareTable thead th:not(:first-child) .FlareTableInputContainer input.FlareTableFilterInput {
+          margin: 0 2px 0 8px;
+          width: calc(100% - 26px - 8px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed; }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td:first-child {
+    color: #53595f;
+    font-weight: 500;
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    padding: 4px 4px 4px 0;
+    vertical-align: top;
+    width: calc(151px - (2 * 4px));
+    word-wrap: break-spaces; }
+    body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td:first-child.DisabledFieldLabel {
+      color: #838f9a; }
+    body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td:first-child.RequiredAndNull {
+      text-decoration: red underline; }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td:not(:first-child) {
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    vertical-align: middle;
+    width: calc(351px - (2 * 4px));
+    min-width: calc(351px - (2 * 4px));
+    padding: 4px 4px; }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td .RDMNT_Depth1 {
+    padding-left: calc(5 * 4px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td .RDMNT_Depth2 {
+    padding-left: calc(10 * 4px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td .RDMNT_Depth3 {
+    padding-left: calc(15 * 4px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td .RDMNT_Depth4 {
+    padding-left: calc(20 * 4px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr td .RDMNT_Depth5 {
+    padding-left: calc(25 * 4px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td {
+    border-top: none;
+    font-weight: unset;
+    height: calc(25px - (2 * 3px));
+    line-height: calc(25px - (2 * 3px));
+    padding: 0 4px 3px 3px; }
+    body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td .FieldValidationContainer {
+      display: flex;
+      height: calc(25px - (2 * 3px));
+      justify-content: flex-end;
+      line-height: 25px; }
+      body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td .FieldValidationContainer:empty::after {
+        color: #53595f;
+        content: "Validations";
+        display: inline-block;
+        font-size: 9pt;
+        font-style: italic;
+        margin-right: 4px; }
+      body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td .FieldValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td .FieldValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_InfoTable table tbody tr.ValidationRow td .FieldValidationContainer h5:not(:first-child) {
+        margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .SubmissionResponseContainer {
+    float: right;
+    margin-top: 7.5px; }
+  body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .FormSubmitButton {
+    float: right;
+    margin: calc(5px - 2px); }
+  body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px; }
+    body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer .Validation:last-child, body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:last-child, #components-reconnect-modal body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer h5:last-child {
+      margin-right: 5px; }
+    body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_InfoTable table tfoot tr td .OverallValidationContainer h5:not(:first-child) {
+      margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td:first-child {
+    color: #53595f;
+    font-weight: 500;
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    padding: 4px 4px 4px 0;
+    vertical-align: top;
+    width: calc(151px - (2 * 4px));
+    word-wrap: break-spaces; }
+    body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td:first-child.DisabledFieldLabel {
+      color: #838f9a; }
+    body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td:first-child.RequiredAndNull {
+      text-decoration: red underline; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td:not(:first-child) {
+    line-height: calc(31px - (2 * 4px));
+    height: calc(31px - (2 * 4px));
+    vertical-align: middle;
+    width: calc(351px - (2 * 4px));
+    min-width: calc(351px - (2 * 4px));
+    padding: 4px 4px; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td .RDMNT_Depth1 {
+    padding-left: calc(5 * 4px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td .RDMNT_Depth2 {
+    padding-left: calc(10 * 4px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td .RDMNT_Depth3 {
+    padding-left: calc(15 * 4px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td .RDMNT_Depth4 {
+    padding-left: calc(20 * 4px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr td .RDMNT_Depth5 {
+    padding-left: calc(25 * 4px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td {
+    border-top: none;
+    font-weight: unset;
+    height: calc(25px - (2 * 3px));
+    line-height: calc(25px - (2 * 3px));
+    padding: 0 4px 3px 3px; }
+    body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td .FieldValidationContainer {
+      display: flex;
+      height: calc(25px - (2 * 3px));
+      justify-content: flex-end;
+      line-height: 25px; }
+      body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td .FieldValidationContainer:empty::after {
+        color: #53595f;
+        content: "Validations";
+        display: inline-block;
+        font-size: 9pt;
+        font-style: italic;
+        margin-right: 4px; }
+      body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td .FieldValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td .FieldValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_EditableInfoTable table tbody tr.ValidationRow td .FieldValidationContainer h5:not(:first-child) {
+        margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .SubmissionResponseContainer {
+    float: right;
+    margin-top: 7.5px; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .FormSubmitButton {
+    float: right;
+    margin: calc(5px - 2px); }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px; }
+    body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer .Validation:last-child, body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:last-child, #components-reconnect-modal body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer h5:last-child {
+      margin-right: 5px; }
+    body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer .Validation:not(:first-child), body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer #components-reconnect-modal h5:not(:first-child), #components-reconnect-modal body.RDMNT_HTML .RDMNT_EditableInfoTable table tfoot tr td .OverallValidationContainer h5:not(:first-child) {
+      margin-left: 5px; }
+  body.RDMNT_HTML .RDMNT_EditableInfoTable form {
+    margin-block-end: 0; }
+  body.RDMNT_HTML .RDMNT_StructureWrapper {
+    background-color: #f6faff;
+    display: inline-block; }
+  body.RDMNT_HTML button.Input {
+    background-color: #ecf4fc;
+    border: 1px solid #c0dbf5;
+    border-radius: 3px;
+    color: #2c2e2f;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    height: 23px;
+    letter-spacing: 1px;
+    outline: none;
+    padding: 0 5px;
+    text-transform: uppercase;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    body.RDMNT_HTML button.Input:hover {
+      background-color: #e3effb;
+      border-bottom: 1px solid #651fff;
+      border-left: 1px solid #b7d5f4;
+      border-right: 1px solid #b7d5f4;
+      border-top: 1px solid #b7d5f4;
+      outline: none;
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    body.RDMNT_HTML button.Input:active {
+      background-color: #daeaf9;
+      border: 1px solid #651fff;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    body.RDMNT_HTML button.Input:disabled, body.RDMNT_HTML button.Input.disabled {
+      background-color: #f6faff;
+      border: 1px solid #e6e6e6;
+      color: #79848e; }
+    body.RDMNT_HTML button.Input::-moz-focus-inner {
+      border: 0; }
+  body.RDMNT_HTML ol li {
+    padding-bottom: 5px; }
+  body.RDMNT_HTML pre {
+    margin: 5px 0;
+    border: 1px solid #c0dbf5;
+    padding: 0 2px; }
+  body.RDMNT_HTML h1, body.RDMNT_HTML h2, body.RDMNT_HTML h3, body.RDMNT_HTML h4, body.RDMNT_HTML h5, body.RDMNT_HTML h6 {
+    margin: 5px 0; }
+  body.RDMNT_HTML #ThemeMenu {
+    margin: 5px; }
+    body.RDMNT_HTML #ThemeMenu #ThemeSelector {
+      width: 75px !important;
+      height: unset !important;
+      padding: unset !important; }
+
+/*# sourceMappingURL=style.Light.css.map */

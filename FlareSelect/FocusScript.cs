@@ -23,5 +23,34 @@ namespace FlareSelect
                 return res.ToString();
             }
         }
+
+        // https://stackoverflow.com/a/3028037/9911189
+        public static string ClickScript =>
+            @"
+window.provision = function(dotnetHelper, id) {
+    console.log('provision ' + id);
+    
+    window.hideOnClickOutside(dotnetHelper, document.getElementById(id))
+}
+
+window.hideOnClickOutside = function(dotnetHelper, element) {
+    console.log(element)
+    
+    const outsideClickListener = event => {
+        if (!element.contains(event.target) && window.isVisible(element)) { // or use: event.target.closest(selector) === null
+            dotnetHelper.invokeMethodAsync('OuterClick');
+            //element.style.display = 'none'
+            //removeClickListener()
+        }
+    }
+
+    const removeClickListener = () => {
+        document.removeEventListener('click', outsideClickListener)
+    }
+
+    document.addEventListener('click', outsideClickListener)
+}
+
+window.isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length ) // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js";
     }
 }

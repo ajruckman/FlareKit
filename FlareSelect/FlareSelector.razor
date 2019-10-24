@@ -36,10 +36,10 @@
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnUpdate OnUpdate { get; set; }
 
-    [CascadingParameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-    public ElementClickHandler ElementClickHandler { get; set; }
+//    [CascadingParameter]
+//    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+//    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+//    public ElementClickHandler ElementClickHandler { get; set; }
 
     private SelectStateHandler SelectStateHandler { get; set; }
 
@@ -57,14 +57,37 @@
             CloseOnSelect,
             Disabled,
             OnUpdate,
-            ElementClickHandler,
+//            ElementClickHandler,
             JSRuntime
             );
+
+        Global.ElementClickHandler.OnOuterClickHandled += (callerID) =>
+        {
+            if (callerID != SelectStateHandler.InstanceID)
+            {
+                StateHasChanged();
+            }
+        };
+
+    //        ElementClickHandler.OnOuterClickHandled += async (callerID) =>
+    //        {
+    //            Console.WriteLine($"{callerID} != SelectStateHandler.InputUID ? {callerID != SelectStateHandler.InstanceID}");
+    //            if (callerID != SelectStateHandler.InstanceID)
+    //            {
+    //                StateHasChanged();
+    //            }
+    //        };
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender) return;
+        JSRuntime.InvokeVoidAsync("provision", DotNetObjectReference.Create(Global.ElementClickHandler), SelectStateHandler.InstanceID);
     }
 
 }
 
-<div class="@SelectStateHandler.ContainerClasses("Container")">
+<div class="@SelectStateHandler.ContainerClasses("Container")" id="@SelectStateHandler.InstanceID">
     <div class="@SelectStateHandler.ContainerClasses("SelectionContainer")" @onclick="@(() => SelectStateHandler.Focus())">
         @foreach (Option option in SelectStateHandler.Selected)
         {
@@ -79,7 +102,7 @@
         @if (Multiple)
         {
             <div class="FlareSelect_SearchContainer FlareSelect_SearchContainer--Inline">
-                <input id="@SelectStateHandler.InputUID" class="FlareSelect_Search FlareSelect_Search--Inline" type="text" @oninput="@SelectStateHandler.Search" />
+                <input class="FlareSelect_Search FlareSelect_Search--Inline" type="text" @oninput="@SelectStateHandler.Search" />
             </div>
         }
     </div>
@@ -89,7 +112,7 @@
             @if (!Multiple)
             {
                 <div class="FlareSelect_SearchContainer">
-                    <input id="@SelectStateHandler.InputUID" class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search" @onclick="@(() => SelectStateHandler.SearchClick())" />
+                    <input class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search" @onclick="@(() => SelectStateHandler.SearchClick())" />
                 </div>
             }
             @if (SelectStateHandler.Filtered.Any())

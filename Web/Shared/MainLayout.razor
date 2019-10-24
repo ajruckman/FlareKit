@@ -7,10 +7,16 @@
 
     private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
+    protected override void OnInitialized()
+    {
+//        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
+    }
+
 }
 
 <CascadingValue Value="@ElementClickHandler">
-<div @onclick="@(() => ElementClickHandler.OuterClick())">
+@* <div @onclick="@(() => ElementClickHandler.OuterClick())"> *@
+<div>
     @Body
 </div>
 </CascadingValue>

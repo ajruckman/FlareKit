@@ -1,6 +1,7 @@
 .idea/
+/packages/
 *.DotSettings.user
 bin
 obj
 .vs
-_published
+_published/

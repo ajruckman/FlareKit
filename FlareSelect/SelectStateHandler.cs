@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using FlareLib;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -9,21 +10,25 @@ namespace FlareSelect
 {
     internal sealed class SelectStateHandler
     {
-        private readonly  Events.OnUpdate _onUpdate;
-        private readonly  bool            _disabled;
-        private readonly  string          _uid;
-        internal readonly string          InputUID;
-        internal readonly List<Option>    Selected;
-        private           string          _searchTerm;
-        private           bool            _focused;
-        private           IJSRuntime      _jsRuntime;
+        private readonly Events.OnUpdate _onUpdate;
+        private readonly bool            _disabled;
+
+//        private readonly string _uid;
+
+//        internal readonly string          InputUID;
+        internal readonly List<Option> Selected;
+        private           string       _searchTerm;
+        internal          bool         _focused;
+        private           IJSRuntime   _jsRuntime;
+
+        internal readonly string InstanceID;
 
         internal SelectStateHandler(IEnumerable<Option> options,
                                     bool                multiple,
                                     bool?               closeOnSelect,
                                     bool                disabled,
                                     Events.OnUpdate     onUpdate,
-                                    ElementClickHandler elementClickHandler,
+//                                    ElementClickHandler elementClickHandler,
                                     IJSRuntime          jsRuntime)
         {
             _disabled           = disabled;
@@ -31,11 +36,10 @@ namespace FlareSelect
             Multiple            = multiple;
             CloseOnSelect       = closeOnSelect;
             _onUpdate           = onUpdate;
-            ElementClickHandler = elementClickHandler;
+//            ElementClickHandler = elementClickHandler;
             _jsRuntime          = jsRuntime;
 
-            _uid     = Guid.NewGuid().ToString();
-            InputUID = _uid + "_Filter";
+            InstanceID = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
 
             Selected = !Multiple
                 ? Options.Where(v => v.Selected).Take(1).ToList()
@@ -44,30 +48,27 @@ namespace FlareSelect
             if (CloseOnSelect == null)
                 CloseOnSelect = !Multiple;
 
-            ElementClickHandler.OnOuterClick += () =>
+            Global.ElementClickHandler.OnOuterClick += () =>
             {
-                if (!_focused) return;
-
                 _focused = false;
-                ElementClickHandler.OuterClickHandled();
+                Global.ElementClickHandler.OuterClickHandled(InstanceID);
             };
 
-            ElementClickHandler.OnReactiveClick += source =>
-            {
-                if (source != _uid) return;
+//            ElementClickHandler.OnOuterClick += async () =>
+//            {
+//                Console.WriteLine($"111 {InstanceID} {_focused}");
+//                if (!_focused) return;
+//                Console.WriteLine("SelectStateHandler -> false");
+//                _focused = false;
+//                ElementClickHandler.OuterClickHandled(InstanceID);
+//            };
 
-                _focused = true;
-
-                // Focus search input when dialog is opened
-                jsRuntime.InvokeAsync<object>("FlareSelect.focusElement", InputUID);
-            };
-            
             _onUpdate?.Invoke(Selected);
         }
 
         private IEnumerable<Option> Options { get; }
 
-        private ElementClickHandler ElementClickHandler { get; }
+//        private ElementClickHandler ElementClickHandler { get; }
         private bool                Multiple            { get; }
         private bool?               CloseOnSelect       { get; }
 
@@ -91,9 +92,15 @@ namespace FlareSelect
                     Selected.Add(option);
             }
 
-            // Block OnOuterClick if CloseOnSelect is null or false
-            if (CloseOnSelect == false)
-                ElementClickHandler.BlockOne();
+            if (CloseOnSelect == true)
+            {
+                Console.WriteLine("CloseOnSelect -> false");
+                _focused = false;
+            }
+
+//            // Block OnOuterClick if CloseOnSelect is null or false
+//            if (CloseOnSelect == false)
+//                ElementClickHandler.BlockOne();
 
             _onUpdate?.Invoke(Selected);
         }
@@ -103,15 +110,16 @@ namespace FlareSelect
             return Selected.Any(v => v.ID == option.ID);
         }
 
+//        private bool _wasDeselectedWhileFocused;
+//        private bool _wasDeselectedWhileUnfocused;
+//        private bool _wasSearchClickedWhileFocused;
+
         internal void Deselect(Option option)
         {
-            // If focused, don't block subsequent Focus() calls
-            if (!_focused)
-            {
-                // Never open dialog on deselect
-                ElementClickHandler.BlockOne();
-                ElementClickHandler.BlockOne();
-            }
+//            if (_focused)
+//                _wasDeselectedWhileFocused = true;
+//            else
+//                _wasDeselectedWhileUnfocused = true;
 
             if (!Multiple)
                 Selected.Clear();
@@ -123,17 +131,17 @@ namespace FlareSelect
 
         internal void Focus()
         {
-            if (!_focused)
-            {
-                // Close others
-                ElementClickHandler.OuterClick();
+            if (_focused) return;
+//                if (_wasDeselectedWhileUnfocused)
+//                {
+//                    _wasDeselectedWhileUnfocused = false;
+//                    return;
+//                }
 
-                // Should open dialog
-                ElementClickHandler.ReactiveClick(_uid);
-            }
+//            ElementClickHandler.OuterClick(); // Must come before _focused = true
 
-            // Block OnOuterClick
-            ElementClickHandler.BlockOne();
+            Console.WriteLine("Focus -> true");
+            _focused = true;
         }
 
         internal void Search(ChangeEventArgs args)
@@ -146,8 +154,9 @@ namespace FlareSelect
 
         internal void SearchClick()
         {
-            // Don't close dialog when search input is clicked
-            ElementClickHandler.BlockOne();
+//            _wasSearchClickedWhileFocused = true;
+//            // Don't close dialog when search input is clicked
+//            ElementClickHandler.BlockOne();
         }
 
         private static bool Match(string str, string term)

@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using FlareSelect
 @namespace Web.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -11,6 +12,13 @@
     <base href="~/" />
 
     <link rel="stylesheet" href="_content/FlareSelect/FlareSelect.css"/>
+    <link rel="stylesheet" href="/css/style.Light.css"/>
+    
+    <script>
+    
+        @Html.Raw(FocusScript.ClickScript)
+    
+    </script>
 </head>
 <body>
     <app>
