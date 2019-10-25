@@ -49,7 +49,6 @@ namespace FlareSelect
 
             Global.ElementClickHandler.OnOuterClick += (targetID) =>
             {
-                Console.WriteLine($"Outer: {targetID} {InstanceID}");
                 if (targetID == InstanceID)
                 {
                     Unfocus();
@@ -58,7 +57,6 @@ namespace FlareSelect
             
             Global.ElementClickHandler.OnInnerClick += (targetID) =>
             {
-                Console.WriteLine($"Inner: {targetID} {InstanceID}");
                 if (targetID == InstanceID)
                 {
                     Focus();
@@ -93,8 +91,8 @@ namespace FlareSelect
 
             if (CloseOnSelect == true)
             {
-                Console.WriteLine("CloseOnSelect -> false");
                 _focused = false;
+                _stateHasChanged.Invoke();
             }
 
             _onUpdate?.Invoke(Selected);
@@ -119,7 +117,6 @@ namespace FlareSelect
         {
             if (!_focused) return;
             
-            Console.WriteLine("Focus -> false");
             _focused = false;
             _stateHasChanged.Invoke();
         }
@@ -128,7 +125,6 @@ namespace FlareSelect
         {
             if (_focused) return;
 
-            Console.WriteLine("Focus -> true");
             _focused = true;
             _stateHasChanged.Invoke();
         }
