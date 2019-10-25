@@ -57,38 +57,22 @@
             CloseOnSelect,
             Disabled,
             OnUpdate,
-//            ElementClickHandler,
-            JSRuntime
+            JSRuntime,
+            StateHasChanged
             );
-
-        Global.ElementClickHandler.OnOuterClickHandled += (callerID) =>
-        {
-            if (callerID != SelectStateHandler.InstanceID)
-            {
-                StateHasChanged();
-            }
-        };
-
-    //        ElementClickHandler.OnOuterClickHandled += async (callerID) =>
-    //        {
-    //            Console.WriteLine($"{callerID} != SelectStateHandler.InputUID ? {callerID != SelectStateHandler.InstanceID}");
-    //            if (callerID != SelectStateHandler.InstanceID)
-    //            {
-    //                StateHasChanged();
-    //            }
-    //        };
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         if (!firstRender) return;
-        JSRuntime.InvokeVoidAsync("provision", DotNetObjectReference.Create(Global.ElementClickHandler), SelectStateHandler.InstanceID);
+        Console.WriteLine("provision");
+        JSRuntime.InvokeVoidAsync("window.provision", DotNetObjectReference.Create(Global.ElementClickHandler), SelectStateHandler.InstanceID);
     }
 
 }
 
 <div class="@SelectStateHandler.ContainerClasses("Container")" id="@SelectStateHandler.InstanceID">
-    <div class="@SelectStateHandler.ContainerClasses("SelectionContainer")" @onclick="@(() => SelectStateHandler.Focus())">
+    <div class="@SelectStateHandler.ContainerClasses("SelectionContainer")">
         @foreach (Option option in SelectStateHandler.Selected)
         {
             <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
