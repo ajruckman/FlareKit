@@ -27,7 +27,7 @@ namespace FlareLib
         
 //        private readonly object _mutex = new object();
 //        private          int    _blocks;
-
+//
 //        public event Action OnOuterClick;
 //        public event Action<string> OnReactiveClick;
 //        public event Action<string> OnOuterClickHandled;
