@@ -9,5 +9,9 @@ namespace FlareSelect
     public static class Events
     {
         public delegate void OnUpdate(List<Option> selected);
+
+        public delegate void OnSearch(string searchTerm);
+
+        public delegate void TriggerSearch();
     }
 }

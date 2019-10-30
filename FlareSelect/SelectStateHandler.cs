@@ -8,13 +8,14 @@ namespace FlareSelect
 {
     internal sealed class SelectStateHandler
     {
-        private readonly  Events.OnUpdate _onUpdate;
-        private readonly  bool            _disabled;
-        internal readonly List<Option>    Selected;
-        private           string          _searchTerm;
-        internal          bool            _focused;
-        private           IJSRuntime      _jsRuntime;
-        private readonly FlareLib.FlareLib.StateHasChanged _stateHasChanged;
+        private readonly  Events.OnUpdate                   _onUpdate;
+        private readonly  Events.OnSearch                   _onSearch;
+        private readonly  bool                              _disabled;
+        internal readonly List<Option>                      Selected;
+        private           string                            _searchTerm;
+        internal          bool                              _focused;
+        private           IJSRuntime                        _jsRuntime;
+        private readonly  FlareLib.FlareLib.StateHasChanged _stateHasChanged;
 
         internal readonly string InstanceID;
 
@@ -24,16 +25,18 @@ namespace FlareSelect
             bool?                             closeOnSelect,
             bool                              disabled,
             Events.OnUpdate                   onUpdate,
+            Events.OnSearch                   onSearch,
             IJSRuntime                        jsRuntime,
             FlareLib.FlareLib.StateHasChanged stateHasChanged
         )
         {
-            _disabled     = disabled;
-            Options       = options;
-            Multiple      = multiple;
-            CloseOnSelect = closeOnSelect;
-            _onUpdate     = onUpdate;
-            _jsRuntime    = jsRuntime;
+            _disabled        = disabled;
+            Options          = options;
+            Multiple         = multiple;
+            CloseOnSelect    = closeOnSelect;
+            _onUpdate        = onUpdate;
+            _onSearch        = onSearch;
+            _jsRuntime       = jsRuntime;
             _stateHasChanged = stateHasChanged;
 
             InstanceID = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
@@ -54,7 +57,7 @@ namespace FlareSelect
                     Unfocus();
                 }
             };
-            
+
             Global.ElementClickHandler.OnInnerClick += (targetID) =>
             {
                 if (targetID == InstanceID)
@@ -116,7 +119,7 @@ namespace FlareSelect
         internal void Unfocus()
         {
             if (!_focused) return;
-            
+
             _focused = false;
             _stateHasChanged.Invoke();
         }
@@ -134,7 +137,9 @@ namespace FlareSelect
             _focused = true;
 
             var val = (string) args.Value;
+
             _searchTerm = string.IsNullOrEmpty(val) ? null : val;
+            _onSearch?.Invoke(_searchTerm);
         }
 
         internal void SearchClick() { }

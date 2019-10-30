@@ -32,6 +32,16 @@
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnUpdate OnUpdate { get; set; }
+    
+    [Parameter]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+    public Events.OnSearch OnSearch { get; set; }
+   
+    [Parameter]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+    public Events.TriggerSearch TriggerSearch { get; set; }
 
     private SelectStateHandler SelectStateHandler { get; set; }
     private bool               _hasRun;
@@ -48,9 +58,12 @@
             CloseOnSelect,
             Disabled,
             OnUpdate,
+            OnSearch,
             JSRuntime,
             StateHasChanged
-            );
+        );
+
+        TriggerSearch += StateHasChanged;
     }
 
     protected override void OnAfterRender(bool firstRender)
