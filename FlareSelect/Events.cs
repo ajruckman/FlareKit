@@ -12,6 +12,6 @@ namespace FlareSelect
 
         public delegate void OnSearch(string searchTerm);
 
-        public delegate void TriggerSearch();
+        public delegate IEnumerable<Option> Options();
     }
 }

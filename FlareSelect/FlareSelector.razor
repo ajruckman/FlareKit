@@ -11,7 +11,7 @@
     [Parameter]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-    public IEnumerable<Option> Options { get; set; }
+    public Events.Options Options { get; set; }
 
     [Parameter]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
@@ -37,12 +37,12 @@
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnSearch OnSearch { get; set; }
-   
+       
     [Parameter]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-    public Events.TriggerSearch TriggerSearch { get; set; }
-
+    public UpdateTrigger TriggerRefresh { get; set; }
+   
     private SelectStateHandler SelectStateHandler { get; set; }
     private bool               _hasRun;
 
@@ -59,11 +59,8 @@
             Disabled,
             OnUpdate,
             OnSearch,
-            JSRuntime,
             StateHasChanged
         );
-
-        TriggerSearch += StateHasChanged;
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -115,6 +112,7 @@
                 var tabIndex = 1;
                 
                 <div class="FlareSelect_OptionContainer">
+                    <TriggerWrapper Trigger="@TriggerRefresh">
                     @foreach (Option option in SelectStateHandler.Filtered)
                     {
                         <div class="FlareSelect_Option" data-selected="@(SelectStateHandler.IsSelected(option))" tabindex="@(tabIndex++)" 
@@ -123,6 +121,7 @@
                             @option.DropdownValue
                         </div>
                     }
+                    </TriggerWrapper>
                 </div>
             }
             else
