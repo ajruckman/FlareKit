@@ -93,7 +93,7 @@ namespace FlareSelect
 
         internal bool IsSelected(Option option)
         {
-            return Selected.Any(v => v.ID == option.ID);
+            return Selected.Any(v => v.ID.Equals(option.ID));
         }
 
         internal void Deselect(Option option)
