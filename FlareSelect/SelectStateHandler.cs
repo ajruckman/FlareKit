@@ -77,7 +77,7 @@ namespace FlareSelect
             else
             {
                 if (IsSelected(option))
-                    Selected.RemoveAll(v => v.ID == option.ID);
+                    Selected.RemoveAll(v => v.ID.Equals(option.ID));
                 else
                     Selected.Add(option);
             }
@@ -101,7 +101,7 @@ namespace FlareSelect
             if (!Multiple)
                 Selected.Clear();
             else
-                Selected.RemoveAll(v => v.ID == option.ID);
+                Selected.RemoveAll(v => v.ID.Equals(option.ID));
 
             _onUpdate?.Invoke(Selected);
         }
