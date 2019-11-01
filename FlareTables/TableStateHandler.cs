@@ -15,7 +15,7 @@ namespace FlareTables
         public delegate object ValueGetter(object data, string id);
 
         private readonly Dictionary<string, Column>        _columnData = new Dictionary<string, Column>();
-        private readonly IEnumerable<object>               _data;
+        private readonly Proxy.Data                        _data;
         private readonly Type                              _dataType;
         private readonly PropertyInfo[]                    _props;
         private readonly FlareLib.FlareLib.StateHasChanged _stateUpdater;
@@ -25,7 +25,7 @@ namespace FlareTables
         public readonly PageStateHandler Paginate;
 
         public TableStateHandler(
-            IEnumerable<object>               data,
+            Proxy.Data                        data,
             FlareLib.FlareLib.StateHasChanged stateHasChanged,
             ValueGetter                       valueGetter     = null,
             int                               paginationRange = 3,
@@ -126,7 +126,7 @@ namespace FlareTables
         public IEnumerable<object> Data()
         {
             Console.WriteLine("DATA");
-            List<object> data = _data.ToList();
+            List<object> data = _data.Invoke();
 
             data = data.Where(v =>
             {

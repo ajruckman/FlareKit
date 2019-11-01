@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
 namespace FlareSelect
 {
@@ -15,19 +14,24 @@ namespace FlareSelect
 
         internal readonly string       InstanceID;
         internal readonly List<Option> Selected;
-        internal          bool         _focused;
-        private           string       _searchTerm;
 
-        internal SelectStateHandler(Events.Options               options,
-                                    bool                              multiple,
-                                    bool?                             closeOnSelect,
-                                    bool                              disabled,
-                                    Events.OnUpdate                   onUpdate,
-                                    Events.OnSearch                   onSearch,
-                                    FlareLib.FlareLib.StateHasChanged stateHasChanged)
+        private bool   _focused;
+        private string _searchTerm;
+
+        internal SelectStateHandler(
+            Events.Options                    options,
+            Events.Options                    filteredOptions,
+            bool                              multiple,
+            bool?                             closeOnSelect,
+            bool                              disabled,
+            Events.OnUpdate                   onUpdate,
+            Events.OnSearch                   onSearch,
+            FlareLib.FlareLib.StateHasChanged stateHasChanged
+        )
         {
             _disabled        = disabled;
             Options          = options;
+            OptionsFiltered  = filteredOptions ?? options;
             Multiple         = multiple;
             CloseOnSelect    = closeOnSelect;
             _onUpdate        = onUpdate;
@@ -56,16 +60,18 @@ namespace FlareSelect
             };
         }
 
-        private Events.Options Options { get; }
+        private Events.Options Options         { get; }
+        private Events.Options OptionsFiltered { get; }
 
-        private bool                 Multiple      { get; }
-        private bool?                CloseOnSelect { get; }
+        private bool Multiple { get; }
+
+        private bool? CloseOnSelect { get; }
 //        public  Events.TriggerSearch TriggerSearch { get; }
 
         internal IEnumerable<Option> Filtered =>
             _searchTerm == null
-                ? Options.Invoke().ToList()
-                : Options.Invoke().Where(v => Match(v.DropdownValue.ToString(), _searchTerm)).ToList();
+                ? OptionsFiltered.Invoke().ToList()
+                : OptionsFiltered.Invoke().Where(v => Match(v.DropdownValue.ToString(), _searchTerm)).ToList();
 
         internal void Select(Option option)
         {

@@ -5,42 +5,34 @@
 
 @inject IJSRuntime JSRuntime
 
+@* ReSharper disable MemberCanBePrivate.Global *@
+@* ReSharper disable UnusedAutoPropertyAccessor.Global *@
+
 @code
 {
 
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.Options Options { get; set; }
 
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+    public Events.Options OptionsFiltered { get; set; }
+
+    [Parameter]
     public bool Multiple { get; set; }
 
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public bool? CloseOnSelect { get; set; }
     
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public bool Disabled { get; set; }
     
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnUpdate OnUpdate { get; set; }
     
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public Events.OnSearch OnSearch { get; set; }
        
     [Parameter]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public UpdateTrigger TriggerRefresh { get; set; }
    
     private SelectStateHandler SelectStateHandler { get; set; }
@@ -54,6 +46,7 @@
 
         SelectStateHandler = new SelectStateHandler(
             Options,
+            OptionsFiltered,
             Multiple,
             CloseOnSelect,
             Disabled,

@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>1.7.0</VersionPrefix>
+        <VersionPrefix>1.8.0</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <PackageProjectUrl>https://github.com/ajruckman/FlareKit/tree/master/FlareTables/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajruckman/FlareKit/tree/master/FlareTables/</RepositoryUrl>
