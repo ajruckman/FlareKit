@@ -27,26 +27,33 @@ namespace FlareTables
         public TableStateHandler(
             Proxy.Data                        data,
             FlareLib.FlareLib.StateHasChanged stateHasChanged,
-            ValueGetter                       valueGetter     = null,
+            Type                              type,
             int                               paginationRange = 3,
             int                               defaultPageSize = 25
         )
         {
+            _dataType    = type;
+            _props       = _dataType.GetProperties();
+            _valueGetter = DataValue;
+
             _data         = data;
             _stateUpdater = stateHasChanged;
+            Paginate      = new PageStateHandler(_stateUpdater, paginationRange, defaultPageSize);
+        }
 
-            if (valueGetter == null)
-            {
-                _dataType    = data.GetType().GetGenericArguments()[0];
-                _props       = _dataType.GetProperties();
-                _valueGetter = DataValue;
-            }
-            else
-            {
-                _valueGetter = valueGetter;
-            }
+        public TableStateHandler(
+            Proxy.Data                        data,
+            FlareLib.FlareLib.StateHasChanged stateHasChanged,
+            ValueGetter                       valueGetter,
+            int                               paginationRange = 3,
+            int                               defaultPageSize = 25
+        )
+        {
+            _valueGetter = valueGetter;
 
-            Paginate = new PageStateHandler(_stateUpdater, paginationRange, defaultPageSize);
+            _data         = data;
+            _stateUpdater = stateHasChanged;
+            Paginate      = new PageStateHandler(_stateUpdater, paginationRange, defaultPageSize);
         }
 
         public void InitColumn(string id)
@@ -125,8 +132,7 @@ namespace FlareTables
 
         public IEnumerable<object> Data()
         {
-            Console.WriteLine("DATA");
-            List<object> data = _data.Invoke();
+            IEnumerable<object> data = _data.Invoke();
 
             data = data.Where(v =>
             {
@@ -143,7 +149,7 @@ namespace FlareTables
 
             Sort(ref data);
 
-            Paginate.RowCount = data.Count;
+            Paginate.RowCount = data.Count();
 
             data = data.Skip(Paginate.Skip).Take(Paginate.PageSize).ToList();
 
@@ -155,7 +161,7 @@ namespace FlareTables
             return _valueGetter.Invoke(v, id)?.ToString();
         }
 
-        private void Sort(ref List<object> data)
+        private void Sort(ref IEnumerable<object> data)
         {
             if (!data.Any()) return;
 

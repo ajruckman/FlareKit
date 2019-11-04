@@ -4,6 +4,6 @@ namespace FlareTables
 {
     public static class Proxy
     {
-        public delegate List<object> Data();
+        public delegate IEnumerable<object> Data();
     }
 }

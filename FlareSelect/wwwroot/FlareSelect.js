@@ -81,7 +81,12 @@ window.provision = function (dotnetHelper, targetID) {
             let next = container.find(".FlareSelect_Option[tabindex=" + tabIndex + "]");
             next.focus();
         } else if (e.which === 27) {
+            // On escape
+            
+            container.find('.FlareSelect_Search').val('');
             dotnetHelper.invokeMethodAsync("OuterClick", targetID);
+            
+            
         }
     });
 

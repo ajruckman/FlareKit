@@ -27,14 +27,15 @@
     
     private IEnumerable<Contact> Data { get; set; }
     private TableStateHandler _flareTable;
+
     protected override void OnInitialized()
     {
         Console.WriteLine("ONINIT");
         _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
-        
+
         Data = Generate.Contacts(25);
         Data.First().Date = new DateTime();
-        _flareTable = new TableStateHandler(Data, StateHasChanged);
+        _flareTable = new TableStateHandler(() => Data.ToList(), StateHasChanged, typeof(Contact));
     }
 }
 
