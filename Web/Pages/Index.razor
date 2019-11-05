@@ -39,42 +39,42 @@
     }
 }
 
-@* <FlareTablePaginationButtons TableState="@_flareTable"></FlareTablePaginationButtons> *@
-@* <FlareTablePaginationSize TableState="@_flareTable"></FlareTablePaginationSize> *@
-@* <FlareTableColumnReset TableState="@_flareTable"></FlareTableColumnReset> *@
-@* *@
-@* <table> *@
-@*     <thead> *@
-@*     <tr> *@
-@*         @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList()) *@
-@*         { *@
-@*             _flareTable.InitColumn(field.Name); *@
-@*             <th>@field.Name</th> *@
-@*         } *@
-@*     </tr> *@
-@*     <tr> *@
-@*         @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList()) *@
-@*         { *@
-@*             <th> *@
-@*                 <FlareTableColumnFilter TableState="@_flareTable" FieldID="@field.Name"></FlareTableColumnFilter> *@
-@*             </th> *@
-@*         } *@
-@*     </tr> *@
-@*     </thead> *@
-@*     <tbody> *@
-@*     @foreach (Contact row in _flareTable.Data()) *@
-@*     { *@
-@*         <tr> *@
-@*             @foreach (PropertyInfo field in row.GetType().GetProperties().ToList()) *@
-@*             { *@
-@*                 <td>@field.GetValue(row)</td> *@
-@*             } *@
-@*         </tr> *@
-@*     } *@
-@*     </tbody> *@
-@* </table> *@
+<FlareTablePaginationButtons TableState="@_flareTable"></FlareTablePaginationButtons> 
+<FlareTablePaginationSize TableState="@_flareTable"></FlareTablePaginationSize> 
+<FlareTableColumnReset TableState="@_flareTable"></FlareTableColumnReset> 
 
-@* <FlareTableInfo TableState="@_flareTable"></FlareTableInfo> *@
+<table> 
+    <thead> 
+    <tr> 
+        @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList()) 
+        { 
+            _flareTable.InitColumn(field.Name); 
+            <th>@field.Name</th> 
+        } 
+    </tr> 
+    <tr> 
+        @foreach (PropertyInfo field in new Contact().GetType().GetProperties().ToList()) 
+        { 
+            <th> 
+                <FlareTableColumnFilter TableState="@_flareTable" FieldID="@field.Name"></FlareTableColumnFilter> 
+            </th> 
+        } 
+    </tr> 
+    </thead> 
+    <tbody> 
+    @foreach (Contact row in _flareTable.Data()) 
+    { 
+        <tr> 
+            @foreach (PropertyInfo field in row.GetType().GetProperties().ToList()) 
+            { 
+                <td>@field.GetValue(row)</td> 
+            } 
+        </tr> 
+    } 
+    </tbody> 
+</table> 
+
+<FlareTableInfo TableState="@_flareTable"></FlareTableInfo> 
 
 <div class="BodyWrapper" style="width: 400px;">
     <FlareSelector Options="@(() => { return optionsSingle; })" Multiple="@false"/>

@@ -17,6 +17,6 @@
 }
 
 <div class="FlareTableInputContainer">
-    <input class="FlareTableFilterInput" type="text" name="BlazorTable_Filter_@FieldID" value="@TableState.ColumnValue(FieldID)" @oninput="@((ChangeEventArgs args) => { TableState.UpdateColumn(args.Value, FieldID); })"/>
-    <button class="FlareTableSortDirIndicator @TableState.SortDir(FieldID)" @onclick="@(() => TableState.UpdateSort(FieldID))">Sort</button>
+    <input class="FlareTableFilterInput" type="text" name="BlazorTable_Filter_@FieldID" value="@TableState.ColumnValue(FieldID)" @oninput="@((ChangeEventArgs args) => { TableState.UpdateColumValue(args.Value, FieldID); })"/>
+    <button class="FlareTableSortDirIndicator @TableState.SortDir(FieldID)" @onclick="@(() => TableState.UpdateSortDirection(FieldID))">Sort</button>
 </div>

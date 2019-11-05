@@ -62,7 +62,7 @@ namespace FlareTables
             _columnData[id] = new Column {ID = id};
         }
 
-        public void UpdateColumn(object value, string id)
+        public void UpdateColumValue(object value, string id)
         {
             _columnData[id].Value = value?.ToString() ?? "";
 
@@ -88,14 +88,21 @@ namespace FlareTables
             return prop.GetValue(data)?.ToString();
         }
 
-        public void UpdateSort(string id)
+        public enum SortDirections
         {
-            if (_columnData[id].SortDir == null)
-                _columnData[id].SortDir = 'a';
-            else if (_columnData[id].SortDir == 'a')
-                _columnData[id].SortDir = 'd';
+            Neutral,
+            Ascending,
+            Descending
+        }
+
+        public void UpdateSortDirection(string id)
+        {
+            if (_columnData[id].SortDir == SortDirections.Neutral)
+                _columnData[id].SortDir = SortDirections.Ascending;
+            else if (_columnData[id].SortDir == SortDirections.Ascending)
+                _columnData[id].SortDir = SortDirections.Descending;
             else
-                _columnData[id].SortDir = null;
+                _columnData[id].SortDir = SortDirections.Neutral;
 
             _columnData[id].SortIndex = _currentSortIndex;
             _currentSortIndex++;
@@ -103,11 +110,19 @@ namespace FlareTables
             _stateUpdater.Invoke();
         }
 
+        public void UpdateSortDirection(string id, SortDirections direction)
+        {
+            _columnData[id].SortDir = direction;
+            _columnData[id].SortIndex = _currentSortIndex;
+            _currentSortIndex++;
+            _stateUpdater.Invoke();
+        }
+
         public void ResetSorting()
         {
             foreach ((string key, Column _) in _columnData)
             {
-                _columnData[key].SortDir   = null;
+                _columnData[key].SortDir   = SortDirections.Neutral;
                 _columnData[key].SortIndex = null;
                 _columnData[key].Value     = null;
             }
@@ -119,9 +134,9 @@ namespace FlareTables
 
         public string SortDir(string id)
         {
-            if (_columnData[id].SortDir == null)
+            if (_columnData[id].SortDir == SortDirections.Neutral)
                 return "SortDirNeutral";
-            return _columnData[id].SortDir == 'a' ? "SortDirAsc" : "SortDirDesc";
+            return _columnData[id].SortDir == SortDirections.Ascending ? "SortDirAsc" : "SortDirDesc";
         }
 
         public void UpdatePageSize(int size)
@@ -165,13 +180,16 @@ namespace FlareTables
         {
             if (!data.Any()) return;
 
-            List<Column> indices = _columnData.Where(v => v.Value.SortDir != null).Select(v => v.Value)
-                                              .OrderBy(v => v.SortIndex).ToList();
+            List<Column> indices =
+                _columnData
+                   .Where(v => v.Value.SortDir != SortDirections.Neutral)
+                   .Select(v => v.Value)
+                   .OrderBy(v => v.SortIndex).ToList();
 
             if (indices.Any())
             {
                 Column first = indices.First();
-                bool   desc  = first.SortDir == 'd';
+                bool   desc  = first.SortDir == SortDirections.Descending;
 
                 IOrderedEnumerable<object> query;
 
@@ -186,7 +204,7 @@ namespace FlareTables
                 {
                     foreach (Column index in indices.Skip(1))
                     {
-                        desc = index.SortDir == 'd';
+                        desc = index.SortDir == SortDirections.Descending;
 
                         if (!desc)
                             query = query.ThenBy(v => Val(v, index.ID).ToString(),
@@ -208,10 +226,10 @@ namespace FlareTables
 
         private sealed class Column
         {
-            public string ID;
-            public char?  SortDir;
-            public int?   SortIndex;
-            public string Value;
+            public string         ID;
+            public SortDirections SortDir;
+            public int?           SortIndex;
+            public string         Value;
         }
     }
 }
