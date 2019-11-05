@@ -62,7 +62,7 @@ namespace FlareTables
             _columnData[id] = new Column {ID = id};
         }
 
-        public void UpdateColumValue(object value, string id)
+        public void UpdateColumnValue(object value, string id)
         {
             _columnData[id].Value = value?.ToString() ?? "";
 
