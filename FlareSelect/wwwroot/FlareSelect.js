@@ -85,8 +85,6 @@ window.provision = function (dotnetHelper, targetID) {
             
             container.find('.FlareSelect_Search').val('');
             dotnetHelper.invokeMethodAsync("OuterClick", targetID);
-            
-            
         }
     });
 
