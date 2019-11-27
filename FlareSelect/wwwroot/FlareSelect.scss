@@ -130,7 +130,7 @@ $_ColorDefaultDeselect:    #333333;
             display: inline-block;
 
             .FlareSelect_Pane {
-                box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
+                //box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
             }
         }
 
@@ -162,7 +162,7 @@ $_ColorDefaultDeselect:    #333333;
                     background-color: $_ColorDefaultBackground1;
                     overflow-x:       hidden;
                     text-overflow:    ellipsis;
-                    white-space:      nowrap;
+                    white-space:      pre;
 
                     &:hover {
                         background-color: $_ColorDefaultBackground3;

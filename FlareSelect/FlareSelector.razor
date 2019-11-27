@@ -110,9 +110,7 @@
                     {
                         <div class="FlareSelect_Option" data-selected="@(SelectStateHandler.IsSelected(option))" tabindex="@(tabIndex++)" 
                             @onclick="@(() => SelectStateHandler.Select(option))"  
-                            @onkeyup="@((args) =>  OnKeyUp(args, option))">
-                            @option.DropdownValue
-                        </div>
+                            @onkeyup="@((args) =>  OnKeyUp(args, option))">@option.DropdownValue</div>
                     }
                     </TriggerWrapper>
                 </div>
