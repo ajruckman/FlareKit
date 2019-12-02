@@ -43,6 +43,8 @@ $_ColorDefaultDeselect:    #333333;
 
         .FlareSelect_Selection {
             box-sizing: border-box;
+            position:   relative;
+
             word-break: break-word;
 
             &--Multiple {
@@ -57,42 +59,37 @@ $_ColorDefaultDeselect:    #333333;
             .FlareSelect_SelectionValue {
             }
 
-            .FlareSelect_DeselectContainer {
-                position: relative;
+            // https://codepen.io/brissmyr/pen/egidw
+            .FlareSelect_Deselect {
+                display:  inline;
+                height:   20px;
+                opacity:  0.3;
+                position: absolute;
+                right:    0;
+                top:      0;
+                width:    20px;
 
-                // https://codepen.io/brissmyr/pen/egidw
-                .FlareSelect_Deselect {
-                    align-items: center;
-                    display:     flex;
-                    height:      20px;
-                    opacity:     0.3;
-                    position:    absolute;
-                    right:       -20px;
-                    top:         -10px;
-                    width:       20px;
+                &:hover {
+                    opacity: 1;
+                }
 
-                    &:hover {
-                        opacity: 1;
-                    }
+                &:before, &:after {
+                    background-color: $_ColorDefaultDeselect;
 
-                    &:before, &:after {
-                        background-color: $_ColorDefaultDeselect;
+                    content:          ' ';
+                    height:           10px;
+                    left:             10px;
+                    position:         absolute;
+                    top:              5px;
+                    width:            2px;
+                }
 
-                        content:          ' ';
-                        height:           10px;
-                        left:             10px;
-                        position:         absolute;
-                        top:              5px;
-                        width:            2px;
-                    }
+                &:before {
+                    transform: rotate(45deg);
+                }
 
-                    &:before {
-                        transform: rotate(45deg);
-                    }
-
-                    &:after {
-                        transform: rotate(-45deg);
-                    }
+                &:after {
+                    transform: rotate(-45deg);
                 }
             }
         }

@@ -78,9 +78,9 @@
         {
             <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
                 <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
-                <span class="FlareSelect_DeselectContainer">
-                    <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
-                </span>
+                @* <span class="FlareSelect_DeselectContainer"> *@
+                <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
+                @* </span> *@
             </div>
         }
 
