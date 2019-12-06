@@ -69,7 +69,7 @@ namespace FlareSelect
 //        public  Events.TriggerSearch TriggerSearch { get; }
 
         internal IEnumerable<Option> Filtered =>
-            _searchTerm == null
+            _searchTerm == null || OptionsFiltered.Invoke().Any()
                 ? OptionsFiltered.Invoke().ToList()
                 : OptionsFiltered.Invoke().Where(v => Match(v.DropdownValue.ToString(), _searchTerm)).ToList();
 
