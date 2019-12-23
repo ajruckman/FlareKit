@@ -34,6 +34,9 @@
        
     [Parameter]
     public UpdateTrigger TriggerRefresh { get; set; }
+    
+    [Parameter]
+    public UpdateTrigger TriggerSelectionRefresh { get; set; }
    
     private SelectStateHandler SelectStateHandler { get; set; }
     private bool               _hasRun;
@@ -52,6 +55,7 @@
             Disabled,
             OnUpdate,
             OnSearch,
+            TriggerSelectionRefresh,
             StateHasChanged
         );
     }

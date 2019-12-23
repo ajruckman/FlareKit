@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Superset.Common;
 
 namespace FlareSelect
 {
@@ -11,7 +12,7 @@ namespace FlareSelect
         public delegate void OnUpdate(List<Option> selected);
 
         public delegate void OnSearch(string searchTerm);
-
+        
         public delegate IEnumerable<Option> Options();
     }
 }

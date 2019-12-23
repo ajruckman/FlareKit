@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
+using Superset.Common;
 
 namespace FlareSelect
 {
@@ -13,7 +14,7 @@ namespace FlareSelect
         private readonly FlareLib.FlareLib.StateHasChanged _stateHasChanged;
 
         internal readonly string       InstanceID;
-        internal readonly List<Option> Selected;
+        internal          List<Option> Selected;
 
         private bool   _focused;
         private string _searchTerm;
@@ -26,6 +27,7 @@ namespace FlareSelect
             bool                              disabled,
             Events.OnUpdate                   onUpdate,
             Events.OnSearch                   onSearch,
+            UpdateTrigger                     triggerSelectionRefresh,
             FlareLib.FlareLib.StateHasChanged stateHasChanged
         )
         {
@@ -40,9 +42,12 @@ namespace FlareSelect
 
             InstanceID = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
 
-            Selected = !Multiple
-                ? Options.Invoke().Where(v => v.Selected).Take(1).ToList()
-                : Options.Invoke().Where(v => v.Selected).ToList();
+            UpdateSelected();
+            triggerSelectionRefresh.OnUpdate += () =>
+            {
+                UpdateSelected();
+                _onUpdate?.Invoke(Selected);
+            };
 
             if (CloseOnSelect == null)
                 CloseOnSelect = !Multiple;
@@ -68,6 +73,13 @@ namespace FlareSelect
         private bool? CloseOnSelect { get; }
 //        public  Events.TriggerSearch TriggerSearch { get; }
 
+        private void UpdateSelected()
+        {
+            Selected = !Multiple
+                ? Options.Invoke().Where(v => v.Selected).Take(1).ToList()
+                : Options.Invoke().Where(v => v.Selected).ToList();
+        }
+
         internal IEnumerable<Option> Filtered =>
             _searchTerm == null || OptionsFiltered.Invoke().Any()
                 ? OptionsFiltered.Invoke().ToList()
@@ -75,6 +87,8 @@ namespace FlareSelect
 
         internal void Select(Option option)
         {
+            if (option.Placeholder) return;
+            
             if (!Multiple)
             {
                 Selected.Clear();
@@ -99,11 +113,14 @@ namespace FlareSelect
 
         internal bool IsSelected(Option option)
         {
-            return Selected.Any(v => v.ID.Equals(option.ID));
+            return !option.Placeholder && Selected.Any(v => v.ID.Equals(option.ID));
         }
 
         internal void Deselect(Option option)
         {
+            if (option.Placeholder) return;
+            
+            
             if (!Multiple)
                 Selected.Clear();
             else

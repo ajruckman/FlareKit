@@ -6,6 +6,7 @@ namespace FlareSelect
         public object DropdownValue { get; set; }
         public object SelectedValue { get; set; }
         public bool   Selected      { get; set; }
+        public bool   Placeholder   { get; set; }
 
         public Option Clone() =>
             new Option
