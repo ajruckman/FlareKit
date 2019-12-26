@@ -77,9 +77,9 @@
 @* <FlareTableInfo TableState="@_flareTable"></FlareTableInfo>  *@
 
 <div class="BodyWrapper" style="width: 400px;">
-    <FlareSelector Options="@(() => { return optionsSingle; })" Multiple="@false"/>
+    <FlareSelector Options="@((_) => { return optionsSingle; })" Multiple="@false"/>
     <br>
-    <FlareSelector Options="@(() => { return optionsMultiple; })" Multiple="@true"/>
+    <FlareSelector Options="@((_) => { return optionsMultiple; })" Multiple="@true"/>
     
     <br>
     <br>
@@ -88,7 +88,7 @@
     <br>
     <hr>
     
-    <FlareSelector Options="@(() => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@false"/>
+    <FlareSelector Options="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@false"/>
     <br>
-    <FlareSelector Options="@(() => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@true"/>
+    <FlareSelector Options="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@true"/>
 </div>

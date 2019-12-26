@@ -13,6 +13,7 @@ namespace FlareSelect
 
         public delegate void OnSearch(string searchTerm);
         
-        public delegate IEnumerable<Option> Options();
+        public delegate IEnumerable<Option> Options(string searchTerm);
+        // public delegate IEnumerable<Option> OptionsFiltered(string searchTerm);
     }
 }

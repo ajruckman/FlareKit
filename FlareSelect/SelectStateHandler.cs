@@ -8,18 +8,19 @@ namespace FlareSelect
 {
     internal sealed class SelectStateHandler
     {
-        private readonly bool                              _disabled;
-        private readonly Events.OnSearch                   _onSearch;
         private readonly Events.OnUpdate                   _onUpdate;
+        private readonly Events.OnSearch                   _onSearch;
+        private readonly UpdateTrigger                     _triggerRefresh;
         private readonly FlareLib.FlareLib.StateHasChanged _stateHasChanged;
 
-        internal readonly string       InstanceID;
-        internal          List<Option> Selected;
+        internal readonly string InstanceID;
 
-        private bool   _focused;
-        private string _searchTerm;
+        private  bool         _focused;
+        private  string       _searchTerm;
+        internal List<Option> Selected;
 
-        internal SelectStateHandler(
+        internal SelectStateHandler
+        (
             Events.Options                    options,
             Events.Options                    filteredOptions,
             bool                              multiple,
@@ -27,32 +28,36 @@ namespace FlareSelect
             bool                              disabled,
             Events.OnUpdate                   onUpdate,
             Events.OnSearch                   onSearch,
-            UpdateTrigger                     triggerSelectionRefresh,
+            UpdateTrigger                     triggerRefresh,
             FlareLib.FlareLib.StateHasChanged stateHasChanged
         )
         {
-            _disabled        = disabled;
-            Options          = options;
-            OptionsFiltered  = filteredOptions ?? options;
-            Multiple         = multiple;
-            CloseOnSelect    = closeOnSelect;
+            Disabled        = disabled;
+            Options         = options;
+            OptionsFiltered = filteredOptions;
+            Multiple        = multiple;
+            CloseOnSelect   = closeOnSelect;
+
             _onUpdate        = onUpdate;
             _onSearch        = onSearch;
+            _triggerRefresh  = triggerRefresh;
             _stateHasChanged = stateHasChanged;
 
             InstanceID = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
 
-            UpdateSelected();
-            triggerSelectionRefresh.OnUpdate += () =>
-            {
-                UpdateSelected();
-                _onUpdate?.Invoke(Selected);
-            };
-
             if (CloseOnSelect == null)
                 CloseOnSelect = !Multiple;
 
+            UpdateSelected();
             _onUpdate?.Invoke(Selected);
+
+            if (_triggerRefresh != null)
+            {
+                // Don't invoke _onUpdate here. When someone manually invokes
+                // _triggerRefresh.Trigger() they already know the selection was
+                // updated.
+                _triggerRefresh.OnUpdate += UpdateSelected; 
+            }
 
             Global.ElementClickHandler.OnOuterClick += targetID =>
             {
@@ -65,30 +70,44 @@ namespace FlareSelect
             };
         }
 
+        public  bool           Disabled        { get; }
         private Events.Options Options         { get; }
         private Events.Options OptionsFiltered { get; }
+        private bool           Multiple        { get; }
+        private bool?          CloseOnSelect   { get; }
 
-        private bool Multiple { get; }
-
-        private bool? CloseOnSelect { get; }
-//        public  Events.TriggerSearch TriggerSearch { get; }
+        internal IEnumerable<Option> Filtered
+        {
+            get
+            {
+                // ReSharper disable once RedundantIfElseBlock
+                // ReSharper disable once MergeConditionalExpressionWhenPossible
+                if (_searchTerm == null)
+                {
+                    return OptionsFiltered == null
+                        ? Options.Invoke(_searchTerm).ToList()
+                        : OptionsFiltered.Invoke(_searchTerm).ToList();
+                }
+                else
+                {
+                    return OptionsFiltered == null
+                        ? Options.Invoke(_searchTerm).Where(v => Match(v.DropdownValue.ToString(), _searchTerm))
+                        : OptionsFiltered.Invoke(_searchTerm);
+                }
+            }
+        }
 
         private void UpdateSelected()
         {
             Selected = !Multiple
-                ? Options.Invoke().Where(v => v.Selected).Take(1).ToList()
-                : Options.Invoke().Where(v => v.Selected).ToList();
+                ? Options.Invoke(_searchTerm).Where(v => v.Selected).Take(1).ToList()
+                : Options.Invoke(_searchTerm).Where(v => v.Selected).ToList();
         }
-
-        internal IEnumerable<Option> Filtered =>
-            _searchTerm == null || OptionsFiltered.Invoke().Any()
-                ? OptionsFiltered.Invoke().ToList()
-                : OptionsFiltered.Invoke().Where(v => Match(v.DropdownValue.ToString(), _searchTerm)).ToList();
 
         internal void Select(Option option)
         {
             if (option.Placeholder) return;
-            
+
             if (!Multiple)
             {
                 Selected.Clear();
@@ -119,8 +138,7 @@ namespace FlareSelect
         internal void Deselect(Option option)
         {
             if (option.Placeholder) return;
-            
-            
+
             if (!Multiple)
                 Selected.Clear();
             else
@@ -147,7 +165,7 @@ namespace FlareSelect
 
         internal void Search(ChangeEventArgs args)
         {
-//            Console.WriteLine($"Search: {args.Value}");
+            Console.WriteLine($"Search: {args.Value}");
             _focused = true;
 
             var val = (string) args.Value;
@@ -155,8 +173,6 @@ namespace FlareSelect
             _searchTerm = string.IsNullOrEmpty(val) ? null : val;
             _onSearch?.Invoke(_searchTerm);
         }
-
-        internal void SearchClick() { }
 
         private static bool Match(string str, string term)
         {
@@ -170,7 +186,7 @@ namespace FlareSelect
             result += $"FlareSelect_{containerName} ";
             result += $"FlareSelect_{containerName}--{(!_focused ? "Unfocused" : "Focused")} ";
             result += $"FlareSelect_{containerName}--{(!Multiple ? "Single" : "Multiple")} ";
-            result += $"FlareSelect_{containerName}--{(!_disabled ? "Enabled" : "Disabled")}";
+            result += $"FlareSelect_{containerName}--{(!Disabled ? "Enabled" : "Disabled")}";
 
             return result;
         }

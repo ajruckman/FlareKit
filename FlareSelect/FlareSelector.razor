@@ -31,12 +31,12 @@
     
     [Parameter]
     public Events.OnSearch OnSearch { get; set; }
-       
+
     [Parameter]
     public UpdateTrigger TriggerRefresh { get; set; }
     
-    [Parameter]
-    public UpdateTrigger TriggerSelectionRefresh { get; set; }
+    // [Parameter]
+    // public UpdateTrigger TriggerSelectionRefresh { get; set; }
    
     private SelectStateHandler SelectStateHandler { get; set; }
     private bool               _hasRun;
@@ -47,6 +47,8 @@
             return;
         _hasRun = true;
 
+        OnSearch += _ => StateHasChanged();
+
         SelectStateHandler = new SelectStateHandler(
             Options,
             OptionsFiltered,
@@ -55,7 +57,7 @@
             Disabled,
             OnUpdate,
             OnSearch,
-            TriggerSelectionRefresh,
+            TriggerRefresh,
             StateHasChanged
         );
     }
@@ -82,9 +84,7 @@
         {
             <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
                 <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
-                @* <span class="FlareSelect_DeselectContainer"> *@
                 <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
-                @* </span> *@
             </div>
         }
 
@@ -101,7 +101,7 @@
             @if (!Multiple)
             {
                 <div class="FlareSelect_SearchContainer">
-                    <input class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search" @onclick="@(() => SelectStateHandler.SearchClick())"/>
+                    <input class="FlareSelect_Search" type="text" @oninput="@SelectStateHandler.Search"/>
                 </div>
             }
             @if (SelectStateHandler.Filtered.Any())
@@ -109,14 +109,12 @@
                 var tabIndex = 1;
                 
                 <div class="FlareSelect_OptionContainer">
-                    <TriggerWrapper Trigger="@TriggerRefresh">
                     @foreach (Option option in SelectStateHandler.Filtered)
                     {
                         <div class="FlareSelect_Option" data-selected="@(SelectStateHandler.IsSelected(option))" tabindex="@(tabIndex++)" 
                             @onclick="@(() => SelectStateHandler.Select(option))"  
                             @onkeyup="@((args) =>  OnKeyUp(args, option))">@option.DropdownValue</div>
                     }
-                    </TriggerWrapper>
                 </div>
             }
             else
