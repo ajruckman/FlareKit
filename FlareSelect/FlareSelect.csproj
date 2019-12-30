@@ -28,4 +28,8 @@
         <ProjectReference Include="..\FlareLib\FlareLib.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="FS2\FlareSelector.razor" />
+    </ItemGroup>
+
 </Project>

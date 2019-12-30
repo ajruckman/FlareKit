@@ -91,3 +91,7 @@ window.provision = function (dotnetHelper, targetID) {
     window.FlareSelect_Containers[targetID] = container;
     window.FlareSelect_Containers[targetID].dotnetHelper = dotnetHelper;
 };
+
+window.clearInput = function(targetID) {
+    document.getElementById(targetID).value = "";
+};
