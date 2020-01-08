@@ -35,6 +35,9 @@
     [Parameter]
     public UpdateTrigger TriggerRefresh { get; set; }
     
+    [Parameter]
+    public string Placeholder { get; set; }
+    
     // [Parameter]
     // public UpdateTrigger TriggerSelectionRefresh { get; set; }
    
@@ -80,18 +83,25 @@
 
 <div class="@SelectStateHandler.ContainerClasses("Container")" id="@SelectStateHandler.InstanceID" tabindex="0">
     <div class="@SelectStateHandler.ContainerClasses("SelectionContainer")">
-        @foreach (Option option in SelectStateHandler.Selected)
+        @if (SelectStateHandler.Selected.Any())
         {
-            <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
-                <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
-                <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
-            </div>
+            @foreach (Option option in SelectStateHandler.Selected)
+            {
+                <div class="FlareSelect_Selection FlareSelect_Selection--@(!Multiple ? "Single" : "Multiple")">
+                    <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
+                    <span class="FlareSelect_Deselect" @onclick="@(() => SelectStateHandler.Deselect(option))"></span>
+                </div>
+            }
+        }
+        else
+        {
+            <span class="FlareSelect_PlaceholderValue">@Placeholder</span>
         }
 
         @if (Multiple)
         {
             <div class="FlareSelect_SearchContainer FlareSelect_SearchContainer--Inline">
-                <input class="FlareSelect_Search FlareSelect_Search--Inline" type="text" @oninput="@SelectStateHandler.Search" />
+                <input class="FlareSelect_Search FlareSelect_Search--Inline" type="text" @oninput="@SelectStateHandler.Search"/>
             </div>
         }
     </div>
