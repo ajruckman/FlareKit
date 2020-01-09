@@ -25,17 +25,19 @@ namespace FlareSelect
         public FlareSelector
         (
             Events.Options options,
-            Events.Options filteredOptions = null,
-            bool           multiple        = false,
-            bool?          closeOnSelect   = null,
-            bool           disabled        = false
+            bool           multiple            = false,
+            bool?          closeOnSelect       = null,
+            bool           disabled            = false,
+            ushort         minSearchTermLength = 0,
+            string         minSearchTermText   = null
         )
         {
-            Options         = options;
-            OptionsFiltered = filteredOptions;
-            Multiple        = multiple;
-            CloseOnSelect   = closeOnSelect;
-            Disabled        = disabled;
+            Options             = options;
+            MinSearchTermText   = minSearchTermText;
+            Multiple            = multiple;
+            CloseOnSelect       = closeOnSelect;
+            Disabled            = disabled;
+            MinSearchTermLength = minSearchTermLength;
 
             InstanceID    = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
             SearchInputID = $"{InstanceID}_SearchInput";
@@ -45,6 +47,9 @@ namespace FlareSelect
 
             UpdateSelected();
             OnUpdate?.Invoke(Selected);
+
+            if (minSearchTermLength != 0 && minSearchTermText == null)
+                MinSearchTermText = $"Type at least {minSearchTermLength} characters";
 
             Global.ElementClickHandler.OnOuterClick += targetID =>
             {
@@ -57,24 +62,53 @@ namespace FlareSelect
             };
         }
 
-        public Events.Options Options         { get; }
-        public Events.Options OptionsFiltered { get; }
-        public bool           Multiple        { get; }
-        public bool?          CloseOnSelect   { get; }
-        public bool           Disabled        { get; }
+        public Events.Options Options { get; }
+
+        // public Events.Options OptionsFiltered { get; }
+        public bool   Multiple            { get; }
+        public bool?  CloseOnSelect       { get; }
+        public bool   Disabled            { get; }
+        public ushort MinSearchTermLength { get; }
+        public string MinSearchTermText   { get; }
 
         [SuppressMessage("ReSharper", "MergeConditionalExpressionWhenPossible")]
+        [SuppressMessage("ReSharper", "RedundantIfElseBlock")]
         public IEnumerable<Option> Filtered
         {
             get
             {
+                int searchTermLen = SearchTerm?.Length ?? 0;
+
+                if (searchTermLen < MinSearchTermLength)
+                {
+                    return new[]
+                    {
+                        new Option
+                        {
+                            Disabled = true,
+                            Text     = MinSearchTermText
+                        }
+                    };
+                }
+
                 if (SearchTerm == null)
-                    return OptionsFiltered == null
-                        ? Options.Invoke(SearchTerm).ToList()
-                        : OptionsFiltered.Invoke(SearchTerm).ToList();
-                return OptionsFiltered == null
-                    ? Options.Invoke(SearchTerm).Where(v => Match(v.DropdownValue.ToString(), SearchTerm))
-                    : OptionsFiltered.Invoke(SearchTerm);
+                {
+                    return Options.Invoke(SearchTerm).ToList();
+                }
+                else
+                {
+                    return Options.Invoke(SearchTerm).Where(v => Match(v.Text, SearchTerm));
+                }
+
+                // Console.WriteLine($"|| {SearchTerm} -> {SearchTerm == null} {OptionsFiltered == null}");
+                // if (SearchTerm == null)
+                //     return OptionsFiltered == null
+                //         ? Options.Invoke(SearchTerm).ToList()
+                //         : OptionsFiltered.Invoke(SearchTerm).ToList();
+                //
+                // return OptionsFiltered == null
+                //     ? Options.Invoke(SearchTerm).Where(v => Match(v.DropdownText.ToString(), SearchTerm))
+                //     : OptionsFiltered.Invoke(SearchTerm);
             }
         }
 
@@ -96,7 +130,9 @@ namespace FlareSelect
         public void ClearSearch()
         {
             Console.WriteLine($"clearInput({SearchInputID})");
+            SearchTerm = null;
             JSRuntime.InvokeVoidAsync("window.clearInput", SearchInputID);
+            OnSearch?.Invoke(SearchTerm);
         }
 
         public void UpdateSelected()
@@ -178,7 +214,7 @@ namespace FlareSelect
             StateHasChanged();
         }
 
-        private static bool Match(string str, string term)
+        public static bool Match(string str, string term)
         {
             return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
         }

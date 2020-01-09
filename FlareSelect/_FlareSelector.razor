@@ -28,7 +28,7 @@
         @foreach (Option option in FlareSelector.Selected)
         {
             <div class="FlareSelect_Selection FlareSelect_Selection--@(!FlareSelector.Multiple ? "Single" : "Multiple")">
-                <span class="FlareSelect_SelectionValue">@option.SelectedValue</span>
+                <span class="FlareSelect_SelectionValue">@option.SelectedText</span>
                 <span class="FlareSelect_Deselect" @onclick="@(() => FlareSelector.Deselect(option))"></span>
             </div>
         }
@@ -58,7 +58,7 @@
                     {
                         <div class="FlareSelect_Option" data-selected="@(FlareSelector.IsSelected(option))" tabindex="@(tabIndex++)"
                              @onclick="@(() => FlareSelector.Select(option))"
-                             @onkeyup="@((args) => FlareSelector.OnKeyUp(args, option))">@option.DropdownValue</div>
+                             @onkeyup="@((args) => FlareSelector.OnKeyUp(args, option))">@option.Text</div>
                     }
                 </div>
             }

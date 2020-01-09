@@ -44,7 +44,7 @@
         fs2.OnSearch += (string searchTerm) => { Console.WriteLine(searchTerm); };
         fs2.OnUpdate += (List<Option> selected) =>
         {
-            Console.WriteLine(selected.FirstOrDefault()?.DropdownValue);
+            Console.WriteLine(selected.FirstOrDefault()?.Text);
             fs2.ClearSearch();
         };
 
@@ -58,7 +58,7 @@
 
 }
 
-<button @onclick="@(() => triggerSearchClear.Trigger())" @onclick:stopPropagation>Clear inputs</button>
+<button @onclick="@(() => fs2.ClearSearch())" @onclick:stopPropagation>Clear inputs</button>
 
 @fs2.Render()
 
