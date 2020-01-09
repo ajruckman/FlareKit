@@ -1,5 +1,4 @@
 using FlareLib;
-using Microsoft.JSInterop;
 
 namespace FlareSelect
 {

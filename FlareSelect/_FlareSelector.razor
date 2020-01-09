@@ -1,0 +1,71 @@
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components.Web
+
+@inject IJSRuntime JSRuntime
+
+@code {
+
+    [Parameter]
+    public FlareSelector FlareSelector { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        FlareSelector.StateHasChanged = StateHasChanged;
+        FlareSelector.JSRuntime = JSRuntime;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender) return;
+        JSRuntime.InvokeVoidAsync("window.provision", DotNetObjectReference.Create(Global.ElementClickHandler),
+            FlareSelector.InstanceID);
+    }
+
+}
+
+<div class="@FlareSelector.ContainerClasses("Container")" id="@FlareSelector.InstanceID" tabindex="0">
+    <div class="@FlareSelector.ContainerClasses("SelectionContainer")">
+        @foreach (Option option in FlareSelector.Selected)
+        {
+            <div class="FlareSelect_Selection FlareSelect_Selection--@(!FlareSelector.Multiple ? "Single" : "Multiple")">
+                <span class="FlareSelect_SelectionValue">@option.SelectedText</span>
+                <span class="FlareSelect_Deselect" @onclick="@(() => FlareSelector.Deselect(option))"></span>
+            </div>
+        }
+
+        @if (FlareSelector.Multiple)
+        {
+            <div class="FlareSelect_SearchContainer FlareSelect_SearchContainer--Inline">
+                <input class="FlareSelect_Search FlareSelect_Search--Inline" id="@FlareSelector.SearchInputID" type="text" @oninput="@FlareSelector.Search"/>
+            </div>
+        }
+    </div>
+
+    <div class="@FlareSelector.ContainerClasses("PaneContainer")">
+        <div class="FlareSelect_Pane">
+            @if (!FlareSelector.Multiple)
+            {
+                <div class="FlareSelect_SearchContainer">
+                    <input class="FlareSelect_Search" id="@FlareSelector.SearchInputID" type="text" @oninput="@FlareSelector.Search"/>
+                </div>
+            }
+            @if (FlareSelector.Filtered.Any())
+            {
+                var tabIndex = 1;
+
+                <div class="FlareSelect_OptionContainer">
+                    @foreach (Option option in FlareSelector.Filtered)
+                    {
+                        <div class="FlareSelect_Option" data-selected="@(FlareSelector.IsSelected(option))" tabindex="@(tabIndex++)"
+                             @onclick="@(() => FlareSelector.Select(option))"
+                             @onkeyup="@((args) => FlareSelector.OnKeyUp(args, option))">@option.Text</div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="FlareSelect_NoResults">No results</div>
+            }
+        </div>
+    </div>
+</div>

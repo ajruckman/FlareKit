@@ -21,19 +21,19 @@ namespace Web
         public Option NameOption =>
             new Option
             {
-                ID            = ID,
-                DropdownValue = $"{FirstName} {LastName}",
-                SelectedValue = FirstName,
-                Selected      = true
+                ID           = ID,
+                Text         = $"{FirstName} {LastName}",
+                SelectedText = FirstName,
+                Selected     = true
             };
 
         public Option LongOption =>
             new Option
             {
-                ID            = ID,
-                DropdownValue = PhoneNumber,
-                SelectedValue = PhoneNumber,
-                Selected      = true
+                ID           = ID,
+                Text         = PhoneNumber,
+                SelectedText = PhoneNumber,
+                Selected     = true
             };
     }
 
