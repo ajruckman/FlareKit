@@ -29,15 +29,17 @@ namespace FlareSelect
             bool?          closeOnSelect       = null,
             bool           disabled            = false,
             ushort         minSearchTermLength = 0,
-            string         minSearchTermText   = null
+            string         minSearchTermText   = null,
+            string         placeholder         = ""
         )
         {
             Options             = options;
-            MinSearchTermText   = minSearchTermText;
             Multiple            = multiple;
             CloseOnSelect       = closeOnSelect;
             Disabled            = disabled;
             MinSearchTermLength = minSearchTermLength;
+            MinSearchTermText   = minSearchTermText;
+            Placeholder         = placeholder;
 
             InstanceID    = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
             SearchInputID = $"{InstanceID}_SearchInput";
@@ -70,6 +72,7 @@ namespace FlareSelect
         public bool   Disabled            { get; }
         public ushort MinSearchTermLength { get; }
         public string MinSearchTermText   { get; }
+        public string Placeholder         { get; }
 
         [SuppressMessage("ReSharper", "MergeConditionalExpressionWhenPossible")]
         [SuppressMessage("ReSharper", "RedundantIfElseBlock")]

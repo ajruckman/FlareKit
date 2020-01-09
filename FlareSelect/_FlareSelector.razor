@@ -25,12 +25,19 @@
 
 <div class="@FlareSelector.ContainerClasses("Container")" id="@FlareSelector.InstanceID" tabindex="0">
     <div class="@FlareSelector.ContainerClasses("SelectionContainer")">
-        @foreach (Option option in FlareSelector.Selected)
+        @if (FlareSelector.Selected.Any())
         {
-            <div class="FlareSelect_Selection FlareSelect_Selection--@(!FlareSelector.Multiple ? "Single" : "Multiple")">
-                <span class="FlareSelect_SelectionValue">@option.SelectedText</span>
-                <span class="FlareSelect_Deselect" @onclick="@(() => FlareSelector.Deselect(option))"></span>
-            </div>
+            @foreach (Option option in FlareSelector.Selected)
+            {
+                <div class="FlareSelect_Selection FlareSelect_Selection--@(!FlareSelector.Multiple ? "Single" : "Multiple")">
+                    <span class="FlareSelect_SelectionValue">@option.SelectedText</span>
+                    <span class="FlareSelect_Deselect" @onclick="@(() => FlareSelector.Deselect(option))"></span>
+                </div>
+            }
+        }
+        else
+        {
+            <span class="FlareSelect_PlaceholderValue">@FlareSelector.Placeholder</span>
         }
 
         @if (FlareSelector.Multiple)
