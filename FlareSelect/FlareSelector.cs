@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
+using Superset.Common;
 
 namespace FlareSelect
 {
@@ -49,6 +50,9 @@ namespace FlareSelect
 
             UpdateSelected();
             OnUpdate?.Invoke(Selected);
+
+            SelectionUpdateTrigger          =  new UpdateTrigger();
+            SelectionUpdateTrigger.OnUpdate += UpdateSelected;
 
             if (minSearchTermLength != 0 && minSearchTermText == null)
                 MinSearchTermText = $"Type at least {minSearchTermLength} characters";
@@ -117,6 +121,7 @@ namespace FlareSelect
 
         public event Action<List<Option>> OnUpdate;
         public event Action<string>       OnSearch;
+        public UpdateTrigger              SelectionUpdateTrigger;
 
         public RenderFragment Render()
         {
