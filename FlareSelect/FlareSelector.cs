@@ -31,7 +31,8 @@ namespace FlareSelect
             bool           disabled            = false,
             ushort         minSearchTermLength = 0,
             string         minSearchTermText   = null,
-            string         placeholder         = ""
+            string         placeholder         = "",
+            bool           clearSearchOnSelect = false
         )
         {
             Options             = options;
@@ -41,6 +42,7 @@ namespace FlareSelect
             MinSearchTermLength = minSearchTermLength;
             MinSearchTermText   = minSearchTermText;
             Placeholder         = placeholder;
+            ClearSearchOnSelect = clearSearchOnSelect;
 
             InstanceID    = $"FlareSelect_{Guid.NewGuid().ToString().Replace("-", "")}";
             SearchInputID = $"{InstanceID}_SearchInput";
@@ -77,6 +79,7 @@ namespace FlareSelect
         public ushort MinSearchTermLength { get; }
         public string MinSearchTermText   { get; }
         public string Placeholder         { get; }
+        public bool   ClearSearchOnSelect { get; }
 
         [SuppressMessage("ReSharper", "MergeConditionalExpressionWhenPossible")]
         [SuppressMessage("ReSharper", "RedundantIfElseBlock")]
@@ -121,7 +124,7 @@ namespace FlareSelect
 
         public event Action<List<Option>> OnUpdate;
         public event Action<string>       OnSearch;
-        public UpdateTrigger              SelectionUpdateTrigger;
+        public readonly UpdateTrigger     SelectionUpdateTrigger;
 
         public RenderFragment Render()
         {
@@ -137,7 +140,6 @@ namespace FlareSelect
 
         public void ClearSearch()
         {
-            Console.WriteLine($"clearInput({SearchInputID})");
             SearchTerm = null;
             JSRuntime.InvokeVoidAsync("window.clearInput", SearchInputID);
             OnSearch?.Invoke(SearchTerm);
@@ -175,6 +177,8 @@ namespace FlareSelect
                 StateHasChanged();
             }
 
+            if (ClearSearchOnSelect)
+                ClearSearch();
             OnUpdate?.Invoke(Selected);
         }
 
