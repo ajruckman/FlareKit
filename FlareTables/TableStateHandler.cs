@@ -194,10 +194,10 @@ namespace FlareTables
                 IOrderedEnumerable<object> query;
 
                 if (!desc)
-                    query = data.OrderBy(v => Val(v, first.ID).ToString(),
+                    query = data.OrderBy(v => Val(v, first.ID),
                         StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                 else
-                    query = data.OrderByDescending(v => Val(v, first.ID).ToString(),
+                    query = data.OrderByDescending(v => Val(v, first.ID),
                         StringComparer.OrdinalIgnoreCase.WithNaturalSort());
 
                 if (indices.Count > 1)
@@ -207,10 +207,10 @@ namespace FlareTables
                         desc = index.SortDir == SortDirections.Descending;
 
                         if (!desc)
-                            query = query.ThenBy(v => Val(v, index.ID).ToString(),
+                            query = query.ThenBy(v => Val(v, index.ID),
                                 StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                         else
-                            query = query.ThenByDescending(v => Val(v, index.ID).ToString(),
+                            query = query.ThenByDescending(v => Val(v, index.ID),
                                 StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                     }
                 }

@@ -1,0 +1,24 @@
+@typeparam TItem
+
+@code {
+
+    [Parameter]
+    public List<TItem> Data { get; set; }
+    
+    [Parameter]
+    public RenderFragment<TItem> Header { get; set; }
+    
+    [Parameter] 
+    public RenderFragment<TItem> RowTemplate { get; set; } 
+
+    [Parameter]
+    public RenderFragment<TItem> FilterTemplate { get; set; }
+    
+}
+
+@foreach (TItem item in Data)
+{
+    @Header(item)
+}
+
+@Header

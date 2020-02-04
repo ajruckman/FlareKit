@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlareLib", "FlareLib\FlareL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FT2", "FT2\FT2.csproj", "{88E84A09-7403-4025-A7DD-8EA9592BE1C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619BA0C6-D200-4FD0-A63A-D64DDA7557B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
