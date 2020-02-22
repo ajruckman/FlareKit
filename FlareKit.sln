@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FT2", "FT2\FT2.csproj", "{88E84A09-7403-4025-A7DD-8EA9592BE1C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FT3", "FT3\FT3.csproj", "{4057C100-1285-4017-9221-288F60C951AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88E84A09-7403-4025-A7DD-8EA9592BE1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4057C100-1285-4017-9221-288F60C951AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4057C100-1285-4017-9221-288F60C951AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4057C100-1285-4017-9221-288F60C951AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4057C100-1285-4017-9221-288F60C951AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,9 @@
+@using Microsoft.AspNetCore.Components.Web
+@using Superset.Common
+
+@typeparam T
+
+@* Protect from UpdateTableHead so that 'value=' doesn't overwrite user input after initialization *@
+<TriggerWrapper Protected="true">
+    <input @key="@("FT_F_" + ID)" type="text" @oninput="@(args => BeginDebounce(args))" value="@FlareTable.GetColumnFilter(ID)"/>
+</TriggerWrapper>

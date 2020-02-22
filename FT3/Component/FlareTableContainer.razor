@@ -1,0 +1,15 @@
+@typeparam T
+
+@code {
+
+    [Parameter]
+    public FlareTable<T> FlareTable { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+<CascadingValue Value="@FlareTable">
+    @ChildContent
+</CascadingValue>

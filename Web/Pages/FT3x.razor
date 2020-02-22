@@ -1,0 +1,41 @@
+@using FT3
+@using FT3.Component
+@page "/ft3"
+
+<FlareTableContainer FlareTable="@_flareTable1">
+
+    <FlareTableColumnToggles T="Record"/>
+
+    <table>
+        <FlareTableHead T="Record">
+            <tr>
+                @foreach (Column column in _flareTable1.ShownColumns)
+                {
+                    <td>@column.DisplayName</td>
+                }
+            </tr>
+            <tr>
+                @foreach (Column column in _flareTable1.ShownColumns)
+                {
+                    <td>
+                        <FlareTableFilter T="Record" ID="@column.ID"/>
+                    </td>
+                }
+            </tr>
+        </FlareTableHead>
+        <FlareTableBody T="Record">
+            @foreach (Record row in _flareTable1.Rows())
+            {
+                <tr>
+                    <FlareTableCell T="Record" ID="Name">@row.Name</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Age">@row.Age</FlareTableCell>
+                    <FlareTableCell T="Record" ID="City">@row.City</FlareTableCell>
+                    <FlareTableCell T="Record" ID="State">@row.State</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Country">@row.Country</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Zip">@row.Zip</FlareTableCell>
+                </tr>
+            }
+        </FlareTableBody>
+    </table>
+
+</FlareTableContainer>

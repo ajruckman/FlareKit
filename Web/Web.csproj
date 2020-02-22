@@ -4,7 +4,6 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <IsPackable>true</IsPackable>
         <LangVersion>8</LangVersion>
-        <RazorLangVersion>3.0</RazorLangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -13,8 +12,8 @@
 
     <ItemGroup>
         <PackageReference Include="Bogus" Version="28.4.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +21,7 @@
         <ProjectReference Include="..\FlareSelect\FlareSelect.csproj" />
         <ProjectReference Include="..\FlareTables\FlareTables.csproj" />
         <ProjectReference Include="..\FT2\FT2.csproj" />
+        <ProjectReference Include="..\FT3\FT3.csproj" />
     </ItemGroup>
 
 </Project>

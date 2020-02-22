@@ -1,0 +1,21 @@
+@using Microsoft.AspNetCore.Components.Web
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    private void HandleCheck(string id, ChangeEventArgs args)
+    {
+        Console.WriteLine(args.Value);
+        FlareTable.SetColumnVisibility(id, (bool) args.Value);
+    }
+
+}
+
+@foreach (Column column in FlareTable.Columns)
+{
+    <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
+}

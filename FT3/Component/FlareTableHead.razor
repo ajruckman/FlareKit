@@ -1,0 +1,19 @@
+@using Superset.Common
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+<thead>
+<TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+    @ChildContent
+</TriggerWrapper>
+</thead>

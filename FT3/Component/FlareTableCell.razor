@@ -1,0 +1,19 @@
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+    
+    [Parameter]
+    public string ID { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+}
+
+@if (FlareTable.ColumnShown(ID))
+{
+    <td>@ChildContent</td>
+}
