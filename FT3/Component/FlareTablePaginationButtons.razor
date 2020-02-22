@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Components.Web
+@using Superset.Common
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdatePageState">
+    <div class="FlareTablePaginationButtons">
+        <button @onclick="@FlareTable.PageState.Previous" disabled="@(!FlareTable.PageState.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
+        @foreach (int i in FlareTable.PageState.Pages())
+        {
+            if (i == -1)
+            {
+                <button class="FlareTablePaginationButton FlareTablePaginationButton--Skipped" disabled="disabled">...</button>
+            }
+            else
+            {
+                <button @onclick="@(() => FlareTable.PageState.Jump(i))" class="FlareTablePaginationButton @(FlareTable.PageState.Current == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
+            }
+        }
+        <button @onclick="@FlareTable.PageState.Next" disabled="@(!FlareTable.PageState.CanNext)" class="FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
+    </div>
+</TriggerWrapper>

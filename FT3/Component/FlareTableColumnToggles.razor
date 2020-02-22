@@ -15,7 +15,9 @@
 
 }
 
-@foreach (Column column in FlareTable.Columns)
-{
-    <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
-}
+<div class="FlareTableColumnToggles">
+    @foreach (Column column in FlareTable.Columns)
+    {
+        <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
+    }
+</div>

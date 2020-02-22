@@ -1,0 +1,121 @@
+.FlareTableContainer {
+    display: inline-block;
+    //width:   100%;
+    border: 1px solid #ccc;
+
+
+    .FlareTableColumnToggles {
+
+    }
+
+    .FlareTablePaginationRow {
+        display:         flex;
+        justify-content: space-between;
+        border: 1px solid #ccc;
+        align-items: center;
+
+        .FlareTablePaginationButtons {
+            .FlareTablePaginationButton {
+                border:           1px solid #dddddd;
+                background-color: #eeeeee;
+                border-radius:    3px;
+
+                &:not(:disabled) {
+                    cursor: pointer;
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+
+                &:not(:disabled):hover {
+                    background-color: #dddddd;
+                }
+
+                &--Prev {
+
+                }
+
+                &--Next {
+
+                }
+
+                &--Current {
+                    border: 1px solid purple;
+                }
+
+                &--Skipped {
+
+                }
+            }
+        }
+
+        .FlareTablePaginationSizes {
+            .FlareTablePaginationSizeSelector {
+
+            }
+        }
+    }
+
+    .FlareTableTable {
+        //width: 100%;
+
+        .FlareTableHead {
+            .FlareTableHeadingRow {
+
+            }
+
+            .FlareTableFilterRow {
+                .FlareTableFilter_Cell {
+                    .FlareTableFilter_Input {
+                        width: calc(100% - 25px - 10px);
+                    }
+
+                    .FlareTableFilter_SortButton {
+                        height:           20px;
+                        line-height:      20px;
+                        display:          inline-flex;
+                        align-items:      center;
+                        background-color: #dddddd;
+                        cursor:           pointer;
+                        width:            25px;
+                        justify-content:  center;
+
+                        &:hover {
+                            background-color: #cccccc;
+                        }
+
+                        //display: inline-block;
+
+                        //&--Neutral {
+                        //    &:after {
+                        //        line-height: 25px;
+                        //        content: " ↕";
+                        //    }
+                        //}
+                        //
+                        //&--Ascending {
+                        //    &:after {
+                        //        line-height: 25px;
+                        //        content: " ↑";
+                        //    }
+                        //}
+                        //
+                        //&--Descending {
+                        //    &:after {
+                        //        line-height: 25px;
+                        //        content: " ↓";
+                        //    }
+                        //}
+                    }
+                }
+            }
+        }
+
+        .FlareTableBody {
+            .FlareTableBodyRow {
+
+            }
+        }
+    }
+}

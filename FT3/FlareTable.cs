@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
+using NaturalSort.Extension;
 using Superset.Common;
 
 namespace FT3
@@ -16,27 +17,42 @@ namespace FT3
 
         internal readonly UpdateTrigger UpdateTableHead = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateTableBody = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdatePageState = new UpdateTrigger();
 
         private readonly DataGetter     _dataGetter;
         private readonly ValueGetter    _valueGetter;
         private readonly ListDictionary _columns = new ListDictionary();
 
+        internal PageStateHandler PageState;
+
         public FlareTable(DataGetter dataGetter, ValueGetter valueGetter = null)
         {
-            _dataGetter = dataGetter;
-
+            _dataGetter  = dataGetter;
             _valueGetter = valueGetter ?? ReflectionValueGetter;
+
+            PageState                   =  new PageStateHandler(3, 25);
+            PageState.OnPageStateChange += UpdateTableBody.Trigger;
         }
+
+        private IEnumerable<T>? _data;
 
         public IEnumerable<T> Rows()
         {
-            foreach (T row in _dataGetter.Invoke())
+            _data ??= _dataGetter.Invoke();
+
+            List<T> result         = new List<T>();
+            int     numRows        = 0;
+            int     numRowsMatched = 0;
+
+            foreach (T row in _data)
             {
+                numRows++;
+
                 var matched = true;
                 foreach (Column column in _columns.Values)
                 {
                     if (!column.Shown) continue;
-                    if (!Match(RowValue(row, column.ID), column.FilterValue))
+                    if (!string.IsNullOrEmpty(column.FilterValue) && !Match(RowValue(row, column.ID), column.FilterValue))
                     {
                         matched = false;
                         break;
@@ -44,8 +60,68 @@ namespace FT3
                 }
 
                 if (matched)
-                    yield return row;
+                {
+                    result.Add(row);
+                    numRowsMatched++;
+                }
             }
+
+            Sort(ref result);
+
+            result = result.Skip(PageState.Skip).Take(PageState.PageSize).ToList();
+
+            PageState.RowCount = numRowsMatched;
+            UpdatePageState.Trigger();
+
+            return result;
+        }
+
+        private void Sort(ref List<T> data)
+        {
+            if (!data.Any()) return;
+
+            List<Column> indices =
+                _columns.Values.Cast<Column>()
+                        .Where(v => v.SortDirection != SortDirections.Neutral)
+                        .OrderBy(v => v.SortIndex)
+                        .ToList();
+
+            if (!indices.Any()) return;
+
+            Console.WriteLine("Indices:");
+            foreach (Column column in indices)
+            {
+                Console.WriteLine($"   {column.ID} -> {column.SortDirection} / {column.SortIndex}");
+            }
+
+            Column first = indices.First();
+            bool   desc  = first.SortDirection == SortDirections.Descending;
+
+            IOrderedEnumerable<T> query;
+
+            if (!desc)
+                query = data.OrderBy(v => RowValue(v, first.ID),
+                    StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+            else
+                query = data.OrderByDescending(v => RowValue(v, first.ID),
+                    StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+
+            if (indices.Count > 1)
+            {
+                foreach (Column index in indices.Skip(1))
+                {
+                    desc = index.SortDirection == SortDirections.Descending;
+
+                    if (!desc)
+                        query = query.ThenBy(v => RowValue(v, index.ID),
+                            StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                    else
+                        query = query.ThenByDescending(v => RowValue(v, index.ID),
+                            StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                }
+            }
+
+            data = query.ToList();
         }
 
         private string RowValue(T v, string id)
@@ -79,6 +155,7 @@ namespace FT3
                 DisplayName   = displayName ?? id,
                 Shown         = shown,
                 SortDirection = sortDirection,
+                SortIndex     = sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
                 FilterValue   = filterValue,
                 Property      = t
             });
@@ -98,13 +175,13 @@ namespace FT3
 
         public void SetColumnVisibility(string id, bool shown)
         {
+            Console.WriteLine($"SetColumnVisibility({id}, {shown})");
             ((Column) _columns[id]).Shown = shown;
-            UpdateTableHead.Trigger();
             UpdateTableBody.Trigger();
+            UpdateTableHead.Trigger();
         }
 
-        public List<Column> Columns      => _columns.Values.Cast<Column>().ToList();
-        public List<Column> ShownColumns => _columns.Values.Cast<Column>().Where(v => v.Shown).ToList();
+        public List<Column> Columns => _columns.Values.Cast<Column>().ToList();
 
         private static bool Match(string str, string term)
         {
@@ -115,6 +192,44 @@ namespace FT3
         {
             return ((Column) _columns[id])?.Shown ?? false;
         }
+
+        private int _currentSortIndex;
+
+        public void NextColumnSort(string id)
+        {
+            Column c = ((Column) _columns[id]);
+            c.SortDirection = c.SortDirection switch
+            {
+                SortDirections.Neutral   => SortDirections.Ascending,
+                SortDirections.Ascending => SortDirections.Descending,
+                _                        => SortDirections.Neutral
+            };
+
+            c.SortIndex = _currentSortIndex++;
+            Console.WriteLine($"{c.ID} -> {c.SortDirection} / {c.SortIndex}");
+            UpdateTableBody.Trigger();
+        }
+
+        public string GetColumnDisplayName(string id)
+        {
+            return ((Column) _columns[id]).DisplayName;
+        }
+
+        public string ColumnSortButtonClass(string id) => ((Column) _columns[id]).SortDirection switch
+        {
+            SortDirections.Neutral    => "FlareTableFilter_SortButton--Neutral",
+            SortDirections.Ascending  => "FlareTableFilter_SortButton--Ascending",
+            SortDirections.Descending => "FlareTableFilter_SortButton--Descending",
+            _                         => ""
+        };
+
+        public string ColumnSortButtonContent(string id) => ((Column) _columns[id]).SortDirection switch
+        {
+            SortDirections.Neutral    => "↕",
+            SortDirections.Ascending  => "↑",
+            SortDirections.Descending => "↓",
+            _                         => ""
+        };
     }
 
     public enum SortDirections
@@ -128,9 +243,10 @@ namespace FT3
     {
         public   string         ID;
         public   string         DisplayName;
-        internal bool           Shown;
+        public   bool           Shown;
         internal SortDirections SortDirection;
         internal string         FilterValue;
         internal PropertyInfo   Property;
+        internal int            SortIndex;
     }
 }

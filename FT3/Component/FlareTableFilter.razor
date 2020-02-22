@@ -1,9 +1,67 @@
+@using System.Timers
 @using Microsoft.AspNetCore.Components.Web
 @using Superset.Common
 
 @typeparam T
 
-@* Protect from UpdateTableHead so that 'value=' doesn't overwrite user input after initialization *@
-<TriggerWrapper Protected="true">
-    <input @key="@("FT_F_" + ID)" type="text" @oninput="@(args => BeginDebounce(args))" value="@FlareTable.GetColumnFilter(ID)"/>
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public string ID { get; set; }
+
+    private readonly object _debouncerLock = new object();
+    private          Timer  _debouncer;
+    private          string _filter;
+
+    protected override void OnParametersSet()
+    {
+        _filter = FlareTable.GetColumnFilter(ID);
+    }
+
+    private string Filter
+    {
+        get => _filter;
+        set
+        {
+            lock (_debouncerLock)
+            {
+                _filter = value;
+                Console.WriteLine("BeginDebounce => " + _filter);
+                if (_debouncer == null)
+                {
+                    _debouncer = new Timer(250) {AutoReset = false};
+                    _debouncer.Elapsed += (_, __) =>
+                    {
+                        FlareTable.SetColumnFilter(ID, _filter);
+                        Console.WriteLine("Debounced => " + _filter);
+                    };
+                    _debouncer.Start();
+                }
+                else
+                {
+                    _debouncer.Enabled = false;
+                    _debouncer.Enabled = true;
+                }
+            }
+        }
+    }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+    @if (FlareTable.ColumnShown(ID))
+    {
+        <td class="FlareTableFilter_Cell">
+            @{ string key = "FT_F_" + ID; }
+            <input class="FlareTableFilter_Input" @key="@key" type="text" @bind-value="@Filter" @bind-value:event="oninput"/>
+            <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
+        </td>
+    }
+    else
+    {
+        <td class="FlareTableFilter_Cell FlareTableFilter_Cell--Hidden"></td>
+    }
 </TriggerWrapper>

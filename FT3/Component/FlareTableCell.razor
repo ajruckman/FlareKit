@@ -15,5 +15,9 @@
 
 @if (FlareTable.ColumnShown(ID))
 {
-    <td>@ChildContent</td>
+    <td class="FlareTableCell">@ChildContent</td>
+}
+else
+{
+    <td class="FlareTableCell FlareTableCell--Hidden"></td>
 }

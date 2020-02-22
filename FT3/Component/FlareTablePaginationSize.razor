@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Components.Web
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    private void UpdatePageSize(ChangeEventArgs args)
+    {
+        FlareTable.PageState.UpdatePageSize(int.Parse(args.Value.ToString()));
+    }
+
+}
+
+<div class="FlareTablePaginationSizes">
+    <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
+        @foreach (int size in PageStateHandler.PageSizes)
+        {
+            <option selected="@(size == FlareTable.PageState.PageSize)" value="@size">@size</option>
+        }
+    </select>
+</div>

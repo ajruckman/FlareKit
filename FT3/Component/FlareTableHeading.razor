@@ -1,0 +1,24 @@
+@using Superset.Common
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public string ID { get; set; }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+    @if (FlareTable.ColumnShown(ID))
+    {
+        <th class="FlareTableHeading_Cell">@FlareTable.GetColumnDisplayName(ID)</th>
+    }
+    else
+    {
+        <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden"></th>
+    }
+</TriggerWrapper>
