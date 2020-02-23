@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Components.Web
 @using Superset.Common
 
 @typeparam T
@@ -15,10 +16,20 @@
 <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
     @if (FlareTable.ColumnShown(ID))
     {
-        <th class="FlareTableHeading_Cell">@FlareTable.GetColumnDisplayName(ID)</th>
+        <th class="FlareTableHeading_Cell">
+            <div class="FlareTableHeading_CellContent">
+                <span class="FlareTableHeading_CellHeading">@FlareTable.GetColumnDisplayName(ID)</span>
+                <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>
+            </div>
+        </th>
     }
     else
     {
-        <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden"></th>
+        <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden">
+            <div class="FlareTableHeading_CellContent">
+                @* <span class="FlareTableHeading_CellHeading"></span> *@
+                <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, true))"></div>
+            </div>
+        </th>
     }
 </TriggerWrapper>

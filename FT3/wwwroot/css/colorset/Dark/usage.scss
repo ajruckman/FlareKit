@@ -1,0 +1,127 @@
+@import 'theme.scss';
+
+$ColorSet_ThemeColor_AccentText:                         white;
+$ColorSet_ThemeColor_ElementShadow:                      hsla(0, 0%, 0%, 1);
+$ColorSet_ThemeColor_DropShadow:                         hsla(0, 0, 0%, 1);
+$ColorSet_ThemeColor_ColorLink:                          $ColorSet_ThemeColor_Accent_60;
+$ColorSet_ThemeColor_ColorLink_Hover:                    $ColorSet_ThemeColor_Accent_70;
+$ColorSet_ThemeColor_ColorLink_Active:                   $ColorSet_ThemeColor_Accent_80;
+
+// Elements
+$ColorSet_Color_PageBG:                                  $ColorSet_ThemeColor_Background_30;
+
+$ColorSet_Color_HeaderLink:                              $ColorSet_ThemeColor_Text_50;
+$ColorSet_Color_HeaderLink_Hover:                        $ColorSet_ThemeColor_Text_40;
+$ColorSet_Color_HeaderPrimaryBG:                         $ColorSet_ThemeColor_Background_90;
+$ColorSet_Color_HeaderPrimaryBorder:                     $ColorSet_ThemeColor_Border_90;
+$ColorSet_Color_SubheaderBG:                             $ColorSet_ThemeColor_Background_70;
+$ColorSet_Color_SubheaderBorder:                         $ColorSet_ThemeColor_Border_70;
+$ColorSet_Color_SubheaderPath:                           $ColorSet_ThemeColor_Background_110;
+$ColorSet_Color_HeaderVerticalLine:                      $ColorSet_ThemeColor_Background_150;
+
+$ColorSet_Color_BlockBG:                                 $ColorSet_ThemeColor_Background_60;
+$ColorSet_Color_BlockBorder:                             $ColorSet_ThemeColor_Border_60;
+$ColorSet_Color_ElementShadow:                           $ColorSet_ThemeColor_ElementShadow;
+$ColorSet_Color_DropShadow:                              $ColorSet_ThemeColor_DropShadow;
+$ColorSet_Color_HTMLPageText:                            $ColorSet_ThemeColor_Text_50;
+$ColorSet_Color_HTMLScrollBG:                            unset;
+$ColorSet_Color_HTMLScrollThumb:                         unset;
+$ColorSet_Color_HTMLScrollThumb_Hover:                   unset;
+$ColorSet_Color_HeaderText:                              $ColorSet_ThemeColor_Text_80;
+$ColorSet_Color_HeaderText_Hover:                        $ColorSet_ThemeColor_Text_60;
+$ColorSet_Color_InputBG:                                 $ColorSet_ThemeColor_Background_60;
+$ColorSet_Color_InputBG_Active:                          $ColorSet_ThemeColor_Background_60_Focus;
+$ColorSet_Color_InputBG_Disabled:                        $ColorSet_ThemeColor_Background_40;
+$ColorSet_Color_InputBG_Hover:                           $ColorSet_ThemeColor_Background_60_Hover;
+$ColorSet_Color_InputBorder:                             $ColorSet_ThemeColor_Border_60;
+$ColorSet_Color_InputBorder_Active:                      $ColorSet_ThemeColor_Border_60_Focus;
+$ColorSet_Color_InputBorder_Active_Highlight:            $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_InputBorder_Disabled:                    $ColorSet_ThemeColor_Border_20;
+$ColorSet_Color_InputBorder_Hover:                       $ColorSet_ThemeColor_Border_60_Hover;
+$ColorSet_Color_InputEditableAccent:                     $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_InputText:                               $ColorSet_ThemeColor_Text_60;
+$ColorSet_Color_InputText_Dithered:                      $ColorSet_ThemeColor_Text_40;
+$ColorSet_Color_InputText_Disabled:                      $ColorSet_ThemeColor_Text_0;
+$ColorSet_Color_ObjectBG:                                $ColorSet_Color_PageBG;
+$ColorSet_Color_ObjectBorder:                            $ColorSet_ThemeColor_Border_60;
+$ColorSet_Color_TableLabelText:                          $ColorSet_ThemeColor_Text_40;
+$ColorSet_Color_TableLabelText_Disabled:                 $ColorSet_ThemeColor_Text_10;
+$ColorSet_Color_TRBorder:                                $ColorSet_ThemeColor_Border_50;
+
+// Select2
+$ColorSet_Color_SelectDropdownBG:                        $ColorSet_ThemeColor_Background_50;
+$ColorSet_Color_SelectDropdownBorder:                    $ColorSet_ThemeColor_AccentBorder_30;
+$ColorSet_Color_SelectInputBG:                           $ColorSet_Color_InputBG;
+$ColorSet_Color_SelectInputBG_Hover:                     $ColorSet_Color_InputBG_Hover;
+$ColorSet_Color_SelectInputBorder:                       $ColorSet_Color_InputBorder;
+$ColorSet_Color_SelectInputBorder_Hover:                 $ColorSet_Color_InputBorder_Hover;
+$ColorSet_Color_SelectMultiInputBG:                      $ColorSet_ThemeColor_Background_50;
+$ColorSet_Color_SelectMultiInputBG_Hover:                $ColorSet_ThemeColor_Background_50_Hover;
+$ColorSet_Color_SelectMultiInputBorder:                  $ColorSet_ThemeColor_Border_50;
+$ColorSet_Color_SelectMultiInputBorder_Hover:            $ColorSet_ThemeColor_Border_50_Hover;
+$ColorSet_Color_SelectMultiChoiceBG:                     $ColorSet_ThemeColor_Background_70;
+$ColorSet_Color_SelectMultiChoiceBG_Hover:               $ColorSet_ThemeColor_Background_70_Hover;
+$ColorSet_Color_SelectMultiChoiceBorder:                 $ColorSet_ThemeColor_Border_70;
+$ColorSet_Color_SelectMultiChoiceBorder_Hover:           $ColorSet_ThemeColor_Border_70_Hover;
+$ColorSet_Color_SelectMultiChoiceBorder_Hover_Highlight: $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_SelectMultiChoiceShadow:                 $ColorSet_ThemeColor_ElementShadow;
+$ColorSet_Color_SelectOptionBG_Hover:                    $ColorSet_ThemeColor_Background_60;
+$ColorSet_Color_SelectOptionBG_Selected:                 $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_SelectOptionBG_Selected_Hover:           $ColorSet_ThemeColor_Accent_30;
+$ColorSet_Color_SelectOptionBG_Selected_Text:            $ColorSet_ThemeColor_AccentText;
+$ColorSet_Color_ChoiceRemoveButtonBG:                    $ColorSet_ThemeColor_Border_130;
+$ColorSet_Color_ChoiceRemoveButtonBG_Hover:              $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_SelectSearchInputBG:                     $ColorSet_Color_InputBG;
+
+// Flatpickr
+$ColorSet_Color_FlatpickrBG:                             $ColorSet_Color_InputBG;
+$ColorSet_Color_FlatpickrBorder:                         $ColorSet_ThemeColor_Border_70;
+$ColorSet_Color_FlatpickrDayBG:                          $ColorSet_ThemeColor_Background_70;
+$ColorSet_Color_FlatpickrDayBG_Hover:                    $ColorSet_ThemeColor_Background_70_Hover;
+$ColorSet_Color_FlatpickrDayBG_Selected:                 $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_FlatpickrDayBG_Selected_Hover:           $ColorSet_ThemeColor_Accent_50;
+$ColorSet_Color_FlatpickrDayBG_Selected_Text:            $ColorSet_ThemeColor_AccentText;
+$ColorSet_Color_FlatpickrDayBorder:                      $ColorSet_ThemeColor_Border_70;
+$ColorSet_Color_FlatpickrDayBorder_Hover:                $ColorSet_ThemeColor_Border_70_Hover;
+$ColorSet_Color_FlatpickrDayBorder_Selected:             $ColorSet_ThemeColor_Border_90;
+$ColorSet_Color_FlatpickrDayBorder_Selected_Hover:       $ColorSet_ThemeColor_Border_90_Hover;
+$ColorSet_Color_FlatpickrDayText:                        $ColorSet_ThemeColor_Text_50;
+$ColorSet_Color_FlatpickrDisDayBG:                       $ColorSet_ThemeColor_Background_50;
+$ColorSet_Color_FlatpickrDisDayBG_Hover:                 $ColorSet_ThemeColor_Background_50_Hover;
+$ColorSet_Color_FlatpickrDisDayText:                     $ColorSet_ThemeColor_Text_20;
+$ColorSet_Color_FlatpickrInputBG:                        $ColorSet_Color_InputBG;
+$ColorSet_Color_FlatpickrInputBG_Hover:                  $ColorSet_Color_InputBG_Hover;
+$ColorSet_Color_FlatpickrInputBorder_Active_Highlight:   $ColorSet_Color_InputBorder_Active_Highlight;
+$ColorSet_Color_FlatpickrInputText:                      $ColorSet_Color_InputText;
+$ColorSet_Color_FlatpickrMonthArrows:                    $ColorSet_ThemeColor_Accent_60;
+$ColorSet_Color_FlatpickrMonthArrows_Hover:              $ColorSet_ThemeColor_Accent_70;
+$ColorSet_Color_FlatpickrMonthYearTime:                  $ColorSet_ThemeColor_Text_40;
+$ColorSet_Color_FlatpickrWeekday:                        $ColorSet_ThemeColor_Text_40;
+
+// Datatables
+$ColorSet_Color_DatatablesInputBG:                       $ColorSet_Color_InputBG;
+$ColorSet_Color_DatatablesInputBG_Active:                $ColorSet_Color_InputBG_Active;
+$ColorSet_Color_DatatablesInputBG_Hover:                 $ColorSet_Color_InputBG_Hover;
+$ColorSet_Color_DatatablesInputBorder:                   $ColorSet_Color_InputBorder;
+$ColorSet_Color_DatatablesInputBorder_Active:            $ColorSet_Color_InputBorder_Active;
+$ColorSet_Color_DatatablesInputBorder_Active_Highlight:  $ColorSet_Color_InputBorder_Active_Highlight;
+$ColorSet_Color_DatatablesInputBorder_Hover:             $ColorSet_Color_InputBorder_Hover;
+$ColorSet_Color_DatatablesInputText:                     $ColorSet_Color_InputText;
+
+$ColorSet_Color_DatatablesPaginateBG:                    $ColorSet_Color_InputBG;
+$ColorSet_Color_DatatablesPaginateBG_Current:            $ColorSet_ThemeColor_Accent_40;
+$ColorSet_Color_DatatablesPaginateBG_Current_Active:     $ColorSet_ThemeColor_Accent_20;
+$ColorSet_Color_DatatablesPaginateBG_Current_Hover:      $ColorSet_ThemeColor_Accent_30;
+$ColorSet_Color_DatatablesPaginateBG_Current_Text:       $ColorSet_ThemeColor_AccentText;
+$ColorSet_Color_DatatablesPaginateBG_Active:             $ColorSet_Color_InputBG_Active;
+$ColorSet_Color_DatatablesPaginateBG_Disabled:           $ColorSet_Color_InputBG_Disabled;
+$ColorSet_Color_DatatablesPaginateBG_Hover:              $ColorSet_Color_InputBG_Hover;
+$ColorSet_Color_DatatablesPaginateBorder:                $ColorSet_Color_InputBorder;
+$ColorSet_Color_DatatablesPaginateBorder_Disabled:       $ColorSet_Color_InputBorder_Disabled;
+$ColorSet_Color_DatatablesPaginateText:                  $ColorSet_Color_InputText;
+$ColorSet_Color_DatatablesPaginateText_Disabled:         $ColorSet_Color_InputText_Disabled;
+
+$ColorSet_Value_PercentFlareTablesIconInvert:            100%;
+$ColorSet_Color_DatatablesSortIconBG_Hover:              $ColorSet_ThemeColor_Background_90;
+$ColorSet_Color_DatatablesHeaderBG:                      $ColorSet_ThemeColor_Background_90;
+$ColorSet_Color_DatatablesSubheaderBG:                   $ColorSet_ThemeColor_Background_50;

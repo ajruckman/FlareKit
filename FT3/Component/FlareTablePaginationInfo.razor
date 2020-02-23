@@ -1,0 +1,16 @@
+@using Superset.Common
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+}
+
+<div class="FlareTablePaginationInfo">
+    <TriggerWrapper Trigger="@FlareTable.UpdatePageState">
+        <span>@FlareTable.PageState.Info</span>
+    </TriggerWrapper>
+</div>

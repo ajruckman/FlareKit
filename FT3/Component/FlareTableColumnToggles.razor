@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Common
 
 @typeparam T
 
@@ -16,8 +17,11 @@
 }
 
 <div class="FlareTableColumnToggles">
-    @foreach (Column column in FlareTable.Columns)
-    {
-        <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
-    }
+    <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+        @foreach (Column column in FlareTable.Columns)
+        {
+            <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
+        }
+    </TriggerWrapper>
+    <span>Column Toggles</span>
 </div>

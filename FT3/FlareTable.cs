@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using NaturalSort.Extension;
 using Superset.Common;
 
@@ -15,26 +16,33 @@ namespace FT3
 
         public delegate object ValueGetter(T data, string id);
 
-        internal readonly UpdateTrigger UpdateTableHead = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateTableBody = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdatePageState = new UpdateTrigger();
-
-        private readonly DataGetter     _dataGetter;
-        private readonly ValueGetter    _valueGetter;
         private readonly ListDictionary _columns = new ListDictionary();
 
+        private readonly DataGetter  _dataGetter;
+        private readonly ValueGetter _valueGetter;
+
+        internal readonly UpdateTrigger UpdatePageState = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableBody = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableHead = new UpdateTrigger();
+
+        private int _currentSortIndex;
+
+        private  IEnumerable<T>?  _data;
         internal PageStateHandler PageState;
 
-        public FlareTable(DataGetter dataGetter, ValueGetter valueGetter = null)
+        internal bool RegexMode;
+
+        public FlareTable(DataGetter dataGetter, ValueGetter valueGetter = null, bool regexMode = false)
         {
             _dataGetter  = dataGetter;
             _valueGetter = valueGetter ?? ReflectionValueGetter;
+            RegexMode    = regexMode;
 
             PageState                   =  new PageStateHandler(3, 25);
             PageState.OnPageStateChange += UpdateTableBody.Trigger;
         }
 
-        private IEnumerable<T>? _data;
+        public List<Column> Columns => _columns.Values.Cast<Column>().ToList();
 
         public IEnumerable<T> Rows()
         {
@@ -52,10 +60,23 @@ namespace FT3
                 foreach (Column column in _columns.Values)
                 {
                     if (!column.Shown) continue;
-                    if (!string.IsNullOrEmpty(column.FilterValue) && !Match(RowValue(row, column.ID), column.FilterValue))
+                    if (string.IsNullOrEmpty(column.FilterValue)) continue;
+
+                    if (!RegexMode)
                     {
-                        matched = false;
-                        break;
+                        if (!Match(RowValue(row, column.ID), column.FilterValue))
+                        {
+                            matched = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (!column.CompiledFilterValue.IsMatch(RowValue(row, column.ID)))
+                        {
+                            matched = false;
+                            break;
+                        }
                     }
                 }
 
@@ -83,6 +104,7 @@ namespace FT3
             List<Column> indices =
                 _columns.Values.Cast<Column>()
                         .Where(v => v.SortDirection != SortDirections.Neutral)
+                        .Where(v => v.Shown)
                         .OrderBy(v => v.SortIndex)
                         .ToList();
 
@@ -149,7 +171,7 @@ namespace FT3
             if (t == null)
                 throw new ArgumentException($"Property ID '{id}' does not exist in type '{typeof(T).FullName}'");
 
-            _columns.Add(id, new Column
+            Column c = new Column
             {
                 ID            = id,
                 DisplayName   = displayName ?? id,
@@ -158,7 +180,12 @@ namespace FT3
                 SortIndex     = sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
                 FilterValue   = filterValue,
                 Property      = t
-            });
+            };
+
+            if (RegexMode)
+                c.CompiledFilterValue = new Regex(filterValue, RegexOptions.Compiled);
+
+            _columns.Add(id, c);
         }
 
         public string GetColumnFilter(string id)
@@ -169,7 +196,12 @@ namespace FT3
         public void SetColumnFilter(string id, string filter)
         {
             Console.WriteLine($"FILTER | {id} -> {filter}");
+
             ((Column) _columns[id]).FilterValue = filter;
+
+            if (RegexMode)
+                ((Column) _columns[id]).CompiledFilterValue = new Regex(filter, RegexOptions.Compiled);
+
             UpdateTableBody.Trigger();
         }
 
@@ -181,8 +213,6 @@ namespace FT3
             UpdateTableHead.Trigger();
         }
 
-        public List<Column> Columns => _columns.Values.Cast<Column>().ToList();
-
         private static bool Match(string str, string term)
         {
             return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
@@ -192,8 +222,6 @@ namespace FT3
         {
             return ((Column) _columns[id])?.Shown ?? false;
         }
-
-        private int _currentSortIndex;
 
         public void NextColumnSort(string id)
         {
@@ -230,6 +258,19 @@ namespace FT3
             SortDirections.Descending => "↓",
             _                         => ""
         };
+
+        internal void ToggleRegexMode()
+        {
+            RegexMode = !RegexMode;
+            Console.WriteLine($"RegexMode -> {RegexMode}");
+
+            if (RegexMode)
+                foreach (Column c in _columns.Values)
+                    c.CompiledFilterValue = new Regex(c.FilterValue, RegexOptions.Compiled);
+
+            UpdateTableBody.Trigger();
+            UpdateTableHead.Trigger();
+        }
     }
 
     public enum SortDirections
@@ -241,12 +282,14 @@ namespace FT3
 
     public sealed class Column
     {
-        public   string         ID;
-        public   string         DisplayName;
-        public   bool           Shown;
+        internal Regex        CompiledFilterValue;
+        public   string       DisplayName;
+        internal string       FilterValue;
+        public   string       ID;
+        internal PropertyInfo Property;
+        public   bool         Shown;
+
         internal SortDirections SortDirection;
-        internal string         FilterValue;
-        internal PropertyInfo   Property;
         internal int            SortIndex;
     }
 }

@@ -1,0 +1,165 @@
+.FlareTableContainer {
+  border-left: 1px solid #222123;
+  border-top: 1px solid #222123;
+  color: #d5cde7;
+  display: inline-block; }
+  .FlareTableContainer .FlareTableControlRow {
+    align-items: center;
+    background-color: #1b1a1c;
+    border-bottom: 1px solid #272629;
+    border-right: 1px solid #272629;
+    display: flex;
+    padding: 3px; }
+    .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes {
+      margin: 0 2px; }
+    .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
+      color: #a49cb5;
+      font-family: 'Roboto Mono', monospace;
+      margin: 0 5px;
+      user-select: none; }
+    .FlareTableContainer .FlareTableControlRow .FlareTableControlFiller {
+      flex-grow: 99999; }
+    .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton {
+      background-color: #161516;
+      border: 1px solid #222123;
+      border-radius: 3px;
+      color: #d5cde7;
+      font-family: 'Roboto Mono', monospace;
+      margin: 1px;
+      min-width: 26px;
+      padding: 1px 4px;
+      user-select: none; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled) {
+        cursor: pointer; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:disabled {
+        color: #504c59;
+        cursor: not-allowed; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled):hover {
+        background-color: #181819; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton::-moz-focus-inner {
+        border: 0; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:active {
+        padding: 1px 4px; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current {
+        border: 1px solid #5d21de; }
+      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped {
+        position: relative;
+        width: 26px; }
+        .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped:after {
+          bottom: 5px;
+          content: '...';
+          font-size: 0.8em;
+          left: calc(0.2em + 0.5px);
+          position: absolute; }
+    .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles {
+      align-items: center;
+      display: flex;
+      margin: 0 1px;
+      user-select: none; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles span {
+        color: #a49cb5;
+        margin: 0 1px 0 3px; }
+    .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      margin: 0 1px;
+      user-select: none; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle input[type=checkbox] {
+        cursor: pointer; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle span {
+        color: #a49cb5;
+        margin: 0 1px 0 3px; }
+  .FlareTableContainer .FlareTableTable {
+    border-spacing: 0; }
+    .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
+      background-color: #1b1a1c;
+      border-right: 1px solid #272629; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell:first-child {
+        border-left: 1px solid #272629; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
+        align-items: center;
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableHeading_CellHeading {
+          flex-grow: 99999; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton {
+          align-items: center;
+          background-color: #201f21;
+          border: solid 1px #e3ddf2;
+          border-radius: 75% 15%;
+          cursor: pointer;
+          display: inline-flex;
+          height: 10px;
+          justify-content: center;
+          margin: 0 5px;
+          position: relative;
+          transform: rotate(45deg);
+          user-select: none;
+          width: 10px; }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton:before {
+            border: solid 1px #e3ddf2;
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: 5px;
+            position: absolute;
+            width: 5px; }
+    .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
+      background-color: #1b1a1c;
+      border-bottom: 1px solid #272629;
+      border-right: 1px solid #272629;
+      padding: 1px; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell:first-child {
+        border-left: 1px solid #272629; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer {
+        display: flex;
+        justify-content: space-between; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer:not(:first-child) {
+          border-left: 1px solid #272629; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
+          background-color: #201f21;
+          border: 1px solid #2c2b2e;
+          border-radius: 3px;
+          color: #e3ddf2;
+          font-family: 'Roboto Mono', monospace;
+          outline: none;
+          width: calc(100% - 27px); }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover {
+            background-color: #222124; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton {
+          align-items: center;
+          background-color: #201f21;
+          border: 1px solid #2c2b2e;
+          border-radius: 3px;
+          cursor: pointer;
+          display: inline-flex;
+          font-size: 0.85em;
+          height: 20px;
+          justify-content: center;
+          line-height: 19px;
+          user-select: none;
+          width: 20px; }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton:hover {
+            background-color: #222124; }
+    .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
+      background-color: #161516;
+      border-right: 1px solid #222123;
+      padding: 1px 3px; }
+      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
+        border-left: 1px solid #222123; }
+      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Hidden {
+        width: 15px; }
+    .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:first-child) .FlareTableCell {
+      border-top: 1px solid #222123; }
+    .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:last-child .FlareTableCell {
+      border-bottom: 1px solid #272629; }
+    .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell {
+      background-color: #181819; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #101011; }
+
+/*# sourceMappingURL=style.Dark.css.map */

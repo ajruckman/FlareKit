@@ -1,0 +1,8 @@
+@import 'flaretables.scss';
+
+@mixin base {
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: $ColorSet_ThemeColor_Background_30;
+    }
+}

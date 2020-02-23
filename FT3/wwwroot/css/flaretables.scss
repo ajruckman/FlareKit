@@ -1,35 +1,69 @@
+//noinspection SassScssResolvedByNameOnly
+
 .FlareTableContainer {
-    display: inline-block;
-    //width:   100%;
-    border: 1px solid #ccc;
+    border-left: 1px solid $ColorSet_ThemeColor_Border_40;
+    border-top:  1px solid $ColorSet_ThemeColor_Border_40;
+    color:       $ColorSet_ThemeColor_Text_40;
+    display:     inline-block;
 
 
-    .FlareTableColumnToggles {
+    .FlareTableControlRow {
+        align-items:      center;
+        background-color: $ColorSet_ThemeColor_Background_50;
+        border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
+        border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+        display:          flex;
+        padding:          3px;
 
-    }
+        .FlareTablePaginationSizes {
+            margin: 0 2px;
 
-    .FlareTablePaginationRow {
-        display:         flex;
-        justify-content: space-between;
-        border: 1px solid #ccc;
-        align-items: center;
+            .FlareTablePaginationSizeSelector {
+            }
+        }
+
+        .FlareTablePaginationInfo {
+            color:       $ColorSet_ThemeColor_Text_20;
+            font-family: 'Roboto Mono', monospace;
+            margin:      0 5px;
+            user-select: none;
+        }
+
+        .FlareTableControlFiller {
+            flex-grow: 99999;
+        }
 
         .FlareTablePaginationButtons {
             .FlareTablePaginationButton {
-                border:           1px solid #dddddd;
-                background-color: #eeeeee;
+                background-color: $ColorSet_ThemeColor_Background_40;
+                border:           1px solid $ColorSet_ThemeColor_Border_40;
                 border-radius:    3px;
+                color:            $ColorSet_ThemeColor_Text_40;
+                font-family:      'Roboto Mono', monospace;
+                margin:           1px;
+                min-width:        26px;
+                padding:          1px 4px;
+                user-select:      none;
 
                 &:not(:disabled) {
                     cursor: pointer;
                 }
 
                 &:disabled {
+                    color:  $ColorSet_ThemeColor_Text_0;
                     cursor: not-allowed;
                 }
 
                 &:not(:disabled):hover {
-                    background-color: #dddddd;
+                    background-color: $ColorSet_ThemeColor_Background_40_Hover;
+                }
+
+                &::-moz-focus-inner {
+                    border: 0;
+                }
+
+                &:active {
+                    padding: 1px 4px;
                 }
 
                 &--Prev {
@@ -41,72 +75,158 @@
                 }
 
                 &--Current {
-                    border: 1px solid purple;
+                    border: 1px solid $ColorSet_ThemeColor_Accent_30;
                 }
 
                 &--Skipped {
+                    position: relative;
+                    width:    26px;
 
+                    &:after {
+                        bottom:    5px;
+                        content:   '...';
+                        font-size: 0.8em;
+                        left:      calc(0.2em + 0.5px);
+                        position:  absolute;
+                    }
                 }
             }
         }
 
-        .FlareTablePaginationSizes {
-            .FlareTablePaginationSizeSelector {
+        .FlareTableColumnToggles {
+            align-items: center;
+            display:     flex;
+            margin:      0 1px;
+            user-select: none;
 
+            span {
+                color:  $ColorSet_ThemeColor_Text_20;
+                margin: 0 1px 0 3px;
+            }
+        }
+
+        .FlareTableRegexToggle {
+            align-items: center;
+            cursor:      pointer;
+            display:     flex;
+            margin:      0 1px;
+            user-select: none;
+
+            input[type=checkbox] {
+                cursor: pointer;
+            }
+
+            span {
+                color:  $ColorSet_ThemeColor_Text_20;
+                margin: 0 1px 0 3px;
             }
         }
     }
 
     .FlareTableTable {
-        //width: 100%;
+        border-spacing: 0;
 
         .FlareTableHead {
-            .FlareTableHeadingRow {
 
+            .FlareTableHeadingRow {
+                .FlareTableHeading_Cell {
+                    background-color: $ColorSet_ThemeColor_Background_50;
+                    border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+
+                    &:first-child {
+                        border-left: 1px solid $ColorSet_ThemeColor_Border_50;
+                    }
+
+                    .FlareTableHeading_CellContent {
+                        align-items:     center;
+                        display:         inline-flex;
+                        justify-content: space-between;
+                        width:           100%;
+
+                        .FlareTableHeading_CellHeading {
+                            flex-grow: 99999;
+                        }
+
+                        .FlareTableFilter_ToggleButton {
+                            align-items:      center;
+                            background-color: $ColorSet_ThemeColor_Background_60;
+                            border:           solid 1px $ColorSet_ThemeColor_Text_50;
+                            border-radius:    75% 15%;
+                            cursor:           pointer;
+                            display:          inline-flex;
+                            height:           10px;
+                            justify-content:  center;
+                            margin:           0 5px;
+                            position:         relative;
+                            transform:        rotate(45deg);
+                            user-select:      none;
+                            width:            10px;
+
+                            &:before {
+                                border:        solid 1px $ColorSet_ThemeColor_Text_50;
+                                border-radius: 50%;
+                                content:       '';
+                                display:       block;
+                                height:        5px;
+                                position:      absolute;
+                                width:         5px;
+                            }
+                        }
+                    }
+                }
             }
 
             .FlareTableFilterRow {
                 .FlareTableFilter_Cell {
-                    .FlareTableFilter_Input {
-                        width: calc(100% - 25px - 10px);
+                    background-color: $ColorSet_ThemeColor_Background_50;
+                    border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
+                    border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+                    padding:          1px;
+
+                    &:first-child {
+                        border-left: 1px solid $ColorSet_ThemeColor_Border_50;
                     }
 
-                    .FlareTableFilter_SortButton {
-                        height:           20px;
-                        line-height:      20px;
-                        display:          inline-flex;
-                        align-items:      center;
-                        background-color: #dddddd;
-                        cursor:           pointer;
-                        width:            25px;
-                        justify-content:  center;
+                    .FlareTableFilter_CellControlContainer {
+                        display:         flex;
+                        justify-content: space-between;
 
-                        &:hover {
-                            background-color: #cccccc;
+                        &:not(:first-child) {
+                            border-left: 1px solid $ColorSet_ThemeColor_Border_50;
                         }
 
-                        //display: inline-block;
+                        .FlareTableFilter_Input {
+                            background-color: $ColorSet_ThemeColor_Background_60;
+                            border:           1px solid $ColorSet_ThemeColor_Border_60;
+                            border-radius:    3px;
+                            color:            $ColorSet_ThemeColor_Text_50;
+                            font-family:      'Roboto Mono', monospace;
+                            outline:          none;
+                            width:            calc(100% - 27px);
 
-                        //&--Neutral {
-                        //    &:after {
-                        //        line-height: 25px;
-                        //        content: " ↕";
-                        //    }
-                        //}
-                        //
-                        //&--Ascending {
-                        //    &:after {
-                        //        line-height: 25px;
-                        //        content: " ↑";
-                        //    }
-                        //}
-                        //
-                        //&--Descending {
-                        //    &:after {
-                        //        line-height: 25px;
-                        //        content: " ↓";
-                        //    }
-                        //}
+                            &:hover {
+                                background-color: $ColorSet_ThemeColor_Background_60_Hover;
+                            }
+                        }
+
+                        .FlareTableFilter_SortButton {
+                            align-items:      center;
+                            background-color: $ColorSet_ThemeColor_Background_60;
+                            border:           1px solid $ColorSet_ThemeColor_Border_60;
+                            border-radius:    3px;
+                            cursor:           pointer;
+                            display:          inline-flex;
+                            font-size:        0.85em;
+                            height:           20px;
+                            justify-content:  center;
+                            line-height:      19px;
+                            user-select:      none;
+                            width:            20px;
+
+                            &:hover {
+                                background-color: $ColorSet_ThemeColor_Background_60_Hover;
+                            }
+                        }
                     }
                 }
             }
@@ -114,7 +234,31 @@
 
         .FlareTableBody {
             .FlareTableBodyRow {
+                .FlareTableCell {
+                    background-color: $ColorSet_ThemeColor_Background_40;
+                    border-right:     1px solid $ColorSet_ThemeColor_Border_40;
+                    padding:          1px 3px;
 
+                    &:first-child {
+                        border-left: 1px solid $ColorSet_ThemeColor_Border_40;
+                    }
+
+                    &--Hidden {
+                        width: 15px;
+                    }
+                }
+
+                &:not(:first-child) .FlareTableCell {
+                    border-top: 1px solid $ColorSet_ThemeColor_Border_40;
+                }
+
+                &:last-child .FlareTableCell {
+                    border-bottom: 1px solid $ColorSet_ThemeColor_Border_50;
+                }
+
+                &:hover .FlareTableCell {
+                    background-color: $ColorSet_ThemeColor_Background_40_Hover;
+                }
             }
         }
     }

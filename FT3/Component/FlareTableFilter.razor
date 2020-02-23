@@ -13,8 +13,8 @@
     public string ID { get; set; }
 
     private readonly object _debouncerLock = new object();
-    private          Timer  _debouncer;
-    private          string _filter;
+    private Timer _debouncer;
+    private string _filter;
 
     protected override void OnParametersSet()
     {
@@ -54,14 +54,16 @@
 <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
     @if (FlareTable.ColumnShown(ID))
     {
-        <td class="FlareTableFilter_Cell">
-            @{ string key = "FT_F_" + ID; }
-            <input class="FlareTableFilter_Input" @key="@key" type="text" @bind-value="@Filter" @bind-value:event="oninput"/>
-            <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
-        </td>
+        <th class="FlareTableFilter_Cell">
+            <span class="FlareTableFilter_CellControlContainer">
+                @{ string key = "FT_F_" + ID; }
+                <input class="FlareTableFilter_Input" @key="@key" type="text" @bind-value="@Filter" @bind-value:event="oninput"/>
+                <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
+            </span>
+        </th>
     }
     else
     {
-        <td class="FlareTableFilter_Cell FlareTableFilter_Cell--Hidden"></td>
+        <th class="FlareTableFilter_Cell FlareTableFilter_Cell--Hidden"></th>
     }
 </TriggerWrapper>
