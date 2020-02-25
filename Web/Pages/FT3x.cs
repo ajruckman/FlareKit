@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Text;
 using Bogus;
 using FT3;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Web.Pages
 {
@@ -44,6 +47,13 @@ namespace Web.Pages
                  .RuleFor(v => v.Zip,     f => f.Address.ZipCode());
 
             return faker.Generate(n);
+        }
+
+        private void Download(MouseEventArgs args)
+        {
+            string csv = _flareTable1.AsCSV();
+            Console.WriteLine(csv);
+            Superset.Web.Utilities.Utilities.SaveAsFile(JSRuntime, $"dump_{DateTime.Now.Ticks}.csv", Encoding.ASCII.GetBytes(csv));
         }
     }
 }

@@ -1,41 +1,60 @@
+@using Microsoft.AspNetCore.Components.Web
 @using FT3
 @using FT3.Component
 @page "/ft3"
 
+@inject IJSRuntime JSRuntime
+
+<button @onclick="Download">Download</button>
+
 <FlareTableContainer FlareTable="@_flareTable1">
 
-    <FlareTableColumnToggles T="Record"/>
+    <FlareTableControlRow>
+        <FlareTableColumnToggles T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTableRegexToggle T="Record"/>
+    </FlareTableControlRow>
 
-    <table>
-        <FlareTableHead T="Record">
-            <tr>
-                @foreach (Column column in _flareTable1.ShownColumns)
+    <FlareTableControlRow>
+        <FlareTablePaginationSize T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTablePaginationButtons T="Record"/>
+    </FlareTableControlRow>
+
+    <FlareTableTable>
+        <FlareTableHead>
+            <FlareTableHeadingRow>
+                @foreach (Column column in _flareTable1.Columns)
                 {
-                    <td>@column.DisplayName</td>
+                    <FlareTableHeading T="Record" ID="@column.ID"/>
                 }
-            </tr>
-            <tr>
-                @foreach (Column column in _flareTable1.ShownColumns)
+            </FlareTableHeadingRow>
+            <FlareTableFilterRow>
+                @foreach (Column column in _flareTable1.Columns)
                 {
-                    <td>
-                        <FlareTableFilter T="Record" ID="@column.ID"/>
-                    </td>
+                    <FlareTableFilter T="Record" ID="@column.ID"/>
                 }
-            </tr>
+            </FlareTableFilterRow>
         </FlareTableHead>
         <FlareTableBody T="Record">
             @foreach (Record row in _flareTable1.Rows())
             {
-                <tr>
+                <FlareTableBodyRow>
                     <FlareTableCell T="Record" ID="Name">@row.Name</FlareTableCell>
                     <FlareTableCell T="Record" ID="Age">@row.Age</FlareTableCell>
                     <FlareTableCell T="Record" ID="City">@row.City</FlareTableCell>
                     <FlareTableCell T="Record" ID="State">@row.State</FlareTableCell>
                     <FlareTableCell T="Record" ID="Country">@row.Country</FlareTableCell>
                     <FlareTableCell T="Record" ID="Zip">@row.Zip</FlareTableCell>
-                </tr>
+                </FlareTableBodyRow>
             }
         </FlareTableBody>
-    </table>
+    </FlareTableTable>
+
+    <FlareTableControlRow>
+        <FlareTablePaginationInfo T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTablePaginationButtons T="Record"/>
+    </FlareTableControlRow>
 
 </FlareTableContainer>
