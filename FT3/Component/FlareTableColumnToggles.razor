@@ -8,10 +8,9 @@
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
 
-    private void HandleCheck(string id, ChangeEventArgs args)
+    private async Task HandleCheck(string id, ChangeEventArgs args)
     {
-        Console.WriteLine(args.Value);
-        FlareTable.SetColumnVisibility(id, (bool) args.Value);
+        await FlareTable.SetColumnVisibility(id, (bool) args.Value);
     }
 
 }
@@ -20,7 +19,7 @@
     <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
         @foreach (Column column in FlareTable.Columns)
         {
-            <input type="checkbox" @onchange="@(args => HandleCheck(column.ID, args))" checked="@column.Shown"/>
+            <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/>
         }
     </TriggerWrapper>
     <span>Column Toggles</span>

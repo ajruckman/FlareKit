@@ -21,30 +21,26 @@
         _filter = FlareTable.GetColumnFilter(ID);
     }
 
-    private string Filter
+    private async void SetFilter(ChangeEventArgs args)
     {
-        get => _filter;
-        set
+        lock (_debouncerLock)
         {
-            lock (_debouncerLock)
+            _filter = args.Value.ToString();
+            Console.WriteLine("BeginDebounce => " + _filter);
+            if (_debouncer == null)
             {
-                _filter = value;
-                Console.WriteLine("BeginDebounce => " + _filter);
-                if (_debouncer == null)
+                _debouncer = new Timer(250) {AutoReset = false};
+                _debouncer.Elapsed += async (_, __) =>
                 {
-                    _debouncer = new Timer(250) {AutoReset = false};
-                    _debouncer.Elapsed += (_, __) =>
-                    {
-                        FlareTable.SetColumnFilter(ID, _filter);
-                        Console.WriteLine("Debounced => " + _filter);
-                    };
-                    _debouncer.Start();
-                }
-                else
-                {
-                    _debouncer.Enabled = false;
-                    _debouncer.Enabled = true;
-                }
+                    await FlareTable.SetColumnFilter(ID, _filter);
+                    Console.WriteLine("Debounced => " + _filter);
+                };
+                _debouncer.Start();
+            }
+            else
+            {
+                _debouncer.Enabled = false;
+                _debouncer.Enabled = true;
             }
         }
     }
@@ -57,7 +53,7 @@
         <th class="FlareTableFilter_Cell">
             <span class="FlareTableFilter_CellControlContainer">
                 @{ string key = "FT_F_" + ID; }
-                <input class="FlareTableFilter_Input" @key="@key" type="text" @bind-value="@Filter" @bind-value:event="oninput"/>
+                <input class="FlareTableFilter_Input" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
                 <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
             </span>
         </th>

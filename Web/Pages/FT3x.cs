@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Bogus;
 using FT3;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,19 +20,28 @@ namespace Web.Pages
             public string Zip     { get; set; }
         }
 
+        private FlareTable<Record> _dummyFlareTable;
         private FlareTable<Record> _flareTable1;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             List<Record> data = FakeData(100);
-            _flareTable1 = new FlareTable<Record>(() => data);
 
-            _flareTable1.RegisterColumn(nameof(Record.Name), shown: true, sortDirection: SortDirections.Ascending);
-            _flareTable1.RegisterColumn(nameof(Record.Age),  filterValue: "1");
-            _flareTable1.RegisterColumn(nameof(Record.City));
-            _flareTable1.RegisterColumn(nameof(Record.State));
-            _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
-            _flareTable1.RegisterColumn(nameof(Record.Zip));
+            _dummyFlareTable = new FlareTable<Record>(() => data);
+            _flareTable1     = new FlareTable<Record>(() => data, SessionStorage, "ft3x");
+
+            await _flareTable1.RegisterColumn(nameof(Record.Name), shown: true, sortDirection: SortDirections.Ascending);
+            await _flareTable1.RegisterColumn(nameof(Record.Age), filterValue: "1");
+            await _flareTable1.RegisterColumn(nameof(Record.City));
+            await _flareTable1.RegisterColumn(nameof(Record.State));
+            await _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
+            await _flareTable1.RegisterColumn(nameof(Record.Zip));
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+                await _flareTable1.LoadSessionValues();
         }
 
         private static List<Record> FakeData(int n)
@@ -53,7 +63,8 @@ namespace Web.Pages
         {
             string csv = _flareTable1.AsCSV();
             Console.WriteLine(csv);
-            Superset.Web.Utilities.Utilities.SaveAsFile(JSRuntime, $"dump_{DateTime.Now.Ticks}.csv", Encoding.ASCII.GetBytes(csv));
+            Superset.Web.Utilities.Utilities.SaveAsFile(JSRuntime, $"dump_{DateTime.Now.Ticks}.csv",
+                Encoding.ASCII.GetBytes(csv));
         }
     }
 }

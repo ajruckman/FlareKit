@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FT3
 {
@@ -90,7 +91,7 @@ namespace FT3
             Current = page;
         }
 
-        public void UpdatePageSize(int size)
+        public async Task UpdatePageSize(int size)
         {
             PageSize = size;
             OnPageStateChange?.Invoke();

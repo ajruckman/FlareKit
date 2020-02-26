@@ -7,9 +7,9 @@
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
 
-    private void HandleCheck()
+    private async Task HandleCheck()
     {
-        FlareTable.ToggleRegexMode();
+        await FlareTable.ToggleRegexMode();
     }
 
 }

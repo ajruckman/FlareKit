@@ -7,9 +7,9 @@
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
 
-    private void UpdatePageSize(ChangeEventArgs args)
+    private async Task UpdatePageSize(ChangeEventArgs args)
     {
-        FlareTable.PageState.UpdatePageSize(int.Parse(args.Value.ToString()));
+        await FlareTable.PageState.UpdatePageSize(int.Parse(args.Value.ToString()));
     }
 
 }
