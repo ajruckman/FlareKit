@@ -212,6 +212,10 @@
                             &:hover {
                                 background-color: $ColorSet_ThemeColor_Background_60_Hover;
                             }
+
+                            &--Invalid {
+                                border: 1px solid red;
+                            }
                         }
 
                         .FlareTableFilter_SortButton {
@@ -251,7 +255,7 @@
                     &--Hidden {
                         width: 15px;
                     }
-                    
+
                     &:hover {
                         background-color: $ColorSet_ThemeColor_Background_40_Focus;
                     }

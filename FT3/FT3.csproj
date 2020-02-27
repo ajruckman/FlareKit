@@ -13,9 +13,5 @@
         <PackageReference Include="NaturalSort.Extension" Version="2.1.0" />
         <PackageReference Include="Superset" Version="1.5.0-alpha" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\js" />
-    </ItemGroup>
     
 </Project>

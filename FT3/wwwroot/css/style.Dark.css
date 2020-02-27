@@ -130,6 +130,8 @@
           width: calc(100% - 27px); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover {
             background-color: #222124; }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
+            border: 1px solid red; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton {
           align-items: center;
           background-color: #201f21;
