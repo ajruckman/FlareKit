@@ -56,7 +56,8 @@ namespace FT3
         }
 
         public string Info =>
-            $"Showing {Skip + 1} to {Math.Min(Skip + PageSize, _rowCount)} of {_rowCount:#,##0} | {NumPages} pages";
+            $"Showing {(_rowCount != 0 ? Skip + 1 : 0)} to {Math.Min(Skip + PageSize, _rowCount)} of {_rowCount:#,##0} | {NumPages} page" +
+            (NumPages != 1 ? "s" : "");
 
         internal event Action OnPageStateChange;
 

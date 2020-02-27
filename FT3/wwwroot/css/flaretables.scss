@@ -1,16 +1,17 @@
 //noinspection SassScssResolvedByNameOnly
 
 .FlareTableContainer {
-    border-left: 1px solid $ColorSet_ThemeColor_Border_40;
-    border-top:  1px solid $ColorSet_ThemeColor_Border_40;
-    color:       $ColorSet_ThemeColor_Text_40;
-    display:     inline-block;
-
+    //border-left:  1px solid $ColorSet_ThemeColor_Border_40;
+    //border-right: 1px solid $ColorSet_ThemeColor_Border_40;
+    border-top: 1px solid $ColorSet_ThemeColor_Border_40;
+    color:      $ColorSet_ThemeColor_Text_40;
+    display:    inline-block;
 
     .FlareTableControlRow {
         align-items:      center;
         background-color: $ColorSet_ThemeColor_Background_50;
         border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
+        border-left:      1px solid $ColorSet_ThemeColor_Border_50;
         border-right:     1px solid $ColorSet_ThemeColor_Border_50;
         display:          flex;
         padding:          3px;
@@ -123,19 +124,23 @@
         }
     }
 
+    .FlareTableTable + .FlareTableControlRow {
+        border-top: 1px solid $ColorSet_ThemeColor_Border_50;
+    }
+
     .FlareTableTable {
         border-spacing: 0;
 
         .FlareTableHead {
 
             .FlareTableHeadingRow {
+                section:first-child .FlareTableHeading_Cell {
+                    border-left: 1px solid $ColorSet_ThemeColor_Border_50;
+                }
+
                 .FlareTableHeading_Cell {
                     background-color: $ColorSet_ThemeColor_Background_50;
                     border-right:     1px solid $ColorSet_ThemeColor_Border_50;
-
-                    &:first-child {
-                        border-left: 1px solid $ColorSet_ThemeColor_Border_50;
-                    }
 
                     .FlareTableHeading_CellContent {
                         align-items:     center;
@@ -177,15 +182,15 @@
             }
 
             .FlareTableFilterRow {
+                section:first-child .FlareTableFilter_Cell {
+                    border-left: 1px solid $ColorSet_ThemeColor_Border_50;
+                }
+
                 .FlareTableFilter_Cell {
                     background-color: $ColorSet_ThemeColor_Background_50;
                     border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
                     border-right:     1px solid $ColorSet_ThemeColor_Border_50;
                     padding:          1px;
-
-                    &:first-child {
-                        border-left: 1px solid $ColorSet_ThemeColor_Border_50;
-                    }
 
                     .FlareTableFilter_CellControlContainer {
                         display:         flex;
@@ -246,17 +251,21 @@
                     &--Hidden {
                         width: 15px;
                     }
+                    
+                    &:hover {
+                        background-color: $ColorSet_ThemeColor_Background_40_Focus;
+                    }
                 }
 
                 &:not(:first-child) .FlareTableCell {
                     border-top: 1px solid $ColorSet_ThemeColor_Border_40;
                 }
 
-                &:last-child .FlareTableCell {
-                    border-bottom: 1px solid $ColorSet_ThemeColor_Border_50;
-                }
+                //&:last-child .FlareTableCell {
+                //    border-bottom: 1px solid $ColorSet_ThemeColor_Border_50;
+                //}
 
-                &:hover .FlareTableCell {
+                &:hover .FlareTableCell:not(:hover) {
                     background-color: $ColorSet_ThemeColor_Background_40_Hover;
                 }
             }

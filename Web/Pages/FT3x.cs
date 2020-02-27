@@ -36,12 +36,8 @@ namespace Web.Pages
             await _flareTable1.RegisterColumn(nameof(Record.State));
             await _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
             await _flareTable1.RegisterColumn(nameof(Record.Zip));
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-                await _flareTable1.LoadSessionValues();
+            
+            await _flareTable1.LoadSessionValues();
         }
 
         private static List<Record> FakeData(int n)

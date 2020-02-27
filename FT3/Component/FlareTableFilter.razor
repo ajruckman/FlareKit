@@ -19,6 +19,7 @@
     protected override void OnParametersSet()
     {
         _filter = FlareTable.GetColumnFilter(ID);
+        FlareTable.UpdateFilterValues.OnUpdate += () => _filter = "";
     }
 
     private async void SetFilter(ChangeEventArgs args)
@@ -53,7 +54,9 @@
         <th class="FlareTableFilter_Cell">
             <span class="FlareTableFilter_CellControlContainer">
                 @{ string key = "FT_F_" + ID; }
-                <input class="FlareTableFilter_Input" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
+                <TriggerWrapper Trigger="@FlareTable.UpdateFilterValues">
+                    <input class="FlareTableFilter_Input" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
+                </TriggerWrapper>
                 <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
             </span>
         </th>

@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using NaturalSort.Extension;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Superset.Common;
 
 namespace FT3
@@ -23,54 +22,27 @@ namespace FT3
 
         private readonly ListDictionary _columns = new ListDictionary();
 
-        private readonly bool _sessionConfig;
+        private readonly DataGetter _dataGetter;
+        private readonly string     _identifier;
 
-        private readonly DataGetter             _dataGetter;
-        private readonly string                 _identifier;
+        private readonly bool                   _sessionConfig;
         private readonly ISessionStorageService _sessionStorage;
         private readonly ValueGetter            _valueGetter;
 
         internal readonly PageStateHandler PageState;
-        internal readonly UpdateTrigger    UpdatePageState = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdateTableBody = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdateTableHead = new UpdateTrigger();
+        internal readonly UpdateTrigger    UpdatePageState    = new UpdateTrigger();
+        internal readonly UpdateTrigger    UpdateTableBody    = new UpdateTrigger();
+        internal readonly UpdateTrigger    UpdateTableHead    = new UpdateTrigger();
+        internal readonly UpdateTrigger    UpdateFilterValues = new UpdateTrigger();
 
         private int             _currentSortIndex;
         private IEnumerable<T>? _data;
 
         internal bool RegexMode;
 
-        // public static async Task<FlareTable<T>> Create(
-        //     DataGetter  dataGetter,
-        //     ValueGetter valueGetter = null,
-        //     bool        regexMode   = false
-        // )
-        // {
-        //     return new FlareTable<T>(dataGetter, valueGetter, regexMode, null, null);
-        // }
-        //
-        // public static async Task<FlareTable<T>> Create(
-        //     DataGetter             dataGetter,
-        //     ISessionStorageService sessionStorage,
-        //     string                 identifier,
-        //     ValueGetter            valueGetter = null
-        // )
-        // {
-        //     Console.WriteLine("-1");
-        //     try
-        //     {
-        //
-        //         var regexMode = await sessionStorage.GetItemAsync<bool>($"FlareTable_{identifier}_!RegexMode");
-        //         return new FlareTable<T>(dataGetter, valueGetter, false, sessionStorage, identifier);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine(e);
-        //     }
-        //     Console.WriteLine("-2");
-        //     return new FlareTable<T>(dataGetter, null, false, null, null);
-        // }
-
+        /// <summary>
+        ///     Creates a FlareTable object without persistent values.
+        /// </summary>
         public FlareTable(
             DataGetter  dataGetter,
             ValueGetter valueGetter = null,
@@ -85,6 +57,10 @@ namespace FT3
             PageState.OnPageStateChange += UpdateTableBody.Trigger;
         }
 
+        /// <summary>
+        ///     Creates a FlareTable object that accesses session storage to
+        ///     load and store persistent values.
+        /// </summary>
         public FlareTable(
             DataGetter             dataGetter,
             ISessionStorageService sessionStorage,
@@ -102,17 +78,6 @@ namespace FT3
             RegexMode                   =  regexMode;
             PageState                   =  new PageStateHandler(3, 25);
             PageState.OnPageStateChange += UpdateTableBody.Trigger;
-        }
-
-        public async Task LoadSessionValues()
-        {
-            if (!_sessionConfig)
-                throw new ArgumentException(
-                    "Called LoadSessionValues(), but a ISessionStorageService was not passed to the FlareTable constructor.");
-            
-            var newMode = await _sessionStorage.GetItemAsync<bool>($"FlareTable_{_identifier}_!RegexMode");
-            if (newMode != RegexMode)
-                await ToggleRegexMode();
         }
 
         // private FlareTable(
@@ -136,13 +101,24 @@ namespace FT3
 
         public List<Column> Columns => _columns.Values.Cast<Column>().ToList();
 
+        public async Task LoadSessionValues()
+        {
+            if (!_sessionConfig)
+                throw new ArgumentException(
+                    "Called LoadSessionValues(), but a ISessionStorageService was not passed to the FlareTable constructor.");
+
+            var newMode = await _sessionStorage.GetItemAsync<bool>($"FlareTable_{_identifier}_!RegexMode");
+            if (newMode != RegexMode)
+                await ToggleRegexMode();
+        }
+
         public IEnumerable<T> AllRows()
         {
             _data ??= _dataGetter.Invoke();
 
             List<T> result         = new List<T>();
-            int     numRows        = 0;
-            int     numRowsMatched = 0;
+            var     numRows        = 0;
+            var     numRowsMatched = 0;
 
             foreach (T row in _data)
             {
@@ -187,10 +163,7 @@ namespace FT3
             return result;
         }
 
-        public IEnumerable<T> Rows()
-        {
-            return AllRows().Skip(PageState.Skip).Take(PageState.PageSize).ToList();
-        }
+        public IEnumerable<T> Rows() => AllRows().Skip(PageState.Skip).Take(PageState.PageSize).ToList();
 
         private void Sort(ref List<T> data)
         {
@@ -205,12 +178,6 @@ namespace FT3
 
             if (!indices.Any()) return;
 
-            Console.WriteLine("Indices:");
-            foreach (Column column in indices)
-            {
-                Console.WriteLine($"   {column.ID} -> {column.SortDirection} / {column.SortIndex}");
-            }
-
             Column first = indices.First();
             bool   desc  = first.SortDirection == SortDirections.Descending;
 
@@ -224,7 +191,6 @@ namespace FT3
                     StringComparer.OrdinalIgnoreCase.WithNaturalSort());
 
             if (indices.Count > 1)
-            {
                 foreach (Column index in indices.Skip(1))
                 {
                     desc = index.SortDirection == SortDirections.Descending;
@@ -236,20 +202,13 @@ namespace FT3
                         query = query.ThenByDescending(v => RowValue(v, index.ID),
                             StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                 }
-            }
 
             data = query.ToList();
         }
 
-        private string RowValue(T v, string id)
-        {
-            return _valueGetter.Invoke(v, id).ToString();
-        }
+        private string RowValue(T v, string id) => _valueGetter.Invoke(v, id).ToString();
 
-        private object ReflectionValueGetter(T data, string id)
-        {
-            return ((Column) _columns[id]).Property.GetValue(data);
-        }
+        private object ReflectionValueGetter(T data, string id) => ((Column) _columns[id]).Property.GetValue(data);
 
         public async Task RegisterColumn(
             string         id,
@@ -274,33 +233,29 @@ namespace FT3
                 SortDirection = sortDirection,
                 SortIndex     = sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
                 FilterValue   = filterValue,
-                Property      = t,
+                Property      = t
             };
-
-            Console.WriteLine();
 
             if (_sessionConfig)
             {
                 c.Key = $"FlareTable_{_identifier}_{id}";
-
-                Console.WriteLine(JsonConvert.SerializeObject(c));
                 var stored = await _sessionStorage.GetItemAsync<string>($"FlareTable_{_identifier}_{id}");
-                Console.WriteLine(stored);
-                Console.WriteLine(stored == null);
-                Console.WriteLine();
 
                 if (stored == null)
-                {
                     await StoreColumnConfig(c);
-                }
                 else
-                {
                     await LoadColumnConfig(stored, c);
-                }
             }
 
             if (RegexMode)
-                c.CompiledFilterValue = new Regex(filterValue, RegexOptions.Compiled);
+                try
+                {
+                    c.CompiledFilterValue = new Regex(filterValue, RegexOptions.Compiled);
+                }
+                catch (Exception e)
+                {
+                    c.CompiledFilterValue = new Regex("a^", RegexOptions.Compiled);
+                }
 
             _columns.Add(id, c);
         }
@@ -319,51 +274,49 @@ namespace FT3
             column.FilterValue   = storedConfig.FilterValue;
         }
 
-        public string GetColumnFilter(string id)
-        {
-            return ((Column) _columns[id])?.FilterValue;
-        }
+        public string GetColumnFilter(string id) => ((Column) _columns[id])?.FilterValue;
 
         public async Task SetColumnFilter(string id, string filter)
         {
-            Console.WriteLine($"FILTER | {id} -> {filter}");
-
             ((Column) _columns[id]).FilterValue = filter;
 
             if (RegexMode)
-                ((Column) _columns[id]).CompiledFilterValue = new Regex(filter, RegexOptions.Compiled);
+            {
+                try
+                {
+                    ((Column) _columns[id]).CompiledFilterValue = new Regex(filter, RegexOptions.Compiled);
+                }
+                catch (Exception e)
+                {
+                    ((Column) _columns[id]).CompiledFilterValue = new Regex("a^", RegexOptions.Compiled);
+                }
+            }
 
             if (_sessionConfig)
-                await StoreColumnConfig(((Column) _columns[id]));
+                await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
         }
 
         public async Task SetColumnVisibility(string id, bool shown)
         {
-            Console.WriteLine($"SetColumnVisibility({id}, {shown})");
             ((Column) _columns[id]).Shown = shown;
 
             if (_sessionConfig)
-                await StoreColumnConfig(((Column) _columns[id]));
+                await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
         }
 
-        private static bool Match(string str, string term)
-        {
-            return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+        private static bool Match(string str, string term) =>
+            str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
 
-        public bool ColumnShown(string id)
-        {
-            return ((Column) _columns[id])?.Shown ?? false;
-        }
+        public bool ColumnShown(string id) => ((Column) _columns[id])?.Shown ?? false;
 
         public async Task NextColumnSort(string id)
         {
-            Column c = ((Column) _columns[id]);
+            Column c = (Column) _columns[id];
             c.SortDirection = c.SortDirection switch
             {
                 SortDirections.Neutral   => SortDirections.Ascending,
@@ -372,17 +325,13 @@ namespace FT3
             };
 
             c.SortIndex = _currentSortIndex++;
-            Console.WriteLine($"{c.ID} -> {c.SortDirection} / {c.SortIndex}");
             if (_sessionConfig)
-                await StoreColumnConfig(((Column) _columns[id]));
+                await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
         }
 
-        public string GetColumnDisplayName(string id)
-        {
-            return ((Column) _columns[id]).DisplayName;
-        }
+        public string GetColumnDisplayName(string id) => ((Column) _columns[id]).DisplayName;
 
         public string ColumnSortButtonClass(string id) => ((Column) _columns[id]).SortDirection switch
         {
@@ -403,11 +352,17 @@ namespace FT3
         internal async Task ToggleRegexMode()
         {
             RegexMode = !RegexMode;
-            Console.WriteLine($"RegexMode -> {RegexMode}");
 
             if (RegexMode)
                 foreach (Column c in _columns.Values)
-                    c.CompiledFilterValue = new Regex(c.FilterValue, RegexOptions.Compiled);
+                    try
+                    {
+                        c.CompiledFilterValue = new Regex(c.FilterValue, RegexOptions.Compiled);
+                    }
+                    catch (Exception e)
+                    {
+                        c.CompiledFilterValue = new Regex("a^", RegexOptions.Compiled);
+                    }
 
             if (_sessionConfig)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!RegexMode", RegexMode);
@@ -416,11 +371,31 @@ namespace FT3
             UpdateTableHead.Trigger();
         }
 
+        public async Task Reset()
+        {
+            foreach (Column c in _columns.Values)
+            {
+                c.Shown         = true;
+                c.FilterValue   = "";
+                c.SortDirection = SortDirections.Neutral;
+                c.SortIndex     = 0;
+                await StoreColumnConfig(c);
+            }
+
+            PageState.First();
+
+            UpdateTableBody.Trigger();
+            UpdateTableHead.Trigger();
+            UpdateFilterValues.Trigger();
+        }
+
         public string AsCSV()
         {
             StringBuilder result = new StringBuilder();
 
             IEnumerable<Column> columns = Columns.Where(v => v.Shown).ToList();
+
+            if (!columns.Any()) return "";
 
             List<string> headings = columns.Select(v => StringToCSVCell(v.DisplayName)).ToList();
             result.AppendLine(string.Join(',', headings));
@@ -437,7 +412,7 @@ namespace FT3
         // https://stackoverflow.com/a/6377656/9911189
         private static string StringToCSVCell(string str)
         {
-            bool mustQuote = (str.Contains(",") || str.Contains("\"") || str.Contains("\r") || str.Contains("\n"));
+            bool mustQuote = str.Contains(",") || str.Contains("\"") || str.Contains("\r") || str.Contains("\n");
             if (mustQuote)
             {
                 StringBuilder sb = new StringBuilder();
@@ -466,14 +441,13 @@ namespace FT3
 
     public sealed class Column
     {
-        [JsonIgnore]   public string DisplayName;
-        [JsonIgnore]   public string ID;
-        [JsonProperty] public bool   Shown;
-
         [JsonIgnore]   internal Regex        CompiledFilterValue;
+        [JsonIgnore]   public   string       DisplayName;
         [JsonProperty] internal string       FilterValue;
+        [JsonIgnore]   public   string       ID;
         [JsonIgnore]   internal string       Key;
         [JsonIgnore]   internal PropertyInfo Property;
+        [JsonProperty] public   bool         Shown;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;
