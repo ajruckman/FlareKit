@@ -1,5 +1,4 @@
-@using Microsoft.AspNetCore.Components.Web
-@using Superset.Web.State
+@using System.Threading.Tasks
 
 @typeparam T
 
@@ -10,7 +9,7 @@
 
     private async Task UpdatePageSize(ChangeEventArgs args)
     {
-        await FlareTable.UpdatePageSize(int.Parse(args.Value.ToString()));
+        await FlareTable.UpdatePageSize(int.Parse(args.Value?.ToString() ?? "0"));
     }
 
 }

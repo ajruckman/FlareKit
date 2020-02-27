@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using Superset.Common;
@@ -10,7 +12,7 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly string _identifier;
+        private readonly string? _identifier;
 
         internal readonly UpdateTrigger ResetFilterValues  = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateFilterValues = new UpdateTrigger();
@@ -22,10 +24,10 @@ namespace FT3
         ///     Creates a FlareTable object without persistent values.
         /// </summary>
         public FlareTable(
-            DataGetter  dataGetter,
-            ValueGetter valueGetter = null,
-            bool        regexMode   = false,
-            int         pageSize    = 25
+            DataGetter   dataGetter,
+            ValueGetter? valueGetter = null,
+            bool         regexMode   = false,
+            int          pageSize    = 25
         )
         {
             _dataGetter  = dataGetter;
@@ -46,13 +48,12 @@ namespace FT3
             DataGetter             dataGetter,
             ISessionStorageService sessionStorage,
             string                 identifier,
-            ValueGetter            valueGetter = null,
+            ValueGetter?           valueGetter = null,
             bool                   regexMode   = false,
             int                    pageSize    = 25
         )
         {
             _dataGetter     = dataGetter;
-            _sessionConfig  = true;
             _sessionStorage = sessionStorage;
             _identifier     = identifier;
             _valueGetter    = valueGetter ?? ReflectionValueGetter;
@@ -69,8 +70,10 @@ namespace FT3
             if (RegexMode)
                 await ToggleRegexMode();
 
-            foreach (Column c in _columns.Values)
+            foreach (Column? c in _columns.Values)
             {
+                if (c == null) continue;
+
                 c.Shown         = true;
                 c.FilterValue   = "";
                 c.SortDirection = SortDirections.Neutral;
@@ -79,8 +82,8 @@ namespace FT3
                 if (RegexMode)
                     c.TryCompileFilter();
 
-                if (_sessionConfig)
-                    await StoreColumnConfig(c);
+                // if (_sessionStorage != null)
+                await StoreColumnConfig(c);
             }
 
             if (_initialPageSize != PageSize)

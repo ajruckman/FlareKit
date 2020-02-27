@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +35,11 @@ namespace FT3
                 numRows++;
 
                 var matched = true;
-                foreach (Column column in _columns.Values)
+                foreach (Column? column in _columns.Values)
                 {
-                    if (!column.Shown) continue;
+                    if (column?.ID == null) continue;
+
+                    if (column.Shown != true) continue;
                     if (string.IsNullOrEmpty(column.FilterValue)) continue;
 
                     if (!RegexMode)
@@ -120,7 +124,6 @@ namespace FT3
 
         private string? RowValue(T v, string id)
         {
-            // ReSharper disable once ConstantConditionalAccessQualifier
             return _valueGetter.Invoke(v, id)?.ToString();
         }
 
@@ -129,9 +132,9 @@ namespace FT3
             return ((Column) _columns[id]).Property.GetValue(data);
         }
 
-        private static bool Match(string str, string term)
+        private static bool Match(string? str, string? term)
         {
-            return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
+            return term == null || str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         public async Task ToggleRegexMode()
@@ -140,13 +143,13 @@ namespace FT3
 
             if (RegexMode)
             {
-                foreach (Column c in _columns.Values)
-                    c.TryCompileFilter();
+                foreach (Column? c in _columns.Values)
+                    c?.TryCompileFilter();
                 UpdateFilterValues.Trigger();
             }
 
 
-            if (_sessionConfig)
+            if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!RegexMode", RegexMode);
 
             UpdateTableBody.Trigger();

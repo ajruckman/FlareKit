@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -9,12 +12,12 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly ListDictionary _columns = new ListDictionary();
-        public           List<Column>   Columns => _columns.Values.Cast<Column>().ToList();
+        [NotNull] private readonly ListDictionary _columns = new ListDictionary();
+        public                     List<Column>   Columns => _columns.Values.Cast<Column>().ToList();
 
         public async Task RegisterColumn(
             string         id,
-            string         displayName   = null,
+            string?        displayName   = null,
             bool           shown         = true,
             SortDirections sortDirection = SortDirections.Neutral,
             string         filterValue   = ""
@@ -28,17 +31,17 @@ namespace FT3
                 throw new ArgumentException($"Property ID '{id}' does not exist in type '{typeof(T).FullName}'");
 
             Column c = new Column
-            {
-                ID            = id,
-                DisplayName   = displayName ?? id,
-                Shown         = shown,
-                SortDirection = sortDirection,
-                SortIndex     = sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
-                FilterValue   = filterValue,
-                Property      = t
-            };
+            (
+                id,
+                displayName ?? id,
+                shown,
+                sortDirection,
+                sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
+                filterValue,
+                t
+            );
 
-            if (_sessionConfig)
+            if (_sessionStorage != null)
             {
                 c.Key = $"FlareTable_{_identifier}_{id}";
                 var stored = await _sessionStorage.GetItemAsync<string>($"FlareTable_{_identifier}_{id}");
@@ -50,10 +53,7 @@ namespace FT3
             }
 
             if (RegexMode)
-            {
-                c.FilterValue = filterValue;
                 c.TryCompileFilter();
-            }
 
             _columns.Add(id, c);
         }
@@ -69,8 +69,8 @@ namespace FT3
                 UpdateFilterValues.Trigger();
             }
 
-            if (_sessionConfig)
-                await StoreColumnConfig((Column) _columns[id]);
+            // if (_sessionStorage != null)
+            await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
         }
@@ -79,8 +79,8 @@ namespace FT3
         {
             ((Column) _columns[id]).Shown = shown;
 
-            if (_sessionConfig)
-                await StoreColumnConfig((Column) _columns[id]);
+            // if (_sessionStorage != null)
+            await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
@@ -97,8 +97,8 @@ namespace FT3
             };
 
             c.SortIndex = _currentSortIndex++;
-            if (_sessionConfig)
-                await StoreColumnConfig((Column) _columns[id]);
+            // if (_sessionStorage != null)
+            await StoreColumnConfig((Column) _columns[id]);
 
             UpdateTableBody.Trigger();
         }

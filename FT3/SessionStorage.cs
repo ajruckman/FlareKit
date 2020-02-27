@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
@@ -7,13 +9,14 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly int                    _initialPageSize;
-        private readonly bool                   _sessionConfig;
-        private readonly ISessionStorageService _sessionStorage;
+        private readonly int _initialPageSize;
+
+        // private readonly bool                    _sessionConfig;
+        private readonly ISessionStorageService? _sessionStorage;
 
         public async Task LoadSessionValues()
         {
-            if (!_sessionConfig)
+            if (_sessionStorage == null)
                 throw new ArgumentException(
                     "Called LoadSessionValues(), but a ISessionStorageService was not passed to the FlareTable constructor.");
 
@@ -32,7 +35,7 @@ namespace FT3
 
         private async Task StoreColumnConfig(Column column)
         {
-            await _sessionStorage.SetItemAsync(column.Key, JsonConvert.SerializeObject(column));
+            if (_sessionStorage != null) await _sessionStorage.SetItemAsync(column.Key, JsonConvert.SerializeObject(column));
         }
 
         private void LoadColumnConfig(string configString, Column column)

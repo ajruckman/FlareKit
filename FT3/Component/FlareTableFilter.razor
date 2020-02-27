@@ -1,6 +1,4 @@
 @using System.Timers
-@using Microsoft.AspNetCore.Components.Web
-@using Superset.Common
 
 @typeparam T
 
@@ -22,9 +20,9 @@
         FlareTable.ResetFilterValues.OnUpdate += () => _filter = "";
     }
 
-    private async void SetFilter(ChangeEventArgs args)
+    private void SetFilter(ChangeEventArgs args)
     {
-        _filter = args.Value.ToString();
+        _filter = args.Value?.ToString() ?? "";
         lock (_debouncerLock)
         {
             if (_debouncer == null)

@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,9 @@ namespace FT3
             set
             {
                 _rowCount = value;
+#pragma warning disable 4014
                 ResetCurrentPage();
+#pragma warning restore 4014
             }
         }
 
@@ -47,7 +51,9 @@ namespace FT3
             set
             {
                 _paginationRange = value;
+#pragma warning disable 4014
                 ResetCurrentPage();
+#pragma warning restore 4014
             }
         }
 
@@ -90,7 +96,7 @@ namespace FT3
 
         private async Task SavePageNumber()
         {
-            if (_sessionConfig)
+            if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageNum", Current);
         }
 
@@ -158,7 +164,7 @@ namespace FT3
             UpdateTableHead.Trigger();
             UpdateTableBody.Trigger();
 
-            if (_sessionConfig)
+            if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
         }
     }

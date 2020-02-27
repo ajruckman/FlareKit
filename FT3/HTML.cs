@@ -1,3 +1,5 @@
+#nullable enable
+
 namespace FT3
 {
     public partial class FlareTable<T>
@@ -45,7 +47,7 @@ namespace FT3
 
         public string GetColumnFilter(string id)
         {
-            return ((Column) _columns[id])?.FilterValue;
+            return ((Column) _columns[id])?.FilterValue ?? "";
         }
     }
 }
