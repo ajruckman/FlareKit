@@ -1,4 +1,5 @@
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Web.State
 
 @typeparam T
 
@@ -9,16 +10,18 @@
 
     private async Task UpdatePageSize(ChangeEventArgs args)
     {
-        await FlareTable.PageState.UpdatePageSize(int.Parse(args.Value.ToString()));
+        await FlareTable.UpdatePageSize(int.Parse(args.Value.ToString()));
     }
 
 }
 
 <div class="FlareTablePaginationSizes">
-    <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
-        @foreach (int size in PageStateHandler.PageSizes)
-        {
-            <option selected="@(size == FlareTable.PageState.PageSize)" value="@size">@size</option>
-        }
-    </select>
+    <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+        <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
+            @foreach (int size in FlareTable<T>.PageSizes)
+            {
+                <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
+            }
+        </select>
+    </TriggerWrapper>
 </div>

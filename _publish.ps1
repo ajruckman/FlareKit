@@ -38,3 +38,4 @@ Get-ChildItem -Directory | foreach {
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flarelib\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flareselect\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flaretables\
+Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\ft3\

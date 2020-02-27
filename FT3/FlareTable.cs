@@ -14,6 +14,7 @@ using Superset.Common;
 
 // ReSharper disable ClassCanBeSealed.Global
 // ReSharper disable MemberCanBeInternal
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace FT3
 {
@@ -21,56 +22,66 @@ namespace FT3
     {
         public delegate IEnumerable<T> DataGetter();
 
-        public delegate object ValueGetter(T data, string id);
+        public delegate object? ValueGetter(T data, string id);
+
+        public static readonly int[] PageSizes = {10, 25, 50, 100, 250, 500};
 
         private readonly ListDictionary _columns = new ListDictionary();
 
         private readonly DataGetter _dataGetter;
         private readonly string     _identifier;
+        private readonly int        _initialPageSize;
 
         private readonly bool                   _sessionConfig;
         private readonly ISessionStorageService _sessionStorage;
         private readonly ValueGetter            _valueGetter;
 
-        internal readonly PageStateHandler PageState;
-        internal readonly UpdateTrigger    ResetFilterValues  = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdateFilterValues = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdatePageState    = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdateTableBody    = new UpdateTrigger();
-        internal readonly UpdateTrigger    UpdateTableHead    = new UpdateTrigger();
+        internal readonly UpdateTrigger ResetFilterValues  = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateFilterValues = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdatePageState    = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableBody    = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableHead    = new UpdateTrigger();
+        private           int           _current;
 
         private int             _currentSortIndex;
         private IEnumerable<T>? _data;
+        private int             _paginationRange;
+        private int             _rowCount;
 
         internal bool RegexMode;
 
         /// <summary>
-        /// Creates a FlareTable object without persistent values.
+        ///     Creates a FlareTable object without persistent values.
         /// </summary>
         public FlareTable(
             DataGetter  dataGetter,
             ValueGetter valueGetter = null,
-            bool        regexMode   = false
+            bool        regexMode   = false,
+            int         pageSize    = 25
         )
         {
             _dataGetter  = dataGetter;
             _valueGetter = valueGetter ?? ReflectionValueGetter;
             RegexMode    = regexMode;
 
-            PageState                   =  new PageStateHandler(3, 25);
-            PageState.OnPageStateChange += UpdateTableBody.Trigger;
+            Current          = 0;
+            PaginationRange  = 3;
+            PageSize         = pageSize;
+            _initialPageSize = pageSize;
+            // OnPageStateChange += UpdateTableBody.Trigger;
         }
 
         /// <summary>
-        /// Creates a FlareTable object that accesses session storage to
-        /// load and store persistent values.
+        ///     Creates a FlareTable object that accesses session storage to
+        ///     load and store persistent values.
         /// </summary>
         public FlareTable(
             DataGetter             dataGetter,
             ISessionStorageService sessionStorage,
             string                 identifier,
             ValueGetter            valueGetter = null,
-            bool                   regexMode   = false
+            bool                   regexMode   = false,
+            int                    pageSize    = 25
         )
         {
             _dataGetter     = dataGetter;
@@ -79,12 +90,53 @@ namespace FT3
             _identifier     = identifier;
             _valueGetter    = valueGetter ?? ReflectionValueGetter;
 
-            RegexMode                   =  regexMode;
-            PageState                   =  new PageStateHandler(3, 25);
-            PageState.OnPageStateChange += UpdateTableBody.Trigger;
+            RegexMode        = regexMode;
+            Current          = 0;
+            PaginationRange  = 3;
+            PageSize         = pageSize;
+            _initialPageSize = pageSize;
+            // OnPageStateChange += UpdateTableBody.Trigger;
         }
 
-        public List<Column> Columns => _columns.Values.Cast<Column>().ToList();
+        public   List<Column> Columns  => _columns.Values.Cast<Column>().ToList();
+        internal int          PageSize { get; set; }
+        public   bool         CanNext  => Current + 1 < NumPages;
+        private  int          NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
+        public   bool         CanPrev  => Current - 1 >= 0;
+        internal int          Skip     => PageSize * Current;
+
+        public int Current
+        {
+            get => _current;
+            private set
+            {
+                _current = value;
+                UpdateTableBody.Trigger();
+            }
+        }
+
+        internal int RowCount
+        {
+            set
+            {
+                _rowCount = value;
+                ResetCurrentPage();
+            }
+        }
+
+        private int PaginationRange
+        {
+            get => _paginationRange;
+            set
+            {
+                _paginationRange = value;
+                ResetCurrentPage();
+            }
+        }
+
+        public string Info =>
+            $"Showing {(_rowCount != 0 ? Skip + 1 : 0)} to {Math.Min(Skip + PageSize, _rowCount)} of {_rowCount:#,##0} | {NumPages} page" +
+            (NumPages != 1 ? "s" : "");
 
         public async Task RegisterColumn(
             string         id,
@@ -141,6 +193,24 @@ namespace FT3
             var newMode = await _sessionStorage.GetItemAsync<bool>($"FlareTable_{_identifier}_!RegexMode");
             if (newMode != RegexMode)
                 await ToggleRegexMode();
+
+            var pageSize = await _sessionStorage.GetItemAsync<int>($"FlareTable_{_identifier}_!PageSize");
+            if (pageSize != 0 && pageSize != PageSize)
+                await UpdatePageSize(pageSize);
+
+            var pageNumber = await _sessionStorage.GetItemAsync<int>($"FlareTable_{_identifier}_!PageNum");
+            if (pageNumber != 0 && Current != pageNumber)
+                await Jump(pageNumber);
+        }
+
+        public async Task UpdatePageSize(int size)
+        {
+            PageSize = size;
+            UpdateTableHead.Trigger();
+            UpdateTableBody.Trigger();
+
+            if (_sessionConfig)
+                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
         }
 
         public IEnumerable<T> AllRows()
@@ -171,7 +241,8 @@ namespace FT3
                     }
                     else
                     {
-                        if (!column.CompiledFilterValue.IsMatch(RowValue(row, column.ID)))
+                        // ReSharper disable once ConstantConditionalAccessQualifier
+                        if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
                         {
                             matched = false;
                             break;
@@ -188,16 +259,13 @@ namespace FT3
 
             Sort(ref result);
 
-            PageState.RowCount = numRowsMatched;
+            RowCount = numRowsMatched;
             UpdatePageState.Trigger();
 
             return result;
         }
 
-        public IEnumerable<T> Rows()
-        {
-            return AllRows().Skip(PageState.Skip).Take(PageState.PageSize).ToList();
-        }
+        public IEnumerable<T> Rows() => AllRows().Skip(Skip).Take(PageSize).ToList();
 
         private void Sort(ref List<T> data)
         {
@@ -219,10 +287,10 @@ namespace FT3
 
             if (!desc)
                 query = data.OrderBy(v => RowValue(v, first.ID),
-                                     StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                    StringComparer.OrdinalIgnoreCase.WithNaturalSort());
             else
                 query = data.OrderByDescending(v => RowValue(v, first.ID),
-                                               StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                    StringComparer.OrdinalIgnoreCase.WithNaturalSort());
 
             if (indices.Count > 1)
                 foreach (Column index in indices.Skip(1))
@@ -231,24 +299,22 @@ namespace FT3
 
                     if (!desc)
                         query = query.ThenBy(v => RowValue(v, index.ID),
-                                             StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                            StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                     else
                         query = query.ThenByDescending(v => RowValue(v, index.ID),
-                                                       StringComparer.OrdinalIgnoreCase.WithNaturalSort());
+                            StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                 }
 
             data = query.ToList();
         }
 
-        private string RowValue(T v, string id)
+        private string? RowValue(T v, string id)
         {
-            return _valueGetter.Invoke(v, id).ToString();
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            return _valueGetter.Invoke(v, id)?.ToString();
         }
 
-        private object ReflectionValueGetter(T data, string id)
-        {
-            return ((Column) _columns[id]).Property.GetValue(data);
-        }
+        private object? ReflectionValueGetter(T data, string id) => ((Column) _columns[id]).Property.GetValue(data);
 
         private async Task StoreColumnConfig(Column column)
         {
@@ -264,10 +330,7 @@ namespace FT3
             column.FilterValue   = storedConfig.FilterValue;
         }
 
-        public string GetColumnFilter(string id)
-        {
-            return ((Column) _columns[id])?.FilterValue;
-        }
+        public string GetColumnFilter(string id) => ((Column) _columns[id])?.FilterValue;
 
         public async Task SetColumnFilter(string id, string filter)
         {
@@ -297,15 +360,10 @@ namespace FT3
             UpdateTableHead.Trigger();
         }
 
-        private static bool Match(string str, string term)
-        {
-            return str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
+        private static bool Match(string str, string term) =>
+            str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
 
-        public bool ColumnShown(string id)
-        {
-            return ((Column) _columns[id])?.Shown ?? false;
-        }
+        public bool ColumnShown(string id) => ((Column) _columns[id])?.Shown ?? false;
 
         public async Task NextColumnSort(string id)
         {
@@ -324,10 +382,7 @@ namespace FT3
             UpdateTableBody.Trigger();
         }
 
-        public string GetColumnDisplayName(string id)
-        {
-            return ((Column) _columns[id]).DisplayName;
-        }
+        public string GetColumnDisplayName(string id) => ((Column) _columns[id]).DisplayName;
 
         internal string ColumnSortButtonClass(string id)
         {
@@ -340,14 +395,12 @@ namespace FT3
             };
         }
 
-        internal string ColumnFilterValueValidClass(string id)
-        {
-            return !RegexMode
+        internal string ColumnFilterValueValidClass(string id) =>
+            !RegexMode
                 ? "FlareTableFilter_Input--Valid"
                 : ((Column) _columns[id]).FilterValueValid
                     ? "FlareTableFilter_Input--Valid"
                     : "FlareTableFilter_Input--Invalid";
-        }
 
         internal string ColumnSortButtonContent(string id)
         {
@@ -381,6 +434,9 @@ namespace FT3
 
         public async Task Reset()
         {
+            if (RegexMode)
+                await ToggleRegexMode();
+
             foreach (Column c in _columns.Values)
             {
                 c.Shown         = true;
@@ -390,12 +446,15 @@ namespace FT3
 
                 if (RegexMode)
                     c.TryCompileFilter();
-                
+
                 if (_sessionConfig)
                     await StoreColumnConfig(c);
             }
 
-            PageState.First();
+            if (_initialPageSize != PageSize)
+                await UpdatePageSize(_initialPageSize);
+
+            await First();
 
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
@@ -415,7 +474,7 @@ namespace FT3
 
             foreach (T row in AllRows())
             {
-                List<string> line = columns.Select(column => StringToCSVCell(RowValue(row, column.ID))).ToList();
+                List<string> line = columns.Select(column => StringToCSVCell(RowValue(row, column.ID) ?? "")).ToList();
                 result.AppendLine(string.Join(',', line));
             }
 
@@ -442,6 +501,109 @@ namespace FT3
             }
 
             return str;
+        }
+
+        // internal event Action OnPageStateChange;
+
+        private async Task ResetCurrentPage()
+        {
+            if (PageSize == 0 || Current < NumPages || NumPages == 0) return;
+            Current = NumPages - 1;
+            await SavePageNumber();
+        }
+
+        public async Task Next()
+        {
+            Current++;
+            await SavePageNumber();
+        }
+
+        public async Task Previous()
+        {
+            Current--;
+            await SavePageNumber();
+        }
+
+        public async Task First()
+        {
+            Current = 0;
+            await SavePageNumber();
+        }
+
+        public async Task Last()
+        {
+            Current = NumPages - 1;
+            await SavePageNumber();
+        }
+
+        public async Task Jump(int page)
+        {
+            Current = page > NumPages ? NumPages : page;
+            await SavePageNumber();
+        }
+
+        private async Task SavePageNumber()
+        {
+            if (_sessionConfig)
+                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageNum", Current);
+        }
+
+        public IEnumerable<int> Pages()
+        {
+            const int radius   = 3;
+            const int diameter = 2 * radius + 1;
+            const int offset   = (int) (diameter / 2.0);
+
+            List<int> pages = new List<int>();
+
+            int start, end;
+
+            if (NumPages <= diameter)
+            {
+                start = 0;
+                end   = Math.Max(NumPages - 3, NumPages);
+
+                pages.AddRange(Enumerable.Range(start, end - start).ToList());
+            }
+            else if (Current <= offset)
+            {
+                start = 0;
+                end   = diameter - 1;
+
+                pages.AddRange(Enumerable.Range(start, end - start - 1).ToList());
+
+                pages.Add(-1);
+                pages.Add(NumPages - 1);
+            }
+            else if (Current + offset >= NumPages)
+            {
+                start = NumPages - diameter;
+                end   = NumPages - 1;
+
+                pages.Add(0);
+                pages.Add(-1);
+
+                pages.AddRange(Enumerable.Range(start + 2, end - start - 1).ToList());
+            }
+            else
+            {
+                start = Current - radius + 2;
+                end   = Current + radius - 2;
+
+                pages.Add(0);
+                pages.Add(-1);
+
+                pages.AddRange(Enumerable.Range(start, end - start + 1).ToList());
+
+                if (Current == NumPages - radius - 1)
+                    pages.Add(NumPages - 2);
+                else
+                    pages.Add(-1);
+
+                pages.Add(NumPages - 1);
+            }
+
+            return pages;
         }
     }
 
