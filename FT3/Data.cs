@@ -57,7 +57,6 @@ namespace FT3
                         }
                         else
                         {
-                            // ReSharper disable once ConstantConditionalAccessQualifier
                             if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
                             {
                                 matched = false;
@@ -148,6 +147,7 @@ namespace FT3
             return term == null || str?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public async Task ToggleRegexMode()
         {
             RegexMode = !RegexMode;

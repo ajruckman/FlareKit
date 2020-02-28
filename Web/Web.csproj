@@ -22,7 +22,6 @@
         <ProjectReference Include="..\FlareLib\FlareLib.csproj" />
         <ProjectReference Include="..\FlareSelect\FlareSelect.csproj" />
         <ProjectReference Include="..\FlareTables\FlareTables.csproj" />
-        <ProjectReference Include="..\FT2\FT2.csproj" />
         <ProjectReference Include="..\FT3\FT3.csproj" />
     </ItemGroup>
 

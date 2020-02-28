@@ -17,6 +17,7 @@ namespace FT3
         internal readonly UpdateTrigger ResetFilterValues     = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateFilterValues    = new UpdateTrigger();
         internal readonly UpdateTrigger UpdatePaginationState = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdatePaginationSize  = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateTableBody       = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateTableHead       = new UpdateTrigger();
 
@@ -35,7 +36,6 @@ namespace FT3
             RegexMode    = regexMode;
 
             Current          = 0;
-            PaginationRange  = 3;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
         }
@@ -60,7 +60,6 @@ namespace FT3
 
             RegexMode        = regexMode;
             Current          = 0;
-            PaginationRange  = 3;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
         }
@@ -87,13 +86,16 @@ namespace FT3
             }
 
             if (_initialPageSize != PageSize)
+            {
                 await UpdatePageSize(_initialPageSize);
+                UpdatePaginationSize.Trigger();
+            }
 
             await First();
 
+            ResetFilterValues.Trigger();
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
-            ResetFilterValues.Trigger();
         }
     }
 }

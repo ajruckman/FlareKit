@@ -9,9 +9,7 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly int _initialPageSize;
-
-        // private readonly bool                    _sessionConfig;
+        private readonly int                     _initialPageSize;
         private readonly ISessionStorageService? _sessionStorage;
 
         public async Task LoadSessionValues()
@@ -35,7 +33,8 @@ namespace FT3
 
         private async Task StoreColumnConfig(Column column)
         {
-            if (_sessionStorage != null) await _sessionStorage.SetItemAsync(column.Key, JsonConvert.SerializeObject(column));
+            if (_sessionStorage != null)
+                await _sessionStorage.SetItemAsync(column.Key, JsonConvert.SerializeObject(column));
         }
 
         private void LoadColumnConfig(string configString, Column column)

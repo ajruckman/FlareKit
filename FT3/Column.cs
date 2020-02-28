@@ -9,14 +9,14 @@ namespace FT3
 {
     public sealed class Column
     {
-        [JsonIgnore]   internal Regex?       CompiledFilterValue;
-        [JsonIgnore]   public   string       DisplayName;
-        [JsonProperty] internal string       FilterValue;
-        [JsonIgnore]   internal bool         FilterValueValid;
-        [JsonIgnore]   public   string       ID;
-        [JsonIgnore]   internal string?      Key;
-        [JsonIgnore]   internal PropertyInfo Property;
-        [JsonProperty] public   bool         Shown;
+        [JsonIgnore]   internal          Regex?       CompiledFilterValue;
+        [JsonIgnore]   public readonly   string       DisplayName;
+        [JsonProperty] internal          string       FilterValue;
+        [JsonIgnore]   internal          bool         FilterValueValid;
+        [JsonIgnore]   public readonly   string       ID;
+        [JsonIgnore]   internal          string?      Key;
+        [JsonIgnore]   internal readonly PropertyInfo Property;
+        [JsonProperty] public            bool         Shown;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;

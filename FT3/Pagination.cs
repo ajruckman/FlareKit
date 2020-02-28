@@ -5,19 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// ReSharper disable MemberCanBeInternal
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
+
 namespace FT3
 {
     public partial class FlareTable<T>
     {
-        internal static readonly int[] PageSizes = {10, 25, 50, 100, 250, 500};
+        internal readonly int[] PageSizes = {10, 25, 50, 100, 250, 500};
+        private           int   _current;
+        internal          int   PageSize;
 
-        private int _current;
-
-        private  int  _paginationRange;
-        internal int  PageSize { get; set; }
+        public   bool CanPrev  => Current - 1 >= 0;
         public   bool CanNext  => Current + 1 < NumPages;
         private  int  NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
-        public   bool CanPrev  => Current - 1 >= 0;
         internal int  Skip     => PageSize * Current;
 
         public int Current
@@ -30,27 +32,15 @@ namespace FT3
             }
         }
 
-        public string Info =>
+        internal string Info =>
             $"Showing {(_rowCount != 0 ? Skip + 1 : 0)} to {Math.Min(Skip + PageSize, _rowCount)} of {_rowCount:#,##0} | {NumPages} page" +
             (NumPages != 1 ? "s" : "");
 
-        internal int RowCount
+        private int RowCount
         {
             set
             {
                 _rowCount = value;
-#pragma warning disable 4014
-                ResetCurrentPage();
-#pragma warning restore 4014
-            }
-        }
-
-        private int PaginationRange
-        {
-            get => _paginationRange;
-            set
-            {
-                _paginationRange = value;
 #pragma warning disable 4014
                 ResetCurrentPage();
 #pragma warning restore 4014
@@ -161,8 +151,10 @@ namespace FT3
         public async Task UpdatePageSize(int size)
         {
             PageSize = size;
+            await ResetCurrentPage();
             UpdateTableHead.Trigger();
             UpdateTableBody.Trigger();
+            UpdatePaginationState.Trigger();
 
             if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);

@@ -61,6 +61,7 @@ namespace FT3
             _sortedRowCache  = null;
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public async Task SetColumnFilter(string id, string filter)
         {
             ((Column) _columns[id]).FilterValue = filter;
@@ -80,6 +81,7 @@ namespace FT3
             UpdateTableBody.Trigger();
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public async Task SetColumnVisibility(string id, bool shown)
         {
             ((Column) _columns[id]).Shown = shown;
@@ -93,6 +95,7 @@ namespace FT3
             UpdateTableHead.Trigger();
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public async Task NextColumnSort(string id)
         {
             Column c = (Column) _columns[id];

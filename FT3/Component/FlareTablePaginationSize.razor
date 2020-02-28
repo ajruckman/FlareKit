@@ -15,9 +15,9 @@
 }
 
 <div class="FlareTablePaginationSizes">
-    <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+    <TriggerWrapper Trigger="@FlareTable.UpdatePaginationSize">
         <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
-            @foreach (int size in FlareTable<T>.PageSizes)
+            @foreach (int size in FlareTable.PageSizes)
             {
                 <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
             }

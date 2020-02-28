@@ -2,8 +2,10 @@
 
 namespace FT3
 {
+    // ReSharper disable once ClassCanBeSealed.Global
     public partial class FlareTable<T>
     {
+        // ReSharper disable once MemberCanBeInternal
         public string GetColumnDisplayName(string id)
         {
             return ((Column) _columns[id]).DisplayName;
@@ -40,11 +42,13 @@ namespace FT3
             };
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public bool ColumnShown(string id)
         {
             return ((Column) _columns[id])?.Shown ?? false;
         }
 
+        // ReSharper disable once MemberCanBeInternal
         public string GetColumnFilter(string id)
         {
             return ((Column) _columns[id])?.FilterValue ?? "";

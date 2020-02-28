@@ -6,6 +6,7 @@ using System.Text;
 
 namespace FT3
 {
+    // ReSharper disable once ClassCanBeSealed.Global
     public partial class FlareTable<T>
     {
         public string AsCSV()
