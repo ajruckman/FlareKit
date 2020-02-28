@@ -8,39 +8,11 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Web.Pages
 {
-    public partial class FT3x
+    public static class RecordCache
     {
-        private class Record
-        {
-            public string Name    { get; set; }
-            public int    Age     { get; set; }
-            public string City    { get; set; }
-            public string State   { get; set; }
-            public string Country { get; set; }
-            public string Zip     { get; set; }
-        }
-
-        private FlareTable<Record> _dummyFlareTable;
-        private FlareTable<Record> _flareTable1;
-
-        protected override async Task OnInitializedAsync()
-        {
-            List<Record> data = FakeData(100);
-
-            _dummyFlareTable = new FlareTable<Record>(() => data);
-            _flareTable1     = new FlareTable<Record>(() => data, SessionStorage, "ft3x");
-
-            await _flareTable1.RegisterColumn(nameof(Record.Name), shown: true, sortDirection: SortDirections.Ascending);
-            await _flareTable1.RegisterColumn(nameof(Record.Age), filterValue: "1");
-            await _flareTable1.RegisterColumn(nameof(Record.City));
-            await _flareTable1.RegisterColumn(nameof(Record.State));
-            await _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
-            await _flareTable1.RegisterColumn(nameof(Record.Zip));
-            
-            await _flareTable1.LoadSessionValues();
-        }
-
-        private static List<Record> FakeData(int n)
+        public static List<Record> Records { get; set; }
+        
+        public static List<Record> FakeData(int n)
         {
             Faker<Record> faker = new Faker<Record>();
             faker.UseSeed(0);
@@ -53,6 +25,37 @@ namespace Web.Pages
                  .RuleFor(v => v.Zip,     f => f.Address.ZipCode());
 
             return faker.Generate(n);
+        }
+    }
+
+    public class Record
+    {
+        public string Name    { get; set; }
+        public int    Age     { get; set; }
+        public string City    { get; set; }
+        public string State   { get; set; }
+        public string Country { get; set; }
+        public string Zip     { get; set; }
+    }
+
+    public partial class FT3x
+    {
+        private FlareTable<Record> _dummyFlareTable;
+        private FlareTable<Record> _flareTable1;
+
+        protected override async Task OnInitializedAsync()
+        {
+            _dummyFlareTable = new FlareTable<Record>(() => RecordCache.Records);
+            _flareTable1     = new FlareTable<Record>(() => RecordCache.Records, SessionStorage, "ft3x");
+
+            await _flareTable1.RegisterColumn(nameof(Record.Name), shown: true, sortDirection: SortDirections.Ascending);
+            await _flareTable1.RegisterColumn(nameof(Record.Age),  filterValue: "1");
+            await _flareTable1.RegisterColumn(nameof(Record.City));
+            await _flareTable1.RegisterColumn(nameof(Record.State));
+            await _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
+            await _flareTable1.RegisterColumn(nameof(Record.Zip));
+
+            await _flareTable1.LoadSessionValues();
         }
 
         private void Download(MouseEventArgs args)

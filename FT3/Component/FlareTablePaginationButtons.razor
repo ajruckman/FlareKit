@@ -7,7 +7,7 @@
 
 }
 
-<TriggerWrapper Trigger="@FlareTable.UpdatePageState">
+<TriggerWrapper Trigger="@FlareTable.UpdatePaginationState">
     <div class="FlareTablePaginationButtons">
         <button @onclick="@FlareTable.Previous" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
         @foreach (int i in FlareTable.Pages())

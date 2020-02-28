@@ -54,8 +54,11 @@ namespace FT3
 
             if (RegexMode)
                 c.TryCompileFilter();
-
+            
             _columns.Add(id, c);
+            
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
         }
 
         public async Task SetColumnFilter(string id, string filter)
@@ -69,8 +72,10 @@ namespace FT3
                 UpdateFilterValues.Trigger();
             }
 
-            // if (_sessionStorage != null)
             await StoreColumnConfig((Column) _columns[id]);
+
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
 
             UpdateTableBody.Trigger();
         }
@@ -79,8 +84,10 @@ namespace FT3
         {
             ((Column) _columns[id]).Shown = shown;
 
-            // if (_sessionStorage != null)
             await StoreColumnConfig((Column) _columns[id]);
+
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
 
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
@@ -97,8 +104,10 @@ namespace FT3
             };
 
             c.SortIndex = _currentSortIndex++;
-            // if (_sessionStorage != null)
+            
             await StoreColumnConfig((Column) _columns[id]);
+
+            _sortedRowCache  = null;
 
             UpdateTableBody.Trigger();
         }

@@ -14,11 +14,11 @@ namespace FT3
     {
         private readonly string? _identifier;
 
-        internal readonly UpdateTrigger ResetFilterValues  = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateFilterValues = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdatePageState    = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateTableBody    = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateTableHead    = new UpdateTrigger();
+        internal readonly UpdateTrigger ResetFilterValues     = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateFilterValues    = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdatePaginationState = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableBody       = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableHead       = new UpdateTrigger();
 
         /// <summary>
         ///     Creates a FlareTable object without persistent values.

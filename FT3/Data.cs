@@ -22,58 +22,69 @@ namespace FT3
 
         internal bool RegexMode;
 
+        private List<T>? _matchedRowCache;
+        private List<T>? _sortedRowCache;
+
         public IEnumerable<T> AllRows()
         {
             _data ??= _dataGetter.Invoke();
 
-            List<T> result         = new List<T>();
-            var     numRows        = 0;
-            var     numRowsMatched = 0;
-
-            foreach (T row in _data)
+            if (_matchedRowCache == null)
             {
-                numRows++;
+                List<T> result         = new List<T>();
+                var     numRows        = 0;
+                var     numRowsMatched = 0;
 
-                var matched = true;
-                foreach (Column? column in _columns.Values)
+                foreach (T row in _data)
                 {
-                    if (column?.ID == null) continue;
+                    numRows++;
 
-                    if (column.Shown != true) continue;
-                    if (string.IsNullOrEmpty(column.FilterValue)) continue;
-
-                    if (!RegexMode)
+                    var matched = true;
+                    foreach (Column? column in _columns.Values)
                     {
-                        if (!Match(RowValue(row, column.ID), column.FilterValue))
+                        if (column?.ID == null) continue;
+
+                        if (column.Shown != true) continue;
+                        if (string.IsNullOrEmpty(column.FilterValue)) continue;
+
+                        if (!RegexMode)
                         {
-                            matched = false;
-                            break;
+                            if (!Match(RowValue(row, column.ID), column.FilterValue))
+                            {
+                                matched = false;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            // ReSharper disable once ConstantConditionalAccessQualifier
+                            if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
+                            {
+                                matched = false;
+                                break;
+                            }
                         }
                     }
-                    else
+
+                    if (matched)
                     {
-                        // ReSharper disable once ConstantConditionalAccessQualifier
-                        if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
-                        {
-                            matched = false;
-                            break;
-                        }
+                        result.Add(row);
+                        numRowsMatched++;
                     }
                 }
 
-                if (matched)
-                {
-                    result.Add(row);
-                    numRowsMatched++;
-                }
+                RowCount = numRowsMatched;
+                UpdatePaginationState.Trigger();
+
+                _matchedRowCache = result;
             }
 
-            Sort(ref result);
+            if (_sortedRowCache == null)
+            {
+                _sortedRowCache = Sort(ref _matchedRowCache);
+            }
 
-            RowCount = numRowsMatched;
-            UpdatePageState.Trigger();
-
-            return result;
+            return _sortedRowCache;
         }
 
         public IEnumerable<T> Rows()
@@ -81,9 +92,9 @@ namespace FT3
             return AllRows().Skip(Skip).Take(PageSize).ToList();
         }
 
-        private void Sort(ref List<T> data)
+        private List<T> Sort(ref List<T>? data)
         {
-            if (!data.Any()) return;
+            if (!data.Any()) return data;
 
             List<Column> indices =
                 _columns.Values.Cast<Column>()
@@ -92,7 +103,7 @@ namespace FT3
                         .OrderBy(v => v.SortIndex)
                         .ToList();
 
-            if (!indices.Any()) return;
+            if (!indices.Any()) return data;
 
             Column first = indices.First();
             bool   desc  = first.SortDirection == SortDirections.Descending;
@@ -119,7 +130,7 @@ namespace FT3
                             StringComparer.OrdinalIgnoreCase.WithNaturalSort());
                 }
 
-            data = query.ToList();
+            return query.ToList();
         }
 
         private string? RowValue(T v, string id)
@@ -148,12 +159,21 @@ namespace FT3
                 UpdateFilterValues.Trigger();
             }
 
-
             if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!RegexMode", RegexMode);
 
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
+
             UpdateTableBody.Trigger();
             UpdateTableHead.Trigger();
+        }
+
+        public void InvalidateRows()
+        {
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
+            UpdateTableBody.Trigger();
         }
     }
 }
