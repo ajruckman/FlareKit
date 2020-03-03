@@ -5,11 +5,12 @@ namespace Web
 {
     public sealed class Configuration
     {
-        public List<ResourceManifest> ResourceManifests = new List<ResourceManifest>
+        public readonly List<ResourceManifest> ResourceManifests = new List<ResourceManifest>
         {
             Superset.Web.Utilities.Utilities.SaveAsFileManifest,
             FontSet.ResourceManifests.Inter,
-            FontSet.ResourceManifests.JetBrainsMono
+            FontSet.ResourceManifests.JetBrainsMono,
+            FT3.ResourceManifests.FlareTables
         };
     }
 }

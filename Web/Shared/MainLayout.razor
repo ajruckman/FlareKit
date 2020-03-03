@@ -18,7 +18,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _themeLoader = new ThemeLoader(LocalStorage, new[] {"http://localhost:5000/_content/FT3/css/Build/"}, "Dark");
+        _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceManifests, "Dark");
         _themeLoader.OnComplete += () => _trigger.Trigger();
 
         await _themeLoader.Load();
@@ -32,6 +32,7 @@
     @if (_themeLoader.Complete)
     {
         <CascadingValue Value="@ElementClickHandler">
+            @_themeLoader.RenderLink()
             @Body
         </CascadingValue>
     }
