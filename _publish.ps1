@@ -17,6 +17,15 @@ function Clean-DotNETProject
 
 Kill-ASPDotNETWebserver
 Clean-DotNETProject
+dotnet restore
+
+cd .\FT3\
+..\_copyContent.ps1 UISet.ColorSet
+cd .\wwwroot\css\
+Remove-Item *.css
+Remove-Item *.css.map
+.\_build.ps1
+cd ../../..
 
 dotnet pack -c Debug
 

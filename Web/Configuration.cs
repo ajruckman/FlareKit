@@ -7,7 +7,9 @@ namespace Web
     {
         public List<ResourceManifest> ResourceManifests = new List<ResourceManifest>
         {
-            Superset.Web.Utilities.Utilities.ResourceManifest
+            Superset.Web.Utilities.Utilities.SaveAsFileManifest,
+            FontSet.ResourceManifests.Inter,
+            FontSet.ResourceManifests.JetBrainsMono
         };
     }
 }

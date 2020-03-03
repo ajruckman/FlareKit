@@ -27,7 +27,7 @@
 
         .FlareTablePaginationInfo {
             color:       $ColorSet_ThemeColor_Text_20;
-            font-family: 'Roboto Mono', monospace;
+            font-family: var(--FontSet-MonospaceFont);
             //margin:      0 5px;
             user-select: none;
         }
@@ -47,7 +47,7 @@
                 border-radius:    3px;
                 color:            $ColorSet_ThemeColor_Text_40;
                 cursor:           pointer;
-                font-family:      'Roboto Mono', monospace;
+                font-family:      var(--FontSet-MonospaceFont);
                 margin:           1px;
                 padding:          1px 4px;
                 user-select:      none;
@@ -65,7 +65,7 @@
                 border:           1px solid $ColorSet_ThemeColor_Border_40;
                 border-radius:    3px;
                 color:            $ColorSet_ThemeColor_Text_40;
-                font-family:      'Roboto Mono', monospace;
+                font-family:      var(--FontSet-MonospaceFont);
                 margin:           1px;
                 min-width:        26px;
                 padding:          1px 4px;
@@ -237,7 +237,7 @@
                             border:           1px solid $ColorSet_ThemeColor_Border_60;
                             border-radius:    3px;
                             color:            $ColorSet_ThemeColor_Text_50;
-                            font-family:      'Roboto Mono', monospace;
+                            font-family:      var(--FontSet-MonospaceFont);
                             outline:          none;
                             width:            calc(100% - 27px);
 

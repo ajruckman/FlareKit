@@ -1,45 +1,45 @@
 .FlareTableContainer {
-  border-top: 1px solid #222123;
+  border-top: 1px solid #29272c;
   color: #d5cde7;
   display: inline-block;
   width: 100%; }
   .FlareTableContainer .FlareTableControlRow {
     align-items: center;
-    background-color: #1b1a1c;
-    border-bottom: 1px solid #272629;
-    border-left: 1px solid #272629;
-    border-right: 1px solid #272629;
+    background-color: #151418;
+    border-bottom: 1px solid #2c2a31;
+    border-left: 1px solid #2c2a31;
+    border-right: 1px solid #2c2a31;
     display: flex;
     padding: 3px; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes {
       margin: 0 2px; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
       color: #a49cb5;
-      font-family: 'Roboto Mono', monospace;
+      font-family: var(--FontSet-MonospaceFont);
       user-select: none; }
     .FlareTableContainer .FlareTableControlRow .FlareTableControlFiller {
       flex-grow: 99999; }
     .FlareTableContainer .FlareTableControlRow .FlareTableControlSpacer {
       width: 10px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button {
-      background-color: #161516;
-      border: 1px solid #222123;
+      background-color: #111113;
+      border: 1px solid #29272c;
       border-radius: 3px;
       color: #d5cde7;
       cursor: pointer;
-      font-family: 'Roboto Mono', monospace;
+      font-family: var(--FontSet-MonospaceFont);
       margin: 1px;
       padding: 1px 4px;
       user-select: none; }
       .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:hover {
-        background-color: #181819;
-        border: 1px solid #2e2d30; }
+        background-color: #161518;
+        border: 1px solid #343239; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton {
-      background-color: #161516;
-      border: 1px solid #222123;
+      background-color: #111113;
+      border: 1px solid #29272c;
       border-radius: 3px;
       color: #d5cde7;
-      font-family: 'Roboto Mono', monospace;
+      font-family: var(--FontSet-MonospaceFont);
       margin: 1px;
       min-width: 26px;
       padding: 1px 4px;
@@ -50,8 +50,8 @@
         color: #504c59;
         cursor: not-allowed; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled):hover {
-        background-color: #181819;
-        border: 1px solid #2e2d30; }
+        background-color: #161518;
+        border: 1px solid #343239; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton::-moz-focus-inner {
         border: 0; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:active {
@@ -59,7 +59,7 @@
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current {
         border: 1px solid #5d21de; }
         .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current:not(:disabled):hover {
-          background-color: #181819;
+          background-color: #161518;
           border: 1px solid #5e22e0; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped {
         position: relative;
@@ -90,15 +90,15 @@
         color: #a49cb5;
         margin: 0 1px 0 3px; }
   .FlareTableContainer .FlareTableTable + .FlareTableControlRow {
-    border-top: 1px solid #272629; }
+    border-top: 1px solid #2c2a31; }
   .FlareTableContainer .FlareTableTable {
     border-spacing: 0;
     width: 100%; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:first-child .FlareTableHeading_Cell {
-      border-left: 1px solid #272629; }
+      border-left: 1px solid #2c2a31; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
-      background-color: #1b1a1c;
-      border-right: 1px solid #272629; }
+      background-color: #151418;
+      border-right: 1px solid #2c2a31; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
         align-items: center;
         display: inline-flex;
@@ -108,7 +108,7 @@
           flex-grow: 99999; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton {
           align-items: center;
-          background-color: #201f21;
+          background-color: #19181c;
           border: solid 1px #e3ddf2;
           border-radius: 75% 15%;
           cursor: pointer;
@@ -129,33 +129,33 @@
             position: absolute;
             width: 5px; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
-      border-left: 1px solid #272629; }
+      border-left: 1px solid #2c2a31; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
-      background-color: #1b1a1c;
-      border-bottom: 1px solid #272629;
-      border-right: 1px solid #272629;
+      background-color: #151418;
+      border-bottom: 1px solid #2c2a31;
+      border-right: 1px solid #2c2a31;
       padding: 1px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer {
         display: flex;
         justify-content: space-between; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer:not(:first-child) {
-          border-left: 1px solid #272629; }
+          border-left: 1px solid #2c2a31; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
-          background-color: #201f21;
-          border: 1px solid #2c2b2e;
+          background-color: #19181c;
+          border: 1px solid #302e36;
           border-radius: 3px;
           color: #e3ddf2;
-          font-family: 'Roboto Mono', monospace;
+          font-family: var(--FontSet-MonospaceFont);
           outline: none;
           width: calc(100% - 27px); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover {
-            background-color: #222124; }
+            background-color: #1e1c21; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
             border: 1px solid red; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton {
           align-items: center;
-          background-color: #201f21;
-          border: 1px solid #2c2b2e;
+          background-color: #19181c;
+          border: 1px solid #302e36;
           border-radius: 3px;
           cursor: pointer;
           display: inline-flex;
@@ -166,24 +166,24 @@
           user-select: none;
           width: 20px; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton:hover {
-            background-color: #222124; }
+            background-color: #1e1c21; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
-      background-color: #161516;
-      border-right: 1px solid #222123;
+      background-color: #111113;
+      border-right: 1px solid #29272c;
       padding: 1px 3px; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
-        border-left: 1px solid #222123; }
+        border-left: 1px solid #29272c; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Hidden {
         width: 15px; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:hover {
-        background-color: #1a1a1b; }
+        background-color: #18171b; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:first-child) .FlareTableCell {
-      border-top: 1px solid #222123; }
+      border-top: 1px solid #29272c; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell:not(:hover) {
-      background-color: #181819; }
+      background-color: #161518; }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #101011; }
+  font-family: var(--FontSet-SansSerifFont);
+  background-color: #0d0d0e; }
 
-/*# sourceMappingURL=style.Dark.css.map */
+/*# sourceMappingURL=Style.Pink.css.map */

@@ -61,7 +61,6 @@ namespace Web.Pages
         private void Download(MouseEventArgs args)
         {
             string csv = _flareTable1.AsCSV();
-            Console.WriteLine(csv);
             Superset.Web.Utilities.Utilities.SaveAsFile(JSRuntime, $"dump_{DateTime.Now.Ticks}.csv",
                 Encoding.ASCII.GetBytes(csv));
         }

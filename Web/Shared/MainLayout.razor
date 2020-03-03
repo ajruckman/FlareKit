@@ -1,5 +1,11 @@
-﻿@using FlareLib
+﻿@using Blazored.LocalStorage
+@using Blazored.SessionStorage
+@using ColorSet.Components
+@using FlareLib
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Web.State
+
+@inject ILocalStorageService LocalStorage
 
 @inherits Microsoft.AspNetCore.Components.LayoutComponentBase
 
@@ -7,16 +13,26 @@
 
     private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
-    protected override void OnInitialized()
+    ThemeLoader _themeLoader;
+    private readonly UpdateTrigger _trigger = new Superset.Common.UpdateTrigger();
+
+    protected override async Task OnInitializedAsync()
     {
-//        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
+        _themeLoader = new ThemeLoader(LocalStorage, new[] {"http://localhost:5000/_content/FT3/css/Build/"}, "Dark");
+        _themeLoader.OnComplete += () => _trigger.Trigger();
+
+        await _themeLoader.Load();
+        
+    //        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
     }
 
 }
 
-<CascadingValue Value="@ElementClickHandler">
-@* <div @onclick="@(() => ElementClickHandler.OuterClick())"> *@
-<div>
-    @Body
-</div>
-</CascadingValue>
+<TriggerWrapper Trigger="@_trigger">
+    @if (_themeLoader.Complete)
+    {
+        <CascadingValue Value="@ElementClickHandler">
+            @Body
+        </CascadingValue>
+    }
+</TriggerWrapper>
