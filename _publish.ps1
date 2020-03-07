@@ -20,7 +20,7 @@ Clean-DotNETProject
 dotnet restore
 
 cd .\FT3\
-..\_copyContent.ps1 UISet.ColorSet
+..\_copyContent.ps1 UISet.ColorSet,UISet.ShapeSet
 cd .\wwwroot\css\
 Remove-Item *.css
 Remove-Item *.css.map

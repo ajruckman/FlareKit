@@ -1,3 +1,6 @@
+@import '../../_resources/UISet.ShapeSet/Variables/Transitions.scss';
+@import '../../_resources/UISet.ShapeSet/Elements/Input.scss';
+
 //noinspection SassScssResolvedByNameOnly
 
 .FlareTableContainer {
@@ -22,6 +25,7 @@
             margin: 0 2px;
 
             .FlareTablePaginationSizeSelector {
+                @extend .SS_Select; 
             }
         }
 

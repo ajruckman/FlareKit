@@ -7,7 +7,7 @@ namespace Web
     {
         public readonly List<ResourceManifest> ResourceManifests = new List<ResourceManifest>
         {
-            Superset.Web.Utilities.Utilities.SaveAsFileManifest,
+            Superset.Web.ResourceManifests.SaveAsFile,
             FontSet.ResourceManifests.Inter,
             FontSet.ResourceManifests.JetBrainsMono,
             FT3.ResourceManifests.FlareTables

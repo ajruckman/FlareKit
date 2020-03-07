@@ -1,6 +1,6 @@
-@import 'flaretables.scss';
+@import 'FlareTables.scss';
 
-@mixin base {
+@mixin Base {
     body {
         font-family: var(--FontSet-SansSerifFont);
         background-color: $ColorSet_ThemeColor_Background_30;

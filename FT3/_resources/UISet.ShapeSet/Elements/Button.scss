@@ -1,0 +1,150 @@
+﻿@mixin _ButtonBase {
+    border-radius: 3px;
+    font-weight:   500;
+    outline:       none;
+    padding:       4px 6px;
+    
+    box-shadow: 0 0 3px 1px $ColorSet_ThemeColor_ElementShadow;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}
+
+.SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
+    @include _ButtonBase;
+
+    &:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Background_60;
+        border:           1px solid $ColorSet_ThemeColor_Border_60;
+        color:            $ColorSet_ThemeColor_Text_70;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border:           1px solid $ColorSet_ThemeColor_Border_80;
+        color:            $ColorSet_ThemeColor_Text_0;
+    }
+
+    &:hover:not(:disabled), &:focus:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Background_90;
+        border:           1px solid $ColorSet_ThemeColor_Border_90;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Background_110;
+        border:           1px solid $ColorSet_ThemeColor_Border_110;
+    }
+}
+
+.SS_Button--Green {
+    @include _ButtonBase;
+
+    &:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidGreen_90;
+        border:           1px solid $ColorSet_ThemeColor_SolidGreen_90;
+        color:            white;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border:           1px solid $ColorSet_ThemeColor_Border_80;
+        color:            $ColorSet_ThemeColor_Text_0;
+    }
+
+    &:hover:not(:disabled), &:focus:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidGreen_80;
+        border-bottom:    1px solid $ColorSet_ThemeColor_SolidGreen_70;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidGreen_70;
+        border:           1px solid $ColorSet_ThemeColor_SolidGreen_50;
+    }
+}
+
+.SS_Button--Red {
+    @include _ButtonBase;
+
+    &:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidRed_100;
+        border:           1px solid $ColorSet_ThemeColor_SolidRed_100;
+        color:            white;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border:           1px solid $ColorSet_ThemeColor_Border_80;
+        color:            $ColorSet_ThemeColor_Text_0;
+    }
+
+    &:hover:not(:disabled), &:focus:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidRed_60;
+        border-bottom:    1px solid $ColorSet_ThemeColor_SolidRed_50;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidRed_50;
+        border:           1px solid $ColorSet_ThemeColor_SolidRed_30;
+    }
+}
+
+.SS_Button--Blue {
+    @include _ButtonBase;
+
+    &:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidBlue_100;
+        border:           1px solid $ColorSet_ThemeColor_SolidBlue_100;
+        color:            white;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border:           1px solid $ColorSet_ThemeColor_Border_80;
+        color:            $ColorSet_ThemeColor_Text_0;
+    }
+
+    &:hover:not(:disabled), &:focus:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidBlue_80;
+        border-bottom:    1px solid $ColorSet_ThemeColor_SolidBlue_70;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_SolidBlue_70;
+        border:           1px solid $ColorSet_ThemeColor_SolidBlue_40;
+    }
+}
+
+.SS_Button--Inverted {
+    @include _ButtonBase;
+
+    &:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Text_80;
+        border:           1px solid $ColorSet_ThemeColor_Text_80;
+        color:            $ColorSet_ThemeColor_Background_0;
+    }
+
+    &:disabled {
+        background-color: transparent;
+        border:           1px solid $ColorSet_ThemeColor_Border_80;
+        color:            $ColorSet_ThemeColor_Text_0;
+    }
+
+    &:hover:not(:disabled), &:focus:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Text_70;
+        border-bottom:    1px solid $ColorSet_ThemeColor_Text_70;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $ColorSet_ThemeColor_Text_60;
+        border:           1px solid $ColorSet_ThemeColor_Text_60;
+    }
+}
