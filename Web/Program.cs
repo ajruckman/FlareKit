@@ -10,7 +10,7 @@ namespace Web
         public static void Main(string[] args)
         {
             Console.Write("Generating fake data... ");
-            RecordCache.Records = RecordCache.FakeData(20_000);
+            RecordCache.Records = RecordCache.FakeData(1_000);
             Console.WriteLine("complete");
 
             CreateHostBuilder(args).Build().Run();

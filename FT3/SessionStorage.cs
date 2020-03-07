@@ -29,6 +29,17 @@ namespace FT3
             var pageNumber = await _sessionStorage.GetItemAsync<int>($"FlareTable_{_identifier}_!PageNum");
             if (pageNumber != 0 && Current != pageNumber)
                 await Jump(pageNumber);
+
+            foreach (Column column in Columns)
+            {
+                column.Key = $"FlareTable_{_identifier}_{column.ID}";
+                var stored = await _sessionStorage.GetItemAsync<string>($"FlareTable_{_identifier}_{column.ID}");
+
+                if (stored == null)
+                    await StoreColumnConfig(column);
+                else
+                    LoadColumnConfig(stored, column);
+            }
         }
 
         private async Task StoreColumnConfig(Column column)

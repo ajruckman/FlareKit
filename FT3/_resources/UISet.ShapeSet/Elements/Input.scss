@@ -2,14 +2,12 @@
     border-radius:    3px;
     outline:          none;
     background-color: $ColorSet_ThemeColor_Background_40;
-    padding:          1px 4px;
     border:           1px solid $ColorSet_ThemeColor_Border_40;
     color:            $ColorSet_ThemeColor_Text_60;
     box-sizing:       border-box;
     font-family:      var(--FontSet-MonospaceFont);
     font-size:        1em;
     transition:       $TransitionRestore;
-    margin:           1px 0;
 
     &:hover {
         background-color: $ColorSet_ThemeColor_Background_40_Hover;
@@ -49,11 +47,16 @@
 .SS_Input {
     @include _InputBase;
 
-    height: calc(25px);
+    height:  calc(25px);
+    margin:  1px 0;
+    padding: 1px 4px;
 }
 
 .SS_TextArea {
     @include _InputBase;
+
+    margin:  1px 0;
+    padding: 1px 4px;
 
     &--HeightThin {
         height: 75px;
@@ -71,7 +74,10 @@
 .SS_Select {
     @include _InputBase;
 
-    height: calc(25px);
+    height:  calc(25px);
+    margin:  1px 0;
+
+    padding: 1px 4px;
 }
 
 .SS_Input--WidthWide {

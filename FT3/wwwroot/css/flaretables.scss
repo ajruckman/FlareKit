@@ -1,16 +1,20 @@
 @import '../../_resources/UISet.ShapeSet/Variables/Transitions.scss';
 @import '../../_resources/UISet.ShapeSet/Elements/Input.scss';
+@import '../../_resources/UISet.ShapeSet/Elements/Button.scss';
 
 //noinspection SassScssResolvedByNameOnly
 
 .FlareTableContainer {
-    //border-left:  1px solid $ColorSet_ThemeColor_Border_40;
-    //border-right: 1px solid $ColorSet_ThemeColor_Border_40;
     border-top: 1px solid $ColorSet_ThemeColor_Border_40;
     color:      $ColorSet_ThemeColor_Text_40;
     display:    inline-block;
-
     width:      100%;
+    
+    &--Fixed {
+        .FlareTableTable {
+            table-layout: fixed;
+        }
+    }
 
     .FlareTableControlRow {
         align-items:      center;
@@ -18,21 +22,26 @@
         border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
         border-left:      1px solid $ColorSet_ThemeColor_Border_50;
         border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+        box-sizing:       border-box;
         display:          flex;
-        padding:          3px;
+        min-height:       29px;
+        padding:          0 2px;
 
         .FlareTablePaginationSizes {
             margin: 0 2px;
 
             .FlareTablePaginationSizeSelector {
-                @extend .SS_Select; 
+                @extend .SS_Select;
+
+                font-size: 10pt;
+                height:    unset;
+                padding:   0;
             }
         }
 
         .FlareTablePaginationInfo {
             color:       $ColorSet_ThemeColor_Text_20;
             font-family: var(--FontSet-MonospaceFont);
-            //margin:      0 5px;
             user-select: none;
         }
 
@@ -46,25 +55,17 @@
 
         .FlareTableResetButton {
             button {
-                background-color: $ColorSet_ThemeColor_Background_40;
-                border:           1px solid $ColorSet_ThemeColor_Border_40;
-                border-radius:    3px;
-                color:            $ColorSet_ThemeColor_Text_40;
-                cursor:           pointer;
-                font-family:      var(--FontSet-MonospaceFont);
-                margin:           1px;
-                padding:          1px 4px;
-                user-select:      none;
+                @extend .SS_Button;
 
-                &:hover {
-                    background-color: $ColorSet_ThemeColor_Background_40_Hover;
-                    border:           1px solid $ColorSet_ThemeColor_Border_40_Hover;
-                }
+                font-family: var(--FontSet-MonospaceFont);
+                padding:     2px 6px !important;
             }
         }
 
         .FlareTablePaginationButtons {
             .FlareTablePaginationButton {
+                @extend .SS_Button;
+
                 background-color: $ColorSet_ThemeColor_Background_40;
                 border:           1px solid $ColorSet_ThemeColor_Border_40;
                 border-radius:    3px;
@@ -72,29 +73,20 @@
                 font-family:      var(--FontSet-MonospaceFont);
                 margin:           1px;
                 min-width:        26px;
-                padding:          1px 4px;
+                padding:          2px 6px !important;
                 user-select:      none;
 
                 &:not(:disabled) {
                     cursor: pointer;
                 }
 
-                &:disabled {
-                    color:  $ColorSet_ThemeColor_Text_0;
-                    cursor: not-allowed;
-                }
-
                 &:not(:disabled):hover {
-                    background-color: $ColorSet_ThemeColor_Background_40_Hover;
-                    border:           1px solid $ColorSet_ThemeColor_Border_40_Hover;
+                    background-color: $ColorSet_ThemeColor_Background_40_Hover !important;
+                    border:           1px solid $ColorSet_ThemeColor_Border_40_Hover !important;
                 }
 
                 &::-moz-focus-inner {
                     border: 0;
-                }
-
-                &:active {
-                    padding: 1px 4px;
                 }
 
                 &--Prev {
@@ -106,11 +98,11 @@
                 }
 
                 &--Current {
-                    border: 1px solid $ColorSet_ThemeColor_Accent_30;
+                    border: 1px solid $ColorSet_ThemeColor_Accent_30 !important;
 
                     &:not(:disabled):hover {
-                        background-color: $ColorSet_ThemeColor_Background_40_Hover;
-                        border:           1px solid $ColorSet_ThemeColor_Accent_30_Hover;
+                        background-color: $ColorSet_ThemeColor_Background_40_Hover !important;
+                        border:           1px solid $ColorSet_ThemeColor_Accent_30_Hover !important;
                     }
                 }
 
@@ -203,6 +195,10 @@
                             user-select:      none;
                             width:            10px;
 
+                            &:hover {
+                                background-color: $ColorSet_ThemeColor_Background_100;
+                            }
+
                             &:before {
                                 border:        solid 1px $ColorSet_ThemeColor_Text_50;
                                 border-radius: 50%;
@@ -237,17 +233,13 @@
                         }
 
                         .FlareTableFilter_Input {
-                            background-color: $ColorSet_ThemeColor_Background_60;
-                            border:           1px solid $ColorSet_ThemeColor_Border_60;
-                            border-radius:    3px;
-                            color:            $ColorSet_ThemeColor_Text_50;
-                            font-family:      var(--FontSet-MonospaceFont);
-                            outline:          none;
-                            width:            calc(100% - 27px);
+                            @include _InputBase;
 
-                            &:hover {
-                                background-color: $ColorSet_ThemeColor_Background_60_Hover;
-                            }
+                            font-family:   var(--FontSet-MonospaceFont);
+                            height:        22px;
+                            margin-bottom: 1px;
+                            margin-left:   1px;
+                            width:         calc(100% - 25px);
 
                             &--Invalid {
                                 border: 1px solid red;
@@ -255,21 +247,23 @@
                         }
 
                         .FlareTableFilter_SortButton {
-                            align-items:      center;
-                            background-color: $ColorSet_ThemeColor_Background_60;
-                            border:           1px solid $ColorSet_ThemeColor_Border_60;
-                            border-radius:    3px;
-                            cursor:           pointer;
-                            display:          inline-flex;
-                            font-size:        0.85em;
-                            height:           20px;
-                            justify-content:  center;
-                            line-height:      19px;
-                            user-select:      none;
-                            width:            20px;
+                            align-items:     center;
+                            border:          1px solid transparent;
+                            border-radius:   3px;
+                            cursor:          pointer;
+                            display:         inline-flex;
+                            font-size:       0.85em;
+                            height:          20px;
+                            justify-content: center;
+                            line-height:     20px;
+                            margin-bottom:   1px;
+                            margin-right:    1px;
+                            user-select:     none;
+                            width:           20px;
 
                             &:hover {
                                 background-color: $ColorSet_ThemeColor_Background_60_Hover;
+                                border:           1px solid $ColorSet_ThemeColor_Border_60;
                             }
                         }
                     }
@@ -279,10 +273,64 @@
 
         .FlareTableBody {
             .FlareTableBodyRow {
+                &:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green) {
+                    &:nth-child(even) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_0;
+                    }
+
+                    &:nth-child(odd) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_10;
+                    }
+
+                    &:nth-child(even):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_20;
+                    }
+
+                    &:nth-child(odd):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_30;
+                    }
+                }
+
+                &--Green {
+                    &:nth-child(even) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Green_0;
+                    }
+
+                    &:nth-child(odd) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Green_10;
+                    }
+
+                    &:nth-child(even):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Green_20;
+                    }
+
+                    &:nth-child(odd):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Green_30;
+                    }
+                }
+
+                &--Red {
+                    &:nth-child(even) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Red_0;
+                    }
+
+                    &:nth-child(odd) .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Red_10;
+                    }
+
+                    &:nth-child(even):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Red_20;
+                    }
+
+                    &:nth-child(odd):hover .FlareTableCell {
+                        background-color: $ColorSet_ThemeColor_TR_Red_30;
+                    }
+                }
+                
                 .FlareTableCell {
-                    background-color: $ColorSet_ThemeColor_Background_40;
                     border-right:     1px solid $ColorSet_ThemeColor_Border_40;
                     padding:          1px 3px;
+                    transition:       background-color linear 100ms;
 
                     &:first-child {
                         border-left: 1px solid $ColorSet_ThemeColor_Border_40;
@@ -292,21 +340,21 @@
                         width: 15px;
                     }
 
-                    &:hover {
-                        background-color: $ColorSet_ThemeColor_Background_40_Focus;
+                    &--Mono {
+                        font-family: var(--FontSet-MonospaceFont);
                     }
+                }
+
+                &:hover .FlareTableCell {
+                    transition: background-color 0s;
+                }
+                
+                &:not(:hover) .FlareTableCell {
+                    transition: background-color 100ms;
                 }
 
                 &:not(:first-child) .FlareTableCell {
                     border-top: 1px solid $ColorSet_ThemeColor_Border_40;
-                }
-
-                //&:last-child .FlareTableCell {
-                //    border-bottom: 1px solid $ColorSet_ThemeColor_Border_50;
-                //}
-
-                &:hover .FlareTableCell:not(:hover) {
-                    background-color: $ColorSet_ThemeColor_Background_40_Hover;
                 }
             }
         }

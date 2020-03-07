@@ -57,30 +57,35 @@ namespace FT3
         public async Task Next()
         {
             Current++;
+            UpdatePaginationState.Trigger();
             await SavePageNumber();
         }
 
         public async Task Previous()
         {
             Current--;
+            UpdatePaginationState.Trigger();
             await SavePageNumber();
         }
 
         public async Task First()
         {
             Current = 0;
+            UpdatePaginationState.Trigger();
             await SavePageNumber();
         }
 
         public async Task Last()
         {
             Current = NumPages - 1;
+            UpdatePaginationState.Trigger();
             await SavePageNumber();
         }
 
         public async Task Jump(int page)
         {
             Current = page > NumPages ? NumPages : page;
+            UpdatePaginationState.Trigger();
             await SavePageNumber();
         }
 

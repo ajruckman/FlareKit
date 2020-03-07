@@ -42,7 +42,7 @@
         <FlareTableBody T="Record">
             @foreach (Record row in _flareTable1.Rows())
             {
-                <FlareTableBodyRow>
+                <FlareTableBodyRow T="Record" Value="@row">
                     <FlareTableCell T="Record" ID="Name">@row.Name</FlareTableCell>
                     <FlareTableCell T="Record" ID="Age">@row.Age</FlareTableCell>
                     <FlareTableCell T="Record" ID="City">@row.City</FlareTableCell>

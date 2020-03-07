@@ -13,7 +13,7 @@
 <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
     @if (FlareTable.ColumnShown(ID))
     {
-        <th class="FlareTableHeading_Cell">
+        <th class="FlareTableHeading_Cell" style="width: @FlareTable.ColumnWidth(ID);">
             <div class="FlareTableHeading_CellContent">
                 <span class="FlareTableHeading_CellHeading">@FlareTable.GetColumnDisplayName(ID)</span>
                 <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>

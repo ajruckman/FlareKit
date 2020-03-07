@@ -15,12 +15,14 @@ namespace FT3
         [NotNull] private readonly ListDictionary _columns = new ListDictionary();
         public                     List<Column>   Columns => _columns.Values.Cast<Column>().ToList();
 
-        public async Task RegisterColumn(
+        public void RegisterColumn(
             string         id,
             string?        displayName   = null,
             bool           shown         = true,
             SortDirections sortDirection = SortDirections.Neutral,
-            string         filterValue   = ""
+            string         filterValue   = "",
+            string         width         = "unset",
+            bool           monospace     = false
         )
         {
             if (_columns.Contains(id))
@@ -35,28 +37,19 @@ namespace FT3
                 id,
                 displayName ?? id,
                 shown,
+                width,
+                monospace,
                 sortDirection,
                 sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
                 filterValue,
                 t
             );
 
-            if (_sessionStorage != null)
-            {
-                c.Key = $"FlareTable_{_identifier}_{id}";
-                var stored = await _sessionStorage.GetItemAsync<string>($"FlareTable_{_identifier}_{id}");
-
-                if (stored == null)
-                    await StoreColumnConfig(c);
-                else
-                    LoadColumnConfig(stored, c);
-            }
-
             if (RegexMode)
                 c.TryCompileFilter();
-            
+
             _columns.Add(id, c);
-            
+
             _matchedRowCache = null;
             _sortedRowCache  = null;
         }
@@ -107,10 +100,10 @@ namespace FT3
             };
 
             c.SortIndex = _currentSortIndex++;
-            
+
             await StoreColumnConfig((Column) _columns[id]);
 
-            _sortedRowCache  = null;
+            _sortedRowCache = null;
 
             UpdateTableBody.Trigger();
         }

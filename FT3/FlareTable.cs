@@ -25,10 +25,13 @@ namespace FT3
         ///     Creates a FlareTable object without persistent values.
         /// </summary>
         public FlareTable(
-            DataGetter   dataGetter,
-            ValueGetter? valueGetter = null,
-            bool         regexMode   = false,
-            int          pageSize    = 25
+            DataGetter      dataGetter,
+            ValueGetter?    valueGetter    = null,
+            bool            regexMode      = false,
+            int             pageSize       = 25,
+            bool            monospace      = false,
+            bool            fixedLayout    = false,
+            RowColorGetter? rowColorGetter = null
         )
         {
             _dataGetter  = dataGetter;
@@ -38,6 +41,9 @@ namespace FT3
             Current          = 0;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
+            _monospace       = monospace;
+            _fixedLayout     = fixedLayout;
+            _rowColorGetter  = rowColorGetter;
         }
 
         /// <summary>
@@ -48,9 +54,12 @@ namespace FT3
             DataGetter             dataGetter,
             ISessionStorageService sessionStorage,
             string                 identifier,
-            ValueGetter?           valueGetter = null,
-            bool                   regexMode   = false,
-            int                    pageSize    = 25
+            ValueGetter?           valueGetter    = null,
+            bool                   regexMode      = false,
+            int                    pageSize       = 25,
+            bool                   monospace      = false,
+            bool                   fixedLayout    = false,
+            RowColorGetter?        rowColorGetter = null
         )
         {
             _dataGetter     = dataGetter;
@@ -62,6 +71,9 @@ namespace FT3
             Current          = 0;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
+            _monospace       = monospace;
+            _fixedLayout     = fixedLayout;
+            _rowColorGetter  = rowColorGetter;
         }
 
         public async Task Reset()

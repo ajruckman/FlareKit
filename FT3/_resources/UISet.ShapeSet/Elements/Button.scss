@@ -2,12 +2,10 @@
     border-radius: 3px;
     font-weight:   500;
     outline:       none;
-    padding:       4px 6px;
-    
-    box-shadow: 0 0 3px 1px $ColorSet_ThemeColor_ElementShadow;
 
     &:not(:disabled) {
-        cursor: pointer;
+        box-shadow: 0 0 3px 1px $ColorSet_ThemeColor_ElementShadow;
+        cursor:     pointer;
     }
 
     &:disabled {
@@ -21,6 +19,8 @@
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
     @include _ButtonBase;
+
+    padding: 4px 6px;
 
     &:not(:disabled) {
         background-color: $ColorSet_ThemeColor_Background_60;
@@ -48,6 +48,8 @@
 .SS_Button--Green {
     @include _ButtonBase;
 
+    padding: 4px 6px;
+
     &:not(:disabled) {
         background-color: $ColorSet_ThemeColor_SolidGreen_90;
         border:           1px solid $ColorSet_ThemeColor_SolidGreen_90;
@@ -73,6 +75,8 @@
 
 .SS_Button--Red {
     @include _ButtonBase;
+
+    padding: 4px 6px;
 
     &:not(:disabled) {
         background-color: $ColorSet_ThemeColor_SolidRed_100;
@@ -100,6 +104,8 @@
 .SS_Button--Blue {
     @include _ButtonBase;
 
+    padding: 4px 6px;
+
     &:not(:disabled) {
         background-color: $ColorSet_ThemeColor_SolidBlue_100;
         border:           1px solid $ColorSet_ThemeColor_SolidBlue_100;
@@ -125,6 +131,8 @@
 
 .SS_Button--Inverted {
     @include _ButtonBase;
+
+    padding: 4px 6px;
 
     &:not(:disabled) {
         background-color: $ColorSet_ThemeColor_Text_80;

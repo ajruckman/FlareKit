@@ -3,6 +3,7 @@
 @using ColorSet.Components
 @using FlareLib
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Web.Resources
 @using Superset.Web.State
 
 @inject ILocalStorageService LocalStorage
@@ -27,6 +28,8 @@
     }
 
 }
+
+@ResourceManifest.RenderScripts(new Configuration().ResourceManifests)
 
 <TriggerWrapper Trigger="@_trigger">
     @if (_themeLoader.Complete)

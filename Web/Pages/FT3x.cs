@@ -11,7 +11,7 @@ namespace Web.Pages
     public static class RecordCache
     {
         public static List<Record> Records { get; set; }
-        
+
         public static List<Record> FakeData(int n)
         {
             Faker<Record> faker = new Faker<Record>();
@@ -43,18 +43,29 @@ namespace Web.Pages
         private FlareTable<Record> _dummyFlareTable;
         private FlareTable<Record> _flareTable1;
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             _dummyFlareTable = new FlareTable<Record>(() => RecordCache.Records);
-            _flareTable1     = new FlareTable<Record>(() => RecordCache.Records, SessionStorage, "ft3x");
 
-            await _flareTable1.RegisterColumn(nameof(Record.Name), shown: true, sortDirection: SortDirections.Ascending);
-            await _flareTable1.RegisterColumn(nameof(Record.Age),  filterValue: "1");
-            await _flareTable1.RegisterColumn(nameof(Record.City));
-            await _flareTable1.RegisterColumn(nameof(Record.State));
-            await _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
-            await _flareTable1.RegisterColumn(nameof(Record.Zip));
+            _flareTable1 = new FlareTable<Record>(
+                () => RecordCache.Records,
+                SessionStorage,
+                "ft3x",
+                fixedLayout: true,
+                rowColorGetter: row =>
+                    row.Zip.StartsWith("0") ? RowColor.Undefined : row.Zip.Contains("-") ? RowColor.Red : RowColor.Green
+            );
 
+            _flareTable1.RegisterColumn(nameof(Record.Name), shown: true,      sortDirection: SortDirections.Ascending);
+            _flareTable1.RegisterColumn(nameof(Record.Age),  filterValue: "1", width: "60px");
+            _flareTable1.RegisterColumn(nameof(Record.City));
+            _flareTable1.RegisterColumn(nameof(Record.State));
+            _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
+            _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
             await _flareTable1.LoadSessionValues();
         }
 

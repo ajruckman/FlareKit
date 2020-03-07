@@ -10,14 +10,14 @@
     
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-    
+
 }
 
 @if (FlareTable.ColumnShown(ID))
 {
-    <td class="FlareTableCell">@ChildContent</td>
+    <td class="@FlareTable.CellClasses(ID)">@ChildContent</td>
 }
 else
 {
-    <td class="FlareTableCell FlareTableCell--Hidden"></td>
+    <td class="@FlareTable.CellClasses(ID) FlareTableCell--Hidden"></td>
 }
