@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -7,7 +8,9 @@
 
 }
 
-<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnPagination})">
+<TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
+    @{ Log.Update("FlareTablePaginationInfo"); }
+
     <div class="FlareTablePaginationInfo">
         <span>@FlareTable.Info</span>
     </div>

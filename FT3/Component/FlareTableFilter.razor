@@ -1,4 +1,5 @@
 @using System.Timers
+@using Superset.Logging
 
 @typeparam T
 
@@ -41,7 +42,9 @@
 
 }
 
-<TriggerWrapper Triggers="@(new UpdateTrigger[]{FlareTable.OnColumnToggle})">
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @{ Log.Update("FlareTableFilter"); }
+
     @if (FlareTable.ColumnShown(ID))
     {
         <th class="FlareTableFilter_Cell">

@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -7,14 +8,14 @@
 
     [Parameter]
     public string ID { get; set; }
+
 }
 
-<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnPagination})">
-    @{
-        Console.WriteLine("=== " + ID + " " + FlareTable.Info);
-    }
+<TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
+    @{ Log.Update("FlareTablePaginationButtons"); }
+
     <div class="FlareTablePaginationButtons">
-        <button @onclick="@FlareTable.Previous" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
+        <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
         @foreach (int i in FlareTable.Pages())
         {
             if (i == -1)
@@ -23,9 +24,9 @@
             }
             else
             {
-                <button @onclick="@(() => FlareTable.Jump(i))" class="FlareTablePaginationButton @(FlareTable.Current == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
+                <button @onclick="@(() => FlareTable.JumpToPage(i))" class="FlareTablePaginationButton @(FlareTable.CurrentPage == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
             }
         }
-        <button @onclick="@FlareTable.Next" disabled="@(!FlareTable.CanNext)" class="FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
+        <button @onclick="@FlareTable.NextPage" disabled="@(!FlareTable.CanNext)" class="FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
     </div>
 </TriggerWrapper>

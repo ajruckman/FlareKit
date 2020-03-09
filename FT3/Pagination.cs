@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Superset.Logging;
 
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable MemberCanBePrivate.Global
@@ -14,20 +15,20 @@ namespace FT3
     public partial class FlareTable<T>
     {
         internal readonly int[] PageSizes = {10, 25, 50, 100, 250, 500};
-        private           int   _current;
+        private           int   _currentPage;
         internal          int   PageSize;
 
-        public   bool CanPrev  => Current - 1 >= 0;
-        public   bool CanNext  => Current + 1 < NumPages;
+        public   bool CanPrev  => CurrentPage - 1 >= 0;
+        public   bool CanNext  => CurrentPage + 1 < NumPages;
         private  int  NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
-        internal int  Skip     => PageSize * Current;
+        internal int  Skip     => PageSize * CurrentPage;
 
-        public int Current
+        public int CurrentPage
         {
-            get => _current;
+            get => _currentPage;
             private set
             {
-                _current = value;
+                _currentPage = value;
             }
         }
 
@@ -39,7 +40,7 @@ namespace FT3
         {
             set
             {
-                Console.WriteLine("RowCount.set");
+                Log.Update("RowCount.set");
                 _rowCount = value;
 #pragma warning disable 4014
                 ResetCurrentPage();
@@ -49,57 +50,63 @@ namespace FT3
 
         private async Task ResetCurrentPage()
         {
-            Console.WriteLine("ResetCurrentPage()");
-            if (PageSize == 0 || Current < NumPages || NumPages == 0) return;
-            Current = NumPages - 1;
-            OnPagination.Trigger();
+            Log.Update();
+            if (PageSize == 0 || CurrentPage < NumPages || NumPages == 0) return;
+            CurrentPage = NumPages - 1;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
-        public async Task Next()
+        public async Task NextPage()
         {
-            Console.WriteLine("Next()");
-            Current++;
-            OnPagination.Trigger();
+            Log.Update();
+            CurrentPage++;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
-        public async Task Previous()
+        public async Task PreviousPage()
         {
-            Console.WriteLine("Previous()");
-            Current--;
-            OnPagination.Trigger();
+            Log.Update();
+            CurrentPage--;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
-        public async Task First()
+        public async Task FirstPage()
         {
-            Console.WriteLine("First()");
-            Current = 0;
-            OnPagination.Trigger();
+            Log.Update();
+            CurrentPage = 0;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
-        public async Task Last()
+        public async Task LastPage()
         {
-            Console.WriteLine("Last()");
-            Current = NumPages - 1;
-            OnPagination.Trigger();
+            Log.Update();
+            CurrentPage = NumPages - 1;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
-        public async Task Jump(int page)
+        public async Task JumpToPage(int page)
         {
-            Console.WriteLine("Jump()");
-            Current = page > NumPages ? NumPages : page;
-            OnPagination.Trigger();
+            Log.Update();
+            CurrentPage = page > NumPages ? NumPages : page;
+            
+            OnPageUpdate.Invoke();
             await SavePageNumber();
         }
 
         private async Task SavePageNumber()
         {
             if (_sessionStorage != null)
-                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageNum", Current);
+                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageNum", CurrentPage);
         }
 
         public IEnumerable<int> Pages()
@@ -119,7 +126,7 @@ namespace FT3
 
                 pages.AddRange(Enumerable.Range(start, end - start).ToList());
             }
-            else if (Current <= offset)
+            else if (CurrentPage <= offset)
             {
                 start = 0;
                 end   = diameter - 1;
@@ -129,7 +136,7 @@ namespace FT3
                 pages.Add(-1);
                 pages.Add(NumPages - 1);
             }
-            else if (Current + offset >= NumPages)
+            else if (CurrentPage + offset >= NumPages)
             {
                 start = NumPages - diameter;
                 end   = NumPages - 1;
@@ -141,15 +148,15 @@ namespace FT3
             }
             else
             {
-                start = Current - radius + 2;
-                end   = Current + radius - 2;
+                start = CurrentPage - radius + 2;
+                end   = CurrentPage + radius - 2;
 
                 pages.Add(0);
                 pages.Add(-1);
 
                 pages.AddRange(Enumerable.Range(start, end - start + 1).ToList());
 
-                if (Current == NumPages - radius - 1)
+                if (CurrentPage == NumPages - radius - 1)
                     pages.Add(NumPages - 2);
                 else
                     pages.Add(-1);
@@ -168,7 +175,7 @@ namespace FT3
             if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
             
-            OnPaginationResize.Trigger();
+            OnPageSizeUpdate.Invoke();
         }
     }
 }

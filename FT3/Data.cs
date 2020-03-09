@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NaturalSort.Extension;
+using Superset.Logging;
 
 namespace FT3
 {
@@ -28,10 +29,10 @@ namespace FT3
         public IEnumerable<T> AllRows()
         {
             bool dataChange = _matchedRowCache == null || _sortedRowCache == null;
-            
+
             Console.WriteLine("AllRows()");
             _data ??= _dataGetter.Invoke();
-            
+
             if (_matchedRowCache == null)
             {
                 List<T> result         = new List<T>();
@@ -84,11 +85,8 @@ namespace FT3
             {
                 _sortedRowCache = Sort(ref _matchedRowCache);
             }
-            
-            if (dataChange)
-                OnDataChange.Trigger();
 
-            return _sortedRowCache;
+            return _sortedRowCache ?? new List<T>();
         }
 
         public IEnumerable<T> Rows()
@@ -96,7 +94,7 @@ namespace FT3
             return AllRows().Skip(Skip).Take(PageSize).ToList();
         }
 
-        private List<T> Sort(ref List<T>? data)
+        private List<T>? Sort(ref List<T>? data)
         {
             if (!data.Any()) return data;
 
@@ -168,12 +166,29 @@ namespace FT3
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
+
+            OnRegexToggle.Invoke();
         }
 
         public void InvalidateRows()
         {
+            Log.Update();
             _matchedRowCache = null;
             _sortedRowCache  = null;
+            UpdateTableBody.Trigger();
+        }
+
+        private void InvalidateSort()
+        {
+            Log.Update();
+            UpdateTableControls.Trigger();
+            UpdateTableBody.Trigger();
+        }
+
+        private void InvalidatePage()
+        {
+            Log.Update();
+            UpdateTableBody.Trigger();
         }
     }
 }

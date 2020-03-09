@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -12,7 +13,9 @@
 
 }
 
-<TriggerWrapper Trigger="@FlareTable.OnPaginationResize">
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @{ Log.Update("FlareTablePaginationSize"); }
+
     <div class="FlareTablePaginationSizes">
         <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
             @foreach (int size in FlareTable.PageSizes)

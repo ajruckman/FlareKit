@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using Superset.Common;
@@ -12,14 +13,18 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        internal readonly UpdateTrigger OnColumnToggle     = new UpdateTrigger();
-        internal readonly UpdateTrigger OnColumnFilter     = new UpdateTrigger();
-        internal readonly UpdateTrigger OnPagination       = new UpdateTrigger();
-        internal readonly UpdateTrigger OnDataChange       = new UpdateTrigger();
-        internal readonly UpdateTrigger OnViewChange       = new UpdateTrigger();
-        internal readonly UpdateTrigger OnPaginationResize = new UpdateTrigger();
-
         private readonly string? _identifier;
+
+        internal event Action OnColumnFilterUpdate;     // +
+        internal event Action OnColumnSortUpdate;       // +
+        internal event Action OnColumnVisibilityUpdate; // +
+        internal event Action OnRegexToggle;            // +
+        internal event Action OnPageUpdate;             // +
+        internal event Action OnPageSizeUpdate;         // +
+        internal event Action OnReset;                  // +
+
+        internal readonly UpdateTrigger UpdateTableControls = new UpdateTrigger();
+        internal readonly UpdateTrigger UpdateTableBody     = new UpdateTrigger();
 
         /// <summary>
         ///     Creates a FlareTable object without persistent values.
@@ -38,12 +43,14 @@ namespace FT3
             _valueGetter = valueGetter ?? ReflectionValueGetter;
             RegexMode    = regexMode;
 
-            Current          = 0;
+            CurrentPage      = 0;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
             _monospace       = monospace;
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
+
+            Events();
         }
 
         /// <summary>
@@ -68,12 +75,32 @@ namespace FT3
             _valueGetter    = valueGetter ?? ReflectionValueGetter;
 
             RegexMode        = regexMode;
-            Current          = 0;
+            CurrentPage      = 0;
             PageSize         = pageSize;
             _initialPageSize = pageSize;
             _monospace       = monospace;
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
+
+            Events();
+        }
+
+        private void Events()
+        {
+            OnColumnFilterUpdate     += InvalidateRows;
+            OnColumnVisibilityUpdate += InvalidateRows;
+            OnRegexToggle            += InvalidateRows;
+            OnReset                  += InvalidateRows;
+
+            OnColumnSortUpdate += InvalidateSort;
+
+            OnPageUpdate     += InvalidatePage;
+            OnPageSizeUpdate += InvalidatePage;
+
+            //
+
+            UpdateTableControls.OnUpdate += () => Console.WriteLine("UpdateTableControls.Trigger()");
+            UpdateTableBody.OnUpdate     += () => Console.WriteLine("UpdateTableBody.Trigger()");
         }
 
         public async Task Reset()
@@ -101,9 +128,7 @@ namespace FT3
                 await UpdatePageSize(_initialPageSize);
             }
 
-            await First();
-
-            OnColumnToggle.Trigger();
+            await FirstPage();
         }
     }
 }

@@ -1,4 +1,5 @@
 @using ShapeSet.Components
+@using Superset.Logging
 
 @typeparam T
 
@@ -14,13 +15,15 @@
 
 }
 
-<div class="FlareTableColumnToggles">
-    <TriggerWrapper Trigger="@FlareTable.OnColumnToggle">
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @{ Log.Update("FlareTableColumnToggles"); }
+
+    <div class="FlareTableColumnToggles">
         @foreach (Column column in FlareTable.Columns)
         {
             <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
 @*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
         }
-    </TriggerWrapper>
-    <span>Column Toggles</span>
-</div>
+        <span>Column Toggles</span>
+    </div>
+</TriggerWrapper>

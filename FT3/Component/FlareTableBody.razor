@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -10,10 +11,9 @@
 
 }
 
-<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnViewChange})">
-    @{
-        Console.WriteLine("FlareTableBody");
-    }
+<TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
+    @{ Log.Update("FlareTableBody"); }
+
     <tbody class="FlareTableBody">
     @ChildContent
     </tbody>

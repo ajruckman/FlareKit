@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -10,7 +11,9 @@
 
 }
 
-<TriggerWrapper Trigger="@FlareTable.OnColumnToggle">
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @{ Log.Update("FlareTableHeading"); }
+
     @if (FlareTable.ColumnShown(ID))
     {
         <th class="FlareTableHeading_Cell" style="width: @FlareTable.ColumnWidth(ID);">

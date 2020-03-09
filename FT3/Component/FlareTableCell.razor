@@ -1,3 +1,4 @@
+@using Superset.Logging
 @typeparam T
 
 @code {
@@ -13,13 +14,11 @@
 
 }
 
-@* <TriggerWrapper Trigger="@FlareTable.OnColumnToggle"> *@
-    @if (FlareTable.ColumnShown(ID))
-    {
-        <td class="@FlareTable.CellClasses(ID)">@ChildContent</td>
-    }
-    else
-    {
-        <td class="@FlareTable.CellClasses(ID) FlareTableCell--Hidden"></td>
-    }
-@* </TriggerWrapper> *@
+@if (FlareTable.ColumnShown(ID))
+{
+    <td class="@FlareTable.CellClasses(ID)">@ChildContent</td>
+}
+else
+{
+    <td class="@FlareTable.CellClasses(ID) FlareTableCell--Hidden"></td>
+}

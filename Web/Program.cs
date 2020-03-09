@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Superset.Logging;
 using Web.Pages;
 
 namespace Web
@@ -13,6 +14,8 @@ namespace Web
             RecordCache.Records = RecordCache.FakeData(1_000);
             Console.WriteLine("complete");
 
+            Log.LogUpdates = true;
+            
             CreateHostBuilder(args).Build().Run();
         }
 

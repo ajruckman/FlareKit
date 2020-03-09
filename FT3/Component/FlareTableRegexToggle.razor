@@ -12,7 +12,9 @@
 
 }
 
-<div class="FlareTableRegexToggle" @onclick="@HandleCheck">
-    <input type="checkbox" checked="@FlareTable.RegexMode"/>
-    <span>Regex Mode</span>
-</div>
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    <div class="FlareTableRegexToggle" @onclick="@HandleCheck">
+        <input type="checkbox" checked="@FlareTable.RegexMode"/>
+        <span>Regex Mode</span>
+    </div>
+</TriggerWrapper>

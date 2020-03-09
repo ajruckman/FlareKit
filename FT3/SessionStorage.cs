@@ -27,8 +27,8 @@ namespace FT3
                 await UpdatePageSize(pageSize);
 
             var pageNumber = await _sessionStorage.GetItemAsync<int>($"FlareTable_{_identifier}_!PageNum");
-            if (pageNumber != 0 && Current != pageNumber)
-                await Jump(pageNumber);
+            if (pageNumber != 0 && CurrentPage != pageNumber)
+                await JumpToPage(pageNumber);
 
             foreach (Column column in Columns)
             {
@@ -43,10 +43,6 @@ namespace FT3
             
             _matchedRowCache = null;
             _sortedRowCache  = null;
-
-            OnColumnToggle.Trigger();
-            OnColumnFilter.Trigger();
-            OnPagination.Trigger();
         }
 
         private async Task StoreColumnConfig(Column column)
