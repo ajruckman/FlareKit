@@ -10,8 +10,11 @@
 
 }
 
-<tbody class="FlareTableBody">
-<TriggerWrapper Trigger="@FlareTable.UpdateTableBody">
+<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnViewChange})">
+    @{
+        Console.WriteLine("FlareTableBody");
+    }
+    <tbody class="FlareTableBody">
     @ChildContent
+    </tbody>
 </TriggerWrapper>
-</tbody>

@@ -63,7 +63,6 @@ namespace FT3
             {
                 ((Column) _columns[id]).FilterValue = filter;
                 ((Column) _columns[id]).TryCompileFilter();
-                UpdateFilterValues.Trigger();
             }
 
             await StoreColumnConfig((Column) _columns[id]);
@@ -71,7 +70,8 @@ namespace FT3
             _matchedRowCache = null;
             _sortedRowCache  = null;
 
-            UpdateTableBody.Trigger();
+            Console.WriteLine("SetColumnFilter");
+            OnColumnFilter.Trigger();
         }
 
         // ReSharper disable once MemberCanBeInternal
@@ -83,9 +83,8 @@ namespace FT3
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
-
-            UpdateTableBody.Trigger();
-            UpdateTableHead.Trigger();
+            
+            OnColumnToggle.Trigger();
         }
 
         // ReSharper disable once MemberCanBeInternal
@@ -104,8 +103,6 @@ namespace FT3
             await StoreColumnConfig((Column) _columns[id]);
 
             _sortedRowCache = null;
-
-            UpdateTableBody.Trigger();
         }
     }
 }

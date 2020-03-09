@@ -40,6 +40,13 @@ namespace FT3
                 else
                     LoadColumnConfig(stored, column);
             }
+            
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
+
+            OnColumnToggle.Trigger();
+            OnColumnFilter.Trigger();
+            OnPagination.Trigger();
         }
 
         private async Task StoreColumnConfig(Column column)

@@ -12,14 +12,14 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly string? _identifier;
+        internal readonly UpdateTrigger OnColumnToggle     = new UpdateTrigger();
+        internal readonly UpdateTrigger OnColumnFilter     = new UpdateTrigger();
+        internal readonly UpdateTrigger OnPagination       = new UpdateTrigger();
+        internal readonly UpdateTrigger OnDataChange       = new UpdateTrigger();
+        internal readonly UpdateTrigger OnViewChange       = new UpdateTrigger();
+        internal readonly UpdateTrigger OnPaginationResize = new UpdateTrigger();
 
-        internal readonly UpdateTrigger ResetFilterValues     = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateFilterValues    = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdatePaginationState = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdatePaginationSize  = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateTableBody       = new UpdateTrigger();
-        internal readonly UpdateTrigger UpdateTableHead       = new UpdateTrigger();
+        private readonly string? _identifier;
 
         /// <summary>
         ///     Creates a FlareTable object without persistent values.
@@ -93,21 +93,17 @@ namespace FT3
                 if (RegexMode)
                     c.TryCompileFilter();
 
-                // if (_sessionStorage != null)
                 await StoreColumnConfig(c);
             }
 
             if (_initialPageSize != PageSize)
             {
                 await UpdatePageSize(_initialPageSize);
-                UpdatePaginationSize.Trigger();
             }
 
             await First();
 
-            ResetFilterValues.Trigger();
-            UpdateTableBody.Trigger();
-            UpdateTableHead.Trigger();
+            OnColumnToggle.Trigger();
         }
     }
 }

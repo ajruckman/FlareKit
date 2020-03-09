@@ -324,6 +324,92 @@
   --ColorSet_ThemeColor_TR_Red_20: #2c0000;
   --ColorSet_ThemeColor_TR_Red_30: #2e0000; }
 
+.SS_CheckboxContainer {
+  position: relative; }
+  .SS_CheckboxContainer .SS_Checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: -1; }
+    .SS_CheckboxContainer .SS_Checkbox:focus-visible {
+      outline: 1px solid green; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator {
+    box-shadow: 0 0 3px 1px black;
+    cursor: pointer; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeSmall .SS_CheckboxIndicatorMark {
+      border: solid #eeeaf9;
+      border-width: 0 2px 2px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeMedium .SS_CheckboxIndicatorMark {
+      border: solid #eeeaf9;
+      border-width: 0 3px 3px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeLarge .SS_CheckboxIndicatorMark {
+      border: solid #eeeaf9;
+      border-width: 0 4px 4px 0; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator {
+    cursor: not-allowed; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeSmall .SS_CheckboxIndicatorMark {
+      border: solid #504c59;
+      border-width: 0 2px 2px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeMedium .SS_CheckboxIndicatorMark {
+      border: solid #504c59;
+      border-width: 0 3px 3px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeLarge .SS_CheckboxIndicatorMark {
+      border: solid #504c59;
+      border-width: 0 4px 4px 0; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:checked) ~ .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+    display: none; }
+  .SS_CheckboxContainer .SS_Checkbox:checked ~ .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+    display: block; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator {
+    background-color: #19171c;
+    border: 1px solid #2f2c36; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator:hover {
+      background-color: #25222a;
+      border: 1px solid #3b3744; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator:active {
+      background-color: #2d2a34;
+      border-bottom: 1px solid #6b2eee;
+      border-left: 1px solid #433e4d;
+      border-right: 1px solid #433e4d;
+      border-top: 1px solid #433e4d; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator {
+    background-color: #211f26;
+    border: 1px solid #37343f; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator:hover {
+      background-color: #25222a;
+      border: 1px solid #3b3744; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator:active {
+      background-color: #2d2a34;
+      border-bottom: 1px solid #6b2eee;
+      border-left: 1px solid #433e4d;
+      border-right: 1px solid #433e4d;
+      border-top: 1px solid #433e4d; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled:not(:checked) ~ .SS_CheckboxIndicator {
+    background-color: #111013;
+    border: 1px solid #27252c; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled:checked ~ .SS_CheckboxIndicator {
+    background-color: #151418;
+    border: 1px solid #2b2931; }
+  .SS_CheckboxContainer .SS_CheckboxIndicator {
+    align-items: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeSmall {
+      height: 21px;
+      width: 21px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeMedium {
+      height: 25px;
+      width: 25px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeLarge {
+      height: 31px;
+      width: 31px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+      height: 50%;
+      margin-bottom: 10%;
+      transform: rotate(45deg);
+      width: 15%; }
+
 ::-webkit-input-placeholder {
   font-style: italic; }
 
@@ -452,7 +538,7 @@
     color: #f7f5fc; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
+    border: 1px solid #2f2c36;
     color: #504c59; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled) {
     background-color: #25222a;
@@ -639,9 +725,10 @@
       display: flex;
       margin: 0 1px;
       user-select: none; }
-      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles span {
-        color: #a49cb5;
-        margin: 0 1px 0 3px; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer {
+        margin-right: 3px; }
+        .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer:last-child {
+          margin-right: 9px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle {
       align-items: center;
       cursor: pointer;
@@ -663,6 +750,8 @@
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
       background-color: #151418;
       border-right: 1px solid #2b2931; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell--Hidden {
+        width: 23.5px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
         align-items: center;
         display: inline-flex;
@@ -670,30 +759,31 @@
         width: 100%; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableHeading_CellHeading {
           flex-grow: 99999; }
-        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton {
-          align-items: center;
-          background-color: #19171c;
-          border: solid 1px #e3ddf2;
-          border-radius: 75% 15%;
-          cursor: pointer;
-          display: inline-flex;
-          height: 10px;
-          justify-content: center;
-          margin: 0 5px;
-          position: relative;
-          transform: rotate(45deg);
-          user-select: none;
-          width: 10px; }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton:hover {
-            background-color: #29262f; }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton:before {
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer {
+          width: 23.5px; }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton {
+            align-items: center;
+            background-color: #19171c;
             border: solid 1px #e3ddf2;
-            border-radius: 50%;
-            content: '';
-            display: block;
-            height: 5px;
-            position: absolute;
-            width: 5px; }
+            border-radius: 75% 15%;
+            cursor: pointer;
+            display: inline-flex;
+            height: 10px;
+            justify-content: center;
+            position: relative;
+            transform: rotate(45deg);
+            user-select: none;
+            width: 10px; }
+            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:hover {
+              background-color: #29262f; }
+            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:before {
+              border: solid 1px #e3ddf2;
+              border-radius: 50%;
+              content: '';
+              display: block;
+              height: 5px;
+              position: absolute;
+              width: 5px; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
       border-left: 1px solid #2b2931; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
@@ -784,8 +874,6 @@
       transition: background-color linear 100ms; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
         border-left: 1px solid #27252c; }
-      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Hidden {
-        width: 15px; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Mono {
         font-family: var(--FontSet-MonospaceFont); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell {

@@ -17,7 +17,7 @@
     protected override void OnParametersSet()
     {
         _filter = FlareTable.GetColumnFilter(ID);
-        FlareTable.ResetFilterValues.OnUpdate += () => _filter = "";
+    // FlareTable.ResetFilterValues.OnUpdate += () => _filter = "";
     }
 
     private void SetFilter(ChangeEventArgs args)
@@ -41,15 +41,13 @@
 
 }
 
-<TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+<TriggerWrapper Triggers="@(new UpdateTrigger[]{FlareTable.OnColumnToggle})">
     @if (FlareTable.ColumnShown(ID))
     {
         <th class="FlareTableFilter_Cell">
             <span class="FlareTableFilter_CellControlContainer">
                 @{ string key = "FT_F_" + ID; }
-                <TriggerWrapper Trigger="@FlareTable.UpdateFilterValues">
-                    <input class="FlareTableFilter_Input @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
-                </TriggerWrapper>
+                <input class="FlareTableFilter_Input @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
                 <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
             </span>
         </th>

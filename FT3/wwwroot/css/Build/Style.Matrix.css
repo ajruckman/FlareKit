@@ -1,107 +1,107 @@
 :root {
-  --ColorSet_ThemeColor_Accent_0: #310d80;
-  --ColorSet_ThemeColor_Accent_0_Hover: #320d82;
-  --ColorSet_ThemeColor_Accent_0_Focus: #330d85;
-  --ColorSet_ThemeColor_Accent_10: #4112a6;
-  --ColorSet_ThemeColor_Accent_10_Hover: #4212a8;
-  --ColorSet_ThemeColor_Accent_10_Focus: #4313ab;
-  --ColorSet_ThemeColor_Accent_20: #5019c6;
-  --ColorSet_ThemeColor_Accent_20_Hover: #5119c9;
-  --ColorSet_ThemeColor_Accent_20_Focus: #5219cb;
-  --ColorSet_ThemeColor_Accent_30: #5d21de;
-  --ColorSet_ThemeColor_Accent_30_Hover: #5e22e0;
-  --ColorSet_ThemeColor_Accent_30_Focus: #5f22e3;
-  --ColorSet_ThemeColor_Accent_40: #6a2eec;
-  --ColorSet_ThemeColor_Accent_40_Hover: #6b2eef;
-  --ColorSet_ThemeColor_Accent_40_Focus: #6d2ff2;
-  --ColorSet_ThemeColor_Accent_50: #7b42f5;
-  --ColorSet_ThemeColor_Accent_50_Hover: #7c43f8;
-  --ColorSet_ThemeColor_Accent_50_Focus: #7d44fa;
-  --ColorSet_ThemeColor_Accent_60: #9262fa;
-  --ColorSet_ThemeColor_Accent_60_Hover: #9363fd;
-  --ColorSet_ThemeColor_Accent_60_Focus: #9564ff;
-  --ColorSet_ThemeColor_Accent_70: #b08dfd;
-  --ColorSet_ThemeColor_Accent_70_Hover: #b28eff;
-  --ColorSet_ThemeColor_Accent_70_Focus: #b48fff;
-  --ColorSet_ThemeColor_Accent_80: #d3bfff;
-  --ColorSet_ThemeColor_Accent_80_Hover: #d6c1ff;
-  --ColorSet_ThemeColor_Accent_80_Focus: #d8c3ff;
-  --ColorSet_ThemeColor_AccentBorder_0: #360e8c;
-  --ColorSet_ThemeColor_AccentBorder_0_Hover: #3b0f99;
-  --ColorSet_ThemeColor_AccentBorder_0_Focus: #3e10a1;
-  --ColorSet_ThemeColor_AccentBorder_10: #4413af;
-  --ColorSet_ThemeColor_AccentBorder_10_Hover: #4915bb;
-  --ColorSet_ThemeColor_AccentBorder_10_Focus: #4c15c3;
-  --ColorSet_ThemeColor_AccentBorder_20: #5219cc;
-  --ColorSet_ThemeColor_AccentBorder_20_Hover: #571bd8;
-  --ColorSet_ThemeColor_AccentBorder_20_Focus: #5a1ce0;
-  --ColorSet_ThemeColor_AccentBorder_30: #5e22e1;
-  --ColorSet_ThemeColor_AccentBorder_30_Hover: #6424ee;
-  --ColorSet_ThemeColor_AccentBorder_30_Focus: #6725f5;
-  --ColorSet_ThemeColor_AccentBorder_40: #6b2eee;
-  --ColorSet_ThemeColor_AccentBorder_40_Hover: #7131fb;
-  --ColorSet_ThemeColor_AccentBorder_40_Focus: #7432ff;
-  --ColorSet_ThemeColor_AccentBorder_50: #7b42f6;
-  --ColorSet_ThemeColor_AccentBorder_50_Hover: #8246ff;
-  --ColorSet_ThemeColor_AccentBorder_50_Focus: #8648ff;
-  --ColorSet_ThemeColor_AccentBorder_60: #9262fb;
-  --ColorSet_ThemeColor_AccentBorder_60_Hover: #9a67ff;
-  --ColorSet_ThemeColor_AccentBorder_60_Focus: #9e6aff;
-  --ColorSet_ThemeColor_AccentBorder_70: #b08dfd;
-  --ColorSet_ThemeColor_AccentBorder_70_Hover: #b994ff;
-  --ColorSet_ThemeColor_AccentBorder_70_Focus: #bf98ff;
-  --ColorSet_ThemeColor_AccentBorder_80: #d3bfff;
-  --ColorSet_ThemeColor_AccentBorder_80_Hover: #dec9ff;
-  --ColorSet_ThemeColor_AccentBorder_80_Focus: #e4cfff;
+  --ColorSet_ThemeColor_Accent_0: #18800d;
+  --ColorSet_ThemeColor_Accent_0_Hover: #19820d;
+  --ColorSet_ThemeColor_Accent_0_Focus: #19850d;
+  --ColorSet_ThemeColor_Accent_10: #21a612;
+  --ColorSet_ThemeColor_Accent_10_Hover: #21a812;
+  --ColorSet_ThemeColor_Accent_10_Focus: #22ab13;
+  --ColorSet_ThemeColor_Accent_20: #2ac619;
+  --ColorSet_ThemeColor_Accent_20_Hover: #2bc919;
+  --ColorSet_ThemeColor_Accent_20_Focus: #2bcb19;
+  --ColorSet_ThemeColor_Accent_30: #34de21;
+  --ColorSet_ThemeColor_Accent_30_Hover: #35e022;
+  --ColorSet_ThemeColor_Accent_30_Focus: #35e322;
+  --ColorSet_ThemeColor_Accent_40: #41ec2e;
+  --ColorSet_ThemeColor_Accent_40_Hover: #42ef2e;
+  --ColorSet_ThemeColor_Accent_40_Focus: #42f22f;
+  --ColorSet_ThemeColor_Accent_50: #54f542;
+  --ColorSet_ThemeColor_Accent_50_Hover: #55f843;
+  --ColorSet_ThemeColor_Accent_50_Focus: #56fa44;
+  --ColorSet_ThemeColor_Accent_60: #71fa62;
+  --ColorSet_ThemeColor_Accent_60_Hover: #72fd63;
+  --ColorSet_ThemeColor_Accent_60_Focus: #73ff64;
+  --ColorSet_ThemeColor_Accent_70: #98fd8d;
+  --ColorSet_ThemeColor_Accent_70_Hover: #99ff8e;
+  --ColorSet_ThemeColor_Accent_70_Focus: #9bff8f;
+  --ColorSet_ThemeColor_Accent_80: #c6ffbf;
+  --ColorSet_ThemeColor_Accent_80_Hover: #c8ffc1;
+  --ColorSet_ThemeColor_Accent_80_Focus: #caffc3;
+  --ColorSet_ThemeColor_AccentBorder_0: #1b8c0e;
+  --ColorSet_ThemeColor_AccentBorder_0_Hover: #1d990f;
+  --ColorSet_ThemeColor_AccentBorder_0_Focus: #1fa110;
+  --ColorSet_ThemeColor_AccentBorder_10: #23af13;
+  --ColorSet_ThemeColor_AccentBorder_10_Hover: #25bb15;
+  --ColorSet_ThemeColor_AccentBorder_10_Focus: #27c315;
+  --ColorSet_ThemeColor_AccentBorder_20: #2bcc19;
+  --ColorSet_ThemeColor_AccentBorder_20_Hover: #2ed81b;
+  --ColorSet_ThemeColor_AccentBorder_20_Focus: #30e01c;
+  --ColorSet_ThemeColor_AccentBorder_30: #35e122;
+  --ColorSet_ThemeColor_AccentBorder_30_Hover: #38ee24;
+  --ColorSet_ThemeColor_AccentBorder_30_Focus: #3af525;
+  --ColorSet_ThemeColor_AccentBorder_40: #42ee2e;
+  --ColorSet_ThemeColor_AccentBorder_40_Hover: #45fb31;
+  --ColorSet_ThemeColor_AccentBorder_40_Focus: #47ff32;
+  --ColorSet_ThemeColor_AccentBorder_50: #54f642;
+  --ColorSet_ThemeColor_AccentBorder_50_Hover: #59ff46;
+  --ColorSet_ThemeColor_AccentBorder_50_Focus: #5bff48;
+  --ColorSet_ThemeColor_AccentBorder_60: #71fb62;
+  --ColorSet_ThemeColor_AccentBorder_60_Hover: #77ff67;
+  --ColorSet_ThemeColor_AccentBorder_60_Focus: #7aff6a;
+  --ColorSet_ThemeColor_AccentBorder_70: #98fd8d;
+  --ColorSet_ThemeColor_AccentBorder_70_Hover: #a0ff94;
+  --ColorSet_ThemeColor_AccentBorder_70_Focus: #a4ff98;
+  --ColorSet_ThemeColor_AccentBorder_80: #c6ffbf;
+  --ColorSet_ThemeColor_AccentBorder_80_Hover: #d0ffc9;
+  --ColorSet_ThemeColor_AccentBorder_80_Focus: #d5ffcf;
   --ColorSet_ThemeColor_Background_0: #000000;
   --ColorSet_ThemeColor_Background_0_Hover: #050505;
-  --ColorSet_ThemeColor_Background_0_Focus: #070708;
-  --ColorSet_ThemeColor_Background_10: #040405;
-  --ColorSet_ThemeColor_Background_10_Hover: #09090a;
-  --ColorSet_ThemeColor_Background_10_Focus: #0b0b0c;
-  --ColorSet_ThemeColor_Background_20: #090809;
-  --ColorSet_ThemeColor_Background_20_Hover: #0d0d0f;
-  --ColorSet_ThemeColor_Background_20_Focus: #0f0f11;
-  --ColorSet_ThemeColor_Background_30: #0d0c0e;
-  --ColorSet_ThemeColor_Background_30_Hover: #111013;
-  --ColorSet_ThemeColor_Background_30_Focus: #141216;
-  --ColorSet_ThemeColor_Background_40: #111013;
-  --ColorSet_ThemeColor_Background_40_Hover: #151418;
-  --ColorSet_ThemeColor_Background_40_Focus: #18161b;
+  --ColorSet_ThemeColor_Background_0_Focus: #080808;
+  --ColorSet_ThemeColor_Background_10: #050505;
+  --ColorSet_ThemeColor_Background_10_Hover: #0a090a;
+  --ColorSet_ThemeColor_Background_10_Focus: #0c0c0c;
+  --ColorSet_ThemeColor_Background_20: #090909;
+  --ColorSet_ThemeColor_Background_20_Hover: #0e0d0f;
+  --ColorSet_ThemeColor_Background_20_Focus: #101011;
+  --ColorSet_ThemeColor_Background_30: #0d0d0e;
+  --ColorSet_ThemeColor_Background_30_Hover: #121113;
+  --ColorSet_ThemeColor_Background_30_Focus: #141416;
+  --ColorSet_ThemeColor_Background_40: #111113;
+  --ColorSet_ThemeColor_Background_40_Hover: #161518;
+  --ColorSet_ThemeColor_Background_40_Focus: #18171b;
   --ColorSet_ThemeColor_Background_50: #151418;
-  --ColorSet_ThemeColor_Background_50_Hover: #19181d;
-  --ColorSet_ThemeColor_Background_50_Focus: #1c1a1f;
-  --ColorSet_ThemeColor_Background_60: #19171c;
-  --ColorSet_ThemeColor_Background_60_Hover: #1d1c21;
+  --ColorSet_ThemeColor_Background_50_Hover: #1a191d;
+  --ColorSet_ThemeColor_Background_50_Focus: #1c1b1f;
+  --ColorSet_ThemeColor_Background_60: #19181c;
+  --ColorSet_ThemeColor_Background_60_Hover: #1e1c21;
   --ColorSet_ThemeColor_Background_60_Focus: #201e24;
-  --ColorSet_ThemeColor_Background_70: #1d1b21;
-  --ColorSet_ThemeColor_Background_70_Hover: #211f26;
-  --ColorSet_ThemeColor_Background_70_Focus: #242129;
+  --ColorSet_ThemeColor_Background_70: #1d1c21;
+  --ColorSet_ThemeColor_Background_70_Hover: #222026;
+  --ColorSet_ThemeColor_Background_70_Focus: #242229;
   --ColorSet_ThemeColor_Background_80: #211f26;
-  --ColorSet_ThemeColor_Background_80_Hover: #25232b;
-  --ColorSet_ThemeColor_Background_80_Focus: #28252d;
-  --ColorSet_ThemeColor_Background_90: #25222a;
-  --ColorSet_ThemeColor_Background_90_Hover: #292730;
+  --ColorSet_ThemeColor_Background_80_Hover: #26242b;
+  --ColorSet_ThemeColor_Background_80_Focus: #28262d;
+  --ColorSet_ThemeColor_Background_90: #25232a;
+  --ColorSet_ThemeColor_Background_90_Hover: #2a2730;
   --ColorSet_ThemeColor_Background_90_Focus: #2c2932;
-  --ColorSet_ThemeColor_Background_100: #29262f;
-  --ColorSet_ThemeColor_Background_100_Hover: #2d2a34;
-  --ColorSet_ThemeColor_Background_100_Focus: #302c37;
+  --ColorSet_ThemeColor_Background_100: #29272f;
+  --ColorSet_ThemeColor_Background_100_Hover: #2e2b34;
+  --ColorSet_ThemeColor_Background_100_Focus: #302d37;
   --ColorSet_ThemeColor_Background_110: #2d2a34;
-  --ColorSet_ThemeColor_Background_110_Hover: #312e39;
+  --ColorSet_ThemeColor_Background_110_Hover: #322e39;
   --ColorSet_ThemeColor_Background_110_Focus: #34303c;
   --ColorSet_ThemeColor_Background_120: #312e39;
-  --ColorSet_ThemeColor_Background_120_Hover: #35323e;
+  --ColorSet_ThemeColor_Background_120_Hover: #36323e;
   --ColorSet_ThemeColor_Background_120_Focus: #383440;
   --ColorSet_ThemeColor_Background_130: #35313d;
-  --ColorSet_ThemeColor_Background_130_Hover: #3a3542;
-  --ColorSet_ThemeColor_Background_130_Focus: #3c3745;
+  --ColorSet_ThemeColor_Background_130_Hover: #3a3642;
+  --ColorSet_ThemeColor_Background_130_Focus: #3c3845;
   --ColorSet_ThemeColor_Background_140: #393542;
   --ColorSet_ThemeColor_Background_140_Hover: #3e3947;
   --ColorSet_ThemeColor_Background_140_Focus: #403b4a;
   --ColorSet_ThemeColor_Background_150: #3d3947;
   --ColorSet_ThemeColor_Background_150_Hover: #423d4c;
   --ColorSet_ThemeColor_Background_150_Focus: #443f4e;
-  --ColorSet_ThemeColor_Background_160: #413c4b;
+  --ColorSet_ThemeColor_Background_160: #413d4b;
   --ColorSet_ThemeColor_Background_160_Hover: #464151;
   --ColorSet_ThemeColor_Background_160_Focus: #484353;
   --ColorSet_ThemeColor_Background_170: #454050;
@@ -116,116 +116,53 @@
   --ColorSet_ThemeColor_Background_200: #514b5e;
   --ColorSet_ThemeColor_Background_200_Hover: #565063;
   --ColorSet_ThemeColor_Background_200_Focus: #585266;
-  --ColorSet_ThemeColor_BackgroundInverse_0: #ffffff;
-  --ColorSet_ThemeColor_BackgroundInverse_0_Hover: #ffffff;
-  --ColorSet_ThemeColor_BackgroundInverse_0_Focus: #ffffff;
-  --ColorSet_ThemeColor_BackgroundInverse_10: #f8fcff;
-  --ColorSet_ThemeColor_BackgroundInverse_10_Hover: #fdffff;
-  --ColorSet_ThemeColor_BackgroundInverse_10_Focus: #ffffff;
-  --ColorSet_ThemeColor_BackgroundInverse_20: #f3f9ff;
-  --ColorSet_ThemeColor_BackgroundInverse_20_Hover: #f8feff;
-  --ColorSet_ThemeColor_BackgroundInverse_20_Focus: #faffff;
-  --ColorSet_ThemeColor_BackgroundInverse_30: #eff7fe;
-  --ColorSet_ThemeColor_BackgroundInverse_30_Hover: #f3fbff;
-  --ColorSet_ThemeColor_BackgroundInverse_30_Focus: #f6feff;
-  --ColorSet_ThemeColor_BackgroundInverse_40: #ebf4fe;
-  --ColorSet_ThemeColor_BackgroundInverse_40_Hover: #f0f9ff;
-  --ColorSet_ThemeColor_BackgroundInverse_40_Focus: #f2fcff;
-  --ColorSet_ThemeColor_BackgroundInverse_50: #e8f3fd;
-  --ColorSet_ThemeColor_BackgroundInverse_50_Hover: #edf7ff;
-  --ColorSet_ThemeColor_BackgroundInverse_50_Focus: #effaff;
-  --ColorSet_ThemeColor_BackgroundInverse_60: #e5f1fc;
-  --ColorSet_ThemeColor_BackgroundInverse_60_Hover: #eaf6ff;
-  --ColorSet_ThemeColor_BackgroundInverse_60_Focus: #ecf8ff;
-  --ColorSet_ThemeColor_BackgroundInverse_70: #e3effb;
-  --ColorSet_ThemeColor_BackgroundInverse_70_Hover: #e7f4ff;
-  --ColorSet_ThemeColor_BackgroundInverse_70_Focus: #e9f6ff;
-  --ColorSet_ThemeColor_BackgroundInverse_80: #e0edfa;
-  --ColorSet_ThemeColor_BackgroundInverse_80_Hover: #e5f2ff;
-  --ColorSet_ThemeColor_BackgroundInverse_80_Focus: #e7f4ff;
-  --ColorSet_ThemeColor_BackgroundInverse_90: #ddebf8;
-  --ColorSet_ThemeColor_BackgroundInverse_90_Hover: #e2effd;
-  --ColorSet_ThemeColor_BackgroundInverse_90_Focus: #e4f2ff;
-  --ColorSet_ThemeColor_BackgroundInverse_100: #dbe8f5;
-  --ColorSet_ThemeColor_BackgroundInverse_100_Hover: #dfedfb;
-  --ColorSet_ThemeColor_BackgroundInverse_100_Focus: #e1effd;
-  --ColorSet_ThemeColor_BackgroundInverse_110: #d7e5f3;
-  --ColorSet_ThemeColor_BackgroundInverse_110_Hover: #dceaf8;
-  --ColorSet_ThemeColor_BackgroundInverse_110_Focus: #deecfa;
-  --ColorSet_ThemeColor_BackgroundInverse_120: #d4e2ef;
-  --ColorSet_ThemeColor_BackgroundInverse_120_Hover: #d8e6f4;
-  --ColorSet_ThemeColor_BackgroundInverse_120_Focus: #dbe9f7;
-  --ColorSet_ThemeColor_BackgroundInverse_130: #d0deeb;
-  --ColorSet_ThemeColor_BackgroundInverse_130_Hover: #d4e2f0;
-  --ColorSet_ThemeColor_BackgroundInverse_130_Focus: #d7e5f3;
-  --ColorSet_ThemeColor_BackgroundInverse_140: #cbd9e6;
-  --ColorSet_ThemeColor_BackgroundInverse_140_Hover: #d0deeb;
-  --ColorSet_ThemeColor_BackgroundInverse_140_Focus: #d2e0ee;
-  --ColorSet_ThemeColor_BackgroundInverse_150: #c6d3e0;
-  --ColorSet_ThemeColor_BackgroundInverse_150_Hover: #cad8e6;
-  --ColorSet_ThemeColor_BackgroundInverse_150_Focus: #cddae8;
-  --ColorSet_ThemeColor_BackgroundInverse_160: #bfccd9;
-  --ColorSet_ThemeColor_BackgroundInverse_160_Hover: #c4d1de;
-  --ColorSet_ThemeColor_BackgroundInverse_160_Focus: #c6d4e1;
-  --ColorSet_ThemeColor_BackgroundInverse_170: #b8c5d1;
-  --ColorSet_ThemeColor_BackgroundInverse_170_Hover: #bdc9d6;
-  --ColorSet_ThemeColor_BackgroundInverse_170_Focus: #bfccd9;
-  --ColorSet_ThemeColor_BackgroundInverse_180: #b0bcc8;
-  --ColorSet_ThemeColor_BackgroundInverse_180_Hover: #b4c0cd;
-  --ColorSet_ThemeColor_BackgroundInverse_180_Focus: #b6c3cf;
-  --ColorSet_ThemeColor_BackgroundInverse_190: #a7b2bd;
-  --ColorSet_ThemeColor_BackgroundInverse_190_Hover: #abb7c2;
-  --ColorSet_ThemeColor_BackgroundInverse_190_Focus: #adb9c5;
-  --ColorSet_ThemeColor_BackgroundInverse_200: #9da8b3;
-  --ColorSet_ThemeColor_BackgroundInverse_200_Hover: #a2adb8;
-  --ColorSet_ThemeColor_BackgroundInverse_200_Focus: #a4afba;
-  --ColorSet_ThemeColor_Border_0: #18171a;
-  --ColorSet_ThemeColor_Border_0_Hover: #242226;
-  --ColorSet_ThemeColor_Border_0_Focus: #2b292e;
-  --ColorSet_ThemeColor_Border_10: #1c1b1e;
-  --ColorSet_ThemeColor_Border_10_Hover: #27262b;
-  --ColorSet_ThemeColor_Border_10_Focus: #2e2c33;
-  --ColorSet_ThemeColor_Border_20: #201e23;
-  --ColorSet_ThemeColor_Border_20_Hover: #2b2930;
-  --ColorSet_ThemeColor_Border_20_Focus: #323037;
-  --ColorSet_ThemeColor_Border_30: #242228;
-  --ColorSet_ThemeColor_Border_30_Hover: #2f2c34;
-  --ColorSet_ThemeColor_Border_30_Focus: #36333c;
-  --ColorSet_ThemeColor_Border_40: #27252c;
-  --ColorSet_ThemeColor_Border_40_Hover: #333039;
-  --ColorSet_ThemeColor_Border_40_Focus: #3a3641;
-  --ColorSet_ThemeColor_Border_50: #2b2931;
-  --ColorSet_ThemeColor_Border_50_Hover: #37333e;
-  --ColorSet_ThemeColor_Border_50_Focus: #3d3a45;
-  --ColorSet_ThemeColor_Border_60: #2f2c36;
-  --ColorSet_ThemeColor_Border_60_Hover: #3b3743;
-  --ColorSet_ThemeColor_Border_60_Focus: #413d4a;
-  --ColorSet_ThemeColor_Border_70: #33303b;
-  --ColorSet_ThemeColor_Border_70_Hover: #3e3a47;
-  --ColorSet_ThemeColor_Border_70_Focus: #45414f;
-  --ColorSet_ThemeColor_Border_80: #37343f;
-  --ColorSet_ThemeColor_Border_80_Hover: #423e4c;
-  --ColorSet_ThemeColor_Border_80_Focus: #494454;
-  --ColorSet_ThemeColor_Border_90: #3b3744;
-  --ColorSet_ThemeColor_Border_90_Hover: #464151;
-  --ColorSet_ThemeColor_Border_90_Focus: #4d4858;
-  --ColorSet_ThemeColor_Border_100: #3f3b49;
-  --ColorSet_ThemeColor_Border_100_Hover: #4a4555;
-  --ColorSet_ThemeColor_Border_100_Focus: #514b5d;
-  --ColorSet_ThemeColor_Border_110: #433e4d;
-  --ColorSet_ThemeColor_Border_110_Hover: #4e495a;
+  --ColorSet_ThemeColor_Border_0: #1a1a1a;
+  --ColorSet_ThemeColor_Border_0_Hover: #262626;
+  --ColorSet_ThemeColor_Border_0_Focus: #2e2e2e;
+  --ColorSet_ThemeColor_Border_10: #1d1d1e;
+  --ColorSet_ThemeColor_Border_10_Hover: #2a292b;
+  --ColorSet_ThemeColor_Border_10_Focus: #313033;
+  --ColorSet_ThemeColor_Border_20: #212023;
+  --ColorSet_ThemeColor_Border_20_Hover: #2d2c30;
+  --ColorSet_ThemeColor_Border_20_Focus: #343337;
+  --ColorSet_ThemeColor_Border_30: #252428;
+  --ColorSet_ThemeColor_Border_30_Hover: #312f34;
+  --ColorSet_ThemeColor_Border_30_Focus: #38363c;
+  --ColorSet_ThemeColor_Border_40: #29272c;
+  --ColorSet_ThemeColor_Border_40_Hover: #343239;
+  --ColorSet_ThemeColor_Border_40_Focus: #3b3941;
+  --ColorSet_ThemeColor_Border_50: #2c2a31;
+  --ColorSet_ThemeColor_Border_50_Hover: #38353e;
+  --ColorSet_ThemeColor_Border_50_Focus: #3f3c45;
+  --ColorSet_ThemeColor_Border_60: #302e36;
+  --ColorSet_ThemeColor_Border_60_Hover: #3c3843;
+  --ColorSet_ThemeColor_Border_60_Focus: #423f4a;
+  --ColorSet_ThemeColor_Border_70: #34313b;
+  --ColorSet_ThemeColor_Border_70_Hover: #3f3c47;
+  --ColorSet_ThemeColor_Border_70_Focus: #46424f;
+  --ColorSet_ThemeColor_Border_80: #38343f;
+  --ColorSet_ThemeColor_Border_80_Hover: #433f4c;
+  --ColorSet_ThemeColor_Border_80_Focus: #4a4554;
+  --ColorSet_ThemeColor_Border_90: #3c3844;
+  --ColorSet_ThemeColor_Border_90_Hover: #474251;
+  --ColorSet_ThemeColor_Border_90_Focus: #4e4958;
+  --ColorSet_ThemeColor_Border_100: #403b49;
+  --ColorSet_ThemeColor_Border_100_Hover: #4b4655;
+  --ColorSet_ThemeColor_Border_100_Focus: #514c5d;
+  --ColorSet_ThemeColor_Border_110: #433f4d;
+  --ColorSet_ThemeColor_Border_110_Hover: #4f495a;
   --ColorSet_ThemeColor_Border_110_Focus: #554f62;
   --ColorSet_ThemeColor_Border_120: #474252;
-  --ColorSet_ThemeColor_Border_120_Hover: #524c5f;
-  --ColorSet_ThemeColor_Border_120_Focus: #595267;
+  --ColorSet_ThemeColor_Border_120_Hover: #534d5f;
+  --ColorSet_ThemeColor_Border_120_Focus: #595367;
   --ColorSet_ThemeColor_Border_130: #4b4657;
   --ColorSet_ThemeColor_Border_130_Hover: #565064;
   --ColorSet_ThemeColor_Border_130_Focus: #5d566b;
-  --ColorSet_ThemeColor_Border_140: #4f495c;
+  --ColorSet_ThemeColor_Border_140: #4f4a5c;
   --ColorSet_ThemeColor_Border_140_Hover: #5a5468;
   --ColorSet_ThemeColor_Border_140_Focus: #615a70;
   --ColorSet_ThemeColor_Border_150: #534d60;
-  --ColorSet_ThemeColor_Border_150_Hover: #5e576d;
+  --ColorSet_ThemeColor_Border_150_Hover: #5e586d;
   --ColorSet_ThemeColor_Border_150_Focus: #655e75;
   --ColorSet_ThemeColor_Border_160: #575165;
   --ColorSet_ThemeColor_Border_160_Hover: #625b72;
@@ -302,15 +239,15 @@
   --ColorSet_ThemeColor_SolidYellow_120: #92923a;
   --ColorSet_ThemeColor_SolidYellow_130: #898944;
   --ColorSet_ThemeColor_SolidYellow_140: #80804d;
-  --ColorSet_ThemeColor_Text_0: #504c59;
-  --ColorSet_ThemeColor_Text_10: #7d778b;
-  --ColorSet_ThemeColor_Text_20: #a49cb5;
-  --ColorSet_ThemeColor_Text_30: #c1b9d4;
-  --ColorSet_ThemeColor_Text_40: #d5cde7;
-  --ColorSet_ThemeColor_Text_50: #e3ddf2;
-  --ColorSet_ThemeColor_Text_60: #eeeaf9;
-  --ColorSet_ThemeColor_Text_70: #f7f5fc;
-  --ColorSet_ThemeColor_Text_80: #ffffff;
+  --ColorSet_ThemeColor_Text_0: #095900;
+  --ColorSet_ThemeColor_Text_10: #108b02;
+  --ColorSet_ThemeColor_Text_20: #18b507;
+  --ColorSet_ThemeColor_Text_30: #23d410;
+  --ColorSet_ThemeColor_Text_40: #32e71e;
+  --ColorSet_ThemeColor_Text_50: #45f231;
+  --ColorSet_ThemeColor_Text_60: #5cf94a;
+  --ColorSet_ThemeColor_Text_70: #75fc66;
+  --ColorSet_ThemeColor_Text_80: #8cff80;
   --ColorSet_ThemeColor_TR_0: #0b0a0d;
   --ColorSet_ThemeColor_TR_10: #111014;
   --ColorSet_ThemeColor_TR_20: #151318;
@@ -323,6 +260,92 @@
   --ColorSet_ThemeColor_TR_Red_10: #280000;
   --ColorSet_ThemeColor_TR_Red_20: #2c0000;
   --ColorSet_ThemeColor_TR_Red_30: #2e0000; }
+
+.SS_CheckboxContainer {
+  position: relative; }
+  .SS_CheckboxContainer .SS_Checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: -1; }
+    .SS_CheckboxContainer .SS_Checkbox:focus-visible {
+      outline: 1px solid green; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator {
+    box-shadow: 0 0 3px 1px black;
+    cursor: pointer; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeSmall .SS_CheckboxIndicatorMark {
+      border: solid #5cf94a;
+      border-width: 0 2px 2px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeMedium .SS_CheckboxIndicatorMark {
+      border: solid #5cf94a;
+      border-width: 0 3px 3px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator--SizeLarge .SS_CheckboxIndicatorMark {
+      border: solid #5cf94a;
+      border-width: 0 4px 4px 0; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator {
+    cursor: not-allowed; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeSmall .SS_CheckboxIndicatorMark {
+      border: solid #095900;
+      border-width: 0 2px 2px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeMedium .SS_CheckboxIndicatorMark {
+      border: solid #095900;
+      border-width: 0 3px 3px 0; }
+    .SS_CheckboxContainer .SS_Checkbox:disabled ~ .SS_CheckboxIndicator--SizeLarge .SS_CheckboxIndicatorMark {
+      border: solid #095900;
+      border-width: 0 4px 4px 0; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:checked) ~ .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+    display: none; }
+  .SS_CheckboxContainer .SS_Checkbox:checked ~ .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+    display: block; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator {
+    background-color: #19181c;
+    border: 1px solid #302e36; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator:hover {
+      background-color: #25232a;
+      border: 1px solid #3c3844; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator:active {
+      background-color: #2d2a34;
+      border-bottom: 1px solid #42ee2e;
+      border-left: 1px solid #433f4d;
+      border-right: 1px solid #433f4d;
+      border-top: 1px solid #433f4d; }
+  .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator {
+    background-color: #211f26;
+    border: 1px solid #38343f; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator:hover {
+      background-color: #25232a;
+      border: 1px solid #3c3844; }
+    .SS_CheckboxContainer .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator:active {
+      background-color: #2d2a34;
+      border-bottom: 1px solid #42ee2e;
+      border-left: 1px solid #433f4d;
+      border-right: 1px solid #433f4d;
+      border-top: 1px solid #433f4d; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled:not(:checked) ~ .SS_CheckboxIndicator {
+    background-color: #111113;
+    border: 1px solid #29272c; }
+  .SS_CheckboxContainer .SS_Checkbox:disabled:checked ~ .SS_CheckboxIndicator {
+    background-color: #151418;
+    border: 1px solid #2c2a31; }
+  .SS_CheckboxContainer .SS_CheckboxIndicator {
+    align-items: center;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeSmall {
+      height: 21px;
+      width: 21px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeMedium {
+      height: 25px;
+      width: 25px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator--SizeLarge {
+      height: 31px;
+      width: 31px; }
+    .SS_CheckboxContainer .SS_CheckboxIndicator .SS_CheckboxIndicatorMark {
+      height: 50%;
+      margin-bottom: 10%;
+      transform: rotate(45deg);
+      width: 15%; }
 
 ::-webkit-input-placeholder {
   font-style: italic; }
@@ -339,9 +362,9 @@
 .SS_Input {
   border-radius: 3px;
   outline: none;
-  background-color: #111013;
-  border: 1px solid #27252c;
-  color: #eeeaf9;
+  background-color: #111113;
+  border: 1px solid #29272c;
+  color: #5cf94a;
   box-sizing: border-box;
   font-family: var(--FontSet-MonospaceFont);
   font-size: 1em;
@@ -350,26 +373,26 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Input:hover {
-    background-color: #151418;
+    background-color: #161518;
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid #333039;
-    border-left: 1px solid #333039;
-    border-right: 1px solid #333039;
-    border-bottom: 1px solid #7131fb; }
+    border-top: 1px solid #343239;
+    border-left: 1px solid #343239;
+    border-right: 1px solid #343239;
+    border-bottom: 1px solid #45fb31; }
   .SS_Input:focus, .SS_Input :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: #18161b;
-    border-top: 1px solid #3a3641;
-    border-left: 1px solid #3a3641;
-    border-right: 1px solid #3a3641;
-    border-bottom: 1px solid #7432ff; }
+    background-color: #18171b;
+    border-top: 1px solid #3b3941;
+    border-left: 1px solid #3b3941;
+    border-right: 1px solid #3b3941;
+    border-bottom: 1px solid #47ff32; }
 
 .SS_TextArea {
   border-radius: 3px;
   outline: none;
-  background-color: #111013;
-  border: 1px solid #27252c;
-  color: #eeeaf9;
+  background-color: #111113;
+  border: 1px solid #29272c;
+  color: #5cf94a;
   box-sizing: border-box;
   font-family: var(--FontSet-MonospaceFont);
   font-size: 1em;
@@ -377,19 +400,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_TextArea:hover {
-    background-color: #151418;
+    background-color: #161518;
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid #333039;
-    border-left: 1px solid #333039;
-    border-right: 1px solid #333039;
-    border-bottom: 1px solid #7131fb; }
+    border-top: 1px solid #343239;
+    border-left: 1px solid #343239;
+    border-right: 1px solid #343239;
+    border-bottom: 1px solid #45fb31; }
   .SS_TextArea:focus, .SS_TextArea :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: #18161b;
-    border-top: 1px solid #3a3641;
-    border-left: 1px solid #3a3641;
-    border-right: 1px solid #3a3641;
-    border-bottom: 1px solid #7432ff; }
+    background-color: #18171b;
+    border-top: 1px solid #3b3941;
+    border-left: 1px solid #3b3941;
+    border-right: 1px solid #3b3941;
+    border-bottom: 1px solid #47ff32; }
   .SS_TextArea--HeightThin {
     height: 75px; }
   .SS_TextArea--HeightMedium {
@@ -400,9 +423,9 @@
 .SS_Select, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector {
   border-radius: 3px;
   outline: none;
-  background-color: #111013;
-  border: 1px solid #27252c;
-  color: #eeeaf9;
+  background-color: #111113;
+  border: 1px solid #29272c;
+  color: #5cf94a;
   box-sizing: border-box;
   font-family: var(--FontSet-MonospaceFont);
   font-size: 1em;
@@ -411,19 +434,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Select:hover, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:hover {
-    background-color: #151418;
+    background-color: #161518;
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid #333039;
-    border-left: 1px solid #333039;
-    border-right: 1px solid #333039;
-    border-bottom: 1px solid #7131fb; }
+    border-top: 1px solid #343239;
+    border-left: 1px solid #343239;
+    border-right: 1px solid #343239;
+    border-bottom: 1px solid #45fb31; }
   .SS_Select:focus, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:focus, .SS_Select :active, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: #18161b;
-    border-top: 1px solid #3a3641;
-    border-left: 1px solid #3a3641;
-    border-right: 1px solid #3a3641;
-    border-bottom: 1px solid #7432ff; }
+    background-color: #18171b;
+    border-top: 1px solid #3b3941;
+    border-left: 1px solid #3b3941;
+    border-right: 1px solid #3b3941;
+    border-bottom: 1px solid #47ff32; }
 
 .SS_Input--WidthWide {
   width: 600px; }
@@ -447,19 +470,19 @@
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner {
     border: 0; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
-    background-color: #19171c;
-    border: 1px solid #2f2c36;
-    color: #f7f5fc; }
+    background-color: #19181c;
+    border: 1px solid #302e36;
+    color: #75fc66; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
-    color: #504c59; }
+    border: 1px solid #302e36;
+    color: #095900; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled) {
-    background-color: #25222a;
-    border: 1px solid #3b3744; }
+    background-color: #25232a;
+    border: 1px solid #3c3844; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled) {
     background-color: #2d2a34;
-    border: 1px solid #433e4d; }
+    border: 1px solid #433f4d; }
 
 .SS_Button--Green {
   border-radius: 3px;
@@ -479,8 +502,8 @@
     color: white; }
   .SS_Button--Green:disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
-    color: #504c59; }
+    border: 1px solid #38343f;
+    color: #095900; }
   .SS_Button--Green:hover:not(:disabled), .SS_Button--Green:focus:not(:disabled) {
     background-color: #139b13;
     border-bottom: 1px solid #0ea50e; }
@@ -506,8 +529,8 @@
     color: white; }
   .SS_Button--Red:disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
-    color: #504c59; }
+    border: 1px solid #38343f;
+    color: #095900; }
   .SS_Button--Red:hover:not(:disabled), .SS_Button--Red:focus:not(:disabled) {
     background-color: #d32929;
     border-bottom: 1px solid #db2323; }
@@ -533,8 +556,8 @@
     color: white; }
   .SS_Button--Blue:disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
-    color: #504c59; }
+    border: 1px solid #38343f;
+    color: #095900; }
   .SS_Button--Blue:hover:not(:disabled), .SS_Button--Blue:focus:not(:disabled) {
     background-color: #3c4caf;
     border-bottom: 1px solid #3747b7; }
@@ -555,23 +578,23 @@
   .SS_Button--Inverted::-moz-focus-inner {
     border: 0; }
   .SS_Button--Inverted:not(:disabled) {
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
+    background-color: #8cff80;
+    border: 1px solid #8cff80;
     color: #000000; }
   .SS_Button--Inverted:disabled {
     background-color: transparent;
-    border: 1px solid #37343f;
-    color: #504c59; }
+    border: 1px solid #38343f;
+    color: #095900; }
   .SS_Button--Inverted:hover:not(:disabled), .SS_Button--Inverted:focus:not(:disabled) {
-    background-color: #f7f5fc;
-    border-bottom: 1px solid #f7f5fc; }
+    background-color: #75fc66;
+    border-bottom: 1px solid #75fc66; }
   .SS_Button--Inverted:active:not(:disabled) {
-    background-color: #eeeaf9;
-    border: 1px solid #eeeaf9; }
+    background-color: #5cf94a;
+    border: 1px solid #5cf94a; }
 
 .FlareTableContainer {
-  border-top: 1px solid #27252c;
-  color: #d5cde7;
+  border-top: 1px solid #29272c;
+  color: #32e71e;
   display: inline-block;
   width: 100%; }
   .FlareTableContainer--Fixed .FlareTableTable {
@@ -579,9 +602,9 @@
   .FlareTableContainer .FlareTableControlRow {
     align-items: center;
     background-color: #151418;
-    border-bottom: 1px solid #2b2931;
-    border-left: 1px solid #2b2931;
-    border-right: 1px solid #2b2931;
+    border-bottom: 1px solid #2c2a31;
+    border-left: 1px solid #2c2a31;
+    border-right: 1px solid #2c2a31;
     box-sizing: border-box;
     display: flex;
     min-height: 29px;
@@ -593,7 +616,7 @@
         height: unset;
         padding: 0; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
-      color: #a49cb5;
+      color: #18b507;
       font-family: var(--FontSet-MonospaceFont);
       user-select: none; }
     .FlareTableContainer .FlareTableControlRow .FlareTableControlFiller {
@@ -604,10 +627,10 @@
       font-family: var(--FontSet-MonospaceFont);
       padding: 2px 6px !important; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton {
-      background-color: #111013;
-      border: 1px solid #27252c;
+      background-color: #111113;
+      border: 1px solid #29272c;
       border-radius: 3px;
-      color: #d5cde7;
+      color: #32e71e;
       font-family: var(--FontSet-MonospaceFont);
       margin: 1px;
       min-width: 26px;
@@ -616,15 +639,15 @@
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled) {
         cursor: pointer; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled):hover {
-        background-color: #151418 !important;
-        border: 1px solid #333039 !important; }
+        background-color: #161518 !important;
+        border: 1px solid #343239 !important; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton::-moz-focus-inner {
         border: 0; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current {
-        border: 1px solid #5d21de !important; }
+        border: 1px solid #34de21 !important; }
         .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current:not(:disabled):hover {
-          background-color: #151418 !important;
-          border: 1px solid #5e22e0 !important; }
+          background-color: #161518 !important;
+          border: 1px solid #35e022 !important; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped {
         position: relative;
         width: 26px; }
@@ -639,9 +662,10 @@
       display: flex;
       margin: 0 1px;
       user-select: none; }
-      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles span {
-        color: #a49cb5;
-        margin: 0 1px 0 3px; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer {
+        margin-right: 3px; }
+        .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer:last-child {
+          margin-right: 9px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle {
       align-items: center;
       cursor: pointer;
@@ -651,18 +675,20 @@
       .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle input[type=checkbox] {
         cursor: pointer; }
       .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle span {
-        color: #a49cb5;
+        color: #18b507;
         margin: 0 1px 0 3px; }
   .FlareTableContainer .FlareTableTable + .FlareTableControlRow {
-    border-top: 1px solid #2b2931; }
+    border-top: 1px solid #2c2a31; }
   .FlareTableContainer .FlareTableTable {
     border-spacing: 0;
     width: 100%; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:first-child .FlareTableHeading_Cell {
-      border-left: 1px solid #2b2931; }
+      border-left: 1px solid #2c2a31; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
       background-color: #151418;
-      border-right: 1px solid #2b2931; }
+      border-right: 1px solid #2c2a31; }
+      .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell--Hidden {
+        width: 23.5px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
         align-items: center;
         display: inline-flex;
@@ -670,48 +696,49 @@
         width: 100%; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableHeading_CellHeading {
           flex-grow: 99999; }
-        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton {
-          align-items: center;
-          background-color: #19171c;
-          border: solid 1px #e3ddf2;
-          border-radius: 75% 15%;
-          cursor: pointer;
-          display: inline-flex;
-          height: 10px;
-          justify-content: center;
-          margin: 0 5px;
-          position: relative;
-          transform: rotate(45deg);
-          user-select: none;
-          width: 10px; }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton:hover {
-            background-color: #29262f; }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButton:before {
-            border: solid 1px #e3ddf2;
-            border-radius: 50%;
-            content: '';
-            display: block;
-            height: 5px;
-            position: absolute;
-            width: 5px; }
+        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer {
+          width: 23.5px; }
+          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton {
+            align-items: center;
+            background-color: #19181c;
+            border: solid 1px #45f231;
+            border-radius: 75% 15%;
+            cursor: pointer;
+            display: inline-flex;
+            height: 10px;
+            justify-content: center;
+            position: relative;
+            transform: rotate(45deg);
+            user-select: none;
+            width: 10px; }
+            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:hover {
+              background-color: #29272f; }
+            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:before {
+              border: solid 1px #45f231;
+              border-radius: 50%;
+              content: '';
+              display: block;
+              height: 5px;
+              position: absolute;
+              width: 5px; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
-      border-left: 1px solid #2b2931; }
+      border-left: 1px solid #2c2a31; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
       background-color: #151418;
-      border-bottom: 1px solid #2b2931;
-      border-right: 1px solid #2b2931;
+      border-bottom: 1px solid #2c2a31;
+      border-right: 1px solid #2c2a31;
       padding: 1px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer {
         display: flex;
         justify-content: space-between; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer:not(:first-child) {
-          border-left: 1px solid #2b2931; }
+          border-left: 1px solid #2c2a31; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
           border-radius: 3px;
           outline: none;
-          background-color: #111013;
-          border: 1px solid #27252c;
-          color: #eeeaf9;
+          background-color: #111113;
+          border: 1px solid #29272c;
+          color: #5cf94a;
           box-sizing: border-box;
           font-family: var(--FontSet-MonospaceFont);
           font-size: 1em;
@@ -722,19 +749,19 @@
           margin-left: 1px;
           width: calc(100% - 25px); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover {
-            background-color: #151418;
+            background-color: #161518;
             transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-            border-top: 1px solid #333039;
-            border-left: 1px solid #333039;
-            border-right: 1px solid #333039;
-            border-bottom: 1px solid #7131fb; }
+            border-top: 1px solid #343239;
+            border-left: 1px solid #343239;
+            border-right: 1px solid #343239;
+            border-bottom: 1px solid #45fb31; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:focus, .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input :active {
             transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-            background-color: #18161b;
-            border-top: 1px solid #3a3641;
-            border-left: 1px solid #3a3641;
-            border-right: 1px solid #3a3641;
-            border-bottom: 1px solid #7432ff; }
+            background-color: #18171b;
+            border-top: 1px solid #3b3941;
+            border-left: 1px solid #3b3941;
+            border-right: 1px solid #3b3941;
+            border-bottom: 1px solid #47ff32; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
             border: 1px solid red; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton {
@@ -752,8 +779,8 @@
           user-select: none;
           width: 20px; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton:hover {
-            background-color: #1d1c21;
-            border: 1px solid #2f2c36; }
+            background-color: #1e1c21;
+            border: 1px solid #302e36; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(even) .FlareTableCell {
       background-color: #0b0a0d; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(odd) .FlareTableCell {
@@ -779,13 +806,11 @@
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(odd):hover .FlareTableCell {
       background-color: #2e0000; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
-      border-right: 1px solid #27252c;
+      border-right: 1px solid #29272c;
       padding: 1px 3px;
       transition: background-color linear 100ms; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
-        border-left: 1px solid #27252c; }
-      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Hidden {
-        width: 15px; }
+        border-left: 1px solid #29272c; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Mono {
         font-family: var(--FontSet-MonospaceFont); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell {
@@ -793,10 +818,10 @@
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:hover) .FlareTableCell {
       transition: background-color 100ms; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:first-child) .FlareTableCell {
-      border-top: 1px solid #27252c; }
+      border-top: 1px solid #29272c; }
 
 body {
   font-family: var(--FontSet-SansSerifFont);
-  background-color: #0d0c0e; }
+  background-color: #0d0d0e; }
 
 /*# sourceMappingURL=Style.Matrix.css.map */

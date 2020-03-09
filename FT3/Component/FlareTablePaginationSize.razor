@@ -1,5 +1,3 @@
-@using System.Threading.Tasks
-
 @typeparam T
 
 @code {
@@ -14,13 +12,13 @@
 
 }
 
-<div class="FlareTablePaginationSizes">
-    <TriggerWrapper Trigger="@FlareTable.UpdatePaginationSize">
+<TriggerWrapper Trigger="@FlareTable.OnPaginationResize">
+    <div class="FlareTablePaginationSizes">
         <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
             @foreach (int size in FlareTable.PageSizes)
             {
                 <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
             }
         </select>
-    </TriggerWrapper>
-</div>
+    </div>
+</TriggerWrapper>

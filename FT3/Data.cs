@@ -27,8 +27,11 @@ namespace FT3
 
         public IEnumerable<T> AllRows()
         {
+            bool dataChange = _matchedRowCache == null || _sortedRowCache == null;
+            
+            Console.WriteLine("AllRows()");
             _data ??= _dataGetter.Invoke();
-
+            
             if (_matchedRowCache == null)
             {
                 List<T> result         = new List<T>();
@@ -73,7 +76,6 @@ namespace FT3
                 }
 
                 RowCount = numRowsMatched;
-                UpdatePaginationState.Trigger();
 
                 _matchedRowCache = result;
             }
@@ -82,6 +84,9 @@ namespace FT3
             {
                 _sortedRowCache = Sort(ref _matchedRowCache);
             }
+            
+            if (dataChange)
+                OnDataChange.Trigger();
 
             return _sortedRowCache;
         }
@@ -156,7 +161,6 @@ namespace FT3
             {
                 foreach (Column? c in _columns.Values)
                     c?.TryCompileFilter();
-                UpdateFilterValues.Trigger();
             }
 
             if (_sessionStorage != null)
@@ -164,16 +168,12 @@ namespace FT3
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
-
-            UpdateTableBody.Trigger();
-            UpdateTableHead.Trigger();
         }
 
         public void InvalidateRows()
         {
             _matchedRowCache = null;
             _sortedRowCache  = null;
-            UpdateTableBody.Trigger();
         }
     }
 }

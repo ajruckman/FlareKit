@@ -7,8 +7,8 @@
 
 }
 
-<div class="FlareTablePaginationInfo">
-    <TriggerWrapper Trigger="@FlareTable.UpdatePaginationState">
+<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnPagination})">
+    <div class="FlareTablePaginationInfo">
         <span>@FlareTable.Info</span>
-    </TriggerWrapper>
-</div>
+    </div>
+</TriggerWrapper>

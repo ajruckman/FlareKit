@@ -5,9 +5,14 @@
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
 
+    [Parameter]
+    public string ID { get; set; }
 }
 
-<TriggerWrapper Trigger="@FlareTable.UpdatePaginationState">
+<TriggerWrapper Triggers="@(new UpdateTrigger[] {FlareTable.OnPagination})">
+    @{
+        Console.WriteLine("=== " + ID + " " + FlareTable.Info);
+    }
     <div class="FlareTablePaginationButtons">
         <button @onclick="@FlareTable.Previous" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
         @foreach (int i in FlareTable.Pages())

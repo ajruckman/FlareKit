@@ -28,7 +28,6 @@ namespace FT3
             private set
             {
                 _current = value;
-                UpdateTableBody.Trigger();
             }
         }
 
@@ -40,6 +39,7 @@ namespace FT3
         {
             set
             {
+                Console.WriteLine("RowCount.set");
                 _rowCount = value;
 #pragma warning disable 4014
                 ResetCurrentPage();
@@ -49,43 +49,50 @@ namespace FT3
 
         private async Task ResetCurrentPage()
         {
+            Console.WriteLine("ResetCurrentPage()");
             if (PageSize == 0 || Current < NumPages || NumPages == 0) return;
             Current = NumPages - 1;
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
         public async Task Next()
         {
+            Console.WriteLine("Next()");
             Current++;
-            UpdatePaginationState.Trigger();
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
         public async Task Previous()
         {
+            Console.WriteLine("Previous()");
             Current--;
-            UpdatePaginationState.Trigger();
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
         public async Task First()
         {
+            Console.WriteLine("First()");
             Current = 0;
-            UpdatePaginationState.Trigger();
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
         public async Task Last()
         {
+            Console.WriteLine("Last()");
             Current = NumPages - 1;
-            UpdatePaginationState.Trigger();
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
         public async Task Jump(int page)
         {
+            Console.WriteLine("Jump()");
             Current = page > NumPages ? NumPages : page;
-            UpdatePaginationState.Trigger();
+            OnPagination.Trigger();
             await SavePageNumber();
         }
 
@@ -157,12 +164,11 @@ namespace FT3
         {
             PageSize = size;
             await ResetCurrentPage();
-            UpdateTableHead.Trigger();
-            UpdateTableBody.Trigger();
-            UpdatePaginationState.Trigger();
 
             if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
+            
+            OnPaginationResize.Trigger();
         }
     }
 }

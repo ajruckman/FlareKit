@@ -10,13 +10,15 @@
 
 }
 
-<TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+<TriggerWrapper Trigger="@FlareTable.OnColumnToggle">
     @if (FlareTable.ColumnShown(ID))
     {
         <th class="FlareTableHeading_Cell" style="width: @FlareTable.ColumnWidth(ID);">
             <div class="FlareTableHeading_CellContent">
                 <span class="FlareTableHeading_CellHeading">@FlareTable.GetColumnDisplayName(ID)</span>
-                <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>
+                <div class="FlareTableFilter_ToggleButtonContainer">
+                    <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>
+                </div>
             </div>
         </th>
     }
@@ -24,8 +26,9 @@
     {
         <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden">
             <div class="FlareTableHeading_CellContent">
-                @* <span class="FlareTableHeading_CellHeading"></span> *@
-                <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, true))"></div>
+                <div class="FlareTableFilter_ToggleButtonContainer">
+                    <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, true))"></div>
+                </div>
             </div>
         </th>
     }

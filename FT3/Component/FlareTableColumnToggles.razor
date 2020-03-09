@@ -1,4 +1,4 @@
-@using System.Threading.Tasks
+@using ShapeSet.Components
 
 @typeparam T
 
@@ -15,10 +15,11 @@
 }
 
 <div class="FlareTableColumnToggles">
-    <TriggerWrapper Trigger="@FlareTable.UpdateTableHead">
+    <TriggerWrapper Trigger="@FlareTable.OnColumnToggle">
         @foreach (Column column in FlareTable.Columns)
         {
-            <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/>
+            <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
+@*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
         }
     </TriggerWrapper>
     <span>Column Toggles</span>
