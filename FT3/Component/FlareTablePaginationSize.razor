@@ -1,3 +1,4 @@
+@using System.Threading.Tasks
 @using Superset.Logging
 @typeparam T
 
@@ -14,14 +15,17 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTablePaginationSize"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTablePaginationSize");
 
-    <div class="FlareTablePaginationSizes">
-        <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
-            @foreach (int size in FlareTable.PageSizes)
-            {
-                <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
-            }
-        </select>
-    </div>
+        <div class="FlareTablePaginationSizes">
+            <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
+                @foreach (int size in FlareTable.PageSizes)
+                {
+                    <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
+                }
+            </select>
+        </div>
+    }
 </TriggerWrapper>

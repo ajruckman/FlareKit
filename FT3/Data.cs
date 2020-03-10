@@ -88,6 +88,12 @@ namespace FT3
                 _sortedRowCache = Sort(ref _matchedRowCache);
             }
 
+            if (dataChange)
+            {
+                OnPageUpdate.Invoke();
+                ExecutePending();
+            }
+            
             return _sortedRowCache ?? new List<T>();
         }
 

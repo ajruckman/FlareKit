@@ -9,9 +9,12 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTablePaginationInfo"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTablePaginationInfo");
 
-    <div class="FlareTablePaginationInfo">
-        <span>@FlareTable.Info</span>
-    </div>
+        <div class="FlareTablePaginationInfo">
+            <span>@FlareTable.Info</span>
+        </div>
+    }
 </TriggerWrapper>

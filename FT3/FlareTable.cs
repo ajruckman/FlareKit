@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using Superset.Common;
+using Superset.Logging;
 
 // ReSharper disable ClassCanBeSealed.Global
 // ReSharper disable MemberCanBeInternal
@@ -14,6 +15,8 @@ namespace FT3
     public partial class FlareTable<T>
     {
         private readonly string? _identifier;
+
+        internal bool Complete { get; private set; }
 
         internal event Action OnColumnFilterUpdate;     // +
         internal event Action OnColumnSortUpdate;       // +
@@ -27,24 +30,30 @@ namespace FT3
         private bool _invalidateSortPending;
         private bool _invalidatePagePending;
 
-        private void ExecutePending()
+        private void ExecutePending(bool force = false)
         {
-            if (_loadingSessionValues)
+            if (_loadingSessionValues && !force)
+            {
+                Log.Update("ExecutePending(): exiting because we are loading session values");
                 return;
-            
-            if (_invalidateRowsPending)
+            }
+
+            Log.Update(
+                $"ExecutePending(): Rows: {_invalidateRowsPending} | Sort: {_invalidateSortPending} | Page: {_invalidatePagePending}");
+
+            if (_invalidateRowsPending || force)
             {
                 InvalidateRows();
                 _invalidateRowsPending = false;
             }
 
-            if (_invalidateSortPending)
+            if (_invalidateSortPending || force)
             {
                 InvalidateSort();
                 _invalidateSortPending = false;
             }
 
-            if (_invalidatePagePending)
+            if (_invalidatePagePending || force)
             {
                 InvalidatePage();
                 _invalidatePagePending = false;
@@ -78,7 +87,9 @@ namespace FT3
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
 
-            Events();
+            Complete = true;
+
+            RegisterEvents();
         }
 
         /// <summary>
@@ -110,18 +121,20 @@ namespace FT3
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
 
-            Events();
+            Complete = true;
+
+            RegisterEvents();
         }
 
-        private void Events()
+        private void RegisterEvents()
         {
-            OnColumnFilterUpdate     += () => Console.WriteLine("OnColumnFilterUpdate ++");
-            OnColumnSortUpdate       += () => Console.WriteLine("OnColumnSortUpdate ++");
-            OnColumnVisibilityUpdate += () => Console.WriteLine("OnColumnVisibilityUpdate ++");
-            OnRegexToggle            += () => Console.WriteLine("OnRegexToggle ++");
-            OnPageUpdate             += () => Console.WriteLine("OnPageUpdate ++");
-            OnPageSizeUpdate         += () => Console.WriteLine("OnPageSizeUpdate ++");
-            OnReset                  += () => Console.WriteLine("OnReset ++");
+            OnColumnFilterUpdate     += () => Log.Update("OnColumnFilterUpdate ++");
+            OnColumnSortUpdate       += () => Log.Update("OnColumnSortUpdate ++");
+            OnColumnVisibilityUpdate += () => Log.Update("OnColumnVisibilityUpdate ++");
+            OnRegexToggle            += () => Log.Update("OnRegexToggle ++");
+            OnPageUpdate             += () => Log.Update("OnPageUpdate ++");
+            OnPageSizeUpdate         += () => Log.Update("OnPageSizeUpdate ++");
+            OnReset                  += () => Log.Update("OnReset ++");
 
             OnColumnFilterUpdate     += () => _invalidateRowsPending = true;
             OnColumnVisibilityUpdate += () => _invalidateRowsPending = true;
@@ -135,8 +148,8 @@ namespace FT3
 
             //
 
-            UpdateTableControls.OnUpdate += () => Console.WriteLine("UpdateTableControls.Trigger()");
-            UpdateTableBody.OnUpdate     += () => Console.WriteLine("UpdateTableBody.Trigger()");
+            UpdateTableControls.OnUpdate += () => Log.Update("UpdateTableControls.Trigger()");
+            UpdateTableBody.OnUpdate     += () => Log.Update("UpdateTableBody.Trigger()");
         }
 
         public async Task Reset()

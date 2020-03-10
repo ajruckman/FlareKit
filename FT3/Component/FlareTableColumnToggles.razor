@@ -1,3 +1,4 @@
+@using System.Threading.Tasks
 @using ShapeSet.Components
 @using Superset.Logging
 
@@ -16,14 +17,17 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTableColumnToggles"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableColumnToggles");
 
-    <div class="FlareTableColumnToggles">
-        @foreach (Column column in FlareTable.Columns)
-        {
-            <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
-@*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
-        }
-        <span>Column Toggles</span>
-    </div>
+        <div class="FlareTableColumnToggles">
+            @foreach (Column column in FlareTable.Columns)
+            {
+                <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
+    @*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
+            }
+            <span>Column Toggles</span>
+        </div>
+    }
 </TriggerWrapper>

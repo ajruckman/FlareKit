@@ -12,9 +12,12 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTableBody"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableBody");
 
-    <tbody class="FlareTableBody">
-    @ChildContent
-    </tbody>
+        <tbody class="FlareTableBody">
+        @ChildContent
+        </tbody>
+    }
 </TriggerWrapper>

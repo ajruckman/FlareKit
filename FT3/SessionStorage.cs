@@ -49,7 +49,7 @@ namespace FT3
             _sortedRowCache  = null;
 
             _loadingSessionValues = false;
-            ExecutePending();
+            ExecutePending(false);
         }
 
         private async Task StoreColumnConfig(Column column)

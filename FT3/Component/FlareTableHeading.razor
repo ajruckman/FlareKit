@@ -12,27 +12,30 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTableHeading"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableHeading");
 
-    @if (FlareTable.ColumnShown(ID))
-    {
-        <th class="FlareTableHeading_Cell" style="width: @FlareTable.ColumnWidth(ID);">
-            <div class="FlareTableHeading_CellContent">
-                <span class="FlareTableHeading_CellHeading">@FlareTable.GetColumnDisplayName(ID)</span>
-                <div class="FlareTableFilter_ToggleButtonContainer">
-                    <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>
+        @if (FlareTable.ColumnShown(ID))
+        {
+            <th class="FlareTableHeading_Cell" style="width: @FlareTable.ColumnWidth(ID);">
+                <div class="FlareTableHeading_CellContent">
+                    <span class="FlareTableHeading_CellHeading">@FlareTable.GetColumnDisplayName(ID)</span>
+                    <div class="FlareTableFilter_ToggleButtonContainer">
+                        <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, false))"></div>
+                    </div>
                 </div>
-            </div>
-        </th>
-    }
-    else
-    {
-        <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden">
-            <div class="FlareTableHeading_CellContent">
-                <div class="FlareTableFilter_ToggleButtonContainer">
-                    <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, true))"></div>
+            </th>
+        }
+        else
+        {
+            <th class="FlareTableHeading_Cell FlareTableHeading_Cell--Hidden">
+                <div class="FlareTableHeading_CellContent">
+                    <div class="FlareTableFilter_ToggleButtonContainer">
+                        <div class="FlareTableFilter_ToggleButton" @onclick="@(_ => FlareTable.SetColumnVisibility(ID, true))"></div>
+                    </div>
                 </div>
-            </div>
-        </th>
+            </th>
+        }
     }
 </TriggerWrapper>

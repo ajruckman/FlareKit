@@ -12,21 +12,24 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
-    @{ Log.Update("[COMPONENT] FlareTablePaginationButtons"); }
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTablePaginationButtons");
 
-    <div class="FlareTablePaginationButtons">
-        <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
-        @foreach (int i in FlareTable.Pages())
-        {
-            if (i == -1)
+        <div class="FlareTablePaginationButtons">
+            <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
+            @foreach (int i in FlareTable.Pages())
             {
-                <button class="FlareTablePaginationButton FlareTablePaginationButton--Skipped" disabled="disabled">&nbsp;</button>
+                if (i == -1)
+                {
+                    <button class="FlareTablePaginationButton FlareTablePaginationButton--Skipped" disabled="disabled">&nbsp;</button>
+                }
+                else
+                {
+                    <button @onclick="@(() => FlareTable.JumpToPage(i))" class="FlareTablePaginationButton @(FlareTable.CurrentPage == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
+                }
             }
-            else
-            {
-                <button @onclick="@(() => FlareTable.JumpToPage(i))" class="FlareTablePaginationButton @(FlareTable.CurrentPage == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
-            }
-        }
-        <button @onclick="@FlareTable.NextPage" disabled="@(!FlareTable.CanNext)" class="FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
-    </div>
+            <button @onclick="@FlareTable.NextPage" disabled="@(!FlareTable.CanNext)" class="FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
+        </div>
+    }
 </TriggerWrapper>
