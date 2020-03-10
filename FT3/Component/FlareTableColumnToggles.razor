@@ -16,7 +16,7 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    @{ Log.Update("FlareTableColumnToggles"); }
+    @{ Log.Update("[COMPONENT] FlareTableColumnToggles"); }
 
     <div class="FlareTableColumnToggles">
         @foreach (Column column in FlareTable.Columns)

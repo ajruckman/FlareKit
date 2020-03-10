@@ -12,12 +12,16 @@ namespace FT3
         private readonly int                     _initialPageSize;
         private readonly ISessionStorageService? _sessionStorage;
 
+        private bool _loadingSessionValues;
+
         public async Task LoadSessionValues()
         {
             if (_sessionStorage == null)
                 throw new ArgumentException(
                     "Called LoadSessionValues(), but a ISessionStorageService was not passed to the FlareTable constructor.");
 
+            _loadingSessionValues = true;
+            
             var newMode = await _sessionStorage.GetItemAsync<bool>($"FlareTable_{_identifier}_!RegexMode");
             if (newMode != RegexMode)
                 await ToggleRegexMode();
@@ -40,9 +44,12 @@ namespace FT3
                 else
                     LoadColumnConfig(stored, column);
             }
-            
+
             _matchedRowCache = null;
             _sortedRowCache  = null;
+
+            _loadingSessionValues = false;
+            ExecutePending();
         }
 
         private async Task StoreColumnConfig(Column column)

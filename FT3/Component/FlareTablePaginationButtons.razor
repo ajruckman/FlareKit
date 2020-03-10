@@ -12,7 +12,7 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
-    @{ Log.Update("FlareTablePaginationButtons"); }
+    @{ Log.Update("[COMPONENT] FlareTablePaginationButtons"); }
 
     <div class="FlareTablePaginationButtons">
         <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>

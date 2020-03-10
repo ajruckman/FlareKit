@@ -14,7 +14,7 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    @{ Log.Update("FlareTablePaginationSize"); }
+    @{ Log.Update("[COMPONENT] FlareTablePaginationSize"); }
 
     <div class="FlareTablePaginationSizes">
         <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">

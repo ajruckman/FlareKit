@@ -35,6 +35,7 @@ namespace FT3
 
             if (_matchedRowCache == null)
             {
+                Console.WriteLine("[Data] Re-matching rows");
                 List<T> result         = new List<T>();
                 var     numRows        = 0;
                 var     numRowsMatched = 0;
@@ -83,6 +84,7 @@ namespace FT3
 
             if (_sortedRowCache == null)
             {
+                Console.WriteLine("[Data] Re-sorting rows");
                 _sortedRowCache = Sort(ref _matchedRowCache);
             }
 
@@ -168,6 +170,7 @@ namespace FT3
             _sortedRowCache  = null;
 
             OnRegexToggle.Invoke();
+            ExecutePending();
         }
 
         public void InvalidateRows()
@@ -175,6 +178,7 @@ namespace FT3
             Log.Update();
             _matchedRowCache = null;
             _sortedRowCache  = null;
+            UpdateTableControls.Trigger();
             UpdateTableBody.Trigger();
         }
 

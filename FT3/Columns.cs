@@ -73,6 +73,7 @@ namespace FT3
             Console.WriteLine("SetColumnFilter");
             
             OnColumnFilterUpdate.Invoke();
+            ExecutePending();
         }
 
         // ReSharper disable once MemberCanBeInternal
@@ -86,6 +87,7 @@ namespace FT3
             _sortedRowCache  = null;
             
             OnColumnVisibilityUpdate.Invoke();
+            ExecutePending();
         }
 
         // ReSharper disable once MemberCanBeInternal
@@ -106,6 +108,7 @@ namespace FT3
             _sortedRowCache = null;
             
             OnColumnSortUpdate.Invoke();
+            ExecutePending();
         }
     }
 }

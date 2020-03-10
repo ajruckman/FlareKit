@@ -40,7 +40,7 @@ namespace FT3
         {
             set
             {
-                Log.Update("RowCount.set");
+                Log.Update("[COMPONENT] RowCount.set");
                 _rowCount = value;
 #pragma warning disable 4014
                 ResetCurrentPage();
@@ -55,6 +55,7 @@ namespace FT3
             CurrentPage = NumPages - 1;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -64,6 +65,7 @@ namespace FT3
             CurrentPage++;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -73,6 +75,7 @@ namespace FT3
             CurrentPage--;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -82,6 +85,7 @@ namespace FT3
             CurrentPage = 0;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -91,6 +95,7 @@ namespace FT3
             CurrentPage = NumPages - 1;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -100,6 +105,7 @@ namespace FT3
             CurrentPage = page > NumPages ? NumPages : page;
             
             OnPageUpdate.Invoke();
+            ExecutePending();
             await SavePageNumber();
         }
 
@@ -176,6 +182,7 @@ namespace FT3
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
             
             OnPageSizeUpdate.Invoke();
+            ExecutePending();
         }
     }
 }

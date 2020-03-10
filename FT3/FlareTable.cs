@@ -23,6 +23,34 @@ namespace FT3
         internal event Action OnPageSizeUpdate;         // +
         internal event Action OnReset;                  // +
 
+        private bool _invalidateRowsPending;
+        private bool _invalidateSortPending;
+        private bool _invalidatePagePending;
+
+        private void ExecutePending()
+        {
+            if (_loadingSessionValues)
+                return;
+            
+            if (_invalidateRowsPending)
+            {
+                InvalidateRows();
+                _invalidateRowsPending = false;
+            }
+
+            if (_invalidateSortPending)
+            {
+                InvalidateSort();
+                _invalidateSortPending = false;
+            }
+
+            if (_invalidatePagePending)
+            {
+                InvalidatePage();
+                _invalidatePagePending = false;
+            }
+        }
+
         internal readonly UpdateTrigger UpdateTableControls = new UpdateTrigger();
         internal readonly UpdateTrigger UpdateTableBody     = new UpdateTrigger();
 
@@ -87,15 +115,23 @@ namespace FT3
 
         private void Events()
         {
-            OnColumnFilterUpdate     += InvalidateRows;
-            OnColumnVisibilityUpdate += InvalidateRows;
-            OnRegexToggle            += InvalidateRows;
-            OnReset                  += InvalidateRows;
+            OnColumnFilterUpdate     += () => Console.WriteLine("OnColumnFilterUpdate ++");
+            OnColumnSortUpdate       += () => Console.WriteLine("OnColumnSortUpdate ++");
+            OnColumnVisibilityUpdate += () => Console.WriteLine("OnColumnVisibilityUpdate ++");
+            OnRegexToggle            += () => Console.WriteLine("OnRegexToggle ++");
+            OnPageUpdate             += () => Console.WriteLine("OnPageUpdate ++");
+            OnPageSizeUpdate         += () => Console.WriteLine("OnPageSizeUpdate ++");
+            OnReset                  += () => Console.WriteLine("OnReset ++");
 
-            OnColumnSortUpdate += InvalidateSort;
+            OnColumnFilterUpdate     += () => _invalidateRowsPending = true;
+            OnColumnVisibilityUpdate += () => _invalidateRowsPending = true;
+            OnRegexToggle            += () => _invalidateRowsPending = true;
+            OnReset                  += () => _invalidateRowsPending = true;
 
-            OnPageUpdate     += InvalidatePage;
-            OnPageSizeUpdate += InvalidatePage;
+            OnColumnSortUpdate += () => _invalidateSortPending = true;
+
+            OnPageUpdate     += () => _invalidatePagePending = true;
+            OnPageSizeUpdate += () => _invalidatePagePending = true;
 
             //
 
