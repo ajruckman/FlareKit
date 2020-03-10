@@ -15,45 +15,26 @@ namespace FT3
     public partial class FlareTable<T>
     {
         internal readonly int[] PageSizes = {10, 25, 50, 100, 250, 500};
-        private           int   _currentPage;
         internal          int   PageSize;
+        public            int   CurrentPage { get; private set; }
 
+        internal int  Skip     => PageSize * CurrentPage;
+        public   int  NumPages => (int) Math.Ceiling(RowCount / (decimal) PageSize);
         public   bool CanPrev  => CurrentPage - 1 >= 0;
         public   bool CanNext  => CurrentPage + 1 < NumPages;
-        private  int  NumPages => (int) Math.Ceiling(_rowCount / (decimal) PageSize);
-        internal int  Skip     => PageSize * CurrentPage;
-
-        public int CurrentPage
-        {
-            get => _currentPage;
-            private set
-            {
-                _currentPage = value;
-            }
-        }
 
         internal string Info =>
-            $"Showing {(_rowCount != 0 ? Skip + 1 : 0)} to {Math.Min(Skip + PageSize, _rowCount)} of {_rowCount:#,##0} | {NumPages} page" +
+            $"Showing {(RowCount != 0 ? Skip + 1 : 0)} to {Math.Min(Skip + PageSize, RowCount)} of {RowCount:#,##0} | {NumPages} page" +
             (NumPages != 1 ? "s" : "");
 
-        private int RowCount
-        {
-            set
-            {
-                Log.Update("[COMPONENT] RowCount.set");
-                _rowCount = value;
-#pragma warning disable 4014
-                ResetCurrentPage();
-#pragma warning restore 4014
-            }
-        }
+        private int RowCount { get; set; }
 
         private async Task ResetCurrentPage()
         {
             Log.Update();
             if (PageSize == 0 || CurrentPage < NumPages || NumPages == 0) return;
             CurrentPage = NumPages - 1;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -63,7 +44,7 @@ namespace FT3
         {
             Log.Update();
             CurrentPage++;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -73,7 +54,7 @@ namespace FT3
         {
             Log.Update();
             CurrentPage--;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -83,7 +64,7 @@ namespace FT3
         {
             Log.Update();
             CurrentPage = 0;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -93,7 +74,7 @@ namespace FT3
         {
             Log.Update();
             CurrentPage = NumPages - 1;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -103,7 +84,7 @@ namespace FT3
         {
             Log.Update();
             CurrentPage = page > NumPages ? NumPages : page;
-            
+
             OnPageUpdate.Invoke();
             ExecutePending();
             await SavePageNumber();
@@ -180,7 +161,7 @@ namespace FT3
 
             if (_sessionStorage != null)
                 await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
-            
+
             OnPageSizeUpdate.Invoke();
             ExecutePending();
         }

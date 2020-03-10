@@ -3,17 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Superset.Logging;
 
 namespace FT3
 {
     public partial class FlareTable<T>
     {
-        [NotNull] private readonly ListDictionary _columns = new ListDictionary();
-        public                     List<Column>   Columns => _columns.Values.Cast<Column>().ToList();
+        private readonly HybridDictionary    _columns = new HybridDictionary();
+        public           IEnumerable<Column> Columns => _columns.Values.Cast<Column>().ToList();
 
         public void RegisterColumn(
             string         id,
@@ -70,8 +70,8 @@ namespace FT3
             _matchedRowCache = null;
             _sortedRowCache  = null;
 
-            Console.WriteLine("SetColumnFilter");
-            
+            Log.Update($"SetColumnFilter({id}, {filter})");
+
             OnColumnFilterUpdate.Invoke();
             ExecutePending();
         }
@@ -85,7 +85,7 @@ namespace FT3
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
-            
+
             OnColumnVisibilityUpdate.Invoke();
             ExecutePending();
         }
@@ -94,6 +94,10 @@ namespace FT3
         public async Task NextColumnSort(string id)
         {
             Column c = (Column) _columns[id];
+
+            if (c.SortDirection == SortDirections.Neutral)
+                c.SortIndex = _currentSortIndex++;
+
             c.SortDirection = c.SortDirection switch
             {
                 SortDirections.Neutral   => SortDirections.Ascending,
@@ -101,12 +105,28 @@ namespace FT3
                 _                        => SortDirections.Neutral
             };
 
-            c.SortIndex = _currentSortIndex++;
+            if (c.SortDirection == SortDirections.Neutral)
+                c.SortIndex = 0;
 
             await StoreColumnConfig((Column) _columns[id]);
 
             _sortedRowCache = null;
-            
+
+            OnColumnSortUpdate.Invoke();
+            ExecutePending();
+        }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public async Task SetColumnSort(string id, SortDirections sortDirection, int index)
+        {
+            Column c = (Column) _columns[id];
+            c.SortDirection = sortDirection;
+            c.SortIndex     = index;
+
+            await StoreColumnConfig((Column) _columns[id]);
+
+            _sortedRowCache = null;
+
             OnColumnSortUpdate.Invoke();
             ExecutePending();
         }

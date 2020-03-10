@@ -21,7 +21,7 @@ namespace FT3
                     "Called LoadSessionValues(), but a ISessionStorageService was not passed to the FlareTable constructor.");
 
             _loadingSessionValues = true;
-            
+
             var newMode = await _sessionStorage.GetItemAsync<bool>($"FlareTable_{_identifier}_!RegexMode");
             if (newMode != RegexMode)
                 await ToggleRegexMode();
@@ -42,14 +42,14 @@ namespace FT3
                 if (stored == null)
                     await StoreColumnConfig(column);
                 else
-                    LoadColumnConfig(stored, column);
+                    await LoadColumnConfig(stored, column);
             }
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
 
             _loadingSessionValues = false;
-            ExecutePending(false);
+            ExecutePending();
         }
 
         private async Task StoreColumnConfig(Column column)
@@ -58,13 +58,13 @@ namespace FT3
                 await _sessionStorage.SetItemAsync(column.Key, JsonConvert.SerializeObject(column));
         }
 
-        private void LoadColumnConfig(string configString, Column column)
+        private async Task LoadColumnConfig(string configString, Column column)
         {
             Column storedConfig = JsonConvert.DeserializeObject<Column>(configString);
-            column.Shown         = storedConfig.Shown;
-            column.SortDirection = storedConfig.SortDirection;
-            column.SortIndex     = storedConfig.SortIndex;
-            column.FilterValue   = storedConfig.FilterValue;
+
+            await SetColumnVisibility(column.ID, storedConfig.Shown);
+            await SetColumnSort(column.ID, storedConfig.SortDirection, storedConfig.SortIndex);
+            await SetColumnFilter(column.ID, storedConfig.FilterValue);
         }
     }
 }

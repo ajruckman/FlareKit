@@ -17,8 +17,6 @@
 
     protected override void OnParametersSet()
     {
-        _filter = FlareTable.GetColumnFilter(ID);
-    // FlareTable.ResetFilterValues.OnUpdate += () => _filter = "";
     }
 
     private void SetFilter(ChangeEventArgs args)
@@ -46,6 +44,7 @@
     @if (FlareTable.Complete)
     {
         Log.Update("[COMPONENT] FlareTableFilter");
+        _filter = FlareTable.GetColumnFilter(ID);
 
         if (FlareTable.ColumnShown(ID))
         {

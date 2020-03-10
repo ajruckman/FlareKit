@@ -18,20 +18,18 @@ namespace FT3
         [JsonIgnore]   internal readonly PropertyInfo Property;
         [JsonProperty] public            bool         Shown;
         [JsonIgnore]   public            string       Width;
-        [JsonIgnore]   public            bool         Monospace;
+        [JsonIgnore]   public readonly   bool         Monospace;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;
 
         private readonly Regex _matchSize =
-            new Regex(@"^(0|auto|unset)$|^[+-]?[0-9]+(?:\.?([0-9]+))?(em|ex|%|px|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax)$",
+            new Regex(
+                @"^(0|auto|unset)$|^[+-]?[0-9]+(?:\.?([0-9]+))?(em|ex|%|px|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax)$",
                 RegexOptions.Compiled);
 
-        public Column()
-        {
-            
-        }
-        
+        public Column() { }
+
         public Column(
             string         id,
             string         displayName,
@@ -46,7 +44,7 @@ namespace FT3
         {
             if (!_matchSize.IsMatch(width))
                 throw new ArgumentException($"Size '{width}' is not a valid CSS element size.", nameof(width));
-            
+
             DisplayName   = displayName;
             FilterValue   = filterValue;
             ID            = id;

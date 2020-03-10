@@ -51,7 +51,7 @@ namespace Web.Pages
                 () => RecordCache.Records,
                 SessionStorage,
                 "ft3x",
-                fixedLayout: false,
+                fixedLayout: true,
                 rowColorGetter: row =>
                     row.Zip.StartsWith("0") ? RowColor.Undefined : row.Zip.Contains("-") ? RowColor.Red : RowColor.Green
             );

@@ -19,23 +19,23 @@ namespace FT3
         private readonly ValueGetter     _valueGetter;
         private          int             _currentSortIndex;
         private          IEnumerable<T>? _data;
-        private          int             _rowCount;
 
         internal bool RegexMode;
 
         private List<T>? _matchedRowCache;
         private List<T>? _sortedRowCache;
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public IEnumerable<T> AllRows()
         {
             bool dataChange = _matchedRowCache == null || _sortedRowCache == null;
 
-            Console.WriteLine("AllRows()");
+            Log.Update("[Data] AllRows");
             _data ??= _dataGetter.Invoke();
 
             if (_matchedRowCache == null)
             {
-                Console.WriteLine("[Data] Re-matching rows");
+                Log.Update("[Data] Re-matching rows");
                 List<T> result         = new List<T>();
                 var     numRows        = 0;
                 var     numRowsMatched = 0;
@@ -78,13 +78,14 @@ namespace FT3
                 }
 
                 RowCount = numRowsMatched;
+                ResetCurrentPage();
 
                 _matchedRowCache = result;
             }
 
             if (_sortedRowCache == null)
             {
-                Console.WriteLine("[Data] Re-sorting rows");
+                Log.Update("[Data] Re-sorting rows");
                 _sortedRowCache = Sort(ref _matchedRowCache);
             }
 
@@ -179,6 +180,7 @@ namespace FT3
             ExecutePending();
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public void InvalidateRows()
         {
             Log.Update();
