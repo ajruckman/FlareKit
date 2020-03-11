@@ -1,5 +1,6 @@
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Common
 
 @inject IJSRuntime JSRuntime
 
@@ -27,7 +28,7 @@
     <div class="@FlareSelector.ContainerClasses("SelectionContainer")">
         @if (FlareSelector.Selected.Any())
         {
-            @foreach (Option option in FlareSelector.Selected)
+            @foreach (IOption option in FlareSelector.Selected)
             {
                 <div class="FlareSelect_Selection FlareSelect_Selection--@(!FlareSelector.Multiple ? "Single" : "Multiple")">
                     <span class="FlareSelect_SelectionValue">@option.SelectedText</span>
@@ -61,7 +62,7 @@
                 var tabIndex = 1;
 
                 <div class="FlareSelect_OptionContainer">
-                    @foreach (Option option in FlareSelector.Filtered)
+                    @foreach (IOption option in FlareSelector.Filtered)
                     {
                         <div class="FlareSelect_Option" data-selected="@(FlareSelector.IsSelected(option))" tabindex="@(tabIndex++)"
                              @onclick="@(() => FlareSelector.Select(option))"
