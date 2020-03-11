@@ -20,7 +20,7 @@ namespace FlareSelect
         public            bool                              Focused;
         internal          IJSRuntime                        JSRuntime;
         public            string                            SearchTerm;
-        public            List<Option>                      Selected;
+        public            List<IOption>                     Selected;
         internal          FlareLib.FlareLib.StateHasChanged StateHasChanged;
 
         public FlareSelector
@@ -83,7 +83,7 @@ namespace FlareSelect
 
         [SuppressMessage("ReSharper", "MergeConditionalExpressionWhenPossible")]
         [SuppressMessage("ReSharper", "RedundantIfElseBlock")]
-        public IEnumerable<Option> Filtered
+        public IEnumerable<IOption> Filtered
         {
             get
             {
@@ -122,9 +122,9 @@ namespace FlareSelect
             }
         }
 
-        public event Action<List<Option>> OnUpdate;
-        public event Action<string>       OnSearch;
-        public readonly UpdateTrigger     SelectionUpdateTrigger;
+        public event Action<List<IOption>> OnUpdate;
+        public event Action<string>        OnSearch;
+        public readonly UpdateTrigger      SelectionUpdateTrigger;
 
         public RenderFragment Render()
         {
