@@ -154,7 +154,7 @@ namespace FlareSelect
                 : Options.Invoke(SearchTerm).Where(v => v.Selected).ToList();
         }
 
-        public void Select(Option option)
+        public void Select(IOption option)
         {
             if (option.Placeholder) return;
 
@@ -182,12 +182,12 @@ namespace FlareSelect
             OnUpdate?.Invoke(Selected);
         }
 
-        public bool IsSelected(Option option)
+        public bool IsSelected(IOption option)
         {
             return !option.Placeholder && Selected.Any(v => v.ID.Equals(option.ID));
         }
 
-        public void Deselect(Option option)
+        public void Deselect(IOption option)
         {
             if (option.Placeholder) return;
 
@@ -243,7 +243,7 @@ namespace FlareSelect
             return result;
         }
 
-        public void OnKeyUp(KeyboardEventArgs args, Option option)
+        public void OnKeyUp(KeyboardEventArgs args, IOption option)
         {
             if (args.Key == "Enter") Select(option);
         }

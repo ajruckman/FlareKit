@@ -42,7 +42,7 @@
 
         fs2 = new FlareSelector(_ => optionsSingle);
         fs2.OnSearch += (string searchTerm) => { Console.WriteLine(searchTerm); };
-        fs2.OnUpdate += (List<Option> selected) =>
+        fs2.OnUpdate += (List<IOption> selected) =>
         {
             Console.WriteLine(selected.FirstOrDefault()?.Text);
             fs2.ClearSearch();
