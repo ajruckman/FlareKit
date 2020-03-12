@@ -73,7 +73,8 @@ namespace FT3
             int             pageSize       = 25,
             bool            monospace      = false,
             bool            fixedLayout    = false,
-            RowColorGetter? rowColorGetter = null
+            RowColorGetter? rowColorGetter = null,
+            bool            clickable      = false
         )
         {
             _dataGetter  = dataGetter;
@@ -86,6 +87,7 @@ namespace FT3
             _monospace       = monospace;
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
+            _clickable       = clickable;
 
             Complete = true;
 
@@ -105,7 +107,8 @@ namespace FT3
             int                    pageSize       = 25,
             bool                   monospace      = false,
             bool                   fixedLayout    = false,
-            RowColorGetter?        rowColorGetter = null
+            RowColorGetter?        rowColorGetter = null,
+            bool                   clickable      = false
         )
         {
             _dataGetter     = dataGetter;
@@ -120,6 +123,7 @@ namespace FT3
             _monospace       = monospace;
             _fixedLayout     = fixedLayout;
             _rowColorGetter  = rowColorGetter;
+            _clickable       = clickable;
 
             Complete = true;
 

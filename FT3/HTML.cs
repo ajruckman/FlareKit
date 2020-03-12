@@ -10,6 +10,9 @@ namespace FT3
         private readonly bool            _monospace;
         private readonly bool            _fixedLayout;
         private readonly RowColorGetter? _rowColorGetter;
+        private readonly bool            _clickable;
+
+        public event Action<T> OnRowClick;
 
         public string TableContainerClasses()
         {
@@ -91,6 +94,12 @@ namespace FT3
         public string GetColumnFilter(string id)
         {
             return ((Column) _columns[id])?.FilterValue ?? "";
+        }
+
+        internal void RowClick(T row)
+        {
+            if (_clickable)
+                OnRowClick?.Invoke(row);
         }
     }
 
