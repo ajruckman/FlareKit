@@ -350,6 +350,10 @@
                         background-color: $ColorSet_ThemeColor_TR_Red_30;
                     }
                 }
+                
+                &--Clickable {
+                    cursor: pointer;
+                }
 
                 .FlareTableCell {
                     border-right: 1px solid $ColorSet_ThemeColor_Border_40;

@@ -805,6 +805,8 @@
       background-color: #f2cece; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(odd):hover .FlareTableCell {
       background-color: #f5d0d0; }
+    .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Clickable {
+      cursor: pointer; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
       border-right: 1px solid #d3dce4;
       padding: 1px 3px;

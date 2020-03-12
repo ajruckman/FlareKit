@@ -34,6 +34,9 @@ namespace FT3
                     _                  => ""
                 };
 
+            if (_clickable)
+                result += " FlareTableBodyRow--Clickable";
+
             return result;
         }
 

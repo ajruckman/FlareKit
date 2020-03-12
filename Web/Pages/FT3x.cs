@@ -53,7 +53,9 @@ namespace Web.Pages
                 "ft3x",
                 fixedLayout: true,
                 rowColorGetter: row =>
-                    row.Zip.StartsWith("0") ? RowColor.Undefined : row.Zip.Contains("-") ? RowColor.Red : RowColor.Green
+                    row.Zip.StartsWith("0") ? RowColor.Undefined :
+                    row.Zip.Contains("-")   ? RowColor.Red : RowColor.Green,
+                clickable: true
             );
 
             _flareTable1.RegisterColumn(nameof(Record.Name), shown: true,      sortDirection: SortDirections.Ascending);
@@ -62,6 +64,8 @@ namespace Web.Pages
             _flareTable1.RegisterColumn(nameof(Record.State));
             _flareTable1.RegisterColumn(nameof(Record.Country), shown: false);
             _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
+
+            _flareTable1.OnRowClick += (Record record) => Console.WriteLine($"Click: {record.Name}");
         }
 
         protected override async Task OnInitializedAsync()
