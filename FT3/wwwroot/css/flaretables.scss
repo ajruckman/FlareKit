@@ -18,7 +18,7 @@
 
     .FlareTableControlRow {
         align-items:      center;
-        background-color: $ColorSet_ThemeColor_Background_50;
+        background-color: $ColorSet_ThemeColor_Background_60;
         border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
         border-left:      1px solid $ColorSet_ThemeColor_Border_50;
         border-right:     1px solid $ColorSet_ThemeColor_Border_50;
@@ -40,9 +40,10 @@
         }
 
         .FlareTablePaginationInfo {
-            color:       $ColorSet_ThemeColor_Text_20;
-            font-family: var(--FontSet-MonospaceFont);
-            user-select: none;
+            color:        $ColorSet_ThemeColor_Text_20;
+            font-family:  var(--FontSet-MonospaceFont);
+            padding-left: 3px;
+            user-select:  none;
         }
 
         .FlareTableControlFiller {
@@ -171,12 +172,12 @@
 
             .FlareTableHeadingRow {
                 section:first-child .FlareTableHeading_Cell {
-                    border-left: 1px solid $ColorSet_ThemeColor_Border_50;
+                    border-left: 1px solid $ColorSet_ThemeColor_Border_60;
                 }
 
                 .FlareTableHeading_Cell {
-                    background-color: $ColorSet_ThemeColor_Background_50;
-                    border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+                    background-color: $ColorSet_ThemeColor_Background_60;
+                    border-right:     1px solid $ColorSet_ThemeColor_Border_60;
 
                     &--Hidden {
                         width: 23.5px;
@@ -201,7 +202,7 @@
 
                         .FlareTableFilter_ToggleButtonContainer {
                             width: 23.5px;
-                            
+
                             // Eye symbol
                             .FlareTableFilter_ToggleButton {
                                 align-items:      center;
@@ -239,22 +240,22 @@
 
             .FlareTableFilterRow {
                 section:first-child .FlareTableFilter_Cell {
-                    border-left: 1px solid $ColorSet_ThemeColor_Border_50;
+                    border-left: 1px solid $ColorSet_ThemeColor_Border_60;
                 }
 
                 .FlareTableFilter_Cell {
-                    background-color: $ColorSet_ThemeColor_Background_50;
-                    border-bottom:    1px solid $ColorSet_ThemeColor_Border_50;
-                    border-right:     1px solid $ColorSet_ThemeColor_Border_50;
+                    background-color: $ColorSet_ThemeColor_Background_60;
+                    border-bottom:    1px solid $ColorSet_ThemeColor_Border_60;
+                    border-right:     1px solid $ColorSet_ThemeColor_Border_60;
                     padding:          1px;
 
                     .FlareTableFilter_CellControlContainer {
                         display:         flex;
                         justify-content: space-between;
 
-                        &:not(:first-child) {
-                            border-left: 1px solid $ColorSet_ThemeColor_Border_50;
-                        }
+                        //&:not(:first-child) {
+                        //    border-left: 1px solid red;
+                        //}
 
                         .FlareTableFilter_Input {
                             @include _InputBase;
@@ -350,7 +351,7 @@
                         background-color: $ColorSet_ThemeColor_TR_Red_30;
                     }
                 }
-                
+
                 &--Clickable {
                     cursor: pointer;
                 }

@@ -601,7 +601,7 @@
     table-layout: fixed; }
   .FlareTableContainer .FlareTableControlRow {
     align-items: center;
-    background-color: #151418;
+    background-color: #19181c;
     border-bottom: 1px solid #2c2a31;
     border-left: 1px solid #2c2a31;
     border-right: 1px solid #2c2a31;
@@ -618,6 +618,7 @@
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
       color: #18b507;
       font-family: var(--FontSet-MonospaceFont);
+      padding-left: 3px;
       user-select: none; }
     .FlareTableContainer .FlareTableControlRow .FlareTableControlFiller {
       flex-grow: 99999; }
@@ -683,10 +684,10 @@
     border-spacing: 0;
     width: 100%; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:first-child .FlareTableHeading_Cell {
-      border-left: 1px solid #2c2a31; }
+      border-left: 1px solid #302e36; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
-      background-color: #151418;
-      border-right: 1px solid #2c2a31; }
+      background-color: #19181c;
+      border-right: 1px solid #302e36; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell--Hidden {
         width: 23.5px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
@@ -722,17 +723,15 @@
               position: absolute;
               width: 5px; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
-      border-left: 1px solid #2c2a31; }
+      border-left: 1px solid #302e36; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
-      background-color: #151418;
-      border-bottom: 1px solid #2c2a31;
-      border-right: 1px solid #2c2a31;
+      background-color: #19181c;
+      border-bottom: 1px solid #302e36;
+      border-right: 1px solid #302e36;
       padding: 1px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer {
         display: flex;
         justify-content: space-between; }
-        .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer:not(:first-child) {
-          border-left: 1px solid #2c2a31; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
           border-radius: 3px;
           outline: none;

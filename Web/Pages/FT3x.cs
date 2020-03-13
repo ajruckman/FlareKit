@@ -53,7 +53,7 @@ namespace Web.Pages
                 "ft3x",
                 fixedLayout: true,
                 rowColorGetter: row =>
-                    row.Zip.StartsWith("0") ? RowColor.Undefined :
+                    row.Zip.StartsWith("0") || row.Name.StartsWith("A") ? RowColor.Undefined :
                     row.Zip.Contains("-")   ? RowColor.Red : RowColor.Green,
                 clickable: true
             );
