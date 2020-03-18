@@ -50,6 +50,18 @@
     height:  calc(25px);
     margin:  1px 0;
     padding: 1px 4px;
+
+    &--WidthWide {
+        width: 600px;
+    }
+
+    &--WidthMedium {
+        width: 400px;
+    }
+
+    &--WidthThin {
+        width: 200px;
+    }
 }
 
 .SS_TextArea {
@@ -58,6 +70,18 @@
     margin:  1px 0;
     padding: 1px 4px;
 
+    &--WidthWide {
+        width: 600px;
+    }
+
+    &--WidthMedium {
+        width: 400px;
+    }
+
+    &--WidthThin {
+        width: 200px;
+    }
+    
     &--HeightThin {
         height: 75px;
     }
@@ -78,16 +102,4 @@
     margin:  1px 0;
 
     padding: 1px 4px;
-}
-
-.SS_Input--WidthWide {
-    width: 600px;
-}
-
-.SS_Input--WidthMedium {
-    width: 400px;
-}
-
-.SS_Input--WidthThin {
-    width: 200px;
 }

@@ -55,14 +55,15 @@
     // Not checked
     .SS_Checkbox:not(:checked) ~ .SS_CheckboxIndicator {
         .SS_CheckboxIndicatorMark {
-            display: none;
+            opacity: 0;
+            //display: none;
         }
     }
 
     // Checked
     .SS_Checkbox:checked ~ .SS_CheckboxIndicator {
         .SS_CheckboxIndicatorMark {
-            display: block;
+            //display: block;
         }
     }
 
@@ -117,6 +118,12 @@
     }
 
     .SS_CheckboxIndicator {
+        align-items:     center;
+        border-radius:   3px;
+        box-sizing:      border-box;
+        display:         flex;
+        justify-content: center;
+
         &--SizeSmall {
             height: 21px;
             width:  21px;
@@ -133,13 +140,8 @@
             width:  31px;
         }
 
-        align-items:     center;
-        border-radius:   3px;
-        box-sizing:      border-box;
-        display:         flex;
-        justify-content: center;
-
         .SS_CheckboxIndicatorMark {
+            display:       block;
             height:        50%;
             margin-bottom: 10%;
             transform:     rotate(45deg);

@@ -1,5 +1,4 @@
 @import 'theme.scss';
-@import 'globals.scss';
 
 $ColorSet_ThemeColor_AccentText:                         white;
 $ColorSet_ThemeColor_ElementShadow:                      hsla(0, 0%, 0%, 1);
@@ -7,6 +6,14 @@ $ColorSet_ThemeColor_DropShadow:                         hsla(0, 0%, 0%, 1);
 $ColorSet_ThemeColor_ColorLink:                          $ColorSet_ThemeColor_Accent_60;
 $ColorSet_ThemeColor_ColorLink_Hover:                    $ColorSet_ThemeColor_Accent_70;
 $ColorSet_ThemeColor_ColorLink_Active:                   $ColorSet_ThemeColor_Accent_80;
+
+$ColorSet_ThemeColor_Shadow_0:                           hsla(0, 0%, 0%, 0.5);
+$ColorSet_ThemeColor_Shadow_10:                          hsla(0, 0%, 0%, 0.6);
+$ColorSet_ThemeColor_Shadow_20:                          hsla(0, 0%, 0%, 0.7);
+$ColorSet_ThemeColor_Shadow_30:                          hsla(0, 0%, 0%, 0.8);
+$ColorSet_ThemeColor_Shadow_40:                          hsla(0, 0%, 0%, 0.9);
+$ColorSet_ThemeColor_Shadow_50:                          hsla(0, 0%, 0%, 0.95);
+$ColorSet_ThemeColor_Shadow_60:                          hsla(0, 0%, 0%, 1);
 
 // Elements
 $ColorSet_Color_PageBG:                                  $ColorSet_ThemeColor_Background_30;

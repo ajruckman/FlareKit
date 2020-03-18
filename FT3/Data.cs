@@ -94,7 +94,7 @@ namespace FT3
                 OnPageUpdate.Invoke();
                 ExecutePending();
             }
-            
+
             return _sortedRowCache ?? new List<T>();
         }
 
@@ -178,6 +178,17 @@ namespace FT3
 
             OnRegexToggle.Invoke();
             ExecutePending();
+        }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public void InvalidateData()
+        {
+            Log.Update();
+            _data            = null;
+            _matchedRowCache = null;
+            _sortedRowCache  = null;
+            UpdateTableControls.Trigger();
+            UpdateTableBody.Trigger();
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
