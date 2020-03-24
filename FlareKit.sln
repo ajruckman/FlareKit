@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FT3", "FT3\FT3.csproj", "{4057C100-1285-4017-9221-288F60C951AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FS3", "FS3\FS3.csproj", "{0454888E-8B3C-414F-99E4-B863783241E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{C38D6B03-3124-4FE6-BD3C-5F10980EE6BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{4057C100-1285-4017-9221-288F60C951AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4057C100-1285-4017-9221-288F60C951AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4057C100-1285-4017-9221-288F60C951AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0454888E-8B3C-414F-99E4-B863783241E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0454888E-8B3C-414F-99E4-B863783241E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0454888E-8B3C-414F-99E4-B863783241E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0454888E-8B3C-414F-99E4-B863783241E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38D6B03-3124-4FE6-BD3C-5F10980EE6BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38D6B03-3124-4FE6-BD3C-5F10980EE6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38D6B03-3124-4FE6-BD3C-5F10980EE6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38D6B03-3124-4FE6-BD3C-5F10980EE6BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

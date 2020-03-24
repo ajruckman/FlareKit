@@ -3,12 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 using Bogus.DataSets;
-using FS3;
+using Microsoft.AspNetCore.Components.Rendering;
+using Superset.Common;
+using Superset.Web.State;
 
-// using FlareSelect;
-
-namespace Web
+namespace FS3.Tests
 {
+    public class Tests
+    {
+        public void Run()
+        {
+            IEnumerable<IOption<int>> data = Generate.Contacts(931).Select(v => v.NameOption);
+
+            FlareSelector<int> _fs1 = new FlareSelector<int>(() => data, true);
+
+            foreach ((UpdateTrigger, List<IOption<int>>) batch in _fs1.Batches)
+            {
+                foreach (var option in batch.Item2)
+                {
+                    Console.WriteLine($"\t{option.ID}");
+                }
+            }
+
+            // foreach (Option<int> option in _fs1.GenerateBatches())
+            // {
+            // Console.WriteLine(option.BatchID);
+            // }
+        }
+    }
+
+    public class Option2<T> : IOption<T> where T : IEquatable<T>
+    {
+        public T      ID           { get; set; }
+        public string OptionText   { get; set; }
+        public string SelectedText { get; set; }
+        public bool   Selected     { get; set; }
+        public bool   Disabled     { get; set; }
+        public bool   Placeholder  { get; set; }
+    }
+
     public class Contact
     {
         public int ID { get; set; }
@@ -20,25 +53,23 @@ namespace Web
         public string   PhoneNumber { get; set; }
         public string   Gender      { get; set; }
 
-        public Option<int> NameOption =>
-            new Option<int>
+        public Option2<int> NameOption =>
+            new Option2<int>
             {
                 ID           = ID,
                 OptionText   = $"{FirstName} {LastName}",
-                SelectedText = $"{FirstName} {LastName}",
-                // Selected     = true
+                SelectedText = FirstName,
+                Selected     = true
             };
 
-        public Option<int> LongOption =>
-            new Option<int>
+        public Option2<int> LongOption =>
+            new Option2<int>
             {
                 ID           = ID,
                 OptionText   = PhoneNumber,
                 SelectedText = PhoneNumber,
                 Selected     = true
             };
-
-        public static List<Option<int>> PreGeneratedOptions;
     }
 
     public static class Generate

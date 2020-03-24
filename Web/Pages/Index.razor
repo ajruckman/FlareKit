@@ -2,21 +2,22 @@
 
 @using System.Linq
 @using System.Reflection
-@using FlareSelect
-@using FlareTables
+@* @using FlareSelect *@
+@* @using FlareTables *@
 @using Microsoft.AspNetCore.Components.Web
 @using Superset.Common
+@using Superset.Web.State
 
 @{
     Random rd = new Random(2);
 
 
-    List<Option> optionsMultiple = new List<Option>();
-    foreach (Option option in options)
-    {
-        option.Selected = rd.Next() % 2 == 0;
-        optionsMultiple.Add(option);
-    }
+    // List<Option> optionsMultiple = new List<Option>();
+    // foreach (Option ID in options)
+    // {
+    //     ID.Selected = rd.Next() % 2 == 0;
+    //     optionsMultiple.Add(ID);
+    // }
 
     UpdateTrigger triggerSearchClear = new UpdateTrigger();
 
@@ -24,43 +25,43 @@
 
 @functions {
 
-    private TableStateHandler.ValueGetter _valueGetter;
-
-    private IEnumerable<Contact> Data { get; set; }
-    private TableStateHandler _flareTable;
-
-    private FlareSelector fs2;
-
-    private List<Option> options;
-
-    private List<Option> optionsSingle;
+    // private TableStateHandler.ValueGetter _valueGetter;
+    //
+    // private IEnumerable<Contact> Data { get; set; }
+    // private TableStateHandler _flareTable;
+    //
+    // // private FlareSelector fs2;
+    //
+    // private List<Option> options;
+    //
+    // private List<Option> optionsSingle;
 
     protected override void OnInitialized()
     {
-        options = Generate.Contacts(15).Select(v => v.NameOption).ToList();
-        optionsSingle = options.Select(v => v.Clone()).ToList();
-
-        fs2 = new FlareSelector(_ => optionsSingle);
-        fs2.OnSearch += (string searchTerm) => { Console.WriteLine(searchTerm); };
-        fs2.OnUpdate += (List<IOption> selected) =>
-        {
-            Console.WriteLine(selected.FirstOrDefault()?.Text);
-            fs2.ClearSearch();
-        };
-
-        Console.WriteLine("ONINIT");
-        _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
-
-        Data = Generate.Contacts(25);
-        Data.First().Date = new DateTime();
-        _flareTable = new TableStateHandler(() => Data.ToList(), StateHasChanged, typeof(Contact));
+    //     options = Generate.Contacts(15).Select(v => v.NameOption).ToList();
+    //     optionsSingle = options.Select(v => v.Clone()).ToList();
+    //
+    //     // fs2 = new FlareSelector(_ => optionsSingle);
+    //     // fs2.OnSearch += (string searchTerm) => { Console.WriteLine(searchTerm); };
+    //     // fs2.OnUpdate += (List<IOption> selected) =>
+    //     // {
+    //     //     Console.WriteLine(selected.FirstOrDefault()?.Text);
+    //     //     fs2.ClearSearch();
+    //     // };
+    //
+    //     Console.WriteLine("ONINIT");
+    //     _valueGetter = (row, id) => row.GetType().GetProperty(id)?.GetValue(row).ToString();
+    //
+    //     Data = Generate.Contacts(25);
+    //     Data.First().Date = new DateTime();
+    //     _flareTable = new TableStateHandler(() => Data.ToList(), StateHasChanged, typeof(Contact));
     }
 
 }
 
-<button @onclick="@(() => fs2.ClearSearch())" @onclick:stopPropagation>Clear inputs</button>
+@* <button @onclick="@(() => fs2.ClearSearch())" @onclick:stopPropagation>Clear inputs</button> *@
 
-@fs2.Render()
+@* @fs2.Render() *@
 
 @* <FlareTablePaginationButtons TableState="@_flareTable"></FlareTablePaginationButtons>  *@
 @* <FlareTablePaginationSize TableState="@_flareTable"></FlareTablePaginationSize>  *@
@@ -100,9 +101,9 @@
 @* <FlareTableInfo TableState="@_flareTable"></FlareTableInfo>  *@
 
 <div class="BodyWrapper" style="width: 400px;">
-    @* <FlareSelector Options="@((_) => { return optionsSingle; })" Multiple="@false" TriggerSearchClear="@triggerSearchClear"/> *@
+    @* <FlareSelector GenerateBatches="@((_) => { return IDsSingle; })" Multiple="@false" TriggerSearchClear="@triggerSearchClear"/> *@
     @* <br> *@
-    @* <FlareSelector Options="@((_) => { return optionsMultiple; })" Multiple="@true" TriggerSearchClear="@triggerSearchClear"/> *@
+    @* <FlareSelector GenerateBatches="@((_) => { return IDsMultiple; })" Multiple="@true" TriggerSearchClear="@triggerSearchClear"/> *@
     @* *@
     @* <br> *@
     @* <br> *@
@@ -111,7 +112,7 @@
     @* <br> *@
     @* <hr> *@
     @* *@
-    @* <FlareSelector Options="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@false"/> *@
+    @* <FlareSelector GenerateBatches="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@false"/> *@
     @* <br> *@
-    @* <FlareSelector Options="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@true"/> *@
+    @* <FlareSelector GenerateBatches="@((_) => { return Generate.Contacts(50).Select(v => v.LongOption).ToList(); })" Multiple="@true"/> *@
 </div>

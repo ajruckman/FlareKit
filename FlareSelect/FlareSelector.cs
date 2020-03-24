@@ -95,8 +95,9 @@ namespace FlareSelect
                     {
                         new Option
                         {
-                            Disabled = true,
-                            Text     = MinSearchTermText
+                            Disabled    = true,
+                            Text        = MinSearchTermText,
+                            Placeholder = true
                         }
                     };
                 }
@@ -166,7 +167,7 @@ namespace FlareSelect
             else
             {
                 if (IsSelected(option))
-                    Selected.RemoveAll(v => v.ID.Equals(option.ID));
+                    Selected.RemoveAll(v => v.ID?.Equals(option.ID) == true);
                 else
                     Selected.Add(option);
             }
@@ -184,7 +185,7 @@ namespace FlareSelect
 
         public bool IsSelected(IOption option)
         {
-            return !option.Placeholder && Selected.Any(v => v.ID.Equals(option.ID));
+            return !option.Placeholder && Selected.Any(v => v.ID?.Equals(option.ID) == true);
         }
 
         public void Deselect(IOption option)
@@ -194,7 +195,7 @@ namespace FlareSelect
             if (!Multiple)
                 Selected.Clear();
             else
-                Selected.RemoveAll(v => v.ID.Equals(option.ID));
+                Selected.RemoveAll(v => v.ID?.Equals(option.ID) == true);
 
             OnUpdate?.Invoke(Selected);
         }

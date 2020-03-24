@@ -3,7 +3,7 @@
 using System;
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
-using Superset.Common;
+using Superset.Web.State;
 using Superset.Logging;
 
 // ReSharper disable ClassCanBeSealed.Global

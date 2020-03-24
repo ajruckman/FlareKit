@@ -1,0 +1,61 @@
+.FlareSelect_Container {
+  background-color: red;
+  width: 100%; }
+  .FlareSelect_Container .FlareSelect_SelectedContainer {
+    background-color: blue;
+    cursor: pointer;
+    width: 100%; }
+    .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%; }
+  .FlareSelect_Container .FlareSelect_OptionsContainer {
+    width: 100%; }
+    .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options {
+      background-color: green;
+      border: 1px solid black;
+      position: absolute; }
+      .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div {
+        min-height: 15px;
+        width: 100%; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
+          background-color: purple; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:not(:last-child) {
+          border-bottom: 1px solid black; }
+  .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
+    min-height: 23px; }
+    .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {
+      background-color: orange;
+      box-sizing: border-box;
+      min-height: 23px; }
+  .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInput {
+    margin: 3px;
+    width: calc(100% - 6px); }
+  .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
+    min-height: 33px; }
+    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
+      background-color: blue;
+      box-sizing: border-box;
+      min-height: calc(33px);
+      padding: 3px; }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
+        border-radius: 3px;
+        background-color: #cccccc;
+        border: 1px solid black;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 2px;
+        min-height: 23px; }
+    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInput {
+      background-color: blue;
+      border-bottom: 1px solid black;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      box-sizing: border-box;
+      height: 23px;
+      margin: 3px;
+      outline: none;
+      padding: 3px;
+      width: calc(100% - 6px); }

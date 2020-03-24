@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Superset.Logging;
@@ -12,6 +13,7 @@ namespace Web
         {
             Console.Write("Generating fake data... ");
             RecordCache.Records = RecordCache.FakeData(1_000);
+            Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();
             Console.WriteLine("complete");
 
             Log.LogUpdates = true;

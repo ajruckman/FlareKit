@@ -1,0 +1,105 @@
+.FlareSelect_Container {
+    background-color: red;
+    width:            100%;
+
+    .FlareSelect_SelectedContainer {
+        background-color: blue;
+        cursor:           pointer;
+        width:            100%;
+
+        .FlareSelect_Selected {
+            align-items: center;
+            display:     flex;
+            flex-wrap:   wrap;
+            width:       100%;
+        }
+    }
+
+    .FlareSelect_OptionsContainer {
+        width: 100%;
+
+        .FlareSelect_Options {
+            background-color: green;
+            border:           1px solid black;
+            position:         absolute;
+
+            div {
+                min-height: 15px;
+                width:      100%;
+
+                &.FlareSelect_Option--Selected {
+                    background-color: purple;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid black;
+                }
+            }
+        }
+    }
+
+    &--Single {
+        .FlareSelect_SelectedContainer {
+            min-height:           23px;
+
+            .FlareSelect_Selected {
+                background-color: orange;
+                box-sizing:       border-box;
+                min-height:           23px;
+
+                .FlareSelect_Selection {
+
+                }
+            }
+
+        }
+
+        .FlareSelect_OptionsContainer {
+            .FlareSelect_Options {
+                .FlareSelect_FilterInput {
+                    margin: 3px;
+                    width:  calc(100% - 6px);
+                }
+            }
+        }
+    }
+
+    &--Multiple {
+
+        .FlareSelect_SelectedContainer {
+            min-height: 33px;
+
+            .FlareSelect_Selected {
+                background-color: blue;
+                box-sizing:       border-box;
+                min-height:       calc(33px);
+                padding:          3px;
+
+                .FlareSelect_Selection {
+                    border-radius:    3px;
+                    background-color: #cccccc;
+                    border:           1px solid black;
+                    box-sizing:       border-box;
+                    display:          inline-block;
+                    margin:           2px;
+                    min-height:       23px;
+                }
+            }
+
+            .FlareSelect_FilterInput {
+                background-color: blue;
+                
+                border-bottom:        1px solid black;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                box-sizing:    border-box;
+                height:        23px;
+                margin:        3px;
+                outline:       none;
+                padding:       3px;
+                width:         calc(100% - 6px);
+            }
+        }
+    }
+}

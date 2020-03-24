@@ -1,7 +1,7 @@
 ﻿@using Blazored.LocalStorage
 @using Blazored.SessionStorage
 @using ColorSet.Components
-@using FlareLib
+@* @using FlareLib *@
 @using Microsoft.AspNetCore.Components.Web
 @using Superset.Web.Resources
 @using Superset.Web.State
@@ -12,10 +12,10 @@
 
 @code {
 
-    private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
+    // private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
     ThemeLoader _themeLoader;
-    private readonly UpdateTrigger _trigger = new Superset.Common.UpdateTrigger();
+    private readonly UpdateTrigger _trigger = new UpdateTrigger();
 
     protected override async Task OnInitializedAsync()
     {
@@ -34,11 +34,11 @@
 <TriggerWrapper Trigger="@_trigger">
     @if (_themeLoader.Complete)
     {
-        <CascadingValue Value="@ElementClickHandler">
+@*         <CascadingValue Value="@ElementClickHandler"> *@
             @_themeLoader.RenderLink()
             @Body
-        </CascadingValue>
+        // </CascadingValue>
         
-        @_themeLoader.RenderDropdown()
+@*         @_themeLoader.RenderDropdown() *@
     }
 </TriggerWrapper>
