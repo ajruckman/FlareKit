@@ -34,6 +34,17 @@
                 &.FlareSelect_Option--Selected {
                     background-color: purple;
                 }
+
+                &.FlareSelect_Option--Placeholder {
+                    cursor:      unset;
+                    font-style:  italic;
+                    font-weight: 500;
+                }
+
+                &.FlareSelect_Option--Disabled {
+                    cursor: not-allowed;
+                    color: #333;
+                }
             }
         }
     }
@@ -52,7 +63,6 @@
                     display:         inline-flex;
                     justify-content: space-between;
                     padding:         0 3px;
-
                     width:           100%;
 
                     .FlareSelect_SelectionRemoveButton {
@@ -72,7 +82,6 @@
                     }
                 }
             }
-
         }
 
         .FlareSelect_OptionsContainer {
@@ -102,7 +111,6 @@
                     border-radius:    3px;
                     box-sizing:       border-box;
                     cursor:           default;
-
                     display:          inline-flex;
                     margin:           2px;
                     min-height:       23px;
@@ -129,7 +137,6 @@
 
             .FlareSelect_FilterInput {
                 background-color: blue;
-
                 border-bottom:    1px solid black;
                 border-left:      none;
                 border-right:     none;

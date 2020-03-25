@@ -25,6 +25,13 @@
         width: 100%; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
           background-color: purple; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Placeholder {
+          cursor: unset;
+          font-style: italic;
+          font-weight: 500; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Disabled {
+          cursor: not-allowed;
+          color: #333; }
   .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
     min-height: 23px; }
     .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {

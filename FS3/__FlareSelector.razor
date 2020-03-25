@@ -19,7 +19,7 @@
                     </div>
                 }
             </TriggerWrapper>
-            
+
         </div>
 
         @if (FlareSelector.Multiple)
@@ -36,24 +36,39 @@
                 {
                     <input type="text" class="FlareSelect_FilterInput" value="@FlareSelector.FilterValue" @oninput="UpdateFilterValue" tabindex="0"/>
                 }
-                
+
                 @* <TriggerWrapper Trigger="@FlareSelector.OnDataChange" Protected="true"> *@
-                    @for (var b = 0; b < FlareSelector.Batches.Length; b++)
-                    {
-                        int batchID = b;
+                @for (var b = 0; b < FlareSelector.Batches.Length; b++)
+                {
+                    int batchID = b;
 
-                        <TriggerWrapper Trigger="@FlareSelector.Batches[batchID].Item1" Protected="true">
-                            @{
-                                Console.WriteLine("Updating in: " + batchID);
-                            }
-                            @for (var o = 0; o < FlareSelector.Batches[batchID].Item2.Count; o++)
+                    <TriggerWrapper Trigger="@FlareSelector.Batches[batchID].Item1" Protected="true">
+                        @{
+                            Console.WriteLine("Updating in: " + batchID);
+                        }
+                        @for (var o = 0; o < FlareSelector.Batches[batchID].Item2.Count; o++)
+                        {
+                            IOption<T> d = FlareSelector.Batches[batchID].Item2[o];
+
+                            if (d.Placeholder)
                             {
-                                IOption<T> d = FlareSelector.Batches[batchID].Item2[o];
-
-                                <div class="@(FlareSelector.IsOptionSelected(d) ? "FlareSelect_Option--Selected" : "")" hidden="@(!FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
+                                <div class="FlareSelect_Option--Placeholder" hidden="@(!FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
                             }
-                        </TriggerWrapper>
-                    }
+                            else if (d.Disabled)
+                            {
+                                <div class="FlareSelect_Option--Disabled" hidden="@(!FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
+                            }
+                            else if (FlareSelector.IsOptionSelected(d))
+                            {
+                                <div class="FlareSelect_Option--Selected" hidden="@(!FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
+                            }
+                            else
+                            {
+                                <div hidden="@(!FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
+                            }
+                        }
+                    </TriggerWrapper>
+                }
                 @* </TriggerWrapper> *@
             </div>
         </TriggerWrapper>

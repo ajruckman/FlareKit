@@ -15,23 +15,26 @@ namespace FS3
     {
         public delegate IEnumerable<IOption<T>> DataGetter();
 
-        public readonly  bool       Multiple;
+        private const    int        BatchSize = 1000;
         private readonly DataGetter _dataGetter;
 
-        // internal int BatchCount => (int) Math.Ceiling(_dataGetter.Invoke().Count() / (double) BatchSize);
-        internal int BatchCount => (int) Math.Ceiling(Data().Count / (double) BatchSize);
+        private readonly Dictionary<T, bool> _matchedCache = new Dictionary<T, bool>();
 
-        private const int BatchSize = 1000;
+        private readonly OrderedDictionary _selected = new OrderedDictionary();
+        public readonly  bool              CloseOnSelect;
+
+        public readonly bool Multiple;
 
         // internal readonly UpdateTrigger OnDataChange      = new UpdateTrigger();
         internal readonly UpdateTrigger OnSelectionChange = new UpdateTrigger();
 
-        internal (UpdateTrigger, List<IOption<T>>)[]? Batches { get; set; }
+        private List<IOption<T>>? _dataCache;
 
-        public FlareSelector(DataGetter dataGetter, bool multiple)
+        public FlareSelector(DataGetter dataGetter, bool multiple, bool? closeOnSelect = null)
         {
-            _dataGetter = dataGetter;
-            Multiple    = multiple;
+            _dataGetter   = dataGetter;
+            Multiple      = multiple;
+            CloseOnSelect = closeOnSelect ?? !multiple;
 
             // // _selected = new List<Option<T>>();
             // // _selected.AddRange(GenerateBatches().Where(v => v.Selected));
@@ -74,7 +77,11 @@ namespace FS3
             // });
         }
 
-        private List<IOption<T>>? _dataCache;
+        // internal int BatchCount => (int) Math.Ceiling(_dataGetter.Invoke().Count() / (double) BatchSize);
+        internal int BatchCount => (int) Math.Ceiling(Data().Count / (double) BatchSize);
+
+        internal (UpdateTrigger, List<IOption<T>>)[]? Batches     { get; set; }
+        public   string                               FilterValue { get; private set; } = "";
 
         private List<IOption<T>> Data()
         {
@@ -129,9 +136,6 @@ namespace FS3
             return Fragment;
         }
 
-        private readonly Dictionary<T, bool> _matchedCache = new Dictionary<T, bool>();
-        public           string              FilterValue { get; private set; } = "";
-
         private void CacheMatched()
         {
             for (var batchID = 0; batchID < Batches.Length; batchID++)
@@ -179,8 +183,6 @@ namespace FS3
             //
             // OnDataChange.Trigger();
         }
-
-        private readonly OrderedDictionary _selected = new OrderedDictionary();
 
         // public void Select(IOption<T> option)
         // {
