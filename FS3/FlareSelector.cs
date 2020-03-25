@@ -33,20 +33,34 @@ namespace FS3
             _dataGetter = dataGetter;
             Multiple    = multiple;
 
-            // _selected = new List<Option<T>>();
-            // _selected.AddRange(GenerateBatches().Where(v => v.Selected));
-            foreach (IOption<T> option in Data())
-            {
-                if (option.Selected)
-                {
-                    Select(option);
-                    if (Multiple)
-                        break;
-                }
-            }
+            // // _selected = new List<Option<T>>();
+            // // _selected.AddRange(GenerateBatches().Where(v => v.Selected));
+            // foreach (IOption<T> option in Data())
+            // {
+            //     if (option.Selected)
+            //     {
+            //         Select(option);
+            //         if (!Multiple)
+            //             break;
+            //     }
+            // }
 
             GenerateBatches();
             CacheMatched();
+
+            for (var batchID = 0; batchID < Batches.Length; batchID++)
+            {
+                (UpdateTrigger, List<IOption<T>>) b = Batches[batchID];
+                foreach (IOption<T> option in b.Item2)
+                {
+                    if (option.Selected)
+                    {
+                        Select(batchID, option);
+                        if (!Multiple)
+                            break;
+                    }
+                }
+            }
 
             // Task.Run(() =>
             // {
@@ -71,19 +85,23 @@ namespace FS3
         {
             _dataCache = null;
             Batches    = null;
-            GenerateBatches();
 
-            foreach (IOption<T> option in Data())
+            GenerateBatches();
+            CacheMatched();
+
+            for (var batchID = 0; batchID < Batches.Length; batchID++)
             {
-                if (option.Selected)
+                (UpdateTrigger, List<IOption<T>>) b = Batches[batchID];
+                foreach (IOption<T> option in b.Item2)
                 {
-                    Select(option);
-                    if (Multiple)
-                        return;
+                    if (option.Selected)
+                    {
+                        Select(batchID, option);
+                        if (!Multiple)
+                            break;
+                    }
                 }
             }
-
-            CacheMatched();
         }
 
         private void GenerateBatches()
@@ -164,19 +182,82 @@ namespace FS3
 
         private readonly OrderedDictionary _selected = new OrderedDictionary();
 
-        public void Select(IOption<T> option)
+        // public void Select(IOption<T> option)
+        // {
+        //     if (!_selected.Contains(option.ID))
+        //     {
+        //         Console.WriteLine($"Select({option.ID}) ++");
+        //         if (!Multiple)
+        //         {
+        //             _selected.Clear();
+        //             _selected[option.ID] = option;
+        //         }
+        //         else
+        //         {
+        //             _selected[option.ID] = option;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine($"Select({option.ID}) --");
+        //         if (!Multiple)
+        //         {
+        //             _selected.Clear();
+        //         }
+        //         else
+        //         {
+        //             _selected.Remove(option.ID);
+        //         }
+        //     }
+        //
+        //     OnSelectionChange.Trigger();
+        // }
+
+        // public List<IOption<T>> Selected()
+        // {
+        //     List<IOption<T>> result = new List<IOption<T>>();
+        //     foreach (object? option in _selected.Values)
+        //     {
+        //         if (option != null)
+        //             result.Add((IOption<T>) option);
+        //     }
+        //
+        //     return result;
+        // }
+
+        internal List<(int, IOption<T>)> Selected()
         {
+            List<(int, IOption<T>)> result = new List<(int, IOption<T>)>();
+            foreach (object? option in _selected.Values)
+            {
+                if (option != null)
+                    result.Add(((int, IOption<T>)) option);
+            }
+
+            return result;
+        }
+
+        internal void Select(int batchID, int optionIndex)
+        {
+            IOption<T> option = Batches[batchID].Item2[optionIndex];
+            Select(batchID, option);
+        }
+
+        internal void Select(int batchID, IOption<T> option)
+        {
+            // Select(option);
+
             if (!_selected.Contains(option.ID))
             {
                 Console.WriteLine($"Select({option.ID}) ++");
                 if (!Multiple)
                 {
                     _selected.Clear();
-                    _selected[option.ID] = option;
+                    _selected[option.ID] = (batchID, option);
                 }
                 else
                 {
-                    _selected[option.ID] = option;
+                    _selected[option.ID] = (batchID, option);
                 }
             }
             else
@@ -192,27 +273,8 @@ namespace FS3
                 }
             }
 
-            OnSelectionChange.Trigger();
-        }
-
-        public List<IOption<T>> Selected()
-        {
-            List<IOption<T>> result = new List<IOption<T>>();
-            foreach (
-                object? option in _selected.Values)
-            {
-                if (option != null)
-                    result.Add((IOption<T>) option);
-            }
-
-            return result;
-        }
-
-        internal void Select(int batchID, int optionIndex)
-        {
-            IOption<T> option = Batches[batchID].Item2[optionIndex];
-            Select(option);
             Batches[batchID].Item1.Trigger();
+            OnSelectionChange.Trigger();
         }
 
         public bool IsOptionSelected(IOption<T> option)
@@ -222,7 +284,6 @@ namespace FS3
 
         public bool IsOptionShown(IOption<T> option)
         {
-            var c = _matchedCache.ContainsKey(option.ID);
             return _matchedCache.ContainsKey(option.ID);
         }
 

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using FS3;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Superset.Logging;
@@ -13,7 +15,22 @@ namespace Web
         {
             Console.Write("Generating fake data... ");
             RecordCache.Records = RecordCache.FakeData(1_000);
-            Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();
+            
+            Contact.PreGeneratedOptions = new List<Option<int>>();
+            Contact.PreGeneratedOptions.Add(new Option<int>
+            {
+                ID           = -1,
+                OptionText   = "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
+                SelectedText = "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
+                Selected     = true,
+            });
+            Contact.PreGeneratedOptions.AddRange(Generate.Contacts(1_000).Select(v => v.NameOption).ToList());
+            for (var i = 0; i < 30; i += 2)
+            {
+                Contact.PreGeneratedOptions[i].Selected = true;
+            }
+            
+            
             Console.WriteLine("complete");
 
             Log.LogUpdates = true;

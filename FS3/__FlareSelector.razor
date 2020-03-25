@@ -11,9 +11,12 @@
 
         <div class="FlareSelect_Selected" @ref="@_selectedRef" tabindex="0">
             <TriggerWrapper Trigger="@FlareSelector.OnSelectionChange">
-                @foreach (IOption<T> option in FlareSelector.Selected())
+                @foreach ((int, IOption<T>) option in FlareSelector.Selected())
                 {
-                    <div class="FlareSelect_Selection">@option.SelectedText</div>
+                    <div class="FlareSelect_Selection">
+                        @option.Item2.SelectedText
+                        <button class="FlareSelect_SelectionRemoveButton" @onclick="@(_ => FlareSelector.Select(option.Item1, option.Item2))">✖</button>
+                    </div>
                 }
             </TriggerWrapper>
             

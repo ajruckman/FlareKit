@@ -23,6 +23,9 @@ namespace FT3
 
         internal string RowClasses(T row)
         {
+            if (row == null)
+                throw new ArgumentNullException(nameof(row), "Row passed to RowClasses() was null; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
+
             var result = "FlareTableBodyRow";
 
             if (_rowColorGetter != null)

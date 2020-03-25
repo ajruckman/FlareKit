@@ -14,15 +14,16 @@
     width: 100%; }
     .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options {
       background-color: green;
-      border: 1px solid black;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-top: 1px solid black;
       position: absolute; }
       .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div {
+        border-bottom: 1px solid black;
         min-height: 15px;
         width: 100%; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
           background-color: purple; }
-        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:not(:last-child) {
-          border-bottom: 1px solid black; }
   .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
     min-height: 23px; }
     .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -40,19 +41,34 @@
       min-height: calc(33px);
       padding: 3px; }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
-        border-radius: 3px;
+        align-items: center;
         background-color: #cccccc;
         border: 1px solid black;
+        border-radius: 3px;
         box-sizing: border-box;
-        display: inline-block;
+        cursor: default;
+        display: inline-flex;
         margin: 2px;
         min-height: 23px; }
+        .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
+          background: none;
+          border: none;
+          cursor: pointer;
+          flex-shrink: 0;
+          height: 15px;
+          line-height: 0;
+          padding: 0;
+          width: 15px;
+          margin-right: 1px;
+          color: black; }
+          .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
+            color: red; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInput {
       background-color: blue;
       border-bottom: 1px solid black;
-      border-top: none;
-      border-right: none;
       border-left: none;
+      border-right: none;
+      border-top: none;
       box-sizing: border-box;
       height: 23px;
       margin: 3px;

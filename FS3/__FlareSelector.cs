@@ -143,6 +143,8 @@ namespace FS3
         private void UpdateFilterValue(ChangeEventArgs obj)
         {
             FlareSelector.UpdateFilterValue(obj.Value.ToString() ?? "");
+            _shown = true;
+            _onToggle.Trigger();
         }
 
         private void OnOptionsKeypress(KeyboardEventArgs args)
