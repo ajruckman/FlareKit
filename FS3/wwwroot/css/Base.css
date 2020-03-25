@@ -20,6 +20,7 @@
       position: absolute; }
       .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div {
         border-bottom: 1px solid black;
+        cursor: pointer;
         min-height: 15px;
         width: 100%; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
@@ -30,6 +31,24 @@
       background-color: orange;
       box-sizing: border-box;
       min-height: 23px; }
+      .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
+        align-items: center;
+        display: inline-flex;
+        justify-content: space-between;
+        padding: 0 3px;
+        width: 100%; }
+        .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
+          background: none;
+          border: none;
+          color: black;
+          cursor: pointer;
+          flex-shrink: 0;
+          height: 15px;
+          line-height: 0;
+          padding: 0;
+          width: 15px; }
+          .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
+            color: red; }
   .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInput {
     margin: 3px;
     width: calc(100% - 6px); }
@@ -49,18 +68,19 @@
         cursor: default;
         display: inline-flex;
         margin: 2px;
-        min-height: 23px; }
+        min-height: 23px;
+        padding-left: 3px; }
         .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
+          align-self: flex-start;
           background: none;
           border: none;
+          color: black;
           cursor: pointer;
           flex-shrink: 0;
           height: 15px;
           line-height: 0;
           padding: 0;
-          width: 15px;
-          margin-right: 1px;
-          color: black; }
+          width: 15px; }
           .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
             color: red; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInput {

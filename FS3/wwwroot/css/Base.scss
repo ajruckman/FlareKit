@@ -27,6 +27,7 @@
 
             div {
                 border-bottom: 1px solid black;
+                cursor:        pointer;
                 min-height:    15px;
                 width:         100%;
 
@@ -47,7 +48,28 @@
                 min-height:       23px;
 
                 .FlareSelect_Selection {
+                    align-items:     center;
+                    display:         inline-flex;
+                    justify-content: space-between;
+                    padding:         0 3px;
 
+                    width:           100%;
+
+                    .FlareSelect_SelectionRemoveButton {
+                        background:  none;
+                        border:      none;
+                        color:       black;
+                        cursor:      pointer;
+                        flex-shrink: 0;
+                        height:      15px;
+                        line-height: 0;
+                        padding:     0;
+                        width:       15px;
+
+                        &:hover {
+                            color: red;
+                        }
+                    }
                 }
             }
 
@@ -64,7 +86,6 @@
     }
 
     &--Multiple {
-
         .FlareSelect_SelectedContainer {
             min-height: 33px;
 
@@ -79,26 +100,26 @@
                     background-color: #cccccc;
                     border:           1px solid black;
                     border-radius:    3px;
-                    //display:          inline-block;
                     box-sizing:       border-box;
                     cursor:           default;
 
                     display:          inline-flex;
                     margin:           2px;
                     min-height:       23px;
+                    padding-left:     3px;
 
                     .FlareSelect_SelectionRemoveButton {
+                        align-self:  flex-start;
                         background:  none;
                         border:      none;
+                        color:       black;
                         cursor:      pointer;
                         flex-shrink: 0;
                         height:      15px;
                         line-height: 0;
                         padding:     0;
                         width:       15px;
-                        margin-right: 1px;
-                        color: black;
-                        
+
                         &:hover {
                             color: red;
                         }
