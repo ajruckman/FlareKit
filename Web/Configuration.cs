@@ -11,6 +11,7 @@ namespace Web
             FontSet.ResourceManifests.Inter,
             FontSet.ResourceManifests.JetBrainsMono,
             FT3.ResourceManifests.FlareTables,
+            ColorSet.ResourceManifests.Globals
         };
     }
 }

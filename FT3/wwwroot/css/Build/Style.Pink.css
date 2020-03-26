@@ -65,7 +65,7 @@
     align-items: center;
     border-radius: 3px;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     justify-content: center; }
     .SS_CheckboxContainer .SS_CheckboxIndicator--SizeSmall {
       height: 21px;

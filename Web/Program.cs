@@ -17,15 +17,16 @@ namespace Web
             RecordCache.Records = RecordCache.FakeData(1_000);
 
             Contact.PreGeneratedOptions = new List<Option<int>>();
-            Contact.PreGeneratedOptions.Add(new Option<int>
-            {
-                ID = -1,
-                OptionText =
-                    "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
-                SelectedText =
-                    "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
-                Selected = false,
-            });
+            
+            // Contact.PreGeneratedOptions.Add(new Option<int>
+            // {
+            //     ID = -1,
+            //     OptionText =
+            //         "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
+            //     SelectedText =
+            //         "Contact.PreGeneratedOptions = Generate.Contacts(1_000).Select(v => v.NameOption).ToList();",
+            //     Selected = false,
+            // });
 
             Contact.PreGeneratedOptions.Add(new Option<int>
             {
@@ -41,7 +42,7 @@ namespace Web
             });
 
             Contact.PreGeneratedOptions.AddRange(Generate.Contacts(1_000).Select(v => v.NameOption).ToList());
-            for (var i = 1; i < 30; i += 2)
+            for (var i = 3; i < 30; i += 2)
             {
                 Contact.PreGeneratedOptions[i].Selected = true;
             }

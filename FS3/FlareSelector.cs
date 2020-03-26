@@ -21,20 +21,31 @@ namespace FS3
         private readonly Dictionary<T, bool> _matchedCache = new Dictionary<T, bool>();
 
         private readonly OrderedDictionary _selected = new OrderedDictionary();
-        public readonly  bool              CloseOnSelect;
 
-        public readonly bool Multiple;
+        public readonly bool   Multiple;
+        public readonly string FilterPlaceholder;
+        public readonly bool   CloseOnSelect;
+        public readonly bool   ClearOnSelect;
 
         // internal readonly UpdateTrigger OnDataChange      = new UpdateTrigger();
         internal readonly UpdateTrigger OnSelectionChange = new UpdateTrigger();
 
         private List<IOption<T>>? _dataCache;
 
-        public FlareSelector(DataGetter dataGetter, bool multiple, bool? closeOnSelect = null)
+        public FlareSelector(
+            DataGetter dataGetter,
+            bool       multiple,
+            string     filterPlaceholder = "Filter options",
+            bool       clearOnSelect     = false,
+            bool?      closeOnSelect     = null
+        )
         {
-            _dataGetter   = dataGetter;
-            Multiple      = multiple;
-            CloseOnSelect = closeOnSelect ?? !multiple;
+            _dataGetter = dataGetter;
+
+            Multiple          = multiple;
+            FilterPlaceholder = filterPlaceholder;
+            ClearOnSelect     = clearOnSelect;
+            CloseOnSelect     = closeOnSelect ?? !multiple;
 
             // // _selected = new List<Option<T>>();
             // // _selected.AddRange(GenerateBatches().Where(v => v.Selected));
@@ -124,8 +135,6 @@ namespace FS3
 
         public RenderFragment Render()
         {
-            Console.WriteLine("Render()");
-
             void Fragment(RenderTreeBuilder builder)
             {
                 builder.OpenComponent<__FlareSelector<T>>(0);
@@ -140,7 +149,6 @@ namespace FS3
         {
             for (var batchID = 0; batchID < Batches.Length; batchID++)
             {
-                Console.Write("Processing batch " + batchID + "... ");
                 var needsUpdate = false;
 
                 foreach (IOption<T> option in Batches[batchID].Item2)
@@ -163,7 +171,6 @@ namespace FS3
                     }
                 }
 
-                Console.WriteLine("done, " + needsUpdate);
                 if (needsUpdate)
                     Batches[batchID].Item1.Trigger();
             }
@@ -251,7 +258,6 @@ namespace FS3
 
             if (!_selected.Contains(option.ID))
             {
-                Console.WriteLine($"Select({option.ID}) ++");
                 if (!Multiple)
                 {
                     _selected.Clear();
@@ -264,7 +270,6 @@ namespace FS3
             }
             else
             {
-                Console.WriteLine($"Select({option.ID}) --");
                 if (!Multiple)
                 {
                     _selected.Clear();
@@ -276,6 +281,11 @@ namespace FS3
             }
 
             Batches[batchID].Item1.Trigger();
+            if (ClearOnSelect)
+            {
+                FilterValue = "";
+                CacheMatched();
+            }
             OnSelectionChange.Trigger();
         }
 
@@ -291,7 +301,6 @@ namespace FS3
 
         public void UpdateFilterValue(string value)
         {
-            Console.WriteLine("Filter -> " + value);
             FilterValue = value;
             CacheMatched();
         }

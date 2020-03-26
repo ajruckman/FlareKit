@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using Superset.Common;
+using Superset.Web.State;
 
 namespace FlareSelect
 {

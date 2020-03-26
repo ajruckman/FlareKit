@@ -1,8 +1,9 @@
 .FlareSelect_Container {
-  background-color: red;
   width: 100%; }
   .FlareSelect_Container .FlareSelect_SelectedContainer {
-    background-color: blue;
+    background-color: var(--ColorSet_ThemeColor_Background_40);
+    border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+    border-radius: 3px;
     cursor: pointer;
     width: 100%; }
     .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -10,95 +11,146 @@
       display: flex;
       flex-wrap: wrap;
       width: 100%; }
+      .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
+        align-items: center;
+        color: var(--ColorSet_ThemeColor_Text_60);
+        display: inline-flex; }
+        .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
+          background: none;
+          border: none;
+          color: var(--ColorSet_ThemeColor_Background_200);
+          cursor: pointer;
+          flex-shrink: 0;
+          font-family: 'Times New Roman', serif;
+          height: 15px;
+          line-height: 0;
+          margin-left: 1px;
+          padding: 0;
+          width: 15px; }
+          .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
+            color: var(--ColorSet_ThemeColor_SolidRed_0); }
   .FlareSelect_Container .FlareSelect_OptionsContainer {
     width: 100%; }
     .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options {
-      background-color: green;
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-      border-top: 1px solid black;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      background-color: var(--ColorSet_ThemeColor_Background_50);
+      border: 1px solid var(--ColorSet_ThemeColor_Border_50);
+      border-radius: 3px;
+      color: var(--ColorSet_ThemeColor_Text_50);
       position: absolute; }
       .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_50);
+        box-sizing: border-box;
         cursor: pointer;
-        min-height: 15px;
+        padding: 3px 4px;
         width: 100%; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:hover {
+          background-color: var(--ColorSet_ThemeColor_Background_50_Hover); }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
-          background-color: purple; }
+          background-color: var(--ColorSet_ThemeColor_Accent_40);
+          color: var(--ColorSet_ThemeColor_AccentText); }
+          .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected:hover {
+            background-color: var(--ColorSet_ThemeColor_Accent_30); }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Placeholder {
+          background-color: var(--ColorSet_ThemeColor_Background_40);
+          color: var(--ColorSet_ThemeColor_Text_20);
           cursor: unset;
           font-style: italic;
           font-weight: 500; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Disabled {
-          cursor: not-allowed;
-          color: #333; }
+          color: var(--ColorSet_ThemeColor_Text_20);
+          cursor: not-allowed; }
+          .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Disabled:hover {
+            background-color: var(--ColorSet_ThemeColor_Background_50);
+            text-decoration: line-through; }
+      .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options section:last-child div:last-child {
+        border-bottom: none; }
+  .FlareSelect_Container .FlareSelect_FilterInputContainer {
+    position: relative; }
+    .FlareSelect_Container .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
+      box-sizing: border-box;
+      height: 21px;
+      outline: none;
+      padding: 1px 4px; }
+    .FlareSelect_Container .FlareSelect_FilterInputContainer .FlareSelect_FilterInputSearchIcon {
+      position: absolute;
+      right: 7px;
+      stroke: var(--ColorSet_ThemeColor_Background_200);
+      top: 7.5px;
+      width: 12px; }
   .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
     min-height: 23px; }
     .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {
-      background-color: orange;
       box-sizing: border-box;
       min-height: 23px; }
       .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
-        align-items: center;
-        display: inline-flex;
         justify-content: space-between;
         padding: 0 3px;
         width: 100%; }
-        .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
-          background: none;
-          border: none;
-          color: black;
-          cursor: pointer;
-          flex-shrink: 0;
-          height: 15px;
-          line-height: 0;
-          padding: 0;
-          width: 15px; }
-          .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
-            color: red; }
-  .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInput {
-    margin: 3px;
-    width: calc(100% - 6px); }
+  .FlareSelect_Container--Single .FlareSelect_OptionsContainer {
+    min-width: 100%; }
+    .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer {
+      cursor: default;
+      padding: 0; }
+      .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer:hover {
+        background-color: var(--ColorSet_ThemeColor_Background_50); }
+      .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
+        background-color: var(--ColorSet_ThemeColor_Background_40);
+        border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+        color: var(--ColorSet_ThemeColor_Text_60);
+        margin: 3px;
+        width: calc(100% - 6px); }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
+          background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover); }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
+          background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus); }
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
-      background-color: blue;
       box-sizing: border-box;
       min-height: calc(33px);
       padding: 3px; }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
-        align-items: center;
-        background-color: #cccccc;
-        border: 1px solid black;
+        background-color: var(--ColorSet_ThemeColor_Background_50);
+        border: 1px solid var(--ColorSet_ThemeColor_Border_50);
         border-radius: 3px;
         box-sizing: border-box;
         cursor: default;
-        display: inline-flex;
         margin: 2px;
         min-height: 23px;
         padding-left: 3px; }
-        .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton {
-          align-self: flex-start;
-          background: none;
-          border: none;
-          color: black;
-          cursor: pointer;
-          flex-shrink: 0;
-          height: 15px;
-          line-height: 0;
-          padding: 0;
-          width: 15px; }
-          .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection .FlareSelect_SelectionRemoveButton:hover {
-            color: red; }
-    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInput {
-      background-color: blue;
-      border-bottom: 1px solid black;
-      border-left: none;
-      border-right: none;
-      border-top: none;
-      box-sizing: border-box;
-      height: 23px;
+        .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection:hover {
+          background-color: var(--ColorSet_ThemeColor_Background_50_Hover);
+          border: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover); }
+    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
+      background-color: var(--ColorSet_ThemeColor_Background_40);
+      border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_40);
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-top: 1px solid transparent;
+      color: var(--ColorSet_ThemeColor_Text_60);
       margin: 3px;
       outline: none;
-      padding: 3px;
       width: calc(100% - 6px); }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
+        background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover); }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
+        background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus); }

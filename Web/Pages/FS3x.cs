@@ -10,8 +10,8 @@ namespace Web.Pages
 
         protected override void OnInitialized()
         {
-            _fs1 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, false);
-            _fs2 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, true);
+            _fs1 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, false, clearOnSelect:true);
+            _fs2 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, true, clearOnSelect:true);
         }
     }
 }
