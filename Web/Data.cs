@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 using Bogus.DataSets;
-using FlareSelect;
+using FS3;
+
+// using FlareSelect;
 
 namespace Web
 {
@@ -18,23 +20,25 @@ namespace Web
         public string   PhoneNumber { get; set; }
         public string   Gender      { get; set; }
 
-        public Option NameOption =>
-            new Option
+        public Option<int> NameOption =>
+            new Option<int>
             {
                 ID           = ID,
-                Text         = $"{FirstName} {LastName}",
-                SelectedText = FirstName,
-                Selected     = true
+                OptionText   = $"{FirstName} {LastName}",
+                SelectedText = $"{FirstName} {LastName}",
+                // Selected     = true
             };
 
-        public Option LongOption =>
-            new Option
+        public Option<int> LongOption =>
+            new Option<int>
             {
                 ID           = ID,
-                Text         = PhoneNumber,
+                OptionText   = PhoneNumber,
                 SelectedText = PhoneNumber,
                 Selected     = true
             };
+
+        public static List<Option<int>> PreGeneratedOptions;
     }
 
     public static class Generate

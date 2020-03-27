@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using Superset.Common;
+using Superset.Web.State;
 
 namespace FlareSelect
 {
@@ -20,7 +21,7 @@ namespace FlareSelect
         public            bool                              Focused;
         internal          IJSRuntime                        JSRuntime;
         public            string                            SearchTerm;
-        public            List<Option>                      Selected;
+        public            List<IOption>                     Selected;
         internal          FlareLib.FlareLib.StateHasChanged StateHasChanged;
 
         public FlareSelector
@@ -83,7 +84,7 @@ namespace FlareSelect
 
         [SuppressMessage("ReSharper", "MergeConditionalExpressionWhenPossible")]
         [SuppressMessage("ReSharper", "RedundantIfElseBlock")]
-        public IEnumerable<Option> Filtered
+        public IEnumerable<IOption> Filtered
         {
             get
             {
@@ -95,8 +96,9 @@ namespace FlareSelect
                     {
                         new Option
                         {
-                            Disabled = true,
-                            Text     = MinSearchTermText
+                            Disabled    = true,
+                            Text        = MinSearchTermText,
+                            Placeholder = true
                         }
                     };
                 }
@@ -122,9 +124,9 @@ namespace FlareSelect
             }
         }
 
-        public event Action<List<Option>> OnUpdate;
-        public event Action<string>       OnSearch;
-        public readonly UpdateTrigger     SelectionUpdateTrigger;
+        public event Action<List<IOption>> OnUpdate;
+        public event Action<string>        OnSearch;
+        public readonly UpdateTrigger      SelectionUpdateTrigger;
 
         public RenderFragment Render()
         {
@@ -154,7 +156,7 @@ namespace FlareSelect
                 : Options.Invoke(SearchTerm).Where(v => v.Selected).ToList();
         }
 
-        public void Select(Option option)
+        public void Select(IOption option)
         {
             if (option.Placeholder) return;
 
@@ -166,7 +168,7 @@ namespace FlareSelect
             else
             {
                 if (IsSelected(option))
-                    Selected.RemoveAll(v => v.ID.Equals(option.ID));
+                    Selected.RemoveAll(v => v.ID?.Equals(option.ID) == true);
                 else
                     Selected.Add(option);
             }
@@ -182,19 +184,19 @@ namespace FlareSelect
             OnUpdate?.Invoke(Selected);
         }
 
-        public bool IsSelected(Option option)
+        public bool IsSelected(IOption option)
         {
-            return !option.Placeholder && Selected.Any(v => v.ID.Equals(option.ID));
+            return !option.Placeholder && Selected.Any(v => v.ID?.Equals(option.ID) == true);
         }
 
-        public void Deselect(Option option)
+        public void Deselect(IOption option)
         {
             if (option.Placeholder) return;
 
             if (!Multiple)
                 Selected.Clear();
             else
-                Selected.RemoveAll(v => v.ID.Equals(option.ID));
+                Selected.RemoveAll(v => v.ID?.Equals(option.ID) == true);
 
             OnUpdate?.Invoke(Selected);
         }
@@ -243,7 +245,7 @@ namespace FlareSelect
             return result;
         }
 
-        public void OnKeyUp(KeyboardEventArgs args, Option option)
+        public void OnKeyUp(KeyboardEventArgs args, IOption option)
         {
             if (args.Key == "Enter") Select(option);
         }

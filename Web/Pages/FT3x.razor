@@ -1,0 +1,63 @@
+@using Microsoft.AspNetCore.Components.Web
+@using FT3
+@using FT3.Component
+@page "/ft3"
+
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISessionStorageService SessionStorage
+
+<button @onclick="Download">Download</button>
+
+<FlareTableContainer FlareTable="@_flareTable1">
+
+    <FlareTableControlRow>
+        <FlareTableColumnToggles T="Record"/>
+        <FlareTableControlSpacer/>
+        <FlareTableResetButton T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTableRegexToggle T="Record"/>
+    </FlareTableControlRow>
+
+    <FlareTableControlRow>
+        <FlareTablePaginationSize T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTablePaginationButtons T="Record" ID="1"/>
+    </FlareTableControlRow>
+
+    <FlareTableTable>
+        <FlareTableHead>
+            <FlareTableHeadingRow>
+                @foreach (Column column in _flareTable1.Columns)
+                {
+                    <FlareTableHeading T="Record" ID="@column.ID"/>
+                }
+            </FlareTableHeadingRow>
+            <FlareTableFilterRow>
+                @foreach (Column column in _flareTable1.Columns)
+                {
+                    <FlareTableFilter T="Record" ID="@column.ID"/>
+                }
+            </FlareTableFilterRow>
+        </FlareTableHead>
+        <FlareTableBody T="Record">
+            @foreach (Record row in _flareTable1.Rows())
+            {
+                <FlareTableBodyRow T="Record" Value="@row">
+                    <FlareTableCell T="Record" ID="Name">@row.Name</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Age">@row.Age</FlareTableCell>
+                    <FlareTableCell T="Record" ID="City">@row.City</FlareTableCell>
+                    <FlareTableCell T="Record" ID="State">@row.State</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Country">@row.Country</FlareTableCell>
+                    <FlareTableCell T="Record" ID="Zip">@row.Zip</FlareTableCell>
+                </FlareTableBodyRow>
+            }
+        </FlareTableBody>
+    </FlareTableTable>
+
+    <FlareTableControlRow>
+        <FlareTablePaginationInfo T="Record"/>
+        <FlareTableControlFiller/>
+        <FlareTablePaginationButtons T="Record" ID="2"/>
+    </FlareTableControlRow>
+
+</FlareTableContainer>

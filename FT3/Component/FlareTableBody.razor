@@ -1,0 +1,23 @@
+@using Superset.Logging
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="false">
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableBody");
+
+        <tbody class="FlareTableBody">
+        @ChildContent
+        </tbody>
+    }
+</TriggerWrapper>

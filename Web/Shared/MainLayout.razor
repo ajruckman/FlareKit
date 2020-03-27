@@ -1,22 +1,43 @@
-﻿@using FlareLib
+﻿@using Blazored.LocalStorage
+@using Blazored.SessionStorage
+@using ColorSet.Components
 @using Microsoft.AspNetCore.Components.Web
+@using Superset.Web.Resources
+@using Superset.Web.State
+
+@inject ILocalStorageService LocalStorage
 
 @inherits Microsoft.AspNetCore.Components.LayoutComponentBase
 
 @code {
 
-    private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
+    // private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
-    protected override void OnInitialized()
+    ThemeLoader _themeLoader;
+    private readonly UpdateTrigger _trigger = new UpdateTrigger();
+
+    protected override async Task OnInitializedAsync()
     {
-//        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
+        _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceManifests, "Dark");
+        _themeLoader.OnComplete += () => _trigger.Trigger();
+
+        await _themeLoader.Load();
+        
+    //        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
     }
 
 }
 
-<CascadingValue Value="@ElementClickHandler">
-@* <div @onclick="@(() => ElementClickHandler.OuterClick())"> *@
-<div>
-    @Body
-</div>
-</CascadingValue>
+@ResourceManifest.RenderScripts(new Configuration().ResourceManifests)
+
+<TriggerWrapper Trigger="@_trigger">
+    @if (_themeLoader.Complete)
+    {
+@*         <CascadingValue Value="@ElementClickHandler"> *@
+            @_themeLoader.RenderLink()
+            @Body
+        // </CascadingValue>
+        
+         @_themeLoader.RenderDropdown()
+    }
+</TriggerWrapper>

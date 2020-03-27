@@ -1,0 +1,33 @@
+@using System.Threading.Tasks
+@using ShapeSet.Components
+@using Superset.Logging
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    private async Task HandleCheck(string id, ChangeEventArgs args)
+    {
+        await FlareTable.SetColumnVisibility(id, (bool) args.Value);
+    }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableColumnToggles");
+
+        <div class="FlareTableColumnToggles">
+            @foreach (Column column in FlareTable.Columns)
+            {
+                <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
+    @*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
+            }
+            <span>Column Toggles</span>
+        </div>
+    }
+</TriggerWrapper>

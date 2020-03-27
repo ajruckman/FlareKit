@@ -1,0 +1,24 @@
+@using Superset.Logging
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public string ID { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+@if (FlareTable.ColumnShown(ID))
+{
+    <td class="@FlareTable.CellClasses(ID)">@ChildContent</td>
+}
+else
+{
+    <td class="@FlareTable.CellClasses(ID) FlareTableCell--Hidden"></td>
+}

@@ -1,0 +1,20 @@
+@using Superset.Logging
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableBody" Protected="true">
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTablePaginationInfo");
+
+        <div class="FlareTablePaginationInfo">
+            <span>@FlareTable.Info</span>
+        </div>
+    }
+</TriggerWrapper>

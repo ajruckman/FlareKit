@@ -1,0 +1,17 @@
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    private async Task Reset(MouseEventArgs args)
+    {
+        await FlareTable.Reset();
+    }
+
+}
+
+<div class="FlareTableResetButton">
+    <button @onclick="@Reset">Reset</button>
+</div>

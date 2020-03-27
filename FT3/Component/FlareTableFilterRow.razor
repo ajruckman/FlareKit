@@ -1,0 +1,10 @@
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
+
+<tr class="FlareTableFilterRow">
+    @ChildContent
+</tr>

@@ -1,0 +1,151 @@
+.SS_CheckboxContainer {
+    position: relative;
+
+    .SS_Checkbox {
+        opacity:  0;
+        position: absolute;
+        z-index:  -1;
+
+        &:focus-visible {
+            outline: 1px solid green;
+        }
+    }
+
+    // Not disabled
+    .SS_Checkbox:not(:disabled) ~ .SS_CheckboxIndicator {
+        box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
+        cursor:     pointer;
+
+        &--SizeSmall .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_60);
+            border-width: 0 2px 2px 0;
+        }
+
+        &--SizeMedium .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_60);
+            border-width: 0 3px 3px 0;
+        }
+
+        &--SizeLarge .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_60);
+            border-width: 0 4px 4px 0;
+        }
+    }
+
+    // Disabled
+    .SS_Checkbox:disabled ~ .SS_CheckboxIndicator {
+        cursor: not-allowed;
+
+        &--SizeSmall .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_0);
+            border-width: 0 2px 2px 0;
+        }
+
+        &--SizeMedium .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_0);
+            border-width: 0 3px 3px 0;
+        }
+
+        &--SizeLarge .SS_CheckboxIndicatorMark {
+            border:       solid var(--ColorSet_ThemeColor_Text_0);
+            border-width: 0 4px 4px 0;
+        }
+    }
+
+    // Not checked
+    .SS_Checkbox:not(:checked) ~ .SS_CheckboxIndicator {
+        .SS_CheckboxIndicatorMark {
+            opacity: 0;
+            //display: none;
+        }
+    }
+
+    // Checked
+    .SS_Checkbox:checked ~ .SS_CheckboxIndicator {
+        .SS_CheckboxIndicatorMark {
+            //display: block;
+        }
+    }
+
+    // Not disabled + not checked
+    .SS_Checkbox:not(:disabled):not(:checked) ~ .SS_CheckboxIndicator {
+        background-color: var(--ColorSet_ThemeColor_Background_60);
+        border:           1px solid var(--ColorSet_ThemeColor_Border_60);
+
+        &:hover {
+            background-color: var(--ColorSet_ThemeColor_Background_90);
+            border:           1px solid var(--ColorSet_ThemeColor_Border_90);
+        }
+
+        &:active {
+            background-color: var(--ColorSet_ThemeColor_Background_110);
+            border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40);
+            border-left:      1px solid var(--ColorSet_ThemeColor_Border_110);
+            border-right:     1px solid var(--ColorSet_ThemeColor_Border_110);
+            border-top:       1px solid var(--ColorSet_ThemeColor_Border_110);
+        }
+    }
+
+    // Not disabled + checked
+    .SS_Checkbox:not(:disabled):checked ~ .SS_CheckboxIndicator {
+        background-color: var(--ColorSet_ThemeColor_Background_80);
+        border:           1px solid var(--ColorSet_ThemeColor_Border_80);
+
+        &:hover {
+            background-color: var(--ColorSet_ThemeColor_Background_90);
+            border:           1px solid var(--ColorSet_ThemeColor_Border_90);
+        }
+
+        &:active {
+            background-color: var(--ColorSet_ThemeColor_Background_110);
+            border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40);
+            border-left:      1px solid var(--ColorSet_ThemeColor_Border_110);
+            border-right:     1px solid var(--ColorSet_ThemeColor_Border_110);
+            border-top:       1px solid var(--ColorSet_ThemeColor_Border_110);
+        }
+    }
+
+    // Disabled + not checked
+    .SS_Checkbox:disabled:not(:checked) ~ .SS_CheckboxIndicator {
+        background-color: var(--ColorSet_ThemeColor_Background_40);
+        border:           1px solid var(--ColorSet_ThemeColor_Border_40);
+    }
+
+    // Disabled + checked
+    .SS_Checkbox:disabled:checked ~ .SS_CheckboxIndicator {
+        background-color: var(--ColorSet_ThemeColor_Background_50);
+        border:           1px solid var(--ColorSet_ThemeColor_Border_50);
+    }
+
+    .SS_CheckboxIndicator {
+        align-items:     center;
+        border-radius:   3px;
+        box-sizing:      border-box;
+        display:         inline-flex;
+        justify-content: center;
+
+        &--SizeSmall {
+            height: 21px;
+            width:  21px;
+        }
+
+        &--SizeMedium {
+            height: 25px;
+            width:  25px;
+
+        }
+
+        &--SizeLarge {
+            height: 31px;
+            width:  31px;
+        }
+
+        .SS_CheckboxIndicatorMark {
+            display:       block;
+            height:        50%;
+            margin-bottom: 10%;
+            transform:     rotate(45deg);
+            width:         15%;
+        }
+    }
+}

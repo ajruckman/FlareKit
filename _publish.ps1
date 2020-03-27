@@ -17,24 +17,35 @@ function Clean-DotNETProject
 
 Kill-ASPDotNETWebserver
 Clean-DotNETProject
+dotnet restore
 
-dotnet pack -c Debug
+cd .\FS3\wwwroot\
+.\_build.ps1
+cd ..\..\
+
+cd .\FT3\wwwroot\
+.\_build.ps1
+cd ..\..\
+
+dotnet pack -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
 if (!(Test-Path .\_published\))
 {
     md .\_published\
 }
-rm -Force .\_published\*
 
 Get-ChildItem -Directory | foreach {
-	if (Test-Path "$($_.FullName)\bin") {
-		Get-ChildItem "$($_.FullName)\bin\" -Depth 1 -Filter *.nupkg | foreach {
-			Write-Output $_.Name
-			Copy-Item $_.FullName .\_published\
-		}
-	}
+    if (Test-Path "$( $_.FullName )\bin")
+    {
+        Get-ChildItem "$($_.FullName)\bin\" -Depth 1  | ? { ($_.FullName -like "*.nupkg") -or ($_.FullName -like "*.snupkg") } | foreach {
+            Write-Output "Copying package: $( $_.Name )"
+            Copy-Item $_.FullName .\_published\
+        }
+    }
 }
 
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flarelib\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flareselect\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flaretables\
+Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\fs3\
+Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\ft3\

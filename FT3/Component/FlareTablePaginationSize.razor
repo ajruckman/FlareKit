@@ -1,0 +1,31 @@
+@using System.Threading.Tasks
+@using Superset.Logging
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    private async Task UpdatePageSize(ChangeEventArgs args)
+    {
+        await FlareTable.UpdatePageSize(int.Parse(args.Value?.ToString() ?? "0"));
+    }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTablePaginationSize");
+
+        <div class="FlareTablePaginationSizes">
+            <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
+                @foreach (int size in FlareTable.PageSizes)
+                {
+                    <option selected="@(size == FlareTable.PageSize)" value="@size">@size</option>
+                }
+            </select>
+        </div>
+    }
+</TriggerWrapper>

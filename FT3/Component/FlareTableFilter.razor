@@ -1,0 +1,64 @@
+@using System.Timers
+@using Superset.Logging
+
+@typeparam T
+
+@code {
+
+    [CascadingParameter]
+    public FlareTable<T> FlareTable { get; set; }
+
+    [Parameter]
+    public string ID { get; set; }
+
+    private readonly object _debouncerLock = new object();
+    private Timer _debouncer;
+    private string _filter;
+
+    protected override void OnParametersSet()
+    {
+    }
+
+    private void SetFilter(ChangeEventArgs args)
+    {
+        _filter = args.Value?.ToString() ?? "";
+        lock (_debouncerLock)
+        {
+            if (_debouncer == null)
+            {
+                _debouncer = new Timer(250) {AutoReset = false};
+                _debouncer.Elapsed += async (_, __) => await FlareTable.SetColumnFilter(ID, _filter);
+                _debouncer.Start();
+            }
+            else
+            {
+                _debouncer.Enabled = false;
+                _debouncer.Enabled = true;
+            }
+        }
+    }
+
+}
+
+<TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
+    @if (FlareTable.Complete)
+    {
+        Log.Update("[COMPONENT] FlareTableFilter");
+        _filter = FlareTable.GetColumnFilter(ID);
+
+        if (FlareTable.ColumnShown(ID))
+        {
+            <th class="FlareTableFilter_Cell">
+                <span class="FlareTableFilter_CellControlContainer">
+                    @{ string key = "FT_F_" + ID; }
+                    <input class="FlareTableFilter_Input @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
+                    <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
+                </span>
+            </th>
+        }
+        else
+        {
+            <th class="FlareTableFilter_Cell FlareTableFilter_Cell--Hidden"></th>
+        }
+    }
+</TriggerWrapper>

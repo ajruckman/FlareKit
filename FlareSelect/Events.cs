@@ -9,11 +9,11 @@ namespace FlareSelect
     // TODO: Close (OnOuterClick) anywhere on page
     public static class Events
     {
-        public delegate void OnUpdate(List<Option> selected);
+        public delegate void OnUpdate(List<IOption> selected);
 
         public delegate void OnSearch(string searchTerm);
         
-        public delegate IEnumerable<Option> Options(string searchTerm);
+        public delegate IEnumerable<IOption> Options(string searchTerm);
         // public delegate IEnumerable<Option> OptionsFiltered(string searchTerm);
     }
 }
