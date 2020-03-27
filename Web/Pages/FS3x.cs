@@ -10,8 +10,10 @@ namespace Web.Pages
 
         protected override void OnInitialized()
         {
-            _fs1 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, false, clearOnSelect:true);
-            _fs2 = new FlareSelector<int>(() =>Contact.PreGeneratedOptions, true, clearOnSelect:true);
+            _fs1 = new FlareSelector<int>(() => Contact.PreGeneratedOptions, false, clearOnSelect: false, minFilterValueLength: 2,
+                minFilterValueNotice: "Type 2+ characters", emptyPlaceholder:"Click to select a person");
+            _fs2 = new FlareSelector<int>(() => Contact.PreGeneratedOptions, true, clearOnSelect: false,
+                emptyPlaceholder:"Click to select a person");
         }
     }
 }

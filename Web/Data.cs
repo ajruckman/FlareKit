@@ -24,7 +24,7 @@ namespace Web
             new Option<int>
             {
                 ID           = ID,
-                OptionText   = $"{FirstName} {LastName}",
+                OptionText   = $"{FirstName} {LastName} {Email} {PhoneNumber} {Gender} {FirstName} {LastName} {Email} {PhoneNumber} {Gender}",
                 SelectedText = $"{FirstName} {LastName}",
                 // Selected     = true
             };

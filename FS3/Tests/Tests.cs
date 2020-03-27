@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Bogus;
 using Bogus.DataSets;
-using Microsoft.AspNetCore.Components.Rendering;
 using Superset.Common;
 using Superset.Web.State;
 
@@ -11,24 +11,129 @@ namespace FS3.Tests
 {
     public class Tests
     {
+        const   int                runOptions = 25000;
+        private FlareSelector<int> _fs1;
+        private int                cDisabled    = 0;
+        private int                cNormal      = 0;
+        private int                cPlaceholder = 0;
+        private int                cSelected    = 0;
+
         public void Run()
         {
             IEnumerable<IOption<int>> data = Generate.Contacts(931).Select(v => v.NameOption);
 
-            FlareSelector<int> _fs1 = new FlareSelector<int>(() => data, true);
+            _fs1 = new FlareSelector<int>(() => data, true);
 
-            foreach ((UpdateTrigger, List<IOption<int>>) batch in _fs1.Batches)
+            while (true)
             {
-                foreach (var option in batch.Item2)
+                Bench1();
+                Bench2();
+                // Bench3();
+
+                Console.WriteLine();
+            }
+        }
+
+        private void Bench1()
+        {
+            Stopwatch s1 = new Stopwatch();
+            s1.Start();
+            for (var run = 0; run < runOptions; run++)
+            {
+                for (var b = 0; b < _fs1.Batches.Length; b++)
                 {
-                    Console.WriteLine($"\t{option.ID}");
+                    UpdateTrigger tw = _fs1.Batches[b].Item1;
+
+                    for (var o = 0; o < _fs1.Batches[b].Item2.Count; o++)
+                    {
+                        IOption<int> d = _fs1.Batches[b].Item2[o];
+
+                        Inner(b, o, d);
+                    }
                 }
             }
 
-            // foreach (Option<int> option in _fs1.GenerateBatches())
-            // {
-            // Console.WriteLine(option.BatchID);
-            // }
+            s1.Stop();
+            Console.WriteLine("Bench1 = " + s1.Elapsed);
+        }
+
+        private void Bench2()
+        {
+            Stopwatch s1 = new Stopwatch();
+            s1.Start();
+
+            for (var run = 0; run < runOptions; run++)
+            {
+                var           i      = 0;
+                int           cIndex = -1;
+                UpdateTrigger cTw    = null;
+
+                foreach (IOption<int> d in _fs1.Options())
+                {
+                    int batchID = i / _fs1.BatchSize;
+                    int o       = i % _fs1.BatchSize;
+
+                    if (cIndex != batchID)
+                    {
+                        cTw    = _fs1.Batches[batchID].Item1;
+                        cIndex = batchID;
+                    }
+
+                    Inner(batchID, o, d);
+
+                    i++;
+                }
+            }
+
+            s1.Stop();
+            Console.WriteLine("Bench2 = " + s1.Elapsed);
+        }
+
+        // private void Bench3()
+        // {
+        //     Stopwatch s1 = new Stopwatch();
+        //     s1.Start();
+        //
+        //     for (var run = 0; run < runOptions; run++)
+        //     {
+        //         foreach ((int batchID, int optionIndex, IOption<int> option) in _fs1.OptionsIndexed())
+        //         {
+        //             Inner(batchID, optionIndex, option);
+        //         }
+        //     }
+        //
+        //     s1.Stop();
+        //     Console.WriteLine("Bench3 = " + s1.Elapsed);
+        // }
+
+        private void Inner(int batchID, int o, IOption<int> d)
+        {
+            if (d.Placeholder)
+            {
+                bool   shown = _fs1.IsOptionShown(d);
+                string text  = d.OptionText;
+                cPlaceholder++;
+            }
+            else if (d.Disabled)
+            {
+                bool   shown = _fs1.IsOptionShown(d);
+                string text  = d.OptionText;
+                cDisabled++;
+            }
+            else if (_fs1.IsOptionSelected(d))
+            {
+                bool   shown = _fs1.IsOptionShown(d);
+                string text  = d.OptionText;
+                cSelected++;
+                string id = $"FS_O_{batchID}_{o}";
+            }
+            else
+            {
+                bool   shown = _fs1.IsOptionShown(d);
+                string text  = d.OptionText;
+                cNormal++;
+                string id = $"FS_O_{batchID}_{o}";
+            }
         }
     }
 

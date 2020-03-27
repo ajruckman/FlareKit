@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -16,10 +18,11 @@ namespace FS3
 {
     public partial class __FlareSelector<T> where T : IEquatable<T>
     {
-        private readonly UpdateTrigger _onToggle = new UpdateTrigger();
+        private readonly UpdateTrigger _onToggle                 = new UpdateTrigger();
+        private readonly UpdateTrigger _onFilterValueValidChange = new UpdateTrigger();
 
         private bool _justFocused;
-        private bool _shown = true;
+        private bool _shown;
 
         private ElementReference _selectedRef;
         private ClickListener    _selectedClickListener;
@@ -35,6 +38,11 @@ namespace FS3
 
         [Parameter]
         public FlareSelector<T> FlareSelector { get; set; }
+
+        protected override void OnInitialized()
+        {
+            _validFilterValueLength = IsFilterValueValid();
+        }
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -80,23 +88,27 @@ namespace FS3
         {
             if (args.Button != 0) return;
 
-            _justFocused = true;
             _shown       = !_shown;
+            _justFocused = true;
             _onToggle.Trigger();
+
+            if (FlareSelector.Multiple)
+                Utilities.FocusElement(JSRuntime, _inputRef);
         }
 
         private void OnSelectedInnerClick(ClickListener.ClickArgs args)
         {
             if (args.Button != 0) return;
+            
+            _justFocused = true;
 
-            if (FlareSelector.Multiple)
-                _justFocused = true;
-            else
+            if (!FlareSelector.AnySelected() || !FlareSelector.Multiple)
             {
                 _shown       = !_shown;
                 _justFocused = true;
-
                 _onToggle.Trigger();
+
+                Utilities.FocusElement(JSRuntime, _inputRef);
             }
         }
 
@@ -184,11 +196,27 @@ namespace FS3
             }
         }
 
+        private bool _validFilterValueLength;
+
         private void UpdateFilterValue(ChangeEventArgs obj)
         {
             FlareSelector.UpdateFilterValue(obj.Value.ToString() ?? "");
+
+            bool validNow = IsFilterValueValid();
+            if (_validFilterValueLength != validNow)
+            {
+                _validFilterValueLength = validNow;
+                _onFilterValueValidChange.Trigger();
+            }
+
             _shown = true;
             _onToggle.Trigger();
+        }
+
+        private bool IsFilterValueValid()
+        {
+            return FlareSelector.MinFilterValueLength == null ||
+                   FlareSelector.FilterValue.Length   >= FlareSelector.MinFilterValueLength.Value;
         }
 
         private void OnOptionsKeypress(KeyboardEventArgs args) { }

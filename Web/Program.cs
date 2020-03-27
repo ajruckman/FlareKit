@@ -42,10 +42,10 @@ namespace Web
             });
 
             Contact.PreGeneratedOptions.AddRange(Generate.Contacts(1_000).Select(v => v.NameOption).ToList());
-            for (var i = 3; i < 30; i += 2)
-            {
-                Contact.PreGeneratedOptions[i].Selected = true;
-            }
+            // for (var i = 3; i < 30; i += 2)
+            // {
+            //     Contact.PreGeneratedOptions[i].Selected = true;
+            // }
 
 
             Console.WriteLine("complete");

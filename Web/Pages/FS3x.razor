@@ -1,14 +1,16 @@
 @page "/fs3"
 
-<table>
+<table style="margin: 0 auto;">
+    <tr>
+        <td style="vertical-align: top;">
+            @_fs1.Render()
+            <p>Obscued text</p>
+        </td>
+    </tr>
     <tr>
         <td style="vertical-align: top; width: 300px;">
-            @_fs1.Render()
-            <p>BelowBelowBelowBelowBelowBelowBelowBelowBelowBelowBelow</p>
-        </td>
-        <td style="vertical-align: top; width: 300px;">
             @_fs2.Render()
-            <p>BelowBelowBelowBelowBelowBelowBelowBelowBelowBelowBelow</p>
+            <p>Obscued text</p>
         </td>
     </tr>
 </table>

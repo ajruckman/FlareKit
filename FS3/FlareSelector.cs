@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
 using Superset.Common;
 using Superset.Web.State;
 
@@ -15,49 +14,49 @@ namespace FS3
     {
         public delegate IEnumerable<IOption<T>> DataGetter();
 
-        private const    int        BatchSize = 1000;
         private readonly DataGetter _dataGetter;
 
         private readonly Dictionary<T, bool> _matchedCache = new Dictionary<T, bool>();
 
         private readonly OrderedDictionary _selected = new OrderedDictionary();
 
-        public readonly bool   Multiple;
-        public readonly string FilterPlaceholder;
-        public readonly bool   CloseOnSelect;
-        public readonly bool   ClearOnSelect;
+        internal readonly int BatchSize = 1000;
+
+        public readonly bool    ClearOnSelect;
+        public readonly bool    CloseOnSelect;
+        public readonly string  FilterPlaceholder;
+        public readonly uint?   MinFilterValueLength;
+        public readonly string  MinFilterValueNotice;
+        public readonly string? EmptyPlaceholder;
+
+        public readonly bool Multiple;
 
         // internal readonly UpdateTrigger OnDataChange      = new UpdateTrigger();
-        internal readonly UpdateTrigger OnSelectionChange = new UpdateTrigger();
+        internal readonly UpdateTrigger OnSelectionChange    = new UpdateTrigger();
+        internal readonly UpdateTrigger OnFilterNoticeChange = new UpdateTrigger();
 
         private List<IOption<T>>? _dataCache;
 
         public FlareSelector(
             DataGetter dataGetter,
             bool       multiple,
-            string     filterPlaceholder = "Filter options",
-            bool       clearOnSelect     = false,
-            bool?      closeOnSelect     = null
+            string     filterPlaceholder    = "Filter options",
+            bool       clearOnSelect        = false,
+            bool?      closeOnSelect        = null,
+            uint?      minFilterValueLength = null,
+            string?    minFilterValueNotice = null,
+            string?    emptyPlaceholder     = null
         )
         {
             _dataGetter = dataGetter;
 
-            Multiple          = multiple;
-            FilterPlaceholder = filterPlaceholder;
-            ClearOnSelect     = clearOnSelect;
-            CloseOnSelect     = closeOnSelect ?? !multiple;
-
-            // // _selected = new List<Option<T>>();
-            // // _selected.AddRange(GenerateBatches().Where(v => v.Selected));
-            // foreach (IOption<T> option in Data())
-            // {
-            //     if (option.Selected)
-            //     {
-            //         Select(option);
-            //         if (!Multiple)
-            //             break;
-            //     }
-            // }
+            Multiple             = multiple;
+            FilterPlaceholder    = filterPlaceholder;
+            ClearOnSelect        = clearOnSelect;
+            CloseOnSelect        = closeOnSelect ?? !multiple;
+            MinFilterValueLength = minFilterValueLength;
+            MinFilterValueNotice = minFilterValueNotice ?? $"Filter by at least {MinFilterValueLength} characters";
+            EmptyPlaceholder     = emptyPlaceholder;
 
             GenerateBatches();
             CacheMatched();
@@ -75,24 +74,14 @@ namespace FS3
                     }
                 }
             }
-
-            // Task.Run(() =>
-            // {
-            //     Thread.Sleep(2000);
-            //     /*foreach (IOption<T> ID in Batches[1].Item2)
-            //     {
-            //         ID.OptionText += " <-";
-            //     }*/
-            //
-            //     Batches[1].Item1.Trigger();
-            // });
         }
 
-        // internal int BatchCount => (int) Math.Ceiling(_dataGetter.Invoke().Count() / (double) BatchSize);
-        internal int BatchCount => (int) Math.Ceiling(Data().Count / (double) BatchSize);
+        private int BatchCount => (int) Math.Ceiling(Data().Count / (double) BatchSize);
 
-        internal (UpdateTrigger, List<IOption<T>>)[]? Batches     { get; set; }
-        public   string                               FilterValue { get; private set; } = "";
+        public (UpdateTrigger, List<IOption<T>>)[]? Batches     { get; private set; }
+        public string                               FilterValue { get; private set; } = "";
+
+        public event Action<IEnumerable<IOption<T>>>? OnSelect;
 
         private List<IOption<T>> Data()
         {
@@ -133,16 +122,18 @@ namespace FS3
             }
         }
 
+        private RenderFragment? _renderer;
+
         public RenderFragment Render()
         {
-            void Fragment(RenderTreeBuilder builder)
+            _renderer ??= builder =>
             {
                 builder.OpenComponent<__FlareSelector<T>>(0);
                 builder.AddAttribute(1, "FlareSelector", this);
                 builder.CloseComponent();
-            }
+            };
 
-            return Fragment;
+            return _renderer;
         }
 
         private void CacheMatched()
@@ -174,74 +165,37 @@ namespace FS3
                 if (needsUpdate)
                     Batches[batchID].Item1.Trigger();
             }
-
-            // foreach (var option in Data())
-            // {
-            //     if (FilterValue                                                                 == "" ||
-            //         option.OptionText?.IndexOf(FilterValue, StringComparison.OrdinalIgnoreCase) >= 0)
-            //     {
-            //         _matchedCache[option.ID] = true;
-            //     }
-            //     else
-            //     {
-            //         _matchedCache.Remove(option.ID);
-            //     }
-            // }
-            //
-            // OnDataChange.Trigger();
         }
 
-        // public void Select(IOption<T> option)
-        // {
-        //     if (!_selected.Contains(option.ID))
-        //     {
-        //         Console.WriteLine($"Select({option.ID}) ++");
-        //         if (!Multiple)
-        //         {
-        //             _selected.Clear();
-        //             _selected[option.ID] = option;
-        //         }
-        //         else
-        //         {
-        //             _selected[option.ID] = option;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine($"Select({option.ID}) --");
-        //         if (!Multiple)
-        //         {
-        //             _selected.Clear();
-        //         }
-        //         else
-        //         {
-        //             _selected.Remove(option.ID);
-        //         }
-        //     }
-        //
-        //     OnSelectionChange.Trigger();
-        // }
+        [Obsolete("This method is not as fast as manually iterating over Batches.")]
+        public IEnumerable<IOption<T>> Options()
+        {
+            if (MinFilterValueLength != null && FilterValue.Length < MinFilterValueLength)
+            {
+                yield return
+                    new Option<T>
+                    {
+                        OptionText  = MinFilterValueNotice,
+                        Placeholder = true,
+                    };
+                yield break;
+            }
 
-        // public List<IOption<T>> Selected()
-        // {
-        //     List<IOption<T>> result = new List<IOption<T>>();
-        //     foreach (object? option in _selected.Values)
-        //     {
-        //         if (option != null)
-        //             result.Add((IOption<T>) option);
-        //     }
-        //
-        //     return result;
-        // }
+            for (var b = 0; b < Batches.Length; b++)
+            {
+                foreach (IOption<T> t in Batches[b].Item2)
+                {
+                    yield return t;
+                }
+            }
+        }
 
         internal List<(int, IOption<T>)> Selected()
         {
             List<(int, IOption<T>)> result = new List<(int, IOption<T>)>();
             foreach (object? option in _selected.Values)
-            {
                 if (option != null)
                     result.Add(((int, IOption<T>)) option);
-            }
 
             return result;
         }
@@ -251,6 +205,8 @@ namespace FS3
             IOption<T> option = Batches[batchID].Item2[optionIndex];
             Select(batchID, option);
         }
+
+        internal bool AnySelected() => _selected.Values.Count > 0;
 
         internal void Select(int batchID, IOption<T> option)
         {
@@ -286,7 +242,15 @@ namespace FS3
                 FilterValue = "";
                 CacheMatched();
             }
+
             OnSelectionChange.Trigger();
+
+            if (OnSelect != null)
+            {
+                IOption<T>[] result = new IOption<T>[_selected.Count];
+                _selected.Values.CopyTo(result, 0);
+                OnSelect?.Invoke(result);
+            }
         }
 
         public bool IsOptionSelected(IOption<T> option)

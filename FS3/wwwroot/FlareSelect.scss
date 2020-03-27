@@ -44,6 +44,14 @@
                     }
                 }
             }
+
+            .FlareSelect_EmptyPlaceholder {
+                color:        var(--ColorSet_ThemeColor_Text_20);
+
+                cursor:       unset;
+                font-style:   italic;
+                padding-left: 3px;
+            }
         }
     }
 
@@ -61,12 +69,14 @@
             color:                   var(--ColorSet_ThemeColor_Text_50);
             position:                absolute;
             top:                     -0.5px;
+            z-index:                 99;
 
             div {
                 border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_50);
+                border-left:   2px solid var(--ColorSet_ThemeColor_Background_50);
                 box-sizing:    border-box;
                 cursor:        pointer;
-                padding:       3px 4px;
+                padding:       3px 4px 3px 2px;
                 width:         100%;
 
                 &:hover {
@@ -75,14 +85,16 @@
 
                 &.FlareSelect_Option--Selected {
                     background-color: var(--ColorSet_ThemeColor_Accent_40);
+                    border-left:      2px solid var(--ColorSet_ThemeColor_Accent_40);
                     color:            var(--ColorSet_ThemeColor_AccentText);
 
                     &:hover {
                         background-color: var(--ColorSet_ThemeColor_Accent_30);
+                        border-left:      2px solid var(--ColorSet_ThemeColor_Accent_40);
                     }
                 }
 
-                &.FlareSelect_Option--Placeholder {
+                &.FlareSelect_Option--InvalidLengthNotice, &.FlareSelect_Option--Placeholder {
                     background-color: var(--ColorSet_ThemeColor_Background_40);
                     color:            var(--ColorSet_ThemeColor_Text_20);
                     cursor:           unset;
@@ -91,13 +103,17 @@
                 }
 
                 &.FlareSelect_Option--Disabled {
-                    color:  var(--ColorSet_ThemeColor_Text_20);
-                    cursor: not-allowed;
+                    border-left: 2px solid red;
+                    color:       var(--ColorSet_ThemeColor_Text_20);
+                    cursor:      not-allowed;
 
                     &:hover {
                         background-color: var(--ColorSet_ThemeColor_Background_50);
-                        text-decoration:  line-through;
                     }
+                }
+
+                &:hover:not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
+                    border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40);
                 }
             }
 
@@ -156,6 +172,7 @@
             min-width: 100%;
 
             .FlareSelect_Options {
+
                 .FlareSelect_FilterInputContainer {
                     cursor:  default;
                     padding: 0;
@@ -216,7 +233,10 @@
 
                     &:hover {
                         background-color: var(--ColorSet_ThemeColor_Background_50_Hover);
-                        border:           1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
+                        border-bottom:    1px solid var(--ColorSet_ThemeColor_Accent_40);
+                        border-left:      1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
+                        border-right:     1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
+                        border-top:       1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
                     }
                 }
             }

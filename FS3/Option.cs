@@ -23,7 +23,5 @@ namespace FS3
         public bool   Selected     { get; set; }
         public bool   Disabled     { get; set; }
         public bool   Placeholder  { get; set; }
-
-        internal int BatchID { get; set; }
     }
 }

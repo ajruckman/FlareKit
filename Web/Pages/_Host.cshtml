@@ -18,16 +18,18 @@
 
     <link rel="stylesheet" href="_content/FlareSelect/FlareSelect.css"/>
     <script type="text/javascript" src="_content/FlareSelect/FlareSelect.js"></script>
-    
+
     <link rel="stylesheet" href="_content/UISet.FontSet/Inter.css">
-    
+
     <link rel="stylesheet" href="_content/FS3/FlareSelect.css">
     <link rel="stylesheet" href="_content/FT3/FlareTables.css">
-    
+
     <script src="_content/Superset/js/ClickListener.js"></script>
     <script src="_content/Superset/js/KeyListener.js"></script>
     <script src="_content/Superset/js/Utilities.js"></script>
     <script src="_content/Superset/js/FocusElement.js"></script>
+
+    <script src="https://unpkg.com/@@popperjs/core@2.1.1/dist/umd/popper.min.js"></script>
 </head>
 <body>
 <style>
@@ -35,6 +37,19 @@ body {
 font-family: var(--FontSet-SansSerifFont);
 }
 </style>
+
+<script>
+import { createPopper } from '@@popperjs/core';
+
+    window.initPoppy = function(id) {
+        const element = document.getElementById(id);
+        
+        Popper.createPopper(element)
+        
+    }
+
+</script>
+
 <app>
     @(await Html.RenderComponentAsync<App>(RenderMode.Server))
 </app>
