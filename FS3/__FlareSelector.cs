@@ -6,62 +6,73 @@ using Superset.Web.Listeners;
 using Superset.Web.State;
 using Superset.Web.Utilities;
 
+#pragma warning disable 649
+
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable once InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace FS3
 {
-    // ReSharper disable once InconsistentNaming
     public partial class __FlareSelector<T> where T : IEquatable<T>
     {
         private readonly UpdateTrigger _onToggle = new UpdateTrigger();
 
-        private string           _id;
-        private bool             _justFocused;
-        private ClickListener    _optionsClickListener;
-        private KeyListener      _optionsKeyListener;
-        private ElementReference _optionsRef;
-
-        private ClickListener _selectedClickListener;
-        private KeyListener   _selectedKeyListener;
-
-        private ClickListener _inputClickListener;
+        private bool _justFocused;
+        private bool _shown = true;
 
         private ElementReference _selectedRef;
+        private ClickListener    _selectedClickListener;
+        private KeyListener      _selectedKeyListener;
+
+        private ElementReference _optionsRef;
+        private ClickListener    _optionsClickListener;
+        private KeyListener      _optionsKeyListener;
+
         private ElementReference _inputRef;
-        private bool             _shown = true;
+        private ClickListener    _inputClickListener;
+        private KeyListener      _inputKeyListener;
 
         [Parameter]
         public FlareSelector<T> FlareSelector { get; set; }
 
-        protected override void OnInitialized()
-        {
-            _id = Guid.NewGuid().ToString().Replace("-", "");
-        }
-
         protected override void OnAfterRender(bool firstRender)
         {
-            if (firstRender)
+            if (!firstRender) return;
+
+            // Selected - clicks
+            _selectedClickListener              =  new ClickListener(_selectedRef);
+            _selectedClickListener.OnClick      += OnSelectedClick;
+            _selectedClickListener.OnInnerClick += OnSelectedInnerClick;
+            _selectedClickListener.Initialize(JSRuntime);
+
+            // Selected - keys
+            _selectedKeyListener         =  new KeyListener(_selectedRef);
+            _selectedKeyListener.OnKeyUp += OnSelectedKeyUp;
+            _selectedKeyListener.Initialize(JSRuntime);
+
+            // Options - clicks
+            _optionsClickListener              =  new ClickListener(_optionsRef);
+            _optionsClickListener.OnOuterClick += OnOptionsOuterClick;
+            _optionsClickListener.OnInnerClick += OnOptionsInnerClick;
+            _optionsClickListener.Initialize(JSRuntime);
+
+            // Options - keys
+            _optionsKeyListener              =  new KeyListener(_optionsRef);
+            _optionsKeyListener.OnInnerKeyUp += OnOptionsInnerKeyUp;
+            _optionsKeyListener.Initialize(JSRuntime);
+
+            // Input - clicks
+            _inputClickListener         =  new ClickListener(_inputRef);
+            _inputClickListener.OnClick += OnInputClick;
+            _inputClickListener.Initialize(JSRuntime);
+
+            // Input - keys
+            if (FlareSelector.Multiple)
             {
-                _selectedClickListener = new ClickListener(_selectedRef);
-                _optionsClickListener  = new ClickListener(_optionsRef);
-                _selectedKeyListener   = new KeyListener(_selectedRef);
-                _optionsKeyListener    = new KeyListener(_optionsRef);
-
-                _inputClickListener = new ClickListener(_inputRef);
-
-                _selectedClickListener.OnClick      += OnSelectedClick;
-                _selectedClickListener.OnInnerClick += OnSelectedInnerClick;
-                _optionsClickListener.OnOuterClick  += OnOptionsOuterClick;
-                _optionsClickListener.OnInnerClick  += OnOptionsInnerClick;
-
-                _inputClickListener.OnClick += OnInputClick;
-
-                _selectedKeyListener.OnKeyUp     += OnSelectedKeyUp;
-                _optionsKeyListener.OnInnerKeyUp += OnOptionsInnerKeyUp;
-
-                _selectedClickListener.Initialize(JSRuntime);
-                _optionsClickListener.Initialize(JSRuntime);
-                _inputClickListener.Initialize(JSRuntime);
-                _selectedKeyListener.Initialize(JSRuntime);
-                _optionsKeyListener.Initialize(JSRuntime);
+                _inputKeyListener         =  new KeyListener(_inputRef);
+                _inputKeyListener.OnKeyUp += OnInputKeyUp;
+                _inputKeyListener.Initialize(JSRuntime);
             }
         }
 
@@ -89,6 +100,21 @@ namespace FS3
             }
         }
 
+        private void OnSelectedKeyUp(KeyListener.KeyArgs args)
+        {
+            if (args.Key == "Escape" && _shown)
+            {
+                Console.WriteLine("escape OnSelectedKeyUp");
+                _shown = false;
+                _onToggle.Trigger();
+            }
+            else if (args.Key == "Enter")
+            {
+                _shown = !_shown;
+                _onToggle.Trigger();
+            }
+        }
+
         private void OnOptionsOuterClick(ClickListener.ClickArgs args)
         {
             if (args.Button != 0) return;
@@ -112,31 +138,19 @@ namespace FS3
             Select(int.Parse(ids[0]), int.Parse(ids[1]));
         }
 
-        private void OnSelectedKeyUp(KeyListener.KeyArgs args)
-        {
-            if (args.Key == "Enter")
-            {
-                _shown = !_shown;
-                _onToggle.Trigger();
-            }
-            else if (args.Key == "Escape")
-            {
-                _shown = false;
-                _onToggle.Trigger();
-            }
-        }
 
         private void OnOptionsInnerKeyUp(KeyListener.KeyArgs args)
         {
-            if (args.Key == "Enter")
+            if (args.Key == "Escape" && _shown)
+            {
+                Console.WriteLine("escape OnOptionsInnerKeyUp");
+                _shown = false;
+                _onToggle.Trigger();
+            }
+            else if (args.Key == "Enter")
             {
                 string[] ids = args.TargetID.Remove(0, 5).Split('_');
                 Select(int.Parse(ids[0]), int.Parse(ids[1]));
-            }
-            else if (args.Key == "Escape")
-            {
-                _shown = false;
-                _onToggle.Trigger();
             }
         }
 
@@ -145,6 +159,15 @@ namespace FS3
             if (_shown) return;
             _shown = true;
             _onToggle.Trigger();
+        }
+
+        private void OnInputKeyUp(KeyListener.KeyArgs args)
+        {
+            if (args.Key == "Escape" && _shown)
+            {
+                _shown = false;
+                _onToggle.Trigger();
+            }
         }
 
         private void Select(int batchID, int optionIndex)

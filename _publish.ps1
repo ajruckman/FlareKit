@@ -19,13 +19,13 @@ Kill-ASPDotNETWebserver
 Clean-DotNETProject
 dotnet restore
 
-cd .\FT3\
-..\_copyContent.ps1 UISet.ColorSet,UISet.ShapeSet
-cd .\wwwroot\css\
-Remove-Item *.css
-Remove-Item *.css.map
+cd .\FS3\wwwroot\
 .\_build.ps1
-cd ../../..
+cd ..\..\
+
+cd .\FT3\wwwroot\
+.\_build.ps1
+cd ..\..\
 
 dotnet pack -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
@@ -33,7 +33,7 @@ if (!(Test-Path .\_published\))
 {
     md .\_published\
 }
-rm -Force .\_published\*
+#rm -Force .\_published\*
 
 Get-ChildItem -Directory | foreach {
     if (Test-Path "$( $_.FullName )\bin")
@@ -48,4 +48,5 @@ Get-ChildItem -Directory | foreach {
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flarelib\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flareselect\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flaretables\
+Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\fs3\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\ft3\
