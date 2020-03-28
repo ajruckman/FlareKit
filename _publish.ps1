@@ -27,7 +27,8 @@ cd .\FT3\wwwroot\
 .\_build.ps1
 cd ..\..\
 
-dotnet pack -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+dotnet pack FS3 -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+dotnet pack FT3 -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
 if (!(Test-Path .\_published\))
 {
