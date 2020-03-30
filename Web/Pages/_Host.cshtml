@@ -35,20 +35,9 @@
 <style>
 body {
 font-family: var(--FontSet-SansSerifFont);
+background-color: var(--ColorSet_ThemeColor_Background_20);
 }
 </style>
-
-<script>
-import { createPopper } from '@@popperjs/core';
-
-    window.initPoppy = function(id) {
-        const element = document.getElementById(id);
-        
-        Popper.createPopper(element)
-        
-    }
-
-</script>
 
 <app>
     @(await Html.RenderComponentAsync<App>(RenderMode.Server))

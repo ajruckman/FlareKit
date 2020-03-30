@@ -8,9 +8,13 @@
     width: 100%;
 
     .FlareSelect_SelectedContainer {
-        background-color: var(--ColorSet_ThemeColor_Background_40);
-        border:           1px solid var(--ColorSet_ThemeColor_Border_40);
+        //background-color: var(--ColorSet_ThemeColor_Background_40);
+        //border:           1px solid var(--ColorSet_ThemeColor_Border_40);
+        background-color: var(--ColorSet_ThemeColor_Background_60);
+        border:           1px solid var(--ColorSet_ThemeColor_Border_60);
         border-radius:    3px;
+
+        color:            var(--ColorSet_ThemeColor_Text_60);
         cursor:           pointer;
         width:            100%;
 
@@ -63,26 +67,27 @@
             -moz-background-clip:    padding;
             -webkit-background-clip: padding-box;
             background-clip:         padding-box;
-            background-color:        var(--ColorSet_ThemeColor_Background_50);
-            border-left:                  1px solid var(--ColorSet_ThemeColor_Border_50);
-            border-right:                  1px solid var(--ColorSet_ThemeColor_Border_50);
-            border-top:                  1px solid var(--ColorSet_ThemeColor_Border_50);
+            background-color:        var(--ColorSet_ThemeColor_Background_80);
+            border-left:             1px solid var(--ColorSet_ThemeColor_Border_80);
             border-radius:           3px;
+            border-right:            1px solid var(--ColorSet_ThemeColor_Border_80);
+            border-top:              1px solid var(--ColorSet_ThemeColor_Border_80);
             color:                   var(--ColorSet_ThemeColor_Text_50);
             position:                absolute;
             top:                     -0.5px;
             z-index:                 99;
 
             div {
-                border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_50);
-                border-left:   2px solid var(--ColorSet_ThemeColor_Background_50);
+                border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_80);
+                border-left:   2px solid var(--ColorSet_ThemeColor_Background_80);
                 box-sizing:    border-box;
                 cursor:        pointer;
-                padding:       3px 4px 3px 2px;
+                padding:       3px 4px;
                 width:         100%;
+                //box-shadow: 0 1px 0 1px var(--ColorSet_ThemeColor_Border_80);
 
                 &:hover {
-                    background-color: var(--ColorSet_ThemeColor_Background_50_Hover);
+                    background-color: var(--ColorSet_ThemeColor_Background_80_Hover);
                 }
 
                 &.FlareSelect_Option--Selected {
@@ -97,32 +102,34 @@
                 }
 
                 &.FlareSelect_Option--InvalidLengthNotice, &.FlareSelect_Option--Placeholder {
-                    background-color: var(--ColorSet_ThemeColor_Background_40);
+                    background-color: var(--ColorSet_ThemeColor_Background_80);
                     color:            var(--ColorSet_ThemeColor_Text_20);
                     cursor:           unset;
                     font-style:       italic;
                     font-weight:      500;
                 }
 
+                &.FlareSelect_Option--InvalidLengthNotice {
+                    border-bottom-left-radius:  3px;
+                    border-bottom-right-radius: 3px;
+                    border-left:                2px solid red;
+                }
+
                 &.FlareSelect_Option--Disabled {
-                    border-left: 2px solid red;
-                    color:       var(--ColorSet_ThemeColor_Text_20);
-                    cursor:      not-allowed;
+                    background-color: var(--ColorSet_ThemeColor_Background_50);
+                    border-left:      2px solid red;
+                    color:            var(--ColorSet_ThemeColor_Text_20);
+                    cursor:           not-allowed;
 
                     &:hover {
                         background-color: var(--ColorSet_ThemeColor_Background_50);
                     }
                 }
 
-                &:hover:not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
+                &:hover:not(.FlareSelect_FilterInputContainer):not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
                     border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40);
                 }
             }
-        }
-
-        section:first-child div:first-child {
-            border-top-left-radius:  3px;
-            border-top-right-radius: 3px;
         }
     }
 
@@ -170,11 +177,13 @@
             .FlareSelect_Options {
 
                 .FlareSelect_FilterInputContainer {
-                    cursor:  default;
-                    padding: 0;
+                    border-top-left-radius:  3px;
+                    border-top-right-radius: 3px;
+                    cursor:                  default;
+                    padding:                 0;
 
                     &:hover {
-                        background-color: var(--ColorSet_ThemeColor_Background_50);
+                        background-color: var(--ColorSet_ThemeColor_Background_80);
                     }
 
                     .FlareSelect_FilterInput {
@@ -226,6 +235,7 @@
                     margin:           2px;
                     min-height:       23px;
                     padding-left:     3px;
+                    transition:       $TransitionRestore;
 
                     &:hover {
                         background-color: var(--ColorSet_ThemeColor_Background_50_Hover);
@@ -233,6 +243,7 @@
                         border-left:      1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
                         border-right:     1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
                         border-top:       1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
+                        transition:       $TransitionHover;
                     }
                 }
             }
@@ -241,14 +252,14 @@
                 .FlareSelect_FilterInput {
                     @include _InputBase;
 
-                    background-color: var(--ColorSet_ThemeColor_Background_40);
-                    border-bottom:    1px solid var(--ColorSet_ThemeColor_Border_40);
-                    border-left:      1px solid transparent;
-                    border-radius:    2px;
-                    border-right:     1px solid transparent;
-                    border-top:       1px solid transparent;
-                    margin:           3px;
-                    width:            calc(100% - 6px);
+                    //background-color: var(--ColorSet_ThemeColor_Background_40);
+                    //border-bottom:    1px solid var(--ColorSet_ThemeColor_Border_40);
+                    border-left:   1px solid transparent;
+                    border-radius: 2px;
+                    border-right:  1px solid transparent;
+                    border-top:    1px solid transparent;
+                    margin:        3px;
+                    width:         calc(100% - 6px);
 
                     //&:hover {
                     //    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
@@ -267,6 +278,15 @@
                     //    border-top:       1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
                     //}
                 }
+            }
+        }
+
+        .FlareSelect_OptionsContainer {
+            min-width: 100%;
+
+            section:first-child div:first-child {
+                border-top-left-radius:  3px;
+                border-top-right-radius: 3px;
             }
         }
     }

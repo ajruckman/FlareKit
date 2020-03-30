@@ -13,8 +13,8 @@
 .SS_Input {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -24,19 +24,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Input:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_Input:focus, .SS_Input :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -47,8 +47,8 @@
 .SS_TextArea {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -57,19 +57,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_TextArea:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_TextArea:focus, .SS_TextArea :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -86,8 +86,8 @@
 .SS_Select {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -97,19 +97,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Select:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_Select:focus, .SS_Select :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -249,9 +249,10 @@
 .FlareSelect_Container {
   width: 100%; }
   .FlareSelect_Container .FlareSelect_SelectedContainer {
-    background-color: var(--ColorSet_ThemeColor_Background_40);
-    border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+    background-color: var(--ColorSet_ThemeColor_Background_60);
+    border: 1px solid var(--ColorSet_ThemeColor_Border_60);
     border-radius: 3px;
+    color: var(--ColorSet_ThemeColor_Text_60);
     cursor: pointer;
     width: 100%; }
     .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -290,24 +291,24 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      background-color: var(--ColorSet_ThemeColor_Background_50);
-      border-left: 1px solid var(--ColorSet_ThemeColor_Border_50);
-      border-right: 1px solid var(--ColorSet_ThemeColor_Border_50);
-      border-top: 1px solid var(--ColorSet_ThemeColor_Border_50);
+      background-color: var(--ColorSet_ThemeColor_Background_80);
+      border-left: 1px solid var(--ColorSet_ThemeColor_Border_80);
       border-radius: 3px;
+      border-right: 1px solid var(--ColorSet_ThemeColor_Border_80);
+      border-top: 1px solid var(--ColorSet_ThemeColor_Border_80);
       color: var(--ColorSet_ThemeColor_Text_50);
       position: absolute;
       top: -0.5px;
       z-index: 99; }
       .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div {
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_50);
-        border-left: 2px solid var(--ColorSet_ThemeColor_Background_50);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_80);
+        border-left: 2px solid var(--ColorSet_ThemeColor_Background_80);
         box-sizing: border-box;
         cursor: pointer;
-        padding: 3px 4px 3px 2px;
+        padding: 3px 4px;
         width: 100%; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:hover {
-          background-color: var(--ColorSet_ThemeColor_Background_50_Hover); }
+          background-color: var(--ColorSet_ThemeColor_Background_80_Hover); }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Selected {
           background-color: var(--ColorSet_ThemeColor_Accent_40);
           border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40);
@@ -316,22 +317,24 @@
             background-color: var(--ColorSet_ThemeColor_Accent_30);
             border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40); }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--InvalidLengthNotice, .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Placeholder {
-          background-color: var(--ColorSet_ThemeColor_Background_40);
+          background-color: var(--ColorSet_ThemeColor_Background_80);
           color: var(--ColorSet_ThemeColor_Text_20);
           cursor: unset;
           font-style: italic;
           font-weight: 500; }
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--InvalidLengthNotice {
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+          border-left: 2px solid red; }
         .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Disabled {
+          background-color: var(--ColorSet_ThemeColor_Background_50);
           border-left: 2px solid red;
           color: var(--ColorSet_ThemeColor_Text_20);
           cursor: not-allowed; }
           .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div.FlareSelect_Option--Disabled:hover {
             background-color: var(--ColorSet_ThemeColor_Background_50); }
-        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:hover:not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
+        .FlareSelect_Container .FlareSelect_OptionsContainer .FlareSelect_Options div:hover:not(.FlareSelect_FilterInputContainer):not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
           border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40); }
-    .FlareSelect_Container .FlareSelect_OptionsContainer section:first-child div:first-child {
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px; }
   .FlareSelect_Container .FlareSelect_FilterInputContainer {
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
@@ -360,15 +363,17 @@
   .FlareSelect_Container--Single .FlareSelect_OptionsContainer {
     min-width: 100%; }
     .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
       cursor: default;
       padding: 0; }
       .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer:hover {
-        background-color: var(--ColorSet_ThemeColor_Background_50); }
+        background-color: var(--ColorSet_ThemeColor_Background_80); }
       .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
         border-radius: 3px;
         outline: none;
-        background-color: var(--ColorSet_ThemeColor_Background_40);
-        border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+        background-color: var(--ColorSet_ThemeColor_Background_60);
+        border: 1px solid var(--ColorSet_ThemeColor_Border_60);
         color: var(--ColorSet_ThemeColor_Text_60);
         box-sizing: border-box;
         font-size: 1em;
@@ -379,19 +384,19 @@
         margin: 3px;
         width: calc(100% - 6px); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
-          background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+          background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
           transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-          border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-          border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-          border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
           transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-          background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-          border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-          border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-          border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+          background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -406,24 +411,24 @@
         cursor: default;
         margin: 2px;
         min-height: 23px;
-        padding-left: 3px; }
+        padding-left: 3px;
+        transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
         .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection:hover {
           background-color: var(--ColorSet_ThemeColor_Background_50_Hover);
           border-bottom: 1px solid var(--ColorSet_ThemeColor_Accent_40);
           border-left: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
           border-right: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
-          border-top: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover); }
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
+          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
       border-radius: 3px;
       outline: none;
-      background-color: var(--ColorSet_ThemeColor_Background_40);
-      border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+      background-color: var(--ColorSet_ThemeColor_Background_60);
+      border: 1px solid var(--ColorSet_ThemeColor_Border_60);
       color: var(--ColorSet_ThemeColor_Text_60);
       box-sizing: border-box;
       font-size: 1em;
       transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
-      background-color: var(--ColorSet_ThemeColor_Background_40);
-      border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_40);
       border-left: 1px solid transparent;
       border-radius: 2px;
       border-right: 1px solid transparent;
@@ -431,18 +436,23 @@
       margin: 3px;
       width: calc(100% - 6px); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
-        background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
         transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
         transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-        background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+  .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer {
+    min-width: 100%; }
+    .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer section:first-child div:first-child {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px; }
 
 /*# sourceMappingURL=FlareSelect.css.map */

@@ -13,8 +13,8 @@
 .SS_Input {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -24,19 +24,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Input:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_Input:focus, .SS_Input :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -47,8 +47,8 @@
 .SS_TextArea {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -57,19 +57,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_TextArea:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_TextArea:focus, .SS_TextArea :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -86,8 +86,8 @@
 .SS_Select, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector {
   border-radius: 3px;
   outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_40);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+  background-color: var(--ColorSet_ThemeColor_Background_60);
+  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
   color: var(--ColorSet_ThemeColor_Text_60);
   box-sizing: border-box;
   font-size: 1em;
@@ -97,19 +97,19 @@
   margin: 1px 0;
   padding: 1px 4px; }
   .SS_Select:hover, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
   .SS_Select:focus, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:focus, .SS_Select :active, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector :active {
     transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -389,8 +389,8 @@
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
           border-radius: 3px;
           outline: none;
-          background-color: var(--ColorSet_ThemeColor_Background_40);
-          border: 1px solid var(--ColorSet_ThemeColor_Border_40);
+          background-color: var(--ColorSet_ThemeColor_Background_60);
+          border: 1px solid var(--ColorSet_ThemeColor_Border_60);
           color: var(--ColorSet_ThemeColor_Text_60);
           box-sizing: border-box;
           font-size: 1em;
@@ -401,19 +401,19 @@
           margin-left: 1px;
           width: calc(100% - 25px); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover {
-            background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
+            background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
             transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-            border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-            border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-            border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover); }
+            border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+            border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+            border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:focus, .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input :active {
             transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-            background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-            border-top: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-            border-left: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-            border-right: 1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus); }
+            background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+            border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+            border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+            border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
             border: 1px solid red; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton {
