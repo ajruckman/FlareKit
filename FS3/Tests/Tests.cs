@@ -20,18 +20,19 @@ namespace FS3.Tests
 
         public void Run()
         {
-            IEnumerable<IOption<int>> data = Generate.Contacts(931).Select(v => v.NameOption);
+            IEnumerable<IOption<int>> data = Generate.Contacts(15000).Select(v => v.NameOption);
+            Console.WriteLine("Data generated");
 
             _fs1 = new FlareSelector<int>(() => data, true);
 
-            while (true)
-            {
-                Bench1();
-                Bench2();
-                // Bench3();
-
-                Console.WriteLine();
-            }
+            // while (true)
+            // {
+            //     Bench1();
+            //     Bench2();
+            //     // Bench3();
+            //
+            //     Console.WriteLine();
+            // }
         }
 
         private void Bench1()
@@ -162,7 +163,7 @@ namespace FS3.Tests
             new Option2<int>
             {
                 ID           = ID,
-                OptionText   = $"{FirstName} {LastName}",
+                OptionText   = $"{FirstName} {LastName} - {PhoneNumber}",
                 SelectedText = FirstName,
                 Selected     = true
             };

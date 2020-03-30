@@ -57,45 +57,42 @@
                         </svg>
                     </div>
                 }
-                
+
                 <TriggerWrapper Trigger="@_onFilterValueValidChange" Protected="true">
                     @if (!_validFilterValueLength)
                     {
                         <div class="FlareSelect_Option--InvalidLengthNotice" tabindex="0">@FlareSelector.MinFilterValueNotice</div>
                     }
-                    else
+                    @* <TriggerWrapper Trigger="@FlareSelector.OnDataChange" Protected="true"> *@
+                    @for (var b = 0; b < FlareSelector.Batches.Length; b++)
                     {
-                        @* <TriggerWrapper Trigger="@FlareSelector.OnDataChange" Protected="true"> *@
-                        @for (var b = 0; b < FlareSelector.Batches.Length; b++)
-                        {
-                            int batchID = b;
+                        int batchID = b;
 
-                            <TriggerWrapper Trigger="@FlareSelector.Batches[batchID].Item1" Protected="true">
-                                @for (var o = 0; o < FlareSelector.Batches[batchID].Item2.Count; o++)
+                        <TriggerWrapper Trigger="@FlareSelector.Batches[batchID].Item1" Protected="true">
+                            @for (var o = 0; o < FlareSelector.Batches[batchID].Item2.Count; o++)
+                            {
+                                IOption<T> d = FlareSelector.Batches[batchID].Item2[o];
+
+                                if (d.Placeholder)
                                 {
-                                    IOption<T> d = FlareSelector.Batches[batchID].Item2[o];
-
-                                    if (d.Placeholder)
-                                    {
-                                        <div class="FlareSelect_Option--Placeholder" hidden="@(!FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
-                                    }
-                                    else if (d.Disabled)
-                                    {
-                                        <div class="FlareSelect_Option--Disabled" hidden="@(!FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
-                                    }
-                                    else if (FlareSelector.IsOptionSelected(d))
-                                    {
-                                        <div class="FlareSelect_Option--Selected" hidden="@(!FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
-                                    }
-                                    else
-                                    {
-                                        <div hidden="@(!FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
-                                    }
+                                    <div class="FlareSelect_Option--Placeholder" hidden="@(!_validFilterValueLength || !FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
                                 }
-                            </TriggerWrapper>
-                        }
-                        @* </TriggerWrapper> *@
+                                else if (d.Disabled)
+                                {
+                                    <div class="FlareSelect_Option--Disabled" hidden="@(!_validFilterValueLength || !FlareSelector.IsOptionShown(d))" tabindex="0">@d.OptionText</div>
+                                }
+                                else if (FlareSelector.IsOptionSelected(d))
+                                {
+                                    <div class="FlareSelect_Option--Selected" hidden="@(!_validFilterValueLength || !FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
+                                }
+                                else
+                                {
+                                    <div hidden="@(!_validFilterValueLength || !FlareSelector.IsOptionShown(d))" id="FS_O_@(batchID)_@(o)" tabindex="0">@d.OptionText</div>
+                                }
+                            }
+                        </TriggerWrapper>
                     }
+                    @* </TriggerWrapper> *@
                 </TriggerWrapper>
             </div>
         </TriggerWrapper>

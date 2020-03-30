@@ -190,7 +190,7 @@ namespace FS3
             }
         }
 
-        internal List<(int, IOption<T>)> Selected()
+        internal IEnumerable<(int, IOption<T>)> Selected()
         {
             List<(int, IOption<T>)> result = new List<(int, IOption<T>)>();
             foreach (object? option in _selected.Values)
@@ -248,7 +248,12 @@ namespace FS3
             if (OnSelect != null)
             {
                 IOption<T>[] result = new IOption<T>[_selected.Count];
-                _selected.Values.CopyTo(result, 0);
+                for (var i = 0; i < _selected.Count; i++)
+                {
+                    (int, IOption<T>)? v = ((int, IOption<T>)?) _selected[i];
+                    if (v != null)
+                        result[i] = v.Value.Item2;
+                }
                 OnSelect?.Invoke(result);
             }
         }

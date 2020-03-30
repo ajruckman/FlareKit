@@ -64,7 +64,9 @@
             -webkit-background-clip: padding-box;
             background-clip:         padding-box;
             background-color:        var(--ColorSet_ThemeColor_Background_50);
-            border:                  1px solid var(--ColorSet_ThemeColor_Border_50);
+            border-left:                  1px solid var(--ColorSet_ThemeColor_Border_50);
+            border-right:                  1px solid var(--ColorSet_ThemeColor_Border_50);
+            border-top:                  1px solid var(--ColorSet_ThemeColor_Border_50);
             border-radius:           3px;
             color:                   var(--ColorSet_ThemeColor_Text_50);
             position:                absolute;
@@ -115,12 +117,6 @@
                 &:hover:not(.FlareSelect_Option--InvalidLengthNotice):not(.FlareSelect_Option--Placeholder):not(.FlareSelect_Option--Disabled) {
                     border-left: 2px solid var(--ColorSet_ThemeColor_Accent_40);
                 }
-            }
-
-            section:last-child div:last-child {
-                border-bottom:              none;
-                border-bottom-left-radius:  3px;
-                border-bottom-right-radius: 3px;
             }
         }
 

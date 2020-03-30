@@ -36,6 +36,8 @@ namespace Web.Pages
         public string State   { get; set; }
         public string Country { get; set; }
         public string Zip     { get; set; }
+        
+        public Record() { }
     }
 
     public partial class FT3x
@@ -48,7 +50,8 @@ namespace Web.Pages
             _dummyFlareTable = new FlareTable<Record>(() => RecordCache.Records);
 
             _flareTable1 = new FlareTable<Record>(
-                () => RecordCache.Records,
+                // () => RecordCache.Records,
+                () => new List<Record>(), 
                 SessionStorage,
                 "ft3x",
                 fixedLayout: true,
