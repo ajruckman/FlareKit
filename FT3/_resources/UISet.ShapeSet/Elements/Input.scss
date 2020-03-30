@@ -25,6 +25,16 @@
         border-right:     1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
         border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
     }
+
+    &:not(:disabled) {
+        box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
+    }
+
+    &:disabled {
+        background-color: var(--ColorSet_ThemeColor_Background_20);
+        border:           1px solid var(ColorSet_ThemeColor_Border_20);
+        color:            var(ColorSet_ThemeColor_Text_0);
+    }
 }
 
 ::-webkit-input-placeholder {

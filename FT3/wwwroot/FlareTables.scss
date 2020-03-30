@@ -260,6 +260,7 @@
                         .FlareTableFilter_Input {
                             @include _InputBase;
 
+                            box-shadow:    none;
                             font-family:   var(--FontSet-MonospaceFont);
                             height:        22px;
                             margin-bottom: 1px;

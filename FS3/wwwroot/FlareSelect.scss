@@ -72,6 +72,7 @@
             border-radius:           3px;
             border-right:            1px solid var(--ColorSet_ThemeColor_Border_80);
             border-top:              1px solid var(--ColorSet_ThemeColor_Border_80);
+            box-shadow:              0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
             color:                   var(--ColorSet_ThemeColor_Text_50);
             position:                absolute;
             top:                     -0.5px;
@@ -84,7 +85,6 @@
                 cursor:        pointer;
                 padding:       3px 4px;
                 width:         100%;
-                //box-shadow: 0 1px 0 1px var(--ColorSet_ThemeColor_Border_80);
 
                 &:hover {
                     background-color: var(--ColorSet_ThemeColor_Background_80_Hover);
@@ -192,25 +192,9 @@
                         background-color: var(--ColorSet_ThemeColor_Background_40);
                         border:           1px solid var(--ColorSet_ThemeColor_Border_40);
                         border-radius:    2px;
-                        //color:            var(--ColorSet_ThemeColor_Text_60);
+                        box-shadow:       none !important;
                         margin:           3px;
                         width:            calc(100% - 6px);
-
-                        //&:hover {
-                        //    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
-                        //    border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover);
-                        //    border-left:      1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                        //    border-right:     1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                        //    border-top:       1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                        //}
-                        //
-                        //&:focus, :active {
-                        //    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-                        //    border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus);
-                        //    border-left:      1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                        //    border-right:     1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                        //    border-top:       1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                        //}
                     }
                 }
             }
@@ -252,31 +236,13 @@
                 .FlareSelect_FilterInput {
                     @include _InputBase;
 
-                    //background-color: var(--ColorSet_ThemeColor_Background_40);
-                    //border-bottom:    1px solid var(--ColorSet_ThemeColor_Border_40);
                     border-left:   1px solid transparent;
                     border-radius: 2px;
                     border-right:  1px solid transparent;
                     border-top:    1px solid transparent;
+                    box-shadow:    none !important;
                     margin:        3px;
                     width:         calc(100% - 6px);
-
-                    //&:hover {
-                    //    background-color: var(--ColorSet_ThemeColor_Background_40_Hover);
-                    //    border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Hover);
-                    //    border-left:      1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                    //    border-radius:    2px;
-                    //    border-right:     1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                    //    border-top:       1px solid var(--ColorSet_ThemeColor_Border_40_Hover);
-                    //}
-                    //
-                    //&:focus, :active {
-                    //    background-color: var(--ColorSet_ThemeColor_Background_40_Focus);
-                    //    border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_40_Focus);
-                    //    border-left:      1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                    //    border-right:     1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                    //    border-top:       1px solid var(--ColorSet_ThemeColor_Border_40_Focus);
-                    //}
                 }
             }
         }

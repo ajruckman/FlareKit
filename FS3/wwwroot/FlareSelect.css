@@ -37,6 +37,12 @@
     border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+  .SS_Input:not(:disabled) {
+    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
+  .SS_Input:disabled {
+    background-color: var(--ColorSet_ThemeColor_Background_20);
+    border: 1px solid var(ColorSet_ThemeColor_Border_20);
+    color: var(ColorSet_ThemeColor_Text_0); }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -70,6 +76,12 @@
     border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+  .SS_TextArea:not(:disabled) {
+    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
+  .SS_TextArea:disabled {
+    background-color: var(--ColorSet_ThemeColor_Background_20);
+    border: 1px solid var(ColorSet_ThemeColor_Border_20);
+    color: var(ColorSet_ThemeColor_Text_0); }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -110,6 +122,12 @@
     border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+  .SS_Select:not(:disabled) {
+    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
+  .SS_Select:disabled {
+    background-color: var(--ColorSet_ThemeColor_Background_20);
+    border: 1px solid var(ColorSet_ThemeColor_Border_20);
+    color: var(ColorSet_ThemeColor_Text_0); }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -296,6 +314,7 @@
       border-radius: 3px;
       border-right: 1px solid var(--ColorSet_ThemeColor_Border_80);
       border-top: 1px solid var(--ColorSet_ThemeColor_Border_80);
+      box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
       color: var(--ColorSet_ThemeColor_Text_50);
       position: absolute;
       top: -0.5px;
@@ -381,6 +400,7 @@
         background-color: var(--ColorSet_ThemeColor_Background_40);
         border: 1px solid var(--ColorSet_ThemeColor_Border_40);
         border-radius: 2px;
+        box-shadow: none !important;
         margin: 3px;
         width: calc(100% - 6px); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
@@ -397,6 +417,12 @@
           border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
           border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
           border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:not(:disabled) {
+          box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
+          background-color: var(--ColorSet_ThemeColor_Background_20);
+          border: 1px solid var(ColorSet_ThemeColor_Border_20);
+          color: var(ColorSet_ThemeColor_Text_0); }
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -433,6 +459,7 @@
       border-radius: 2px;
       border-right: 1px solid transparent;
       border-top: 1px solid transparent;
+      box-shadow: none !important;
       margin: 3px;
       width: calc(100% - 6px); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
@@ -449,6 +476,12 @@
         border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
         border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
         border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:not(:disabled) {
+        box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
+        background-color: var(--ColorSet_ThemeColor_Background_20);
+        border: 1px solid var(ColorSet_ThemeColor_Border_20);
+        color: var(ColorSet_ThemeColor_Text_0); }
   .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer {
     min-width: 100%; }
     .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer section:first-child div:first-child {
