@@ -24,7 +24,17 @@ namespace FT3
         internal string RowClasses(T row)
         {
             if (row == null)
-                throw new ArgumentNullException(nameof(row), "Row passed to RowClasses() was null; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
+            {
+                if (typeof(T).GetConstructor(Type.EmptyTypes) != null)
+                    row = Activator.CreateInstance<T>();
+                else
+                    throw new ArgumentNullException(nameof(row), "Row passed to RowClasses() was null and does not have a parameterless constructor; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
+            }
+            
+            // row ??= new T();
+
+            // return "FlareTableBodyRow";
+            // throw new ArgumentNullException(nameof(row), "Row passed to RowClasses() was null; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
 
             var result = "FlareTableBodyRow";
 
