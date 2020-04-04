@@ -36,7 +36,7 @@ namespace Web.Pages
         public string State   { get; set; }
         public string Country { get; set; }
         public string Zip     { get; set; }
-        
+
         public Record() { }
     }
 
@@ -51,21 +51,21 @@ namespace Web.Pages
 
             _flareTable1 = new FlareTable<Record>(
                 // () => RecordCache.Records,
-                () => new List<Record>(), 
+                () => new List<Record>(),
                 SessionStorage,
                 "ft3x",
                 fixedLayout: true,
                 rowColorGetter: row =>
                     row.Zip.StartsWith("0") || row.Name.StartsWith("A") ? RowColor.Undefined :
-                    row.Zip.Contains("-")   ? RowColor.Red : RowColor.Green,
+                    row.Zip.Contains("-")                               ? RowColor.Red : RowColor.Green,
                 clickable: true
             );
 
-            _flareTable1.RegisterColumn(nameof(Record.Name), shown: true,      sortDirection: SortDirections.Ascending);
-            _flareTable1.RegisterColumn(nameof(Record.Age),  filterValue: "1", width: "60px");
-            _flareTable1.RegisterColumn(nameof(Record.City), filterable: false, sortable: false);
-            _flareTable1.RegisterColumn(nameof(Record.State), sortable: false);
-            _flareTable1.RegisterColumn(nameof(Record.Country), shown: true, filterable:false);
+            _flareTable1.RegisterColumn(nameof(Record.Name),    shown: true,       sortDirection: SortDirections.Ascending);
+            _flareTable1.RegisterColumn(nameof(Record.Age),     filterValue: "1",  width: "60px");
+            _flareTable1.RegisterColumn(nameof(Record.City),    filterable: false, sortable: false);
+            _flareTable1.RegisterColumn(nameof(Record.State),   sortable: false);
+            _flareTable1.RegisterColumn(nameof(Record.Country), shown: true,     filterable: false);
             _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
 
             _flareTable1.OnRowClick += (Record record) => Console.WriteLine($"Click: {record.Name}");

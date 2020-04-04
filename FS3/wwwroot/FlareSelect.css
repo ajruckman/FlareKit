@@ -269,13 +269,40 @@
 
 .FlareSelect_Container {
   width: 100%; }
+  .FlareSelect_Container--Monospace * {
+    font-family: var(--FontSet-MonospaceFont); }
+  .FlareSelect_Container--SansSerif * {
+    font-family: var(--FontSet-SansSerifFont); }
   .FlareSelect_Container .FlareSelect_SelectedContainer {
     background-color: var(--ColorSet_ThemeColor_Background_60);
     border: 1px solid var(--ColorSet_ThemeColor_Border_60);
     border-radius: 3px;
     color: var(--ColorSet_ThemeColor_Text_60);
     cursor: pointer;
-    width: 100%; }
+    width: 100%;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    .FlareSelect_Container .FlareSelect_SelectedContainer--OptionsHidden:hover {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+      border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
+      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareSelect_Container .FlareSelect_SelectedContainer--OptionsShown {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+      border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
+      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      outline: none;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
+    .FlareSelect_Container .FlareSelect_SelectedContainer > * {
+      background-color: unset;
+      border: none; }
+      .FlareSelect_Container .FlareSelect_SelectedContainer > *:hover, .FlareSelect_Container .FlareSelect_SelectedContainer > *:active, .FlareSelect_Container .FlareSelect_SelectedContainer > *:focus {
+        background-color: unset;
+        border: none;
+        outline: none; }
     .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected {
       align-items: center;
       display: flex;
@@ -304,7 +331,8 @@
         color: var(--ColorSet_ThemeColor_Text_20);
         cursor: unset;
         font-style: italic;
-        padding-left: 3px; }
+        padding-left: 3px;
+        user-select: none; }
   .FlareSelect_Container .FlareSelect_OptionsContainer {
     position: relative;
     width: 100%; }
@@ -374,10 +402,11 @@
       top: 7.5px;
       width: 12px; }
   .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
-    min-height: 23px; }
+    min-height: 25px;
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
     .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {
       box-sizing: border-box;
-      min-height: 23px; }
+      min-height: 25px; }
       .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
         justify-content: space-between;
         padding: 0 3px;
@@ -450,6 +479,12 @@
           border-right: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
           border-top: 1px solid var(--ColorSet_ThemeColor_Border_50_Hover);
           transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer--OptionsHidden:hover .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer--OptionsShown .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput {
       border-radius: 3px;
       outline: none;

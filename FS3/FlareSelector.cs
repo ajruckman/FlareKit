@@ -28,6 +28,7 @@ namespace FS3
         public readonly uint?   MinFilterValueLength;
         public readonly string  MinFilterValueNotice;
         public readonly string? EmptyPlaceholder;
+        public readonly bool    Monospace;
 
         public readonly bool Multiple;
 
@@ -45,7 +46,8 @@ namespace FS3
             bool?      closeOnSelect        = null,
             uint?      minFilterValueLength = null,
             string?    minFilterValueNotice = null,
-            string?    emptyPlaceholder     = null
+            string?    emptyPlaceholder     = null,
+            bool       monospace            = true
         )
         {
             _dataGetter = dataGetter;
@@ -57,6 +59,7 @@ namespace FS3
             MinFilterValueLength = minFilterValueLength;
             MinFilterValueNotice = minFilterValueNotice ?? $"Filter by at least {MinFilterValueLength} characters";
             EmptyPlaceholder     = emptyPlaceholder;
+            Monospace            = monospace;
 
             GenerateBatches();
             CacheMatched();
@@ -254,6 +257,7 @@ namespace FS3
                     if (v != null)
                         result[i] = v.Value.Item2;
                 }
+
                 OnSelect?.Invoke(result);
             }
         }
