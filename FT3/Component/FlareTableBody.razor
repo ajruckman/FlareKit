@@ -17,6 +17,12 @@
         Log.Update("[COMPONENT] FlareTableBody");
 
         <tbody class="FlareTableBody">
+        @if (!FlareTable.Rows().Any())
+        {
+            <tr class="FlareTableBodyRow--NoResults">
+                <td colspan="@(FlareTable.Columns.Count())" class="FlareTableBodyRow">No results</td>
+            </tr>
+        }
         @ChildContent
         </tbody>
     }

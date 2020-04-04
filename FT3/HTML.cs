@@ -28,9 +28,10 @@ namespace FT3
                 if (typeof(T).GetConstructor(Type.EmptyTypes) != null)
                     row = Activator.CreateInstance<T>();
                 else
-                    throw new ArgumentNullException(nameof(row), "Row passed to RowClasses() was null and does not have a parameterless constructor; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
+                    throw new ArgumentNullException(nameof(row),
+                        "Row passed to RowClasses() was null and does not have a parameterless constructor; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
             }
-            
+
             // row ??= new T();
 
             // return "FlareTableBodyRow";
@@ -100,11 +101,9 @@ namespace FT3
             return "FlareTableCell" + (((Column) _columns[id]).Monospace || _monospace ? " FlareTableCell--Mono" : "");
         }
 
-        // ReSharper disable once MemberCanBeInternal
-        public bool ColumnShown(string id)
-        {
-            return ((Column) _columns[id])?.Shown ?? false;
-        }
+        public bool ColumnShown(string      id) => ((Column) _columns[id])?.Shown      ?? false;
+        public bool ColumnFilterable(string id) => ((Column) _columns[id])?.Filterable ?? false;
+        public bool ColumnSortable(string   id) => ((Column) _columns[id])?.Sortable   ?? false;
 
         // ReSharper disable once MemberCanBeInternal
         public string GetColumnFilter(string id)

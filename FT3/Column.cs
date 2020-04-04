@@ -19,6 +19,8 @@ namespace FT3
         [JsonProperty] public            bool         Shown;
         [JsonIgnore]   public            string       Width;
         [JsonIgnore]   public readonly   bool         Monospace;
+        [JsonIgnore]   internal readonly bool         Filterable;
+        [JsonIgnore]   internal readonly bool         Sortable;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;
@@ -39,6 +41,8 @@ namespace FT3
             SortDirections sortDirection,
             int            sortIndex,
             string         filterValue,
+            bool           filterable,
+            bool           sortable,
             PropertyInfo   property
         )
         {
@@ -54,6 +58,8 @@ namespace FT3
             Monospace     = monospace;
             SortDirection = sortDirection;
             SortIndex     = sortIndex;
+            Filterable    = filterable;
+            Sortable      = sortable;
         }
 
         internal void TryCompileFilter()

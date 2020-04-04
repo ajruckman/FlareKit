@@ -22,7 +22,9 @@ namespace FT3
             SortDirections sortDirection = SortDirections.Neutral,
             string         filterValue   = "",
             string         width         = "unset",
-            bool           monospace     = false
+            bool           monospace     = false,
+            bool           filterable    = true,
+            bool           sortable      = true
         )
         {
             if (_columns.Contains(id))
@@ -42,6 +44,8 @@ namespace FT3
                 sortDirection,
                 sortDirection == SortDirections.Neutral ? 0 : _currentSortIndex++,
                 filterValue,
+                filterable,
+                sortable,
                 t
             );
 

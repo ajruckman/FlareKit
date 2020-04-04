@@ -42,7 +42,8 @@
   .SS_Input:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -81,7 +82,8 @@
   .SS_TextArea:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -127,7 +129,8 @@
   .SS_Select:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -422,7 +425,8 @@
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
           background-color: var(--ColorSet_ThemeColor_Background_20);
           border: 1px solid var(ColorSet_ThemeColor_Border_20);
-          color: var(ColorSet_ThemeColor_Text_0); }
+          color: var(ColorSet_ThemeColor_Text_0);
+          cursor: not-allowed; }
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -481,7 +485,8 @@
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
         background-color: var(--ColorSet_ThemeColor_Background_20);
         border: 1px solid var(ColorSet_ThemeColor_Border_20);
-        color: var(ColorSet_ThemeColor_Text_0); }
+        color: var(ColorSet_ThemeColor_Text_0);
+        cursor: not-allowed; }
   .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer {
     min-width: 100%; }
     .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer section:first-child div:first-child {

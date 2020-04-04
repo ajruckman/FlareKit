@@ -15,6 +15,9 @@
     private Timer _debouncer;
     private string _filter;
 
+    private bool? _filterable;
+    private bool? _sortable;
+
     protected override void OnParametersSet()
     {
     }
@@ -43,17 +46,32 @@
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
     @if (FlareTable.Complete)
     {
+        if (_filterable == null)
+        {
+            _filterable = FlareTable.ColumnFilterable(ID);
+        }
+        if (_sortable == null)
+        {
+            _sortable = FlareTable.ColumnSortable(ID);
+        }
+        
         Log.Update("[COMPONENT] FlareTableFilter");
         _filter = FlareTable.GetColumnFilter(ID);
 
         if (FlareTable.ColumnShown(ID))
         {
             <th class="FlareTableFilter_Cell">
-                <span class="FlareTableFilter_CellControlContainer">
+                <div class="FlareTableFilter_CellControlContainer">
                     @{ string key = "FT_F_" + ID; }
-                    <input class="FlareTableFilter_Input @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
-                    <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
-                </span>
+                    @if (_filterable ?? false)
+                    {
+                        <input class="FlareTableFilter_Input @(!_sortable ?? false ? "FlareTableFilter_Input--FullWidth" : "FlareTableFilter_Input--SharedWidth") @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
+                    }
+                    @if (_sortable ?? false)
+                    {
+                        <div class="FlareTableFilter_SortButton @FlareTable.ColumnSortButtonClass(ID)" @onclick="@(_ => FlareTable.NextColumnSort(ID))">@FlareTable.ColumnSortButtonContent(ID)</div>
+                    }
+                </div>
             </th>
         }
         else
