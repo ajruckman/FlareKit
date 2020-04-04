@@ -277,10 +277,11 @@
     background-color: var(--ColorSet_ThemeColor_Background_60);
     border: 1px solid var(--ColorSet_ThemeColor_Border_60);
     border-radius: 3px;
+    box-sizing: border-box;
     color: var(--ColorSet_ThemeColor_Text_60);
     cursor: pointer;
-    width: 100%;
-    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
+    transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
+    width: 100%; }
     .FlareSelect_Container .FlareSelect_SelectedContainer--OptionsHidden:hover {
       background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
       border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
@@ -305,6 +306,7 @@
         outline: none; }
     .FlareSelect_Container .FlareSelect_SelectedContainer .FlareSelect_Selected {
       align-items: center;
+      box-sizing: border-box;
       display: flex;
       flex-wrap: wrap;
       width: 100%; }
@@ -402,11 +404,10 @@
       top: 7.5px;
       width: 12px; }
   .FlareSelect_Container--Single .FlareSelect_SelectedContainer {
-    min-height: 25px;
+    min-height: 23px;
     transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms; }
     .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected {
-      box-sizing: border-box;
-      min-height: 25px; }
+      min-height: 23px; }
       .FlareSelect_Container--Single .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {
         justify-content: space-between;
         padding: 0 3px;
@@ -459,7 +460,6 @@
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
-      box-sizing: border-box;
       min-height: calc(33px);
       padding: 3px; }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected .FlareSelect_Selection {

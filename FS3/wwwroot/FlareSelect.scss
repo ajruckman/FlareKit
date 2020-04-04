@@ -16,17 +16,14 @@
     }
 
     .FlareSelect_SelectedContainer {
-        //background-color: var(--ColorSet_ThemeColor_Background_40);
-        //border:           1px solid var(--ColorSet_ThemeColor_Border_40);
         background-color: var(--ColorSet_ThemeColor_Background_60);
         border:           1px solid var(--ColorSet_ThemeColor_Border_60);
         border-radius:    3px;
-
+        box-sizing:       border-box;
         color:            var(--ColorSet_ThemeColor_Text_60);
         cursor:           pointer;
-        width:            100%;
         transition:       $TransitionRestore;
-
+        width:            100%;
 
         &--OptionsHidden:hover {
             background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
@@ -60,6 +57,7 @@
 
         .FlareSelect_Selected {
             align-items: center;
+            box-sizing:  border-box;
             display:     flex;
             flex-wrap:   wrap;
             width:       100%;
@@ -197,13 +195,11 @@
 
     &--Single {
         .FlareSelect_SelectedContainer {
-            min-height: 25px;
+            min-height: 23px;
             transition: $TransitionRestore;
 
             .FlareSelect_Selected {
-                box-sizing: border-box;
-                min-height: 25px;
-
+                min-height: 23px;
 
                 .FlareSelect_Selection {
                     justify-content: space-between;
@@ -248,7 +244,6 @@
             min-height: 33px;
 
             .FlareSelect_Selected {
-                box-sizing: border-box;
                 min-height: calc(33px);
                 padding:    3px;
 
