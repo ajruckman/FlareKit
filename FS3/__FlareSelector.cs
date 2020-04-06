@@ -52,35 +52,35 @@ namespace FS3
             _selectedClickListener              =  new ClickListener(_selectedRef);
             _selectedClickListener.OnClick      += OnSelectedClick;
             _selectedClickListener.OnInnerClick += OnSelectedInnerClick;
-            _selectedClickListener.Initialize(JSRuntime);
+            _selectedClickListener.Execute(JSRuntime);
 
             // Selected - keys
             _selectedKeyListener         =  new KeyListener(_selectedRef);
             _selectedKeyListener.OnKeyUp += OnSelectedKeyUp;
-            _selectedKeyListener.Initialize(JSRuntime);
+            _selectedKeyListener.Execute(JSRuntime);
 
             // Options - clicks
             _optionsClickListener              =  new ClickListener(_optionsRef);
             _optionsClickListener.OnOuterClick += OnOptionsOuterClick;
             _optionsClickListener.OnInnerClick += OnOptionsInnerClick;
-            _optionsClickListener.Initialize(JSRuntime);
+            _optionsClickListener.Execute(JSRuntime);
 
             // Options - keys
             _optionsKeyListener              =  new KeyListener(_optionsRef);
             _optionsKeyListener.OnInnerKeyUp += OnOptionsInnerKeyUp;
-            _optionsKeyListener.Initialize(JSRuntime);
+            _optionsKeyListener.Execute(JSRuntime);
 
             // Input - clicks
             _inputClickListener         =  new ClickListener(_inputRef);
             _inputClickListener.OnClick += OnInputClick;
-            _inputClickListener.Initialize(JSRuntime);
+            _inputClickListener.Execute(JSRuntime);
 
             // Input - keys
             if (FlareSelector.Multiple)
             {
                 _inputKeyListener         =  new KeyListener(_inputRef);
                 _inputKeyListener.OnKeyUp += OnInputKeyUp;
-                _inputKeyListener.Initialize(JSRuntime);
+                _inputKeyListener.Execute(JSRuntime);
             }
         }
 
