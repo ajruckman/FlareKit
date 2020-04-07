@@ -11,7 +11,11 @@ namespace Web.Pages
         protected override void OnInitialized()
         {
             _fs1 = new FlareSelector<int>(() => Contact.PreGeneratedOptions, false, clearOnSelect: false, minFilterValueLength: 2,
-                minFilterValueNotice: "Type 2+ characters", emptyPlaceholder:"Click to select a person");
+                minFilterValueNotice: "Type 2+ characters", emptyPlaceholder:"Click to select a person", monospace:false, isDisabled:
+                () =>
+                {
+                    return true;
+                });
             _fs2 = new FlareSelector<int>(() => Contact.PreGeneratedOptions, true, clearOnSelect: false,
                 emptyPlaceholder:"Click to select a person");
         }

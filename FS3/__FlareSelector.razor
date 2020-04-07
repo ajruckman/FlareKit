@@ -6,9 +6,9 @@
 
 @inject IJSRuntime JSRuntime
 
-<div class="FlareSelect_Container @(!FlareSelector.Multiple ? "FlareSelect_Container--Single" : "FlareSelect_Container--Multiple") @(FlareSelector.Monospace ? "FlareSelect_Container--Monospace" : "FlareSelect_Container--SansSerif")">
+<div class="@ContainerClasses()">
     <TriggerWrapper Trigger="@_onToggle">
-        <div class="FlareSelect_SelectedContainer @(_shown ? "FlareSelect_SelectedContainer--OptionsShown" : "FlareSelect_SelectedContainer--OptionsHidden")">
+        <div class="@SelectedContainerClasses()">
             <div class="FlareSelect_Selected" @ref="@_selectedRef" tabindex="0">
                 <TriggerWrapper Trigger="@FlareSelector.OnSelectionChange" Protected="true">
                     @if (FlareSelector.AnySelected())
@@ -43,7 +43,7 @@
     </TriggerWrapper>
 
     <div class="FlareSelect_OptionsContainer" tabindex="1" @onkeypress="@OnOptionsKeypress" @ref="@_optionsRef">
-        <TriggerWrapper Trigger="@_onToggle" Protected="true">
+        <TriggerWrapper Triggers="@(new[] {_onToggle, FlareSelector.OnDataInvalidation})" Protected="true">
             <div class="FlareSelect_Options" hidden="@(!_shown)">
                 @if (!FlareSelector.Multiple)
                 {
@@ -57,7 +57,7 @@
                     </div>
                 }
 
-                <TriggerWrapper Trigger="@_onFilterValueValidChange" Protected="true">
+                <TriggerWrapper Trigger="@FlareSelector.OnFilterValueValidChange" Protected="true">
                     @if (!_validFilterValueLength)
                     {
                         <div class="FlareSelect_Option--InvalidLengthNotice" tabindex="0">@FlareSelector.MinFilterValueNotice</div>

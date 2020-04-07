@@ -12,7 +12,7 @@ namespace FT3
 {
     public partial class FlareTable<T>
     {
-        private readonly HybridDictionary    _columns = new HybridDictionary();
+        private readonly OrderedDictionary   _columns = new OrderedDictionary();
         public           IEnumerable<Column> Columns => _columns.Values.Cast<Column>().ToList();
 
         public void RegisterColumn(

@@ -42,7 +42,8 @@
   .SS_Input:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -81,7 +82,8 @@
   .SS_TextArea:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -127,7 +129,8 @@
   .SS_Select:disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:disabled {
     background-color: var(--ColorSet_ThemeColor_Background_20);
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0); }
+    color: var(ColorSet_ThemeColor_Text_0);
+    cursor: not-allowed; }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -443,7 +446,8 @@
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:disabled {
             background-color: var(--ColorSet_ThemeColor_Background_20);
             border: 1px solid var(ColorSet_ThemeColor_Border_20);
-            color: var(ColorSet_ThemeColor_Text_0); }
+            color: var(ColorSet_ThemeColor_Text_0);
+            cursor: not-allowed; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
             border: 1px solid red; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--FullWidth {

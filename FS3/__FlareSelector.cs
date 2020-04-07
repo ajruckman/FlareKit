@@ -19,7 +19,6 @@ namespace FS3
     public partial class __FlareSelector<T> where T : IEquatable<T>
     {
         private readonly UpdateTrigger _onToggle                 = new UpdateTrigger();
-        private readonly UpdateTrigger _onFilterValueValidChange = new UpdateTrigger();
 
         private bool _justFocused;
         private bool _shown;
@@ -86,6 +85,9 @@ namespace FS3
 
         private void OnSelectedClick(ClickListener.ClickArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+            
             if (args.Button != 0) return;
 
             _shown       = !_shown;
@@ -98,6 +100,9 @@ namespace FS3
 
         private void OnSelectedInnerClick(ClickListener.ClickArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Button != 0) return;
             
             _justFocused = true;
@@ -114,6 +119,9 @@ namespace FS3
 
         private void OnSelectedKeyUp(KeyListener.KeyArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Key == "Escape" && _shown)
             {
                 Console.WriteLine("escape OnSelectedKeyUp");
@@ -129,6 +137,9 @@ namespace FS3
 
         private void OnOptionsOuterClick(ClickListener.ClickArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Button != 0) return;
 
             if (_justFocused)
@@ -143,6 +154,9 @@ namespace FS3
 
         private void OnOptionsInnerClick(ClickListener.ClickArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Button != 0 || args.TargetID == "") return;
 
             string[] ids = args.TargetID.Remove(0, 5).Split('_');
@@ -153,6 +167,9 @@ namespace FS3
 
         private void OnOptionsInnerKeyUp(KeyListener.KeyArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Key == "Escape" && _shown)
             {
                 Console.WriteLine("escape OnOptionsInnerKeyUp");
@@ -168,6 +185,9 @@ namespace FS3
 
         private void OnInputClick(ClickListener.ClickArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (_shown) return;
             _shown = true;
             _onToggle.Trigger();
@@ -175,6 +195,9 @@ namespace FS3
 
         private void OnInputKeyUp(KeyListener.KeyArgs args)
         {
+            if (FlareSelector.Disabled())
+                return;
+
             if (args.Key == "Escape" && _shown)
             {
                 _shown = false;
@@ -206,7 +229,7 @@ namespace FS3
             if (_validFilterValueLength != validNow)
             {
                 _validFilterValueLength = validNow;
-                _onFilterValueValidChange.Trigger();
+                FlareSelector.OnFilterValueValidChange.Trigger();
             }
 
             _shown = true;
@@ -220,7 +243,42 @@ namespace FS3
         }
 
         private void OnOptionsKeypress(KeyboardEventArgs args) { }
+        
+        private string ContainerClasses()
+        {
+            string result = "FlareSelect_Container";
+            
+            if (!FlareSelector.Multiple)
+                result += " FlareSelect_Container--Single";
+            else
+                result += " FlareSelect_Container--Multiple";
 
+            if (!FlareSelector.Monospace)
+                result += " FlareSelect_Container--SansSerif";
+            else
+                result += " FlareSelect_Container--MonospaceSansSerif";
+                
+            if (FlareSelector.Disabled())
+                result += " FlareSelect_Container--Disabled";
+
+            return result;
+        }
+
+        private string SelectedContainerClasses()
+        {
+            string result = "FlareSelect_SelectedContainer";
+
+            if (_shown)
+                result += " FlareSelect_SelectedContainer--OptionsShown";
+            else
+                result += " FlareSelect_SelectedContainer--OptionsHidden";
+                
+            if (FlareSelector.Disabled())
+                result += " FlareSelect_SelectedContainer--Disabled";
+
+            return result;
+        }
+        
         private string OptionClasses(IOption<T> option)
         {
             if (FlareSelector.IsOptionSelected(option))

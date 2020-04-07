@@ -14,7 +14,10 @@ namespace FS3
     {
         public delegate IEnumerable<IOption<T>> DataGetter();
 
+        public delegate bool IsDisabled();
+
         private readonly DataGetter _dataGetter;
+        private readonly IsDisabled _isDisabled;
 
         private readonly Dictionary<T, bool> _matchedCache = new Dictionary<T, bool>();
 
@@ -33,8 +36,9 @@ namespace FS3
         public readonly bool Multiple;
 
         // internal readonly UpdateTrigger OnDataChange      = new UpdateTrigger();
-        internal readonly UpdateTrigger OnSelectionChange    = new UpdateTrigger();
-        internal readonly UpdateTrigger OnFilterNoticeChange = new UpdateTrigger();
+        internal readonly UpdateTrigger OnSelectionChange  = new UpdateTrigger();
+        internal readonly UpdateTrigger OnFilterValueValidChange = new UpdateTrigger();
+        internal readonly UpdateTrigger OnDataInvalidation = new UpdateTrigger();
 
         private List<IOption<T>>? _dataCache;
 
@@ -47,7 +51,8 @@ namespace FS3
             uint?      minFilterValueLength = null,
             string?    minFilterValueNotice = null,
             string?    emptyPlaceholder     = null,
-            bool       monospace            = true
+            bool       monospace            = true,
+            IsDisabled? isDisabled = null
         )
         {
             _dataGetter = dataGetter;
@@ -60,7 +65,8 @@ namespace FS3
             MinFilterValueNotice = minFilterValueNotice ?? $"Filter by at least {MinFilterValueLength} characters";
             EmptyPlaceholder     = emptyPlaceholder;
             Monospace            = monospace;
-
+            _isDisabled = isDisabled ?? (() => false);
+            
             GenerateBatches();
             CacheMatched();
 
@@ -91,10 +97,13 @@ namespace FS3
             return _dataCache ??= new List<IOption<T>>(_dataGetter.Invoke());
         }
 
-        public void InvalidateData()
+        public void InvalidateData(bool deselect = false)
         {
             _dataCache = null;
             Batches    = null;
+            
+            if (deselect)
+                _selected.Clear();
 
             GenerateBatches();
             CacheMatched();
@@ -112,6 +121,11 @@ namespace FS3
                     }
                 }
             }
+
+            OnDataInvalidation.ReDiff();
+            
+            if (deselect)
+                OnSelectionChange.ReDiff();
         }
 
         private void GenerateBatches()
@@ -211,11 +225,11 @@ namespace FS3
 
         internal bool AnySelected() => _selected.Values.Count > 0;
 
-        internal void Select(int batchID, IOption<T> option)
+        internal void Select(int batchID, IOption<T> option, bool replace = false)
         {
             // Select(option);
 
-            if (!_selected.Contains(option.ID))
+            if (replace || !_selected.Contains(option.ID))
             {
                 if (!Multiple)
                 {
@@ -262,6 +276,17 @@ namespace FS3
             }
         }
 
+        public void Select(T id, bool replace = false)
+        {
+            for (var batchID = 0; batchID < Batches.Length; batchID++)
+                foreach (IOption<T> option in Batches[batchID].Item2)
+                    if (option.ID.Equals(id))
+                    {
+                        Select(batchID, option, replace);
+                        return;
+                    }
+        }
+
         public bool IsOptionSelected(IOption<T> option)
         {
             return _selected.Contains(option.ID);
@@ -277,5 +302,7 @@ namespace FS3
             FilterValue = value;
             CacheMatched();
         }
+
+        internal bool Disabled() => _isDisabled.Invoke();
     }
 }
