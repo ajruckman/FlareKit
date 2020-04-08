@@ -186,6 +186,10 @@
 
                         .FlareTableHeading_CellHeading {
                             flex-grow: 99999;
+                            
+                            &:empty::after{
+                                content: "\00a0";
+                            }
                         }
 
                         .FlareTableFilter_ToggleButtonContainer {

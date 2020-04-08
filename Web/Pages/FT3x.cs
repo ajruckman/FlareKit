@@ -65,7 +65,7 @@ namespace Web.Pages
             _flareTable1.RegisterColumn(nameof(Record.Age),     filterValue: "1",  width: "60px");
             _flareTable1.RegisterColumn(nameof(Record.City),    filterable: false, sortable: false);
             _flareTable1.RegisterColumn(nameof(Record.State),   sortable: false);
-            _flareTable1.RegisterColumn(nameof(Record.Country), shown: true,     filterable: false);
+            _flareTable1.RegisterColumn(nameof(Record.Country), shown: true,     filterable: false, displayName:"");
             _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
 
             _flareTable1.OnRowClick += (Record record) => Console.WriteLine($"Click: {record.Name}");

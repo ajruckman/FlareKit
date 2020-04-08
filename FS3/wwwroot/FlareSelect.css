@@ -283,23 +283,23 @@
       border: 1px solid var(--ColorSet_ThemeColor_Border_60);
       color: var(--ColorSet_ThemeColor_Text_60);
       cursor: pointer; }
-      .FlareSelect_Container .FlareSelect_SelectedContainer:not--OptionsHidden(.FlareSelect_SelectedContainer--Disabled):hover {
-        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
-      .FlareSelect_Container .FlareSelect_SelectedContainer:not--OptionsShown(.FlareSelect_SelectedContainer--Disabled) {
-        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        outline: none;
-        transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
       .FlareSelect_Container .FlareSelect_SelectedContainer:not(.FlareSelect_SelectedContainer--Disabled) .FlareSelect_EmptyPlaceholder {
         color: var(--ColorSet_ThemeColor_Text_20); }
+    .FlareSelect_Container .FlareSelect_SelectedContainer:not(.FlareSelect_SelectedContainer--Disabled):hover {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+      border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
+      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+      transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms; }
+    .FlareSelect_Container .FlareSelect_SelectedContainer:not(.FlareSelect_SelectedContainer--Disabled).FlareSelect_SelectedContainer--OptionsShown {
+      background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+      border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
+      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+      outline: none;
+      transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms; }
     .FlareSelect_Container .FlareSelect_SelectedContainer.FlareSelect_SelectedContainer--Disabled {
       background-color: var(--ColorSet_ThemeColor_Background_20);
       border: 1px solid var(--ColorSet_ThemeColor_Border_20);
