@@ -17,7 +17,10 @@
                         {
                             <div class="FlareSelect_Selection">
                                 @option.Item2.SelectedText
-                                <button class="FlareSelect_SelectionRemoveButton" @onclick="@(_ => FlareSelector.Select(option.Item1, option.Item2))">✕</button>
+                                @if (!FlareSelector.Disabled())
+                                {
+                                    <button class="FlareSelect_SelectionRemoveButton" @onclick="@(_ => FlareSelector.Select(option.Item1, option.Item2))">✕</button>
+                                }
                             </div>
                         }
                     }
