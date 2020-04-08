@@ -8,24 +8,6 @@
     font-size:        1em;
     transition:       $TransitionRestore;
 
-    &:hover {
-        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-        transition:       $TransitionHover;
-        border-top:       1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-left:      1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-right:     1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
-    }
-
-    &:focus, :active {
-        transition:       $TransitionSnap;
-        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-        border-top:       1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-left:      1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-right:     1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
-    }
-
     &:not(:disabled) {
         box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
     }
@@ -35,6 +17,24 @@
         border:           1px solid var(ColorSet_ThemeColor_Border_20);
         color:            var(ColorSet_ThemeColor_Text_0);
         cursor:           not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+        transition:       $TransitionHover;
+        border-top:       1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-left:      1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-right:     1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover);
+    }
+
+    &:focus:not(:disabled), :active:not(:disabled) {
+        transition:       $TransitionSnap;
+        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+        border-top:       1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-left:      1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-right:     1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-bottom:    1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus);
     }
 }
 

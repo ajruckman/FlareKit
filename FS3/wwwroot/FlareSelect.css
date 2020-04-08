@@ -23,20 +23,6 @@
   height: calc(25px);
   margin: 1px 0;
   padding: 1px 4px; }
-  .SS_Input:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_Input:focus, .SS_Input :active {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_Input:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
   .SS_Input:disabled {
@@ -44,6 +30,20 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+  .SS_Input:hover:not(:disabled) {
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
+  .SS_Input:focus:not(:disabled), .SS_Input :active:not(:disabled) {
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_Input--WidthWide {
     width: 600px; }
   .SS_Input--WidthMedium {
@@ -63,20 +63,6 @@
   font-family: var(--FontSet-MonospaceFont);
   margin: 1px 0;
   padding: 1px 4px; }
-  .SS_TextArea:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_TextArea:focus, .SS_TextArea :active {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_TextArea:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
   .SS_TextArea:disabled {
@@ -84,6 +70,20 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+  .SS_TextArea:hover:not(:disabled) {
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
+  .SS_TextArea:focus:not(:disabled), .SS_TextArea :active:not(:disabled) {
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_TextArea--WidthWide {
     width: 600px; }
   .SS_TextArea--WidthMedium {
@@ -110,20 +110,6 @@
   height: calc(25px);
   margin: 1px 0;
   padding: 1px 4px; }
-  .SS_Select:hover {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_Select:focus, .SS_Select :active {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .SS_Select:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
   .SS_Select:disabled {
@@ -131,6 +117,20 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+  .SS_Select:hover:not(:disabled) {
+    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
+  .SS_Select:focus:not(:disabled), .SS_Select :active:not(:disabled) {
+    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
+    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
@@ -445,20 +445,6 @@
         box-shadow: none !important;
         margin: 3px;
         width: calc(100% - 6px); }
-        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
-          background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
-          transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-          background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:not(:disabled) {
           box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
@@ -466,6 +452,20 @@
           border: 1px solid var(ColorSet_ThemeColor_Border_20);
           color: var(ColorSet_ThemeColor_Text_0);
           cursor: not-allowed; }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover:not(:disabled) {
+          background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+          transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
+        .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus:not(:disabled), .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active:not(:disabled) {
+          transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
+          background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+          border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+          border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer {
     min-height: 33px; }
     .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_Selected {
@@ -510,20 +510,6 @@
       box-shadow: none !important;
       margin: 3px;
       width: calc(100% - 6px); }
-      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover {
-        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-        transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus, .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active {
-        transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:not(:disabled) {
         box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled {
@@ -531,6 +517,20 @@
         border: 1px solid var(ColorSet_ThemeColor_Border_20);
         color: var(ColorSet_ThemeColor_Text_0);
         cursor: not-allowed; }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover:not(:disabled) {
+        background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
+        transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
+      .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:focus:not(:disabled), .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput :active:not(:disabled) {
+        transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
+        background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
+        border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
+        border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
   .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer {
     min-width: 100%; }
     .FlareSelect_Container--Multiple .FlareSelect_OptionsContainer section:first-child div:first-child {

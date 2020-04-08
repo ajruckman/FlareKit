@@ -1,0 +1,64 @@
+// https://codepen.io/gliesche/pen/ZQyPeV
+.SS_CheckMark {
+    //box-shadow: 0 0 0 1px black;
+    height:   21px;
+    position: relative;
+    width:    21px;
+
+    &:after {
+        border-bottom: 3px solid #78b13f;
+        border-right:  3px solid #78b13f;
+        content:       '';
+        display:       inline-block;
+        height:        15px;
+        left:          27%;
+        position:      absolute;
+        transform:     rotate(45deg);
+        width:         7px;
+    }
+}
+
+.SS_XMark {
+    //box-shadow: 0 0 0 1px black;
+    height:   21px;
+    position: relative;
+    width:    21px;
+
+    &:before, &:after {
+        background-color: #ff0000;
+        content:          '';
+        height:           21px;
+        left:             43%;
+        position:         absolute;
+        top:              1%;
+        width:            2.8px;
+    }
+
+    &:before {
+        transform: rotate(45deg);
+    }
+
+    &:after {
+        transform: rotate(-45deg);
+    }
+}
+
+.SS_ExclamationMark {
+    border-color: transparent transparent var(--ColorSet_ThemeColor_SolidYellow_20) transparent;
+    border-style: solid;
+    border-width: 0 calc(21px / 2) 21px calc(21px / 2);
+    color:        black;
+    font-family:  "Arial", sans-serif;
+    font-size:    21px;
+    height:       0;
+    line-height:  21px;
+    position:     relative;
+    width:        0;
+
+    &:after {
+        content:  '!';
+        left:     -3.05px;
+        position: absolute;
+        top:      2px;
+    }
+}
