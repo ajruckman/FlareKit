@@ -30,6 +30,8 @@ namespace FT3
         private bool _invalidateSortPending;
         private bool _invalidatePagePending;
 
+        private bool _usingReflectionValueGetter;
+
         private void ExecutePending(bool force = false)
         {
             if (_loadingSessionValues && !force)
@@ -77,9 +79,10 @@ namespace FT3
             bool            clickable      = false
         )
         {
-            _dataGetter  = dataGetter;
-            _valueGetter = valueGetter ?? ReflectionValueGetter;
-            RegexMode    = regexMode;
+            _dataGetter                 = dataGetter;
+            _valueGetter                = valueGetter ?? ReflectionValueGetter;
+            _usingReflectionValueGetter = valueGetter == null;
+            RegexMode                   = regexMode;
 
             CurrentPage      = 0;
             PageSize         = pageSize;

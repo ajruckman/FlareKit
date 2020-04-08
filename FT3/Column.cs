@@ -9,18 +9,18 @@ namespace FT3
 {
     public sealed class Column
     {
-        [JsonIgnore]   internal          Regex?       CompiledFilterValue;
-        [JsonIgnore]   public readonly   string       DisplayName;
-        [JsonProperty] internal          string       FilterValue;
-        [JsonIgnore]   internal          bool         FilterValueValid;
-        [JsonIgnore]   public readonly   string       ID;
-        [JsonIgnore]   internal          string?      Key;
-        [JsonIgnore]   internal readonly PropertyInfo Property;
-        [JsonProperty] public            bool         Shown;
-        [JsonIgnore]   public            string       Width;
-        [JsonIgnore]   public readonly   bool         Monospace;
-        [JsonIgnore]   internal readonly bool         Filterable;
-        [JsonIgnore]   internal readonly bool         Sortable;
+        [JsonIgnore]   internal          Regex?        CompiledFilterValue;
+        [JsonIgnore]   public readonly   string        DisplayName;
+        [JsonProperty] internal          string        FilterValue;
+        [JsonIgnore]   internal          bool          FilterValueValid;
+        [JsonIgnore]   public readonly   string        ID;
+        [JsonIgnore]   internal          string?       Key;
+        [JsonIgnore]   internal readonly PropertyInfo? Property;
+        [JsonProperty] public            bool          Shown;
+        [JsonIgnore]   public            string        Width;
+        [JsonIgnore]   public readonly   bool          Monospace;
+        [JsonIgnore]   internal readonly bool          Filterable;
+        [JsonIgnore]   internal readonly bool          Sortable;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;
@@ -43,7 +43,7 @@ namespace FT3
             string         filterValue,
             bool           filterable,
             bool           sortable,
-            PropertyInfo   property
+            PropertyInfo?  property
         )
         {
             if (!_matchSize.IsMatch(width))

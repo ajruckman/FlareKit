@@ -28,11 +28,15 @@ namespace FT3
         )
         {
             if (_columns.Contains(id))
-                throw new ArgumentException($"Column ID '{id}' registered twice", nameof(id));
+                throw new ArgumentException($"Column ID '{id}' is already registered.", nameof(id));
 
-            PropertyInfo? t = typeof(T).GetProperty(id);
-            if (t == null)
-                throw new ArgumentException($"Property ID '{id}' does not exist in type '{typeof(T).FullName}'");
+            PropertyInfo? t = null;
+            if (_usingReflectionValueGetter && (filterable || sortable))
+            {
+                t = typeof(T).GetProperty(id);
+                if (t == null)
+                    throw new ArgumentException($"Property ID '{id}' does not exist in type '{typeof(T).FullName}'.");
+            }
 
             Column c = new Column
             (
