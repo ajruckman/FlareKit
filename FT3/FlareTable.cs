@@ -114,10 +114,11 @@ namespace FT3
             bool                   clickable      = false
         )
         {
-            _dataGetter     = dataGetter;
-            _sessionStorage = sessionStorage;
-            _identifier     = identifier;
-            _valueGetter    = valueGetter ?? ReflectionValueGetter;
+            _dataGetter                 = dataGetter;
+            _sessionStorage             = sessionStorage;
+            _identifier                 = identifier;
+            _valueGetter                = valueGetter ?? ReflectionValueGetter;
+            _usingReflectionValueGetter = valueGetter == null;
 
             RegexMode        = regexMode;
             CurrentPage      = 0;

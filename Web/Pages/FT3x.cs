@@ -50,8 +50,8 @@ namespace Web.Pages
             _dummyFlareTable = new FlareTable<Record>(() => RecordCache.Records);
 
             _flareTable1 = new FlareTable<Record>(
-                // () => RecordCache.Records,
-                () => new List<Record>(),
+                () => RecordCache.Records,
+                // () => new List<Record>(),
                 SessionStorage,
                 "ft3x",
                 fixedLayout: true,
