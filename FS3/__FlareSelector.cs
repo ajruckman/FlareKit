@@ -256,7 +256,7 @@ namespace FS3
             if (!FlareSelector.Monospace)
                 result += " FlareSelect_Container--SansSerif";
             else
-                result += " FlareSelect_Container--MonospaceSansSerif";
+                result += " FlareSelect_Container--Monospace";
                 
             if (FlareSelector.Disabled())
                 result += " FlareSelect_Container--Disabled";

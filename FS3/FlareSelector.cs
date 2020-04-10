@@ -261,7 +261,12 @@ namespace FS3
             }
 
             OnSelectionChange.Trigger();
+            NotifySelectionChange();
+        }
 
+        private void NotifySelectionChange()
+        {
+            
             if (OnSelect != null)
             {
                 IOption<T>[] result = new IOption<T>[_selected.Count];
@@ -285,6 +290,13 @@ namespace FS3
                         Select(batchID, option, replace);
                         return;
                     }
+        }
+
+        public void Deselect()
+        {
+            _selected.Clear();
+            OnSelectionChange.Trigger();
+            NotifySelectionChange();
         }
 
         public bool IsOptionSelected(IOption<T> option)
