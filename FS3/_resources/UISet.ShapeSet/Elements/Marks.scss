@@ -62,3 +62,31 @@
         top:      2px;
     }
 }
+
+// From: https://mdjunaidalam5.github.io/SpinBolt/
+
+.Spinner {
+    height: 21px;
+    width:  21px;
+
+    &:after {
+        animation:          rotate 1s linear infinite;
+        border:             3px solid;
+        border-radius:      50%;
+        border-right-color: var(--ColorSet_ThemeColor_Border_50);
+        color:              var(--ColorSet_ThemeColor_Accent_50);
+        content:            '';
+        display:            inline-block;
+        height:             15px;
+        width:              15px;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

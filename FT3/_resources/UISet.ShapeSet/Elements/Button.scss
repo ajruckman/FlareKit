@@ -15,6 +15,10 @@
     &::-moz-focus-inner {
         border: 0;
     }
+
+    &a {
+        box-sizing: border-box;
+    }
 }
 
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {

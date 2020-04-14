@@ -132,10 +132,15 @@
     border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
 
+a.SS_Button, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Button--Inverted {
+  box-sizing: border-box;
+  font-size: 13.333px; }
+
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -144,6 +149,8 @@
     cursor: not-allowed; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner {
     border: 0; }
+  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):nota(.SS_Button--Inverted) {
+    box-sizing: border-box; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60);
     border: 1px solid var(--ColorSet_ThemeColor_Border_60);
@@ -163,6 +170,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Green:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -171,6 +179,8 @@
     cursor: not-allowed; }
   .SS_Button--Green::-moz-focus-inner {
     border: 0; }
+  .SS_Button--Greena {
+    box-sizing: border-box; }
   .SS_Button--Green:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_SolidGreen_90);
     border: 1px solid var(--ColorSet_ThemeColor_SolidGreen_90);
@@ -190,6 +200,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Red:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -198,6 +209,8 @@
     cursor: not-allowed; }
   .SS_Button--Red::-moz-focus-inner {
     border: 0; }
+  .SS_Button--Reda {
+    box-sizing: border-box; }
   .SS_Button--Red:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_SolidRed_100);
     border: 1px solid var(--ColorSet_ThemeColor_SolidRed_100);
@@ -217,6 +230,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Blue:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -225,6 +239,8 @@
     cursor: not-allowed; }
   .SS_Button--Blue::-moz-focus-inner {
     border: 0; }
+  .SS_Button--Bluea {
+    box-sizing: border-box; }
   .SS_Button--Blue:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_SolidBlue_100);
     border: 1px solid var(--ColorSet_ThemeColor_SolidBlue_100);
@@ -244,6 +260,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Inverted:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -252,6 +269,8 @@
     cursor: not-allowed; }
   .SS_Button--Inverted::-moz-focus-inner {
     border: 0; }
+  .SS_Button--Inverteda {
+    box-sizing: border-box; }
   .SS_Button--Inverted:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Text_80);
     border: 1px solid var(--ColorSet_ThemeColor_Text_80);

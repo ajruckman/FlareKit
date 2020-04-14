@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,10 +16,11 @@ namespace FT3
 
         public delegate object? ValueGetter(T data, string id);
 
-        private readonly DataGetter      _dataGetter;
-        private readonly ValueGetter     _valueGetter;
-        private          int             _currentSortIndex;
-        private          IEnumerable<T>? _data;
+        private readonly DataGetter     _dataGetter;
+        private readonly ValueGetter    _valueGetter;
+        private          int            _currentSortIndex;
+        private          LinkedList<T>? _data;
+        private readonly object         _dataLock = new object();
 
         internal bool RegexMode;
 
@@ -31,56 +33,61 @@ namespace FT3
             bool dataChange = _matchedRowCache == null || _sortedRowCache == null;
 
             Log.Update("[Data] AllRows");
-            _data ??= _dataGetter.Invoke();
+            // _data ??= _dataGetter.Invoke().ToList();
 
-            if (_matchedRowCache == null)
+            lock (_dataLock)
             {
-                Log.Update("[Data] Re-matching rows");
-                List<T> result         = new List<T>();
-                var     numRows        = 0;
-                var     numRowsMatched = 0;
+                _data ??= new LinkedList<T>(_dataGetter.Invoke());
 
-                foreach (T row in _data)
+                if (_matchedRowCache == null)
                 {
-                    numRows++;
+                    Log.Update("[Data] Re-matching rows");
+                    List<T> result         = new List<T>();
+                    var     numRows        = 0;
+                    var     numRowsMatched = 0;
 
-                    var matched = true;
-                    foreach (Column? column in _columns.Values)
+                    foreach (T row in _data)
                     {
-                        if (column?.ID == null) continue;
+                        numRows++;
 
-                        if (column.Shown != true) continue;
-                        if (string.IsNullOrEmpty(column.FilterValue)) continue;
-
-                        if (!RegexMode)
+                        var matched = true;
+                        foreach (Column? column in _columns.Values)
                         {
-                            if (!Match(RowValue(row, column.ID), column.FilterValue))
+                            if (column?.ID == null) continue;
+
+                            if (column.Shown != true) continue;
+                            if (string.IsNullOrEmpty(column.FilterValue)) continue;
+
+                            if (!RegexMode)
                             {
-                                matched = false;
-                                break;
+                                if (!Match(RowValue(row, column.ID), column.FilterValue))
+                                {
+                                    matched = false;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
+                                {
+                                    matched = false;
+                                    break;
+                                }
                             }
                         }
-                        else
+
+                        if (matched)
                         {
-                            if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
-                            {
-                                matched = false;
-                                break;
-                            }
+                            result.Add(row);
+                            numRowsMatched++;
                         }
                     }
 
-                    if (matched)
-                    {
-                        result.Add(row);
-                        numRowsMatched++;
-                    }
+                    RowCount = numRowsMatched;
+                    ResetCurrentPage();
+
+                    _matchedRowCache = result;
                 }
-
-                RowCount = numRowsMatched;
-                ResetCurrentPage();
-
-                _matchedRowCache = result;
             }
 
             if (_sortedRowCache == null)
@@ -183,22 +190,66 @@ namespace FT3
         // ReSharper disable once MemberCanBePrivate.Global
         public void InvalidateData()
         {
-            Log.Update();
-            _data            = null;
-            _matchedRowCache = null;
-            _sortedRowCache  = null;
-            UpdateTableControls.Trigger();
-            UpdateTableBody.Trigger();
+            lock (_dataLock)
+            {
+                Log.Update();
+                _data            = new LinkedList<T>(_dataGetter.Invoke());
+                _matchedRowCache = null;
+                _sortedRowCache  = null;
+                UpdateTableControls.Trigger();
+                UpdateTableBody.Trigger();
+            }
+        }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public void PrependRow(T row, int? limit = null)
+        {
+            lock (_dataLock)
+            {
+                _data ??= new LinkedList<T>(_dataGetter.Invoke());
+
+                _data.AddFirst(row);
+                if (limit != null && _data.Count > limit)
+                    for (var i = 0; i < _data.Count - limit; i++)
+                        _data.RemoveLast();
+
+                _matchedRowCache = null;
+                _sortedRowCache  = null;
+                UpdateTableControls.Trigger();
+                UpdateTableBody.Trigger();
+            }
+        }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public void AppendRow(T row, int? limit = null)
+        {
+            lock (_dataLock)
+            {
+                _data ??= new LinkedList<T>(_dataGetter.Invoke());
+
+                _data.AddLast(row);
+                if (limit != null && _data.Count > limit)
+                    for (var i = 0; i < _data.Count - limit; i++)
+                        _data.RemoveFirst();
+
+                _matchedRowCache = null;
+                _sortedRowCache  = null;
+                UpdateTableControls.Trigger();
+                UpdateTableBody.Trigger();
+            }
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
         public void InvalidateRows()
         {
-            Log.Update();
-            _matchedRowCache = null;
-            _sortedRowCache  = null;
-            UpdateTableControls.Trigger();
-            UpdateTableBody.Trigger();
+            lock (_dataLock)
+            {
+                Log.Update();
+                _matchedRowCache = null;
+                _sortedRowCache  = null;
+                UpdateTableControls.Trigger();
+                UpdateTableBody.Trigger();
+            }
         }
 
         private void InvalidateSort()
