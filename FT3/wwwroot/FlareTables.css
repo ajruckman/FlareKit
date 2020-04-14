@@ -30,6 +30,8 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+    .SS_Input:disabled::placeholder {
+      color: var(ColorSet_ThemeColor_Text_0); }
   .SS_Input:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -70,6 +72,8 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+    .SS_TextArea:disabled::placeholder {
+      color: var(ColorSet_ThemeColor_Text_0); }
   .SS_TextArea:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -117,6 +121,8 @@
     border: 1px solid var(ColorSet_ThemeColor_Border_20);
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
+    .SS_Select:disabled::placeholder, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:disabled::placeholder {
+      color: var(ColorSet_ThemeColor_Text_0); }
   .SS_Select:hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -132,10 +138,15 @@
     border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
     border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
 
+a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons a.FlareTablePaginationButton, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Button--Inverted {
+  box-sizing: border-box;
+  font-size: 13.333px; }
+
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -165,6 +176,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Green:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -194,6 +206,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Red:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -223,6 +236,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Blue:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -252,6 +266,7 @@
   border-radius: 3px;
   font-weight: 500;
   outline: none;
+  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
   padding: 2px 6px; }
   .SS_Button--Inverted:not(:disabled) {
     box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
@@ -446,6 +461,8 @@
             border: 1px solid var(ColorSet_ThemeColor_Border_20);
             color: var(ColorSet_ThemeColor_Text_0);
             cursor: not-allowed; }
+            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:disabled::placeholder {
+              color: var(ColorSet_ThemeColor_Text_0); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover:not(:disabled) {
             background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
             transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;

@@ -21,10 +21,16 @@
     }
 }
 
+a.SS_Button, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Button--Inverted {
+    box-sizing: border-box;
+    font-size:  13.333px;
+}
+
 .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
     @include _ButtonBase;
 
-    padding: 2px 6px;
+    line-height: calc(23px - 2 * 2px - 2 * 0.8px);
+    padding:     2px 6px;
 
     &:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_Background_60);
@@ -52,7 +58,8 @@
 .SS_Button--Green {
     @include _ButtonBase;
 
-    padding: 2px 6px;
+    line-height: calc(23px - 2 * 2px - 2 * 0.8px);
+    padding:     2px 6px;
 
     &:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_SolidGreen_90);
@@ -80,7 +87,8 @@
 .SS_Button--Red {
     @include _ButtonBase;
 
-    padding: 2px 6px;
+    line-height: calc(23px - 2 * 2px - 2 * 0.8px);
+    padding:     2px 6px;
 
     &:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_SolidRed_100);
@@ -108,7 +116,8 @@
 .SS_Button--Blue {
     @include _ButtonBase;
 
-    padding: 2px 6px;
+    line-height: calc(23px - 2 * 2px - 2 * 0.8px);
+    padding:     2px 6px;
 
     &:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_SolidBlue_100);
@@ -136,7 +145,8 @@
 .SS_Button--Inverted {
     @include _ButtonBase;
 
-    padding: 2px 6px;
+    line-height: calc(23px - 2 * 2px - 2 * 0.8px);
+    padding:     2px 6px;
 
     &:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_Text_80);
