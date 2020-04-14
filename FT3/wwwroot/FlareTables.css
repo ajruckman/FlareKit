@@ -31,7 +31,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_Input:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_Input:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -73,7 +73,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_TextArea:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_TextArea:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -122,7 +122,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_Select:disabled::placeholder, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_Select:hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -462,7 +462,7 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
             color: var(ColorSet_ThemeColor_Text_0);
             cursor: not-allowed; }
             .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:disabled::placeholder {
-              color: var(ColorSet_ThemeColor_Text_0); }
+              color: var(--ColorSet_ThemeColor_Text_0); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover:not(:disabled) {
             background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
             transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;

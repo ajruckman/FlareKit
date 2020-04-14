@@ -31,7 +31,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_Input:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_Input:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -73,7 +73,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_TextArea:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_TextArea:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -122,7 +122,7 @@
     color: var(ColorSet_ThemeColor_Text_0);
     cursor: not-allowed; }
     .SS_Select:disabled::placeholder {
-      color: var(ColorSet_ThemeColor_Text_0); }
+      color: var(--ColorSet_ThemeColor_Text_0); }
   .SS_Select:hover:not(:disabled) {
     background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
     transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -478,7 +478,7 @@ a.SS_Button, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Butto
           color: var(ColorSet_ThemeColor_Text_0);
           cursor: not-allowed; }
           .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled::placeholder {
-            color: var(ColorSet_ThemeColor_Text_0); }
+            color: var(--ColorSet_ThemeColor_Text_0); }
         .FlareSelect_Container--Single .FlareSelect_OptionsContainer .FlareSelect_Options .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover:not(:disabled) {
           background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
           transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
@@ -545,7 +545,7 @@ a.SS_Button, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Butto
         color: var(ColorSet_ThemeColor_Text_0);
         cursor: not-allowed; }
         .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:disabled::placeholder {
-          color: var(ColorSet_ThemeColor_Text_0); }
+          color: var(--ColorSet_ThemeColor_Text_0); }
       .FlareSelect_Container--Multiple .FlareSelect_SelectedContainer .FlareSelect_FilterInputContainer .FlareSelect_FilterInput:hover:not(:disabled) {
         background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
         transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
