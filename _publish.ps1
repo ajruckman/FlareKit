@@ -19,16 +19,16 @@ Kill-ASPDotNETWebserver
 Clean-DotNETProject
 dotnet restore
 
-cd .\FS3\wwwroot\
+cd .\FlareSelect\wwwroot\
 .\_build.ps1
 cd ..\..\
 
-cd .\FT3\wwwroot\
+cd .\FlareTables\wwwroot\
 .\_build.ps1
 cd ..\..\
 
-dotnet pack FS3 -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
-dotnet pack FT3 -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+dotnet pack FlareSelect -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
+dotnet pack FlareTables -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
 if (!(Test-Path .\_published\))
 {
@@ -45,8 +45,5 @@ Get-ChildItem -Directory | foreach {
     }
 }
 
-Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flarelib\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flareselect\
 Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\flaretables\
-Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\fs3\
-Remove-Item -Force -Recurse -ErrorAction Ignore $HOME\.nuget\packages\ft3\

@@ -1,7 +1,7 @@
 using System;
 using Superset.Common;
 
-namespace FS3
+namespace FlareSelect
 {
     public class Option<T> : IOption<T> where T : IEquatable<T>
     {

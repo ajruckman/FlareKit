@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace FT3
+namespace FlareTables
 {
     public sealed class Column
     {

@@ -10,7 +10,7 @@ using Superset.Logging;
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace FT3
+namespace FlareTables
 {
     public partial class FlareTable<T>
     {

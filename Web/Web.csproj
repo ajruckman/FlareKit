@@ -22,8 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FS3\FS3.csproj" />
-        <ProjectReference Include="..\FT3\FT3.csproj" />
+        <ProjectReference Include="..\FlareSelect\FlareSelect.csproj" />
+        <ProjectReference Include="..\FlareTables\FlareTables.csproj" />
     </ItemGroup>
 
 </Project>

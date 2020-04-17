@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Superset.Logging;
 
-namespace FT3
+namespace FlareTables
 {
     public partial class FlareTable<T>
     {

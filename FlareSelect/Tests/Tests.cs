@@ -7,7 +7,7 @@ using Bogus.DataSets;
 using Superset.Common;
 using Superset.Web.State;
 
-namespace FS3.Tests
+namespace FlareSelect.Tests
 {
     public class Tests
     {

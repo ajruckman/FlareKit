@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FT3
+namespace FlareTables
 {
     // ReSharper disable once ClassCanBeSealed.Global
     public partial class FlareTable<T>

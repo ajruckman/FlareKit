@@ -2,7 +2,7 @@ using System;
 
 #nullable enable
 
-namespace FT3
+namespace FlareTables
 {
     // ReSharper disable once ClassCanBeSealed.Global
     public partial class FlareTable<T>

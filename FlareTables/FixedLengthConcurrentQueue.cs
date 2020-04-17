@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace FT3
+namespace FlareTables
 {
     internal class FixedLengthConcurrentQueue<T>
     {

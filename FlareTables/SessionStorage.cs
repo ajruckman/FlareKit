@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using Newtonsoft.Json;
 
-namespace FT3
+namespace FlareTables
 {
     public partial class FlareTable<T>
     {

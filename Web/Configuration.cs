@@ -10,7 +10,7 @@ namespace Web
             Superset.Web.ResourceManifests.SaveAsFile,
             FontSet.ResourceManifests.Inter,
             FontSet.ResourceManifests.JetBrainsMono,
-            FT3.ResourceManifests.FlareTables,
+            FlareTables.ResourceManifests.FlareTables,
             ColorSet.ResourceManifests.Globals
         };
     }

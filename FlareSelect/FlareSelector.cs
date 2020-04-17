@@ -3,11 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using Microsoft.AspNetCore.Components;
 using Superset.Common;
 using Superset.Web.State;
 
-namespace FS3
+namespace FlareSelect
 {
     public class FlareSelector<T>
         where T : IEquatable<T>
@@ -70,7 +71,7 @@ namespace FS3
             GenerateBatches();
             CacheMatched();
 
-            for (var batchID = 0; batchID < Batches.Length; batchID++)
+            for (var batchID = 0; batchID < Batches!.Length; batchID++)
             {
                 (UpdateTrigger, List<IOption<T>>) b = Batches[batchID];
                 foreach (IOption<T> option in b.Item2)
@@ -108,7 +109,7 @@ namespace FS3
             GenerateBatches();
             CacheMatched();
 
-            for (var batchID = 0; batchID < Batches.Length; batchID++)
+            for (var batchID = 0; batchID < Batches!.Length; batchID++)
             {
                 (UpdateTrigger, List<IOption<T>>) b = Batches[batchID];
                 foreach (IOption<T> option in b.Item2)
@@ -155,7 +156,7 @@ namespace FS3
 
         private void CacheMatched()
         {
-            for (var batchID = 0; batchID < Batches.Length; batchID++)
+            for (var batchID = 0; batchID < Batches!.Length; batchID++)
             {
                 var needsUpdate = false;
 
@@ -198,7 +199,7 @@ namespace FS3
                 yield break;
             }
 
-            for (var b = 0; b < Batches.Length; b++)
+            for (var b = 0; b < Batches!.Length; b++)
             {
                 foreach (IOption<T> t in Batches[b].Item2)
                 {
@@ -219,16 +220,14 @@ namespace FS3
 
         internal void Select(int batchID, int optionIndex)
         {
-            IOption<T> option = Batches[batchID].Item2[optionIndex];
+            IOption<T> option = Batches![batchID].Item2[optionIndex];
             Select(batchID, option);
         }
 
         internal bool AnySelected() => _selected.Values.Count > 0;
 
-        internal void Select(int batchID, IOption<T> option, bool replace = false)
+        internal void Select(int batchID, IOption<T> option, bool replace = false, bool update = true)
         {
-            // Select(option);
-
             if (replace || !_selected.Contains(option.ID))
             {
                 if (!Multiple)
@@ -253,15 +252,18 @@ namespace FS3
                 }
             }
 
-            Batches[batchID].Item1.Trigger();
-            if (ClearOnSelect)
+            if (update)
             {
-                FilterValue = "";
-                CacheMatched();
-            }
+                Batches![batchID].Item1.Trigger();
+                if (ClearOnSelect)
+                {
+                    FilterValue = "";
+                    CacheMatched();
+                }
 
-            OnSelectionChange.Trigger();
-            NotifySelectionChange();
+                OnSelectionChange.Trigger();
+                NotifySelectionChange();
+            }
         }
 
         private void NotifySelectionChange()
@@ -283,13 +285,41 @@ namespace FS3
 
         public void Select(T id, bool replace = false)
         {
-            for (var batchID = 0; batchID < Batches.Length; batchID++)
+            for (var batchID = 0; batchID < Batches!.Length; batchID++)
+            {
                 foreach (IOption<T> option in Batches[batchID].Item2)
                     if (option.ID.Equals(id))
                     {
-                        Select(batchID, option, replace);
-                        return;
+                        Select(batchID, option, replace, false);
+                        goto Done;
                     }
+                Batches[batchID].Item1.Trigger();
+            }
+
+            Done:
+            
+            if (ClearOnSelect)
+            {
+                FilterValue = "";
+                CacheMatched();
+            }
+
+            OnSelectionChange.Trigger();
+            NotifySelectionChange();
+        }
+
+        public void Select(IEnumerable<T> ids, bool replace = false)
+        {
+            if (replace)
+                _selected.Clear();
+
+            IEnumerable<T> idsEnum = ids as T[] ?? ids.ToArray();
+            
+            for (var batchID = 0; batchID < Batches!.Length; batchID++)
+                foreach (IOption<T> option in Batches[batchID].Item2)
+                    foreach (T id in idsEnum)
+                        if (option.ID.Equals(id))
+                            Select(batchID, option);
         }
 
         public void Deselect()

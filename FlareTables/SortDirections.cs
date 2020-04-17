@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace FT3
+namespace FlareTables
 {
     public enum SortDirections
     {

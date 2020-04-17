@@ -14,7 +14,7 @@ using Superset.Web.Utilities;
 // ReSharper disable once InconsistentNaming
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace FS3
+namespace FlareSelect
 {
     public partial class __FlareSelector<T> where T : IEquatable<T>
     {
