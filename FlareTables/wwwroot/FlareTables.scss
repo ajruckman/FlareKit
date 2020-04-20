@@ -129,7 +129,7 @@
             user-select: none;
 
             .SS_CheckboxContainer {
-                margin-right: 3px;
+                margin-right: 5px;
 
                 &:last-child {
                     margin-right: 9px;
@@ -139,18 +139,17 @@
 
         .FlareTableRegexToggle {
             align-items: center;
-            cursor:      pointer;
             display:     flex;
             margin:      0 1px;
             user-select: none;
 
-            input[type=checkbox] {
-                cursor: pointer;
-            }
+            //input[type=checkbox] {
+            //    cursor: pointer;
+            //}
 
             span {
                 color:  var(--ColorSet_ThemeColor_Text_20);
-                margin: 0 1px 0 3px;
+                margin: 0 1px 0 5px;
             }
         }
     }

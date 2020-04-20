@@ -291,9 +291,9 @@ namespace FlareSelect
                     if (option.ID.Equals(id))
                     {
                         Select(batchID, option, replace, false);
+                        Batches[batchID].Item1.Trigger();
                         goto Done;
                     }
-                Batches[batchID].Item1.Trigger();
             }
 
             Done:

@@ -364,20 +364,17 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
       margin: 0 1px;
       user-select: none; }
       .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer {
-        margin-right: 3px; }
+        margin-right: 5px; }
         .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer:last-child {
           margin-right: 9px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle {
       align-items: center;
-      cursor: pointer;
       display: flex;
       margin: 0 1px;
       user-select: none; }
-      .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle input[type=checkbox] {
-        cursor: pointer; }
       .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle span {
         color: var(--ColorSet_ThemeColor_Text_20);
-        margin: 0 1px 0 3px; }
+        margin: 0 1px 0 5px; }
   .FlareTableContainer .FlareTableTable + .FlareTableControlRow {
     border-top: 1px solid var(--ColorSet_ThemeColor_Border_50); }
   .FlareTableContainer .FlareTableTable {

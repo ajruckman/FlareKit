@@ -1,3 +1,5 @@
+@using ShapeSet.Components
+
 @typeparam T
 
 @code {
@@ -13,8 +15,12 @@
 }
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
-    <div class="FlareTableRegexToggle" @onclick="@HandleCheck">
-        <input type="checkbox" checked="@FlareTable.RegexMode"/>
+    <div class="FlareTableRegexToggle">
+        <Checkbox @onchange="(async args => await HandleCheck())" checked="@FlareTable.RegexMode" Size="Checkbox.CheckboxSize.Small"></Checkbox>
         <span>Regex Mode</span>
     </div>
+    @* <div class="FlareTableRegexToggle" @onclick="@HandleCheck"> *@
+    @* <input type="checkbox" checked="@FlareTable.RegexMode"/> *@
+    @* <span>Regex Mode</span> *@
+    @* </div> *@
 </TriggerWrapper>

@@ -1,4 +1,5 @@
 using System.Linq;
+using FlareSelect;
 
 namespace Web.Pages
 {

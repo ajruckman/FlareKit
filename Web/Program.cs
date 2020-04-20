@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FlareSelect;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Superset.Logging;
@@ -49,7 +50,7 @@ namespace Web
 
             Console.WriteLine("complete");
 
-            Log.LogUpdates = true;
+            // Log.LogUpdates = true;
 
             CreateHostBuilder(args).Build().Run();
         }
