@@ -65,20 +65,42 @@
 
 // From: https://mdjunaidalam5.github.io/SpinBolt/
 
-.Spinner {
+@mixin _SpinnerBase {
+    &:after {
+        animation:          rotate 1s linear infinite;
+        border-radius:      50%;
+        color:              var(--ColorSet_ThemeColor_Accent_50);
+        content:            '';
+        display:            inline-block;
+
+        border-style:       solid;
+        border-right-color: var(--ColorSet_ThemeColor_Border_50);
+    }
+}
+
+.SS_Spinner {
+    @include _SpinnerBase;
+
     height: 21px;
     width:  21px;
 
     &:after {
-        animation:          rotate 1s linear infinite;
-        border:             3px solid;
-        border-radius:      50%;
-        border-right-color: var(--ColorSet_ThemeColor_Border_50);
-        color:              var(--ColorSet_ThemeColor_Accent_50);
-        content:            '';
-        display:            inline-block;
-        height:             15px;
-        width:              15px;
+        border-width: 3px;
+        height:       15px;
+        width:        15px;
+    }
+}
+
+.SS_Spinner--125 {
+    @include _SpinnerBase;
+
+    height: 125px;
+    width:  125px;
+
+    &:after {
+        border-width: 3px;
+        height:       125px;
+        width:        125px;
     }
 }
 
