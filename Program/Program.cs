@@ -1,5 +1,4 @@
-﻿using System;
-using FS3.Tests;
+﻿using FlareSelect.Tests;
 
 namespace Program
 {
@@ -7,7 +6,7 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Tests tests = new FS3.Tests.Tests();
+            Tests tests = new Tests();
 
             tests.Run();
         }
