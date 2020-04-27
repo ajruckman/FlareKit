@@ -88,21 +88,21 @@ namespace FlareTables
 
                     _matchedRowCache = result;
                 }
-            }
 
-            if (_sortedRowCache == null)
-            {
-                Log.Update("[Data] Re-sorting rows");
-                _sortedRowCache = Sort(ref _matchedRowCache);
-            }
+                if (_sortedRowCache == null)
+                {
+                    Log.Update("[Data] Re-sorting rows");
+                    _sortedRowCache = Sort(ref _matchedRowCache);
+                }
 
-            if (dataChange)
-            {
-                OnPageUpdate.Invoke();
-                ExecutePending();
-            }
+                if (dataChange)
+                {
+                    OnPageUpdate.Invoke();
+                    ExecutePending();
+                }
 
-            return _sortedRowCache ?? new List<T>();
+                return _sortedRowCache ?? new List<T>();
+            }
         }
 
         public IEnumerable<T> Rows()
