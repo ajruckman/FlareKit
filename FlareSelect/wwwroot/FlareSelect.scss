@@ -15,6 +15,10 @@
         font-family: var(--FontSet-SansSerifFont);
     }
 
+    &:not(.FlareSelect_Container--Disabled) {
+        box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
+    }
+
     &--Disabled {
     }
 

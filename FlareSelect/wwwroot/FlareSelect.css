@@ -298,6 +298,8 @@ a.SS_Button, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Butto
     font-family: var(--FontSet-MonospaceFont); }
   .FlareSelect_Container--SansSerif * {
     font-family: var(--FontSet-SansSerifFont); }
+  .FlareSelect_Container:not(.FlareSelect_Container--Disabled) {
+    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
   .FlareSelect_Container .FlareSelect_SelectedContainer {
     border-radius: 3px;
     box-sizing: border-box;
