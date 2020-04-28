@@ -98,7 +98,7 @@ namespace FlareSelect
             return _dataCache ??= new List<IOption<T>>(_dataGetter.Invoke());
         }
 
-        public void InvalidateData(bool deselect = false)
+        public void InvalidateData(bool deselect = false, bool notify = true)
         {
             _dataCache = null;
             Batches    = null;
@@ -116,7 +116,7 @@ namespace FlareSelect
                 {
                     if (option.Selected)
                     {
-                        Select(batchID, option);
+                        Select(batchID, option, notify: notify);
                         if (!Multiple)
                             break;
                     }
@@ -226,7 +226,7 @@ namespace FlareSelect
 
         internal bool AnySelected() => _selected.Values.Count > 0;
 
-        internal void Select(int batchID, IOption<T> option, bool replace = false, bool update = true)
+        internal void Select(int batchID, IOption<T> option, bool replace = false, bool update = true, bool notify = true)
         {
             if (replace || !_selected.Contains(option.ID))
             {
@@ -262,6 +262,10 @@ namespace FlareSelect
                 }
 
                 OnSelectionChange.Trigger();
+            }
+
+            if (notify)
+            {
                 NotifySelectionChange();
             }
         }
