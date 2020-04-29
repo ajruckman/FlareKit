@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Threading;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Superset.Common;
@@ -94,8 +95,11 @@ namespace FlareSelect
             _justFocused = true;
             _onToggle.Trigger();
 
-            if (FlareSelector.Multiple)
+            if (FlareSelector.Multiple && _shown)
+            {
+                Thread.Sleep(20);
                 Utilities.FocusElement(JSRuntime, _inputRef);
+            }
         }
 
         private void OnSelectedInnerClick(ClickListener.ClickArgs args)
@@ -113,7 +117,11 @@ namespace FlareSelect
                 _justFocused = true;
                 _onToggle.Trigger();
 
-                Utilities.FocusElement(JSRuntime, _inputRef);
+                if (_shown)
+                {
+                    Thread.Sleep(20);
+                    Utilities.FocusElement(JSRuntime, _inputRef);
+                }
             }
         }
 
@@ -215,6 +223,7 @@ namespace FlareSelect
             }
             else if (FlareSelector.Multiple)
             {
+                Thread.Sleep(20);
                 Utilities.FocusElement(JSRuntime, _inputRef);
             }
         }
