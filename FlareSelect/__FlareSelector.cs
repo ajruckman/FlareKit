@@ -2,6 +2,7 @@
 
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Superset.Common;
@@ -84,6 +85,15 @@ namespace FlareSelect
             }
         }
 
+        private void FocusInput()
+        {
+            Task.Run(() =>
+            {
+                Thread.Sleep(50);
+                Utilities.FocusElement(JSRuntime, _inputRef);
+            });
+        }
+        
         private void OnSelectedClick(ClickListener.ClickArgs args)
         {
             if (FlareSelector.Disabled())
@@ -97,8 +107,7 @@ namespace FlareSelect
 
             if (FlareSelector.Multiple && _shown)
             {
-                Thread.Sleep(20);
-                Utilities.FocusElement(JSRuntime, _inputRef);
+                FocusInput();
             }
         }
 
@@ -119,8 +128,7 @@ namespace FlareSelect
 
                 if (_shown)
                 {
-                    Thread.Sleep(20);
-                    Utilities.FocusElement(JSRuntime, _inputRef);
+                    FocusInput();
                 }
             }
         }
@@ -223,8 +231,7 @@ namespace FlareSelect
             }
             else if (FlareSelector.Multiple)
             {
-                Thread.Sleep(20);
-                Utilities.FocusElement(JSRuntime, _inputRef);
+                FocusInput();
             }
         }
 

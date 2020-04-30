@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>3.6.3</VersionPrefix>
+        <VersionPrefix>3.6.4</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <PackageProjectUrl>https://github.com/ajruckman/FlareKit/tree/master/FS3/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajruckman/FlareKit/tree/master/FS3/</RepositoryUrl>
