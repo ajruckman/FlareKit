@@ -14,7 +14,7 @@ namespace Web.Pages
                 minFilterValueNotice: "Type 2+ characters", emptyPlaceholder:"Click to select a person", monospace:false, isDisabled:
                 () =>
                 {
-                    return true;
+                    return false;
                 });
             _fs2 = new FlareSelector<int>(() => Contact.PreGeneratedOptions, true, clearOnSelect: false,
                 emptyPlaceholder:"Click to select a person");
