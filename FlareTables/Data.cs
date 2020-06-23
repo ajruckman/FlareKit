@@ -68,7 +68,7 @@ namespace FlareTables
                             }
                             else
                             {
-                                if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID)) ?? false)
+                                if (!column.CompiledFilterValue?.IsMatch(RowValue(row, column.ID) ?? "") ?? false)
                                 {
                                     matched = false;
                                     break;
