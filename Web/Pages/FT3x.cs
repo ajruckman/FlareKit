@@ -51,7 +51,6 @@ namespace Web.Pages
 
             _flareTable1 = new FlareTable<Record>(
                 () => RecordCache.Records,
-                // () => new List<Record>(),
                 new SessionStorageProvider(SessionStorage),
                 // new LocalStorageProvider(LocalStorage),
                 "ft3x",
