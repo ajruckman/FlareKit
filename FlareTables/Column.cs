@@ -11,7 +11,7 @@ namespace FlareTables
     {
         [JsonIgnore]   internal          Regex?        CompiledFilterValue;
         [JsonIgnore]   public readonly   string        DisplayName;
-        [JsonProperty] internal          string        FilterValue;
+        [JsonProperty("FilterValue")] internal          string        FilterValue;
         [JsonIgnore]   internal          bool          FilterValueValid;
         [JsonIgnore]   public readonly   string        ID;
         [JsonIgnore]   internal          string?       Key;

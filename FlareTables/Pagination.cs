@@ -92,8 +92,8 @@ namespace FlareTables
 
         private async Task SavePageNumber()
         {
-            if (_sessionStorage != null)
-                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageNum", CurrentPage);
+            if (_storageProvider != null)
+                await _storageProvider.SetItemAsync($"FlareTable_{_identifier}_!PageNum", CurrentPage);
         }
 
         public IEnumerable<int> Pages()
@@ -159,8 +159,8 @@ namespace FlareTables
             PageSize = size;
             await ResetCurrentPage();
 
-            if (_sessionStorage != null)
-                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
+            if (_storageProvider != null)
+                await _storageProvider.SetItemAsync($"FlareTable_{_identifier}_!PageSize", PageSize);
 
             OnPageSizeUpdate.Invoke();
             ExecutePending();

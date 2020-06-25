@@ -13,6 +13,6 @@
 
 }
 
-<tr class="@FlareTable.RowClasses(Value)" @onclick="@(() => FlareTable.RowClick(Value))">
+<tr class="@FlareTable.RowClasses(Value)" @onclick="@(e => FlareTable.RowClick(e, Value))" @onmouseup="(e => FlareTable.RowMouseUp(e, Value))">
     @ChildContent
 </tr>

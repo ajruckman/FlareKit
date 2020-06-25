@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Components.Web;
 
 #nullable enable
 
@@ -13,6 +14,14 @@ namespace FlareTables
         private readonly bool            _clickable;
 
         public event Action<T> OnRowClick;
+
+        /// <summary>
+        /// Arg 1: The row clicked on.
+        /// Arg 2: Whether the Ctrl key was pressed.
+        /// Arg 3: Whether the Shift key was pressed.
+        /// Arg 4: Whether the middle mouse button was used. 
+        /// </summary>
+        public event Action<T, bool, bool, bool> OnRowClickDetail;
 
         public string TableContainerClasses()
         {
@@ -29,7 +38,7 @@ namespace FlareTables
                     row = Activator.CreateInstance<T>();
                 else
                     throw new ArgumentNullException(nameof(row),
-                        "Row passed to RowClasses() was null and does not have a parameterless constructor; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
+                                                    "Row passed to RowClasses() was null and does not have a parameterless constructor; ensure you are adding the 'Value' parameter to FlareTableBodyRow components.");
             }
 
             // row ??= new T();
@@ -111,10 +120,24 @@ namespace FlareTables
             return ((Column) _columns[id])?.FilterValue ?? "";
         }
 
-        internal void RowClick(T row)
+        internal void RowClick(MouseEventArgs args, T row)
         {
             if (_clickable)
+            {
                 OnRowClick?.Invoke(row);
+                OnRowClickDetail?.Invoke(row, args.CtrlKey, args.ShiftKey, false);
+            }
+        }
+
+        internal void RowMouseUp(MouseEventArgs args, T row)
+        {
+            if (args.Button != 1) return;
+
+            if (_clickable)
+            {
+                OnRowClick?.Invoke(row);
+                OnRowClickDetail?.Invoke(row, args.CtrlKey, args.ShiftKey, true);
+            }
         }
     }
 

@@ -52,7 +52,8 @@ namespace Web.Pages
             _flareTable1 = new FlareTable<Record>(
                 () => RecordCache.Records,
                 // () => new List<Record>(),
-                SessionStorage,
+                new SessionStorageProvider(SessionStorage),
+                // new LocalStorageProvider(LocalStorage),
                 "ft3x",
                 fixedLayout: true,
                 rowColorGetter: row =>
@@ -68,12 +69,16 @@ namespace Web.Pages
             _flareTable1.RegisterColumn(nameof(Record.Country), shown: true,     filterable: false, displayName:"");
             _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
 
-            _flareTable1.OnRowClick += (Record record) => Console.WriteLine($"Click: {record.Name}");
+            _flareTable1.OnRowClick += record =>
+                Console.WriteLine($"Click: {record.Name}");
+            
+            _flareTable1.OnRowClickDetail += (record, ctrl, shift, mid) => 
+                Console.WriteLine($"Click detail: {record.Name} | Ctrl: {ctrl} | Shift: {shift} | Mid: {mid}");
         }
 
         protected override async Task OnInitializedAsync()
         {
-            await _flareTable1.LoadSessionValues();
+            await _flareTable1.LoadStorageValues();
         }
 
         private void Download(MouseEventArgs args)

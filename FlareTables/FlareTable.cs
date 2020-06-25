@@ -102,20 +102,20 @@ namespace FlareTables
         ///     load and store persistent values.
         /// </summary>
         public FlareTable(
-            DataGetter             dataGetter,
-            ISessionStorageService sessionStorage,
-            string                 identifier,
-            ValueGetter?           valueGetter    = null,
-            bool                   regexMode      = false,
-            int                    pageSize       = 25,
-            bool                   monospace      = false,
-            bool                   fixedLayout    = false,
-            RowColorGetter?        rowColorGetter = null,
-            bool                   clickable      = false
+            DataGetter       dataGetter,
+            IStorageProvider storageProvider,
+            string           identifier,
+            ValueGetter?     valueGetter    = null,
+            bool             regexMode      = false,
+            int              pageSize       = 25,
+            bool             monospace      = false,
+            bool             fixedLayout    = false,
+            RowColorGetter?  rowColorGetter = null,
+            bool             clickable      = false
         )
         {
             _dataGetter                 = dataGetter;
-            _sessionStorage             = sessionStorage;
+            _storageProvider            = storageProvider;
             _identifier                 = identifier;
             _valueGetter                = valueGetter ?? ReflectionValueGetter;
             _usingReflectionValueGetter = valueGetter == null;

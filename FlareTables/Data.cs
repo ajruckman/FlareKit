@@ -177,8 +177,8 @@ namespace FlareTables
                     c?.TryCompileFilter();
             }
 
-            if (_sessionStorage != null)
-                await _sessionStorage.SetItemAsync($"FlareTable_{_identifier}_!RegexMode", RegexMode);
+            if (_storageProvider != null)
+                await _storageProvider.SetItemAsync($"FlareTable_{_identifier}_!RegexMode", RegexMode);
 
             _matchedRowCache = null;
             _sortedRowCache  = null;
