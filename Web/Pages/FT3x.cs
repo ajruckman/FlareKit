@@ -61,17 +61,17 @@ namespace Web.Pages
                 clickable: true
             );
 
-            _flareTable1.RegisterColumn(nameof(Record.Name),    shown: true,       sortDirection: SortDirections.Ascending);
-            _flareTable1.RegisterColumn(nameof(Record.Age),     filterValue: "1",  width: "60px");
+            _flareTable1.RegisterColumn(nameof(Record.Name),    shown: true, sortDirection: SortDirections.Ascending);
+            _flareTable1.RegisterColumn(nameof(Record.Age),     filterValue: "1", width: "60px");
             _flareTable1.RegisterColumn(nameof(Record.City),    filterable: false, sortable: false);
             _flareTable1.RegisterColumn(nameof(Record.State),   sortable: false);
-            _flareTable1.RegisterColumn(nameof(Record.Country), shown: true,     filterable: false, displayName:"");
-            _flareTable1.RegisterColumn(nameof(Record.Zip),     monospace: true, width: "120px");
+            _flareTable1.RegisterColumn(nameof(Record.Country), shown: false, filterable: false, displayName: "");
+            _flareTable1.RegisterColumn(nameof(Record.Zip),     shown: false, monospace: true,   width: "120px");
 
             _flareTable1.OnRowClick += record =>
                 Console.WriteLine($"Click: {record.Name}");
-            
-            _flareTable1.OnRowClickDetail += (record, ctrl, shift, mid) => 
+
+            _flareTable1.OnRowClickDetail += (record, ctrl, shift, mid) =>
                 Console.WriteLine($"Click detail: {record.Name} | Ctrl: {ctrl} | Shift: {shift} | Mid: {mid}");
         }
 

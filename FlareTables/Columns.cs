@@ -53,6 +53,8 @@ namespace FlareTables
                 t
             );
 
+            c.Default = c.Clone();
+
             if (RegexMode)
                 c.TryCompileFilter();
 

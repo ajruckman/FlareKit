@@ -9,21 +9,23 @@ namespace FlareTables
 {
     public sealed class Column
     {
-        [JsonIgnore]   internal          Regex?        CompiledFilterValue;
-        [JsonIgnore]   public readonly   string        DisplayName;
-        [JsonProperty("FilterValue")] internal          string        FilterValue;
-        [JsonIgnore]   internal          bool          FilterValueValid;
-        [JsonIgnore]   public readonly   string        ID;
-        [JsonIgnore]   internal          string?       Key;
-        [JsonIgnore]   internal readonly PropertyInfo? Property;
-        [JsonProperty] public            bool          Shown;
-        [JsonIgnore]   public            string        Width;
-        [JsonIgnore]   public readonly   bool          Monospace;
-        [JsonIgnore]   internal readonly bool          Filterable;
-        [JsonIgnore]   internal readonly bool          Sortable;
+        [JsonIgnore]                  internal Regex?        CompiledFilterValue;
+        [JsonIgnore]                  public   string        DisplayName;
+        [JsonProperty("FilterValue")] internal string        FilterValue;
+        [JsonIgnore]                  internal bool          FilterValueValid;
+        [JsonIgnore]                  public   string        ID;
+        [JsonIgnore]                  internal string?       Key;
+        [JsonIgnore]                  internal PropertyInfo? Property;
+        [JsonProperty]                public   bool          Shown;
+        [JsonIgnore]                  public   string        Width;
+        [JsonIgnore]                  public   bool          Monospace;
+        [JsonIgnore]                  internal bool          Filterable;
+        [JsonIgnore]                  internal bool          Sortable;
 
         [JsonProperty] internal SortDirections SortDirection;
         [JsonProperty] internal int            SortIndex;
+
+        internal Column? Default;
 
         private readonly Regex _matchSize =
             new Regex(
@@ -74,6 +76,25 @@ namespace FlareTables
                 CompiledFilterValue = null;
                 FilterValueValid    = false;
             }
+        }
+
+        internal Column Clone()
+        {
+            return new Column
+            {
+                DisplayName   = DisplayName,
+                FilterValue   = FilterValue,
+                ID            = ID,
+                Property      = Property,
+                Shown         = Shown,
+                Width         = Width,
+                Monospace     = Monospace,
+                Filterable    = Filterable,
+                Sortable      = Sortable,
+                SortDirection = SortDirection,
+                SortIndex     = SortIndex,
+                Default       = Default
+            };
         }
     }
 }

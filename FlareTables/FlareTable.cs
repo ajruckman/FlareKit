@@ -1,6 +1,8 @@
 #nullable enable
 
 using System;
+using System.Collections;
+using System.Linq;
 using System.Threading.Tasks;
 using Blazored.SessionStorage;
 using Superset.Web.State;
@@ -165,25 +167,43 @@ namespace FlareTables
             if (RegexMode)
                 await ToggleRegexMode();
 
-            foreach (Column? c in _columns.Values)
+            foreach (DictionaryEntry? entry in _columns.Cast<DictionaryEntry?>().ToList())
             {
-                if (c == null) continue;
-
-                c.Shown         = true;
-                c.FilterValue   = "";
-                c.SortDirection = SortDirections.Neutral;
-                c.SortIndex     = 0;
-
-                if (RegexMode)
-                    c.TryCompileFilter();
-
-                await StoreColumnConfig(c);
+                if (entry == null || !(entry.Value.Value is Column c) || c?.Default == null)
+                    continue;
+            
+                Column n = c.Default.Clone();
+                n.Key = c.Key;
+                n.TryCompileFilter();
+                n.Default = c.Default;
+            
+                _columns[entry.Value.Key] = n;
+                await StoreColumnConfig(n);
             }
+
+            // foreach (Column? c in _columns.Values)
+            // {
+            //     if (c == null) continue;
+            //
+            //     // c = c.Default;
+            //     
+            //     c.Shown         = true;
+            //     c.FilterValue   = "";
+            //     c.SortDirection = SortDirections.Neutral;
+            //     c.SortIndex     = 0;
+            //
+            //     if (RegexMode)
+            //         c.TryCompileFilter();
+            //
+            //     await StoreColumnConfig(c);
+            // }
 
             if (_initialPageSize != PageSize)
             {
                 await UpdatePageSize(_initialPageSize);
             }
+
+            InvalidateRows();
 
             await FirstPage();
         }
