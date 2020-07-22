@@ -5,13 +5,17 @@ namespace Web
 {
     public sealed class Configuration
     {
-        public readonly List<ResourceManifest> ResourceManifests = new List<ResourceManifest>
-        {
-            Superset.Web.ResourceManifests.SaveAsFile,
-            FontSet.ResourceManifests.Inter,
-            FontSet.ResourceManifests.JetBrainsMono,
-            FlareTables.ResourceManifests.FlareTables,
-            ColorSet.ResourceManifests.Globals
-        };
+        public readonly ResourceSet ResourceSet = new ResourceSet(
+            nameof(Web),
+            nameof(ResourceSet),
+            dependencies: new[]
+            {
+                Superset.Web.ResourceSets.SaveAsFile,
+                FontSet.ResourceSets.Inter,
+                FontSet.ResourceSets.JetBrainsMono,
+                FlareTables.ResourceSets.FlareTables,
+                ColorSet.ResourceSets.Globals,
+            }
+        );
     }
 }

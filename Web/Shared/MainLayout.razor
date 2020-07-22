@@ -18,7 +18,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceManifests, "Dark");
+        _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceSet, "Dark");
         _themeLoader.OnComplete += () => _trigger.Trigger();
 
         await _themeLoader.Load();
@@ -28,7 +28,7 @@
 
 }
 
-@ResourceManifest.RenderScripts(new Configuration().ResourceManifests)
+@(new Configuration().ResourceSet.Render(stylesheets: false, scripts: true))
 
 <TriggerWrapper Trigger="@_trigger">
     @if (_themeLoader.Complete)

@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>3.7.1</VersionPrefix>
+        <VersionPrefix>3.8.0</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <PackageProjectUrl>https://github.com/ajruckman/FlareKit/tree/master/FT3/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajruckman/FlareKit/tree/master/FT3/</RepositoryUrl>
@@ -29,8 +29,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.5" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
         <PackageReference Include="NaturalSort.Extension" Version="3.0.0" />
-        <PackageReference Include="Superset" Version="1.15.6-alpha" />
-        <PackageReference Include="UISet.ShapeSet" Version="1.2.18-alpha" />
+        <PackageReference Include="Superset" Version="1.16.0-alpha" />
+        <PackageReference Include="UISet.ShapeSet" Version="1.2.19-alpha" />
     </ItemGroup>
 
 </Project>
