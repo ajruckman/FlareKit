@@ -6,6 +6,7 @@ namespace FlareSelect
     {
         public static readonly ResourceSet FlareSelect =
             new ResourceSet(nameof(FlareSelect), nameof(FlareSelect),
-                stylesheets: new[] {"FlareSelect.css"});
+                stylesheets: new[] {"FlareSelect.css"},
+                dependencies: new[] {ShapeSet.ResourceSets.ShapeSet});
     }
 }
