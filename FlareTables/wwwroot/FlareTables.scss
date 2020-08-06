@@ -1,12 +1,6 @@
-@import '../_resources/UISet.ShapeSet/Variables/Transitions.scss';
-@import '../_resources/UISet.ShapeSet/Elements/Input.scss';
-@import '../_resources/UISet.ShapeSet/Elements/Button.scss';
-
-//noinspection SassScssResolvedByNameOnly
-
 .FlareTableContainer {
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40);
-    color:      var(--ColorSet_ThemeColor_Text_40);
+    border-top: 1px solid var(--Colorant_Default_Border_4);
+    color:      var(--Colorant_Default_Text_4);
     display:    inline-block;
     width:      100%;
 
@@ -18,10 +12,10 @@
 
     .FlareTableControlRow {
         align-items:      center;
-        background-color: var(--ColorSet_ThemeColor_Background_60);
-        border-bottom:    1px solid var(--ColorSet_ThemeColor_Border_50);
-        border-left:      1px solid var(--ColorSet_ThemeColor_Border_50);
-        border-right:     1px solid var(--ColorSet_ThemeColor_Border_50);
+        background-color: var(--Colorant_Default_Background_6);
+        border-bottom:    1px solid var(--Colorant_Default_Border_5);
+        border-left:      1px solid var(--Colorant_Default_Border_5);
+        border-right:     1px solid var(--Colorant_Default_Border_5);
         box-sizing:       border-box;
         display:          flex;
         min-height:       29px;
@@ -31,8 +25,6 @@
             margin: 0 2px;
 
             .FlareTablePaginationSizeSelector {
-                @extend .SS_Select;
-
                 font-size: 10pt;
                 height:    unset;
                 padding:   0;
@@ -40,7 +32,7 @@
         }
 
         .FlareTablePaginationInfo {
-            color:        var(--ColorSet_ThemeColor_Text_20);
+            color:        var(--Colorant_Default_Text_2);
             font-family:  var(--FontSet-MonospaceFont);
             padding-left: 3px;
             user-select:  none;
@@ -56,39 +48,15 @@
 
         .FlareTableResetButton {
             button {
-                @extend .SS_Button;
-
-                font-family: var(--FontSet-MonospaceFont);
-                padding:     2px 6px !important;
+                padding: 2px 6px !important;
             }
         }
 
         .FlareTablePaginationButtons {
             .FlareTablePaginationButton {
-                @extend .SS_Button;
-
-                background-color: var(--ColorSet_ThemeColor_Background_40);
-                border:           1px solid var(--ColorSet_ThemeColor_Border_40);
-                border-radius:    3px;
-                color:            var(--ColorSet_ThemeColor_Text_40);
-                font-family:      var(--FontSet-MonospaceFont);
-                margin:           1px;
-                min-width:        26px;
-                padding:          2px 6px !important;
-                user-select:      none;
-
-                &:not(:disabled) {
-                    cursor: pointer;
-                }
-
-                &:not(:disabled):hover {
-                    background-color: var(--ColorSet_ThemeColor_Background_40_Hover) !important;
-                    border:           1px solid var(--ColorSet_ThemeColor_Border_40_Hover) !important;
-                }
-
-                &::-moz-focus-inner {
-                    border: 0;
-                }
+                margin:    1px;
+                min-width: 26px;
+                padding:   2px 6px !important;
 
                 &--Prev {
 
@@ -99,17 +67,13 @@
                 }
 
                 &--Current {
-                    border: 1px solid var(--ColorSet_ThemeColor_Accent_30) !important;
-
-                    &:not(:disabled):hover {
-                        background-color: var(--ColorSet_ThemeColor_Background_40_Hover) !important;
-                        border:           1px solid var(--ColorSet_ThemeColor_Accent_30_Hover) !important;
-                    }
+                    border: 1px solid var(--Colorant_Default_Accent_3) !important;
                 }
 
                 &--Skipped {
-                    position: relative;
-                    width:    26px;
+                    font-family: var(--FontSet-MonospaceFont);
+                    position:    relative;
+                    width:       26px;
 
                     &:after {
                         bottom:    5px;
@@ -128,12 +92,8 @@
             margin:      0 1px;
             user-select: none;
 
-            .SS_CheckboxContainer {
-                margin-right: 5px;
-
-                &:last-child {
-                    margin-right: 9px;
-                }
+            > span {
+                margin-left: 5px;
             }
         }
 
@@ -147,15 +107,18 @@
             //    cursor: pointer;
             //}
 
+            div[class~="Integrant.Element.Bit.Checkbox"] {
+            }
+
             span {
-                color:  var(--ColorSet_ThemeColor_Text_20);
+                color:  var(--Colorant_Default_Text_2);
                 margin: 0 1px 0 5px;
             }
         }
     }
 
     .FlareTableTable + .FlareTableControlRow {
-        border-top: 1px solid var(--ColorSet_ThemeColor_Border_50);
+        border-top: 1px solid var(--Colorant_Default_Border_5);
     }
 
     .FlareTableTable {
@@ -166,12 +129,12 @@
 
             .FlareTableHeadingRow {
                 section:first-child .FlareTableHeading_Cell {
-                    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60);
+                    border-left: 1px solid var(--Colorant_Default_Border_6);
                 }
 
                 .FlareTableHeading_Cell {
-                    background-color: var(--ColorSet_ThemeColor_Background_60);
-                    border-right:     1px solid var(--ColorSet_ThemeColor_Border_60);
+                    background-color: var(--Colorant_Default_Background_6);
+                    border-right:     1px solid var(--Colorant_Default_Border_6);
 
                     &--Hidden {
                         width: 23.5px;
@@ -185,8 +148,8 @@
 
                         .FlareTableHeading_CellHeading {
                             flex-grow: 99999;
-                            
-                            &:empty::after{
+
+                            &:empty::after {
                                 content: "\00a0";
                             }
                         }
@@ -197,8 +160,8 @@
                             // Eye symbol
                             .FlareTableFilter_ToggleButton {
                                 align-items:      center;
-                                background-color: var(--ColorSet_ThemeColor_Background_60);
-                                border:           solid 1px var(--ColorSet_ThemeColor_Text_10);
+                                background-color: var(--Colorant_Default_Background_6);
+                                border:           solid 1px var(--Colorant_Default_Text_1);
                                 border-radius:    75% 15%;
                                 cursor:           pointer;
                                 display:          inline-flex;
@@ -210,7 +173,7 @@
                                 width:            10px;
 
                                 &:before {
-                                    border:        solid 1px var(--ColorSet_ThemeColor_Text_10);
+                                    border:        solid 1px var(--Colorant_Default_Text_1);
                                     border-radius: 50%;
                                     content:       '';
                                     display:       block;
@@ -220,10 +183,10 @@
                                 }
 
                                 &:hover {
-                                    border: solid 1px var(--ColorSet_ThemeColor_Text_50);
+                                    border: solid 1px var(--Colorant_Default_Text_5);
 
                                     &:before {
-                                        border: solid 1px var(--ColorSet_ThemeColor_Text_50);
+                                        border: solid 1px var(--Colorant_Default_Text_5);
                                     }
                                 }
                             }
@@ -234,13 +197,13 @@
 
             .FlareTableFilterRow {
                 section:first-child .FlareTableFilter_Cell {
-                    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60);
+                    border-left: 1px solid var(--Colorant_Default_Border_6);
                 }
 
                 .FlareTableFilter_Cell {
-                    background-color: var(--ColorSet_ThemeColor_Background_60);
-                    border-bottom:    1px solid var(--ColorSet_ThemeColor_Border_60);
-                    border-right:     1px solid var(--ColorSet_ThemeColor_Border_60);
+                    background-color: var(--Colorant_Default_Background_6);
+                    border-bottom:    1px solid var(--Colorant_Default_Border_6);
+                    border-right:     1px solid var(--Colorant_Default_Border_6);
                     padding:          1px;
 
                     .FlareTableFilter_CellControlContainer {
@@ -250,7 +213,7 @@
                         width:      100%;
 
                         .FlareTableFilter_Input {
-                            @include _InputBase;
+                            //@include _InputBase;
 
                             box-shadow:    none !important;
                             font-family:   var(--FontSet-MonospaceFont);
@@ -294,8 +257,8 @@
                             width:           20px;
 
                             &:hover {
-                                background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-                                border:           1px solid var(--ColorSet_ThemeColor_Border_60);
+                                background-color: var(--Colorant_Default_Background_6_Hover);
+                                border:           1px solid var(--Colorant_Default_Border_6);
                             }
                         }
                     }
@@ -307,55 +270,55 @@
             .FlareTableBodyRow {
                 &:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green) {
                     &:nth-child(even) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_0);
+                        background-color: var(--Colorant_Default_TableRow_0);
                     }
 
                     &:nth-child(odd) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_10);
+                        background-color: var(--Colorant_Default_TableRow_1);
                     }
 
                     &:nth-child(even):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_20);
+                        background-color: var(--Colorant_Default_TableRow_2);
                     }
 
                     &:nth-child(odd):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_30);
+                        background-color: var(--Colorant_Default_TableRow_3);
                     }
                 }
 
                 &--Green {
                     &:nth-child(even) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Green_0);
+                        background-color: var(--Colorant_Default_TableRow_Green_0);
                     }
 
                     &:nth-child(odd) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Green_10);
+                        background-color: var(--Colorant_Default_TableRow_Green_1);
                     }
 
                     &:nth-child(even):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Green_20);
+                        background-color: var(--Colorant_Default_TableRow_Green_2);
                     }
 
                     &:nth-child(odd):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Green_30);
+                        background-color: var(--Colorant_Default_TableRow_Green_3);
                     }
                 }
 
                 &--Red {
                     &:nth-child(even) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Red_0);
+                        background-color: var(--Colorant_Default_TableRow_Red_0);
                     }
 
                     &:nth-child(odd) .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Red_10);
+                        background-color: var(--Colorant_Default_TableRow_Red_1);
                     }
 
                     &:nth-child(even):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Red_20);
+                        background-color: var(--Colorant_Default_TableRow_Red_2);
                     }
 
                     &:nth-child(odd):hover .FlareTableCell {
-                        background-color: var(--ColorSet_ThemeColor_TR_Red_30);
+                        background-color: var(--Colorant_Default_TableRow_Red_3);
                     }
                 }
 
@@ -364,12 +327,12 @@
                 }
 
                 .FlareTableCell {
-                    border-right: 1px solid var(--ColorSet_ThemeColor_Border_40);
+                    border-right: 1px solid var(--Colorant_Default_Border_4);
                     padding:      1px 3px;
                     transition:   background-color linear 100ms;
 
                     &:first-child {
-                        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40);
+                        border-left: 1px solid var(--Colorant_Default_Border_4);
                     }
 
                     //&--Hidden {
@@ -390,15 +353,15 @@
                 }
 
                 &:not(:first-child) .FlareTableCell {
-                    border-top: 1px solid var(--ColorSet_ThemeColor_Border_40);
+                    border-top: 1px solid var(--Colorant_Default_Border_4);
                 }
 
                 &--NoResults {
                     td {
-                        background-color: var(--ColorSet_ThemeColor_TR_30);
-                        border-left:      1px solid var(--ColorSet_ThemeColor_Border_50);
-                        border-right:     1px solid var(--ColorSet_ThemeColor_Border_50);
-                        color:            var(--ColorSet_ThemeColor_Text_20);
+                        background-color: var(--Colorant_Default_TableRow_30);
+                        border-left:      1px solid var(--Colorant_Default_Border_5);
+                        border-right:     1px solid var(--Colorant_Default_Border_5);
+                        color:            var(--Colorant_Default_Text_2);
                         font-style:       italic;
                         text-align:       center;
                     }

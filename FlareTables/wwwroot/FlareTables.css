@@ -1,310 +1,16 @@
-::-webkit-input-placeholder {
-  font-style: italic; }
-
-:-moz-placeholder {
-  font-style: italic; }
-
-::-moz-placeholder {
-  font-style: italic; }
-
-:-ms-input-placeholder {
-  font-style: italic; }
-
-.SS_Input {
-  border-radius: 3px;
-  outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_60);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-  color: var(--ColorSet_ThemeColor_Text_60);
-  box-sizing: border-box;
-  font-size: 1em;
-  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
-  font-family: var(--FontSet-MonospaceFont);
-  height: calc(25px);
-  margin: 1px 0;
-  padding: 1px 4px; }
-  .SS_Input:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
-  .SS_Input:disabled {
-    background-color: var(--ColorSet_ThemeColor_Background_20);
-    border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0);
-    cursor: not-allowed; }
-    .SS_Input:disabled::placeholder {
-      color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Input:hover:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_Input:focus:not(:disabled), .SS_Input :active:not(:disabled) {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
-  .SS_Input--WidthWide {
-    width: 600px; }
-  .SS_Input--WidthMedium {
-    width: 400px; }
-  .SS_Input--WidthThin {
-    width: 200px; }
-
-.SS_TextArea {
-  border-radius: 3px;
-  outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_60);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-  color: var(--ColorSet_ThemeColor_Text_60);
-  box-sizing: border-box;
-  font-size: 1em;
-  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
-  font-family: var(--FontSet-MonospaceFont);
-  margin: 1px 0;
-  padding: 1px 4px; }
-  .SS_TextArea:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
-  .SS_TextArea:disabled {
-    background-color: var(--ColorSet_ThemeColor_Background_20);
-    border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0);
-    cursor: not-allowed; }
-    .SS_TextArea:disabled::placeholder {
-      color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_TextArea:hover:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_TextArea:focus:not(:disabled), .SS_TextArea :active:not(:disabled) {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
-  .SS_TextArea--WidthWide {
-    width: 600px; }
-  .SS_TextArea--WidthMedium {
-    width: 400px; }
-  .SS_TextArea--WidthThin {
-    width: 200px; }
-  .SS_TextArea--HeightThin {
-    height: 75px; }
-  .SS_TextArea--HeightMedium {
-    height: 150px; }
-  .SS_TextArea--HeightTall {
-    height: 300px; }
-
-.SS_Select, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector {
-  border-radius: 3px;
-  outline: none;
-  background-color: var(--ColorSet_ThemeColor_Background_60);
-  border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-  color: var(--ColorSet_ThemeColor_Text_60);
-  box-sizing: border-box;
-  font-size: 1em;
-  transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
-  font-family: var(--FontSet-MonospaceFont);
-  height: calc(25px);
-  margin: 1px 0;
-  padding: 1px 4px; }
-  .SS_Select:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
-  .SS_Select:disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:disabled {
-    background-color: var(--ColorSet_ThemeColor_Background_20);
-    border: 1px solid var(ColorSet_ThemeColor_Border_20);
-    color: var(ColorSet_ThemeColor_Text_0);
-    cursor: not-allowed; }
-    .SS_Select:disabled::placeholder, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:disabled::placeholder {
-      color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Select:hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:hover:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-    transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-  .SS_Select:focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector:focus:not(:disabled), .SS_Select :active:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationSizes .FlareTablePaginationSizeSelector :active:not(:disabled) {
-    transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-    background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
-
-a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons a.FlareTablePaginationButton, a.SS_Button--Green, a.SS_Button--Red, a.SS_Button--Blue, a.SS_Button--Inverted {
-  box-sizing: border-box;
-  font-size: 13.333px; }
-
-.SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted) {
-  border-radius: 3px;
-  font-weight: 500;
-  outline: none;
-  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
-  padding: 2px 6px; }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
-    cursor: pointer; }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled {
-    cursor: not-allowed; }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted)::-moz-focus-inner {
-    border: 0; }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):nota(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):nota(.SS_Button--Inverted), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):nota(.SS_Button--Inverted) {
-    box-sizing: border-box; }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_60);
-    border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-    color: var(--ColorSet_ThemeColor_Text_70); }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled, .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):disabled {
-    background-color: transparent;
-    border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-    color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):hover:not(:disabled), .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):focus:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_90);
-    border: 1px solid var(--ColorSet_ThemeColor_Border_90); }
-  .SS_Button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled), .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button:not(.SS_Button--Green):not(.SS_Button--Red):not(.SS_Button--Blue):not(.SS_Button--Inverted):active:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Background_110);
-    border: 1px solid var(--ColorSet_ThemeColor_Border_110); }
-
-.SS_Button--Green {
-  border-radius: 3px;
-  font-weight: 500;
-  outline: none;
-  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
-  padding: 2px 6px; }
-  .SS_Button--Green:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
-    cursor: pointer; }
-  .SS_Button--Green:disabled {
-    cursor: not-allowed; }
-  .SS_Button--Green::-moz-focus-inner {
-    border: 0; }
-  .SS_Button--Greena {
-    box-sizing: border-box; }
-  .SS_Button--Green:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidGreen_90);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidGreen_90);
-    color: white; }
-  .SS_Button--Green:disabled {
-    background-color: transparent;
-    border: 1px solid var(--ColorSet_ThemeColor_Border_80);
-    color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Button--Green:hover:not(:disabled), .SS_Button--Green:focus:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidGreen_80);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_SolidGreen_70); }
-  .SS_Button--Green:active:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidGreen_70);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidGreen_50); }
-
-.SS_Button--Red {
-  border-radius: 3px;
-  font-weight: 500;
-  outline: none;
-  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
-  padding: 2px 6px; }
-  .SS_Button--Red:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
-    cursor: pointer; }
-  .SS_Button--Red:disabled {
-    cursor: not-allowed; }
-  .SS_Button--Red::-moz-focus-inner {
-    border: 0; }
-  .SS_Button--Reda {
-    box-sizing: border-box; }
-  .SS_Button--Red:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidRed_100);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidRed_100);
-    color: white; }
-  .SS_Button--Red:disabled {
-    background-color: transparent;
-    border: 1px solid var(--ColorSet_ThemeColor_Border_80);
-    color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Button--Red:hover:not(:disabled), .SS_Button--Red:focus:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidRed_60);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_SolidRed_50); }
-  .SS_Button--Red:active:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidRed_50);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidRed_30); }
-
-.SS_Button--Blue {
-  border-radius: 3px;
-  font-weight: 500;
-  outline: none;
-  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
-  padding: 2px 6px; }
-  .SS_Button--Blue:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
-    cursor: pointer; }
-  .SS_Button--Blue:disabled {
-    cursor: not-allowed; }
-  .SS_Button--Blue::-moz-focus-inner {
-    border: 0; }
-  .SS_Button--Bluea {
-    box-sizing: border-box; }
-  .SS_Button--Blue:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidBlue_100);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidBlue_100);
-    color: white; }
-  .SS_Button--Blue:disabled {
-    background-color: transparent;
-    border: 1px solid var(--ColorSet_ThemeColor_Border_80);
-    color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Button--Blue:hover:not(:disabled), .SS_Button--Blue:focus:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidBlue_80);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_SolidBlue_70); }
-  .SS_Button--Blue:active:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_SolidBlue_70);
-    border: 1px solid var(--ColorSet_ThemeColor_SolidBlue_40); }
-
-.SS_Button--Inverted {
-  border-radius: 3px;
-  font-weight: 500;
-  outline: none;
-  line-height: calc(23px - 2 * 2px - 2 * 0.8px);
-  padding: 2px 6px; }
-  .SS_Button--Inverted:not(:disabled) {
-    box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow);
-    cursor: pointer; }
-  .SS_Button--Inverted:disabled {
-    cursor: not-allowed; }
-  .SS_Button--Inverted::-moz-focus-inner {
-    border: 0; }
-  .SS_Button--Inverteda {
-    box-sizing: border-box; }
-  .SS_Button--Inverted:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Text_80);
-    border: 1px solid var(--ColorSet_ThemeColor_Text_80);
-    color: var(--ColorSet_ThemeColor_Background_0); }
-  .SS_Button--Inverted:disabled {
-    background-color: transparent;
-    border: 1px solid var(--ColorSet_ThemeColor_Border_80);
-    color: var(--ColorSet_ThemeColor_Text_0); }
-  .SS_Button--Inverted:hover:not(:disabled), .SS_Button--Inverted:focus:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Text_70);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_Text_70); }
-  .SS_Button--Inverted:active:not(:disabled) {
-    background-color: var(--ColorSet_ThemeColor_Text_60);
-    border: 1px solid var(--ColorSet_ThemeColor_Text_60); }
-
 .FlareTableContainer {
-  border-top: 1px solid var(--ColorSet_ThemeColor_Border_40);
-  color: var(--ColorSet_ThemeColor_Text_40);
+  border-top: 1px solid var(--Colorant_Default_Border_4);
+  color: var(--Colorant_Default_Text_4);
   display: inline-block;
   width: 100%; }
   .FlareTableContainer--Fixed .FlareTableTable {
     table-layout: fixed; }
   .FlareTableContainer .FlareTableControlRow {
     align-items: center;
-    background-color: var(--ColorSet_ThemeColor_Background_60);
-    border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_50);
-    border-left: 1px solid var(--ColorSet_ThemeColor_Border_50);
-    border-right: 1px solid var(--ColorSet_ThemeColor_Border_50);
+    background-color: var(--Colorant_Default_Background_6);
+    border-bottom: 1px solid var(--Colorant_Default_Border_5);
+    border-left: 1px solid var(--Colorant_Default_Border_5);
+    border-right: 1px solid var(--Colorant_Default_Border_5);
     box-sizing: border-box;
     display: flex;
     min-height: 29px;
@@ -316,7 +22,7 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
         height: unset;
         padding: 0; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
-      color: var(--ColorSet_ThemeColor_Text_20);
+      color: var(--Colorant_Default_Text_2);
       font-family: var(--FontSet-MonospaceFont);
       padding-left: 3px;
       user-select: none; }
@@ -325,31 +31,15 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
     .FlareTableContainer .FlareTableControlRow .FlareTableControlSpacer {
       width: 10px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableResetButton button {
-      font-family: var(--FontSet-MonospaceFont);
       padding: 2px 6px !important; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton {
-      background-color: var(--ColorSet_ThemeColor_Background_40);
-      border: 1px solid var(--ColorSet_ThemeColor_Border_40);
-      border-radius: 3px;
-      color: var(--ColorSet_ThemeColor_Text_40);
-      font-family: var(--FontSet-MonospaceFont);
       margin: 1px;
       min-width: 26px;
-      padding: 2px 6px !important;
-      user-select: none; }
-      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled) {
-        cursor: pointer; }
-      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton:not(:disabled):hover {
-        background-color: var(--ColorSet_ThemeColor_Background_40_Hover) !important;
-        border: 1px solid var(--ColorSet_ThemeColor_Border_40_Hover) !important; }
-      .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton::-moz-focus-inner {
-        border: 0; }
+      padding: 2px 6px !important; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current {
-        border: 1px solid var(--ColorSet_ThemeColor_Accent_30) !important; }
-        .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current:not(:disabled):hover {
-          background-color: var(--ColorSet_ThemeColor_Background_40_Hover) !important;
-          border: 1px solid var(--ColorSet_ThemeColor_Accent_30_Hover) !important; }
+        border: 1px solid var(--Colorant_Default_Accent_3) !important; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped {
+        font-family: var(--FontSet-MonospaceFont);
         position: relative;
         width: 26px; }
         .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped:after {
@@ -363,28 +53,26 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
       display: flex;
       margin: 0 1px;
       user-select: none; }
-      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer {
-        margin-right: 5px; }
-        .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles .SS_CheckboxContainer:last-child {
-          margin-right: 9px; }
+      .FlareTableContainer .FlareTableControlRow .FlareTableColumnToggles > span {
+        margin-left: 5px; }
     .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle {
       align-items: center;
       display: flex;
       margin: 0 1px;
       user-select: none; }
       .FlareTableContainer .FlareTableControlRow .FlareTableRegexToggle span {
-        color: var(--ColorSet_ThemeColor_Text_20);
+        color: var(--Colorant_Default_Text_2);
         margin: 0 1px 0 5px; }
   .FlareTableContainer .FlareTableTable + .FlareTableControlRow {
-    border-top: 1px solid var(--ColorSet_ThemeColor_Border_50); }
+    border-top: 1px solid var(--Colorant_Default_Border_5); }
   .FlareTableContainer .FlareTableTable {
     border-spacing: 0;
     width: 100%; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:first-child .FlareTableHeading_Cell {
-      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60); }
+      border-left: 1px solid var(--Colorant_Default_Border_6); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
-      background-color: var(--ColorSet_ThemeColor_Background_60);
-      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60); }
+      background-color: var(--Colorant_Default_Background_6);
+      border-right: 1px solid var(--Colorant_Default_Border_6); }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell--Hidden {
         width: 23.5px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent {
@@ -400,8 +88,8 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
           width: 23.5px; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton {
             align-items: center;
-            background-color: var(--ColorSet_ThemeColor_Background_60);
-            border: solid 1px var(--ColorSet_ThemeColor_Text_10);
+            background-color: var(--Colorant_Default_Background_6);
+            border: solid 1px var(--Colorant_Default_Text_1);
             border-radius: 75% 15%;
             cursor: pointer;
             display: inline-flex;
@@ -412,7 +100,7 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
             user-select: none;
             width: 10px; }
             .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:before {
-              border: solid 1px var(--ColorSet_ThemeColor_Text_10);
+              border: solid 1px var(--Colorant_Default_Text_1);
               border-radius: 50%;
               content: '';
               display: block;
@@ -420,15 +108,15 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
               position: absolute;
               width: 5px; }
             .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:hover {
-              border: solid 1px var(--ColorSet_ThemeColor_Text_50); }
+              border: solid 1px var(--Colorant_Default_Text_5); }
               .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:hover:before {
-                border: solid 1px var(--ColorSet_ThemeColor_Text_50); }
+                border: solid 1px var(--Colorant_Default_Text_5); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
-      border-left: 1px solid var(--ColorSet_ThemeColor_Border_60); }
+      border-left: 1px solid var(--Colorant_Default_Border_6); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
-      background-color: var(--ColorSet_ThemeColor_Background_60);
-      border-bottom: 1px solid var(--ColorSet_ThemeColor_Border_60);
-      border-right: 1px solid var(--ColorSet_ThemeColor_Border_60);
+      background-color: var(--Colorant_Default_Background_6);
+      border-bottom: 1px solid var(--Colorant_Default_Border_6);
+      border-right: 1px solid var(--Colorant_Default_Border_6);
       padding: 1px; }
       .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer {
         box-sizing: border-box;
@@ -436,14 +124,6 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
         position: relative;
         width: 100%; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
-          border-radius: 3px;
-          outline: none;
-          background-color: var(--ColorSet_ThemeColor_Background_60);
-          border: 1px solid var(--ColorSet_ThemeColor_Border_60);
-          color: var(--ColorSet_ThemeColor_Text_60);
-          box-sizing: border-box;
-          font-size: 1em;
-          transition: color linear 200ms, background-color linear 200ms, border linear 200ms, box-shadow linear 200ms;
           box-shadow: none !important;
           font-family: var(--FontSet-MonospaceFont);
           height: 22px;
@@ -451,29 +131,6 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
           margin-bottom: 1px;
           margin-left: 1px;
           position: absolute; }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:not(:disabled) {
-            box-shadow: 0 0 3px 1px var(--ColorSet_ThemeColor_ElementShadow); }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:disabled {
-            background-color: var(--ColorSet_ThemeColor_Background_20);
-            border: 1px solid var(ColorSet_ThemeColor_Border_20);
-            color: var(ColorSet_ThemeColor_Text_0);
-            cursor: not-allowed; }
-            .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:disabled::placeholder {
-              color: var(--ColorSet_ThemeColor_Text_0); }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:hover:not(:disabled) {
-            background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-            transition: color linear 25ms, background-color linear 25ms, border linear 25ms, box-shadow linear 25ms;
-            border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-            border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-            border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Hover);
-            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Hover); }
-          .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input:focus:not(:disabled), .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input :active:not(:disabled) {
-            transition: color linear 0ms, background-color linear 0ms, border linear 0ms, box-shadow linear 0ms;
-            background-color: var(--ColorSet_ThemeColor_Background_60_Focus);
-            border-top: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-            border-left: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-            border-right: 1px solid var(--ColorSet_ThemeColor_Border_60_Focus);
-            border-bottom: 1px solid var(--ColorSet_ThemeColor_AccentBorder_60_Focus); }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--Invalid {
             border: 1px solid red; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input--FullWidth {
@@ -498,40 +155,40 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
           user-select: none;
           width: 20px; }
           .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_SortButton:hover {
-            background-color: var(--ColorSet_ThemeColor_Background_60_Hover);
-            border: 1px solid var(--ColorSet_ThemeColor_Border_60); }
+            background-color: var(--Colorant_Default_Background_6_Hover);
+            border: 1px solid var(--Colorant_Default_Border_6); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(even) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_0); }
+      background-color: var(--Colorant_Default_TableRow_0); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(odd) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_10); }
+      background-color: var(--Colorant_Default_TableRow_1); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(even):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_20); }
+      background-color: var(--Colorant_Default_TableRow_2); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(.FlareTableBodyRow--Red):not(.FlareTableBodyRow--Green):nth-child(odd):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_30); }
+      background-color: var(--Colorant_Default_TableRow_3); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Green:nth-child(even) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Green_0); }
+      background-color: var(--Colorant_Default_TableRow_Green_0); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Green:nth-child(odd) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Green_10); }
+      background-color: var(--Colorant_Default_TableRow_Green_1); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Green:nth-child(even):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Green_20); }
+      background-color: var(--Colorant_Default_TableRow_Green_2); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Green:nth-child(odd):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Green_30); }
+      background-color: var(--Colorant_Default_TableRow_Green_3); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(even) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Red_0); }
+      background-color: var(--Colorant_Default_TableRow_Red_0); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(odd) .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Red_10); }
+      background-color: var(--Colorant_Default_TableRow_Red_1); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(even):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Red_20); }
+      background-color: var(--Colorant_Default_TableRow_Red_2); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Red:nth-child(odd):hover .FlareTableCell {
-      background-color: var(--ColorSet_ThemeColor_TR_Red_30); }
+      background-color: var(--Colorant_Default_TableRow_Red_3); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Clickable {
       cursor: pointer; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
-      border-right: 1px solid var(--ColorSet_ThemeColor_Border_40);
+      border-right: 1px solid var(--Colorant_Default_Border_4);
       padding: 1px 3px;
       transition: background-color linear 100ms; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
-        border-left: 1px solid var(--ColorSet_ThemeColor_Border_40); }
+        border-left: 1px solid var(--Colorant_Default_Border_4); }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Mono {
         font-family: var(--FontSet-MonospaceFont); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell {
@@ -539,12 +196,12 @@ a.SS_Button, .FlareTableContainer .FlareTableControlRow .FlareTablePaginationBut
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:hover) .FlareTableCell {
       transition: background-color 100ms; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:first-child) .FlareTableCell {
-      border-top: 1px solid var(--ColorSet_ThemeColor_Border_40); }
+      border-top: 1px solid var(--Colorant_Default_Border_4); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--NoResults td {
-      background-color: var(--ColorSet_ThemeColor_TR_30);
-      border-left: 1px solid var(--ColorSet_ThemeColor_Border_50);
-      border-right: 1px solid var(--ColorSet_ThemeColor_Border_50);
-      color: var(--ColorSet_ThemeColor_Text_20);
+      background-color: var(--Colorant_Default_TableRow_30);
+      border-left: 1px solid var(--Colorant_Default_Border_5);
+      border-right: 1px solid var(--Colorant_Default_Border_5);
+      color: var(--Colorant_Default_Text_2);
       font-style: italic;
       text-align: center; }
 

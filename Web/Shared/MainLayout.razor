@@ -1,6 +1,8 @@
 ﻿@using Blazored.LocalStorage
 @using Blazored.SessionStorage
 @using ColorSet.Components
+@using Integrant.Colorant.Components
+@using Integrant.Colorant.Themes.Solids
 @using Microsoft.AspNetCore.Components.Web
 @using Superset.Web.Resources
 @using Superset.Web.State
@@ -16,28 +18,44 @@
     ThemeLoader _themeLoader;
     private readonly UpdateTrigger _trigger = new UpdateTrigger();
 
+    VariantLoader _themeLoader2;
+    VariantLoader _themeLoader3;
+
     protected override async Task OnInitializedAsync()
     {
         _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceSet, "Dark");
         _themeLoader.OnComplete += () => _trigger.Trigger();
+        _themeLoader2 = new VariantLoader(LocalStorage, new Integrant.Colorant.Themes.Default.Theme(), "Dark");
+        _themeLoader2.OnComplete += () => _trigger.Trigger();
+        _themeLoader3 = new VariantLoader(LocalStorage, new Theme(), "Normal");
 
         await _themeLoader.Load();
+        await _themeLoader2.Load();
+        
+        //
+        
         
     //        ElementClickHandler.OnOuterClickHandled += async () => StateHasChanged();
     }
+    
+    
 
 }
 
 @(new Configuration().ResourceSet.Render(stylesheets: false, scripts: true))
 
+@_themeLoader3.RenderLink()
+
 <TriggerWrapper Trigger="@_trigger">
-    @if (_themeLoader.Complete)
+    @if (_themeLoader.Complete && _themeLoader2.Complete)
     {
 @*         <CascadingValue Value="@ElementClickHandler"> *@
             @_themeLoader.RenderLink()
+            @_themeLoader2.RenderLink()
             @Body
         // </CascadingValue>
         
          @_themeLoader.RenderDropdown()
+         @_themeLoader2.RenderDropdown()
     }
 </TriggerWrapper>

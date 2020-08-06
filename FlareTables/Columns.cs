@@ -96,7 +96,7 @@ namespace FlareTables
             _matchedRowCache = null;
             _sortedRowCache  = null;
 
-            OnColumnVisibilityUpdate.Invoke();
+            OnColumnVisibilityUpdate.Invoke(id);
             ExecutePending();
         }
 

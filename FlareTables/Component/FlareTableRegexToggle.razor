@@ -1,4 +1,4 @@
-@using ShapeSet.Components
+@using Integrant.Element.Bits
 
 @typeparam T
 
@@ -6,6 +6,13 @@
 
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
+
+    Checkbox _checkbox;
+
+    protected override void OnInitialized()
+    {
+        _checkbox = new Checkbox(async args => await HandleCheck(), isChecked: () => FlareTable.RegexMode);
+    }
 
     private async Task HandleCheck()
     {
@@ -16,7 +23,8 @@
 
 <TriggerWrapper Trigger="@FlareTable.UpdateTableControls" Protected="true">
     <div class="FlareTableRegexToggle">
-        <Checkbox @onchange="(async args => await HandleCheck())" checked="@FlareTable.RegexMode" Size="Checkbox.CheckboxSize.Small"></Checkbox>
+        @_checkbox.Render()
+        @* <Checkbox @onchange="(async args => await HandleCheck())" checked="@FlareTable.RegexMode" Size="ShapeSet.Components.Checkbox.CheckboxSize.Small"></Checkbox> *@
         <span>Regex Mode</span>
     </div>
     @* <div class="FlareTableRegexToggle" @onclick="@HandleCheck"> *@

@@ -1,17 +1,50 @@
 @using System.Threading.Tasks
-@using ShapeSet.Components
+@using Integrant.Element.Bits
+@* @using ShapeSet.Components *@
 @using Superset.Logging
 
 @typeparam T
+
+@implements IDisposable
 
 @code {
 
     [CascadingParameter]
     public FlareTable<T> FlareTable { get; set; }
 
-    private async Task HandleCheck(string id, ChangeEventArgs args)
+    protected override void OnInitialized()
     {
-        await FlareTable.SetColumnVisibility(id, (bool) args.Value);
+        FlareTable.OnColumnVisibilityUpdate += Reset;
+    // FlareTable.OnReset += Reset;
+
+        foreach (Column column in FlareTable.Columns)
+        {
+            var c = new Checkbox
+                (
+                async isChecked => await HandleCheck(column.ID, isChecked),
+                isChecked: () => FlareTable.ColumnShown(column.ID)
+                );
+
+            _checkboxes[column.ID] = c;
+        }
+    }
+
+    private async Task HandleCheck(string id, bool isChecked)
+    {
+        await FlareTable.SetColumnVisibility(id, isChecked);
+    }
+
+    private readonly Dictionary<string, Checkbox> _checkboxes = new Dictionary<string, Checkbox>();
+
+    private void Reset(string c)
+    {
+        _checkboxes[c].Reset();
+    }
+
+    public void Dispose()
+    {
+        FlareTable.OnColumnVisibilityUpdate -= Reset;
+    // FlareTable.OnReset -= Reset;
     }
 
 }
@@ -24,7 +57,9 @@
         <div class="FlareTableColumnToggles">
             @foreach (Column column in FlareTable.Columns)
             {
-                <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox>
+                @_checkboxes[column.ID].Render()
+
+@*                 <Checkbox @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown" Size="Checkbox.CheckboxSize.Small"></Checkbox> *@
     @*             <input type="checkbox" @onchange="@(async args => await HandleCheck(column.ID, args))" checked="@column.Shown"/> *@
             }
             <span>Column Toggles</span>

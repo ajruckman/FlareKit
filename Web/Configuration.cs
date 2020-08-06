@@ -14,7 +14,16 @@ namespace Web
                 FontSet.ResourceSets.Inter,
                 FontSet.ResourceSets.JetBrainsMono,
                 FlareTables.ResourceSets.FlareTables,
-                ColorSet.ResourceSets.Globals,
+                FlareSelect.ResourceSets.FlareSelect,
+                // ColorSet.ResourceSets.Globals,
+                
+                // Integrant.Resources.ResourceSets.MaterialIcons,
+                Integrant.Resources.ResourceSets.Fonts.SansSerif.Inter,
+                
+                // Integrant.Element.ResourceSets.Bits,
+                // Integrant.Element.ResourceSets.Overrides.Buttons,
+                // Integrant.Element.ResourceSets.Overrides.Inputs,
+                Integrant.Element.ResourceSets.Overrides.VariantLoader,
             }
         );
     }

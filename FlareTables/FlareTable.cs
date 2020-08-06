@@ -20,13 +20,13 @@ namespace FlareTables
 
         internal bool Complete { get; private set; }
 
-        internal event Action OnColumnFilterUpdate;     // +
-        internal event Action OnColumnSortUpdate;       // +
-        internal event Action OnColumnVisibilityUpdate; // +
-        internal event Action OnRegexToggle;            // +
-        internal event Action OnPageUpdate;             // +
-        internal event Action OnPageSizeUpdate;         // +
-        internal event Action OnReset;                  // +
+        internal event Action         OnColumnFilterUpdate;     // +
+        internal event Action         OnColumnSortUpdate;       // +
+        internal event Action<string> OnColumnVisibilityUpdate; // +
+        internal event Action         OnRegexToggle;            // +
+        internal event Action         OnPageUpdate;             // +
+        internal event Action         OnPageSizeUpdate;         // +
+        internal event Action         OnReset;                  // +
 
         private bool _invalidateRowsPending;
         private bool _invalidateSortPending;
@@ -70,7 +70,8 @@ namespace FlareTables
         /// <summary>
         ///     Creates a FlareTable object without persistent values.
         /// </summary>
-        public FlareTable(
+        public FlareTable
+        (
             DataGetter      dataGetter,
             ValueGetter?    valueGetter    = null,
             bool            regexMode      = false,
@@ -103,7 +104,8 @@ namespace FlareTables
         ///     Creates a FlareTable object that accesses session storage to
         ///     load and store persistent values.
         /// </summary>
-        public FlareTable(
+        public FlareTable
+        (
             DataGetter       dataGetter,
             IStorageProvider storageProvider,
             string           identifier,
@@ -140,14 +142,14 @@ namespace FlareTables
         {
             OnColumnFilterUpdate     += () => Log.Update("OnColumnFilterUpdate ++");
             OnColumnSortUpdate       += () => Log.Update("OnColumnSortUpdate ++");
-            OnColumnVisibilityUpdate += () => Log.Update("OnColumnVisibilityUpdate ++");
+            OnColumnVisibilityUpdate += c => Log.Update("OnColumnVisibilityUpdate ++");
             OnRegexToggle            += () => Log.Update("OnRegexToggle ++");
             OnPageUpdate             += () => Log.Update("OnPageUpdate ++");
             OnPageSizeUpdate         += () => Log.Update("OnPageSizeUpdate ++");
             OnReset                  += () => Log.Update("OnReset ++");
 
             OnColumnFilterUpdate     += () => _invalidateRowsPending = true;
-            OnColumnVisibilityUpdate += () => _invalidateRowsPending = true;
+            OnColumnVisibilityUpdate += c => _invalidateRowsPending  = true;
             OnRegexToggle            += () => _invalidateRowsPending = true;
             OnReset                  += () => _invalidateRowsPending = true;
 
@@ -171,14 +173,18 @@ namespace FlareTables
             {
                 if (entry == null || !(entry.Value.Value is Column c) || c?.Default == null)
                     continue;
-            
+
                 Column n = c.Default.Clone();
                 n.Key = c.Key;
                 n.TryCompileFilter();
                 n.Default = c.Default;
-            
+
                 _columns[entry.Value.Key] = n;
+
                 await StoreColumnConfig(n);
+
+                if (c.Shown != n.Shown)
+                    OnColumnVisibilityUpdate?.Invoke(c.ID);
             }
 
             // foreach (Column? c in _columns.Values)
@@ -206,6 +212,8 @@ namespace FlareTables
             InvalidateRows();
 
             await FirstPage();
+
+            OnReset?.Invoke();
         }
     }
 }
