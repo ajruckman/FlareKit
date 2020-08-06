@@ -1,9 +1,9 @@
 .FlareSelect_Container {
   width: 100%; }
   .FlareSelect_Container--Monospace * {
-    font-family: var(--FontSet-MonospaceFont); }
+    font-family: var(--Integrant_MonospacedFont); }
   .FlareSelect_Container--SansSerif * {
-    font-family: var(--FontSet-SansSerifFont); }
+    font-family: var(--Integrant_SansSerifFont); }
   .FlareSelect_Container:not(.FlareSelect_Container--Disabled) {
     box-shadow: 0 0 3px 1px var(--Colorant_Default_Shadow_0); }
   .FlareSelect_Container .FlareSelect_SelectedContainer {

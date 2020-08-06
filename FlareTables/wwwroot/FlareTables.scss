@@ -1,5 +1,5 @@
 .FlareTableContainer {
-    border-top: 1px solid var(--Colorant_Default_Border_4);
+    border-top: 1px solid var(--Colorant_Default_Border_14);
     color:      var(--Colorant_Default_Text_4);
     display:    inline-block;
     width:      100%;
@@ -13,9 +13,9 @@
     .FlareTableControlRow {
         align-items:      center;
         background-color: var(--Colorant_Default_Background_6);
-        border-bottom:    1px solid var(--Colorant_Default_Border_5);
-        border-left:      1px solid var(--Colorant_Default_Border_5);
-        border-right:     1px solid var(--Colorant_Default_Border_5);
+        border-bottom:    1px solid var(--Colorant_Default_Border_7);
+        border-left:      1px solid var(--Colorant_Default_Border_14);
+        border-right:     1px solid var(--Colorant_Default_Border_14);
         box-sizing:       border-box;
         display:          flex;
         min-height:       29px;
@@ -33,7 +33,7 @@
 
         .FlareTablePaginationInfo {
             color:        var(--Colorant_Default_Text_2);
-            font-family:  var(--FontSet-MonospaceFont);
+            font-family:  var(--Integrant_MonospacedFont);
             padding-left: 3px;
             user-select:  none;
         }
@@ -71,7 +71,7 @@
                 }
 
                 &--Skipped {
-                    font-family: var(--FontSet-MonospaceFont);
+                    font-family: var(--Integrant_MonospacedFont);
                     position:    relative;
                     width:       26px;
 
@@ -118,7 +118,8 @@
     }
 
     .FlareTableTable + .FlareTableControlRow {
-        border-top: 1px solid var(--Colorant_Default_Border_5);
+        border-bottom: 1px solid var(--Colorant_Default_Border_14);
+        border-top:    1px solid var(--Colorant_Default_Border_7);
     }
 
     .FlareTableTable {
@@ -129,7 +130,11 @@
 
             .FlareTableHeadingRow {
                 section:first-child .FlareTableHeading_Cell {
-                    border-left: 1px solid var(--Colorant_Default_Border_6);
+                    border-left: 1px solid var(--Colorant_Default_Border_14);
+                }
+
+                section:last-child .FlareTableHeading_Cell {
+                    border-right: 1px solid var(--Colorant_Default_Border_14);
                 }
 
                 .FlareTableHeading_Cell {
@@ -197,7 +202,11 @@
 
             .FlareTableFilterRow {
                 section:first-child .FlareTableFilter_Cell {
-                    border-left: 1px solid var(--Colorant_Default_Border_6);
+                    border-left: 1px solid var(--Colorant_Default_Border_14);
+                }
+
+                section:last-child .FlareTableFilter_Cell {
+                    border-right: 1px solid var(--Colorant_Default_Border_14);
                 }
 
                 .FlareTableFilter_Cell {
@@ -216,7 +225,7 @@
                             //@include _InputBase;
 
                             box-shadow:    none !important;
-                            font-family:   var(--FontSet-MonospaceFont);
+                            font-family:   var(--Integrant_MonospacedFont);
                             height:        22px;
                             left:          0;
                             margin-bottom: 1px;
@@ -327,12 +336,19 @@
                 }
 
                 .FlareTableCell {
-                    border-right: 1px solid var(--Colorant_Default_Border_4);
-                    padding:      1px 3px;
-                    transition:   background-color linear 100ms;
+                    padding:    1px 3px;
+                    transition: background-color linear 100ms;
 
                     &:first-child {
-                        border-left: 1px solid var(--Colorant_Default_Border_4);
+                        border-left: 1px solid var(--Colorant_Default_Border_14);
+                    }
+
+                    &:not(:last-child) {
+                        border-right: 1px solid var(--Colorant_Default_Border_4);
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid var(--Colorant_Default_Border_14);
                     }
 
                     //&--Hidden {
@@ -340,7 +356,7 @@
                     //}
 
                     &--Mono {
-                        font-family: var(--FontSet-MonospaceFont);
+                        font-family: var(--Integrant_MonospacedFont);
                     }
                 }
 

@@ -1,5 +1,5 @@
 .FlareTableContainer {
-  border-top: 1px solid var(--Colorant_Default_Border_4);
+  border-top: 1px solid var(--Colorant_Default_Border_14);
   color: var(--Colorant_Default_Text_4);
   display: inline-block;
   width: 100%; }
@@ -8,9 +8,9 @@
   .FlareTableContainer .FlareTableControlRow {
     align-items: center;
     background-color: var(--Colorant_Default_Background_6);
-    border-bottom: 1px solid var(--Colorant_Default_Border_5);
-    border-left: 1px solid var(--Colorant_Default_Border_5);
-    border-right: 1px solid var(--Colorant_Default_Border_5);
+    border-bottom: 1px solid var(--Colorant_Default_Border_7);
+    border-left: 1px solid var(--Colorant_Default_Border_14);
+    border-right: 1px solid var(--Colorant_Default_Border_14);
     box-sizing: border-box;
     display: flex;
     min-height: 29px;
@@ -23,7 +23,7 @@
         padding: 0; }
     .FlareTableContainer .FlareTableControlRow .FlareTablePaginationInfo {
       color: var(--Colorant_Default_Text_2);
-      font-family: var(--FontSet-MonospaceFont);
+      font-family: var(--Integrant_MonospacedFont);
       padding-left: 3px;
       user-select: none; }
     .FlareTableContainer .FlareTableControlRow .FlareTableControlFiller {
@@ -39,7 +39,7 @@
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Current {
         border: 1px solid var(--Colorant_Default_Accent_3) !important; }
       .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped {
-        font-family: var(--FontSet-MonospaceFont);
+        font-family: var(--Integrant_MonospacedFont);
         position: relative;
         width: 26px; }
         .FlareTableContainer .FlareTableControlRow .FlareTablePaginationButtons .FlareTablePaginationButton--Skipped:after {
@@ -64,12 +64,15 @@
         color: var(--Colorant_Default_Text_2);
         margin: 0 1px 0 5px; }
   .FlareTableContainer .FlareTableTable + .FlareTableControlRow {
-    border-top: 1px solid var(--Colorant_Default_Border_5); }
+    border-bottom: 1px solid var(--Colorant_Default_Border_14);
+    border-top: 1px solid var(--Colorant_Default_Border_7); }
   .FlareTableContainer .FlareTableTable {
     border-spacing: 0;
     width: 100%; }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:first-child .FlareTableHeading_Cell {
-      border-left: 1px solid var(--Colorant_Default_Border_6); }
+      border-left: 1px solid var(--Colorant_Default_Border_14); }
+    .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow section:last-child .FlareTableHeading_Cell {
+      border-right: 1px solid var(--Colorant_Default_Border_14); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell {
       background-color: var(--Colorant_Default_Background_6);
       border-right: 1px solid var(--Colorant_Default_Border_6); }
@@ -112,7 +115,9 @@
               .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableHeadingRow .FlareTableHeading_Cell .FlareTableHeading_CellContent .FlareTableFilter_ToggleButtonContainer .FlareTableFilter_ToggleButton:hover:before {
                 border: solid 1px var(--Colorant_Default_Text_5); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:first-child .FlareTableFilter_Cell {
-      border-left: 1px solid var(--Colorant_Default_Border_6); }
+      border-left: 1px solid var(--Colorant_Default_Border_14); }
+    .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow section:last-child .FlareTableFilter_Cell {
+      border-right: 1px solid var(--Colorant_Default_Border_14); }
     .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell {
       background-color: var(--Colorant_Default_Background_6);
       border-bottom: 1px solid var(--Colorant_Default_Border_6);
@@ -125,7 +130,7 @@
         width: 100%; }
         .FlareTableContainer .FlareTableTable .FlareTableHead .FlareTableFilterRow .FlareTableFilter_Cell .FlareTableFilter_CellControlContainer .FlareTableFilter_Input {
           box-shadow: none !important;
-          font-family: var(--FontSet-MonospaceFont);
+          font-family: var(--Integrant_MonospacedFont);
           height: 22px;
           left: 0;
           margin-bottom: 1px;
@@ -184,13 +189,16 @@
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow--Clickable {
       cursor: pointer; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell {
-      border-right: 1px solid var(--Colorant_Default_Border_4);
       padding: 1px 3px;
       transition: background-color linear 100ms; }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:first-child {
-        border-left: 1px solid var(--Colorant_Default_Border_4); }
+        border-left: 1px solid var(--Colorant_Default_Border_14); }
+      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:not(:last-child) {
+        border-right: 1px solid var(--Colorant_Default_Border_4); }
+      .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell:last-child {
+        border-right: 1px solid var(--Colorant_Default_Border_14); }
       .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow .FlareTableCell--Mono {
-        font-family: var(--FontSet-MonospaceFont); }
+        font-family: var(--Integrant_MonospacedFont); }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:hover .FlareTableCell {
       transition: background-color 0s; }
     .FlareTableContainer .FlareTableTable .FlareTableBody .FlareTableBodyRow:not(:hover) .FlareTableCell {

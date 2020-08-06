@@ -2,11 +2,11 @@
     width: 100%;
 
     &--Monospace * {
-        font-family: var(--FontSet-MonospaceFont);
+        font-family: var(--Integrant_MonospacedFont);
     }
 
     &--SansSerif * {
-        font-family: var(--FontSet-SansSerifFont);
+        font-family: var(--Integrant_SansSerifFont);
     }
 
     &:not(.FlareSelect_Container--Disabled) {
