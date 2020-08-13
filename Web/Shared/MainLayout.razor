@@ -44,14 +44,14 @@
 
 @(new Configuration().ResourceSet.Render(stylesheets: false, scripts: true))
 
-@_themeLoader3.RenderLink()
+@_themeLoader3.RenderStylesheets()
 
 <TriggerWrapper Trigger="@_trigger">
     @if (_themeLoader.Complete && _themeLoader2.Complete)
     {
 @*         <CascadingValue Value="@ElementClickHandler"> *@
             @_themeLoader.RenderLink()
-            @_themeLoader2.RenderLink()
+            @_themeLoader2.RenderStylesheets()
             @Body
         // </CascadingValue>
         

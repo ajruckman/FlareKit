@@ -20,12 +20,12 @@ namespace FlareTables
             _localStorage = localStorage;
         }
 
-        public Task<T> GetItemAsync<T>(string key) => _localStorage.GetItemAsync<T>(key);
+        public Task<T> GetItemAsync<T>(string key) => _localStorage.GetItemAsync<T>(key).AsTask();
 
         // Blazored.LocalStorage stores values different than
         // Blazored.SessionStorage, so I pre-serialize the data here for now.
         public Task SetItemAsync<T>(string key, T data) =>
-            _localStorage.SetItemAsync(key, JsonConvert.SerializeObject(data));
+            _localStorage.SetItemAsync(key, JsonConvert.SerializeObject(data)).AsTask();
     }
 
     public class SessionStorageProvider : IStorageProvider

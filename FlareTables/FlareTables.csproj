@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>3.9.1</VersionPrefix>
+        <VersionPrefix>3.9.2</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <PackageProjectUrl>https://github.com/ajruckman/FlareKit/tree/master/FT3/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajruckman/FlareKit/tree/master/FT3/</RepositoryUrl>
@@ -24,7 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Blazored.LocalStorage" Version="2.1.6" />
+        <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
         <PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />
         <PackageReference Include="Integrant.Colorant" Version="3.0.2-alpha" />
         <PackageReference Include="Integrant.Element" Version="3.0.2-alpha" />
