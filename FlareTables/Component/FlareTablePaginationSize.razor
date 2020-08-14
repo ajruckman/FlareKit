@@ -19,7 +19,7 @@
     {
         Log.Update("[COMPONENT] FlareTablePaginationSize");
 
-        <div class="Integrant.Element.Input FlareTablePaginationSizes">
+        <div class="Integrant.Element.Override.Input FlareTablePaginationSizes">
             <select class="FlareTablePaginationSizeSelector" @onchange="@UpdatePageSize">
                 @foreach (int size in FlareTable.PageSizes)
                 {

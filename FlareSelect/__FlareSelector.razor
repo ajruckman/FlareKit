@@ -33,7 +33,7 @@
 
             @if (FlareSelector.Multiple)
             {
-                <div class="FlareSelect_FilterInputContainer Integrant.Element.Input">
+                <div class="FlareSelect_FilterInputContainer Integrant.Element.Override.Input">
                     <TriggerWrapper Trigger="@FlareSelector.OnSelectionChange">
                         <input type="text" class="FlareSelect_FilterInput" value="@FlareSelector.FilterValue" @oninput="UpdateFilterValue" tabindex="0" placeholder="@FlareSelector.FilterPlaceholder" @ref="@_inputRef" disabled="@FlareSelector.Disabled()"/>
                     </TriggerWrapper>
@@ -50,7 +50,7 @@
             <div class="FlareSelect_Options" hidden="@(!_shown)">
                 @if (!FlareSelector.Multiple)
                 {
-                    <div class="FlareSelect_FilterInputContainer Integrant.Element.Input">
+                    <div class="FlareSelect_FilterInputContainer Integrant.Element.Override.Input">
                         <TriggerWrapper Trigger="@FlareSelector.OnSelectionChange">
                             <input type="text" class="FlareSelect_FilterInput" value="@FlareSelector.FilterValue" @oninput="UpdateFilterValue" tabindex="0" placeholder="@FlareSelector.FilterPlaceholder" @ref="@_inputRef" disabled="@FlareSelector.Disabled()"/>
                         </TriggerWrapper>

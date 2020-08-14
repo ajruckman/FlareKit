@@ -65,7 +65,7 @@
                     @{ string key = "FT_F_" + ID; }
                     @if (_filterable ?? false)
                     {
-                        <div class="Integrant.Element.Input">
+                        <div class="Integrant.Element.Override.Input">
                             <input class="FlareTableFilter_Input @(!_sortable ?? false ? "FlareTableFilter_Input--FullWidth" : "FlareTableFilter_Input--SharedWidth") @FlareTable.ColumnFilterValueValidClass(ID)" @key="@key" type="text" value="@_filter" @oninput="SetFilter"/>
                         </div>
                     }

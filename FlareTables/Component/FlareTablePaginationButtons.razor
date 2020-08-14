@@ -17,19 +17,19 @@
         Log.Update("[COMPONENT] FlareTablePaginationButtons");
 
         <div class="FlareTablePaginationButtons">
-            <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="Integrant.Element.Button Integrant.Element.Button:Default FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
+            <button @onclick="@FlareTable.PreviousPage" disabled="@(!FlareTable.CanPrev)" class="Integrant.Element.Override.Button FlareTablePaginationButton FlareTablePaginationButton--Previous">Previous</button>
             @foreach (int i in FlareTable.Pages())
             {
                 @if (i == -1)
                 {
-                    <button class="Integrant.Element.Button Integrant.Element.Button:Default FlareTablePaginationButton FlareTablePaginationButton--Skipped" disabled="disabled">&nbsp;</button>
+                    <button class="Integrant.Element.Override.Button FlareTablePaginationButton FlareTablePaginationButton--Skipped" disabled="disabled">&nbsp;</button>
                 }
                 else
                 {
-                    <button @onclick="@(() => FlareTable.JumpToPage(i))" class="Integrant.Element.Button Integrant.Element.Button:Default FlareTablePaginationButton @(FlareTable.CurrentPage == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
+                    <button @onclick="@(() => FlareTable.JumpToPage(i))" class="Integrant.Element.Override.Button FlareTablePaginationButton @(FlareTable.CurrentPage == i ? "FlareTablePaginationButton--Current" : "")">@(i + 1)</button>
                 }
             }
-            <button @onclick="@FlareTable.NextPage" disabled="@(!FlareTable.CanNext)" class="Integrant.Element.Button Integrant.Element.Button:Default FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
+            <button @onclick="@FlareTable.NextPage" disabled="@(!FlareTable.CanNext)" class="Integrant.Element.Override.Button FlareTablePaginationButton FlareTablePaginationButton--Next">Next</button>
         </div>
     }
 </TriggerWrapper>
