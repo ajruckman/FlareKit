@@ -11,8 +11,8 @@ namespace Web
             dependencies: new[]
             {
                 Superset.Web.ResourceSets.SaveAsFile,
-                FontSet.ResourceSets.Inter,
-                FontSet.ResourceSets.JetBrainsMono,
+                // FontSet.ResourceSets.Inter,
+                // FontSet.ResourceSets.JetBrainsMono,
                 FlareTables.ResourceSets.FlareTables,
                 FlareSelect.ResourceSets.FlareSelect,
                 // ColorSet.ResourceSets.Globals,

@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>3.8.2</VersionPrefix>
+        <VersionPrefix>3.10.0</VersionPrefix>
         <VersionSuffix>alpha</VersionSuffix>
         <PackageProjectUrl>https://github.com/ajruckman/FlareKit/tree/master/FS3/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajruckman/FlareKit/tree/master/FS3/</RepositoryUrl>
@@ -22,11 +22,11 @@
 
     <ItemGroup>
         <PackageReference Include="Bogus" Version="29.0.2" />
-        <PackageReference Include="Integrant.Colorant" Version="3.0.2-alpha" />
+        <PackageReference Include="Integrant.Colorant" Version="3.0.4-alpha" />
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0-preview.7.20365.19" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-preview.7.20365.19" />
         <PackageReference Include="Superset" Version="1.16.0-alpha" />
-        <PackageReference Include="UISet.ShapeSet" Version="1.2.19-alpha" />
+<!--        <PackageReference Include="UISet.ShapeSet" Version="1.2.19-alpha" />-->
     </ItemGroup>
 
 </Project>

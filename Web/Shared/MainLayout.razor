@@ -1,6 +1,6 @@
 ﻿@using Blazored.LocalStorage
 @using Blazored.SessionStorage
-@using ColorSet.Components
+@* @using ColorSet.Components *@
 @using Integrant.Colorant.Components
 @using Integrant.Colorant.Themes.Solids
 @using Microsoft.AspNetCore.Components.Web
@@ -15,7 +15,7 @@
 
     // private ElementClickHandler ElementClickHandler { get; } = new ElementClickHandler();
 
-    ThemeLoader _themeLoader;
+    // ThemeLoader _themeLoader;
     private readonly UpdateTrigger _trigger = new UpdateTrigger();
 
     VariantLoader _themeLoader2;
@@ -23,13 +23,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceSet, "Dark");
-        _themeLoader.OnComplete += () => _trigger.Trigger();
+        // _themeLoader = new ThemeLoader(LocalStorage, new Configuration().ResourceSet, "Dark");
+        // _themeLoader.OnComplete += () => _trigger.Trigger();
         _themeLoader2 = new VariantLoader(LocalStorage, new Integrant.Colorant.Themes.Default.Theme(), "Dark");
         _themeLoader2.OnComplete += () => _trigger.Trigger();
         _themeLoader3 = new VariantLoader(LocalStorage, new Theme(), "Normal");
 
-        await _themeLoader.Load();
+        // await _themeLoader.Load();
         await _themeLoader2.Load();
         
         //
@@ -42,20 +42,20 @@
 
 }
 
-@(new Configuration().ResourceSet.Render(stylesheets: false, scripts: true))
+@(new Configuration().ResourceSet.Render(stylesheets: true, scripts: true))
 
 @_themeLoader3.RenderStylesheets()
 
 <TriggerWrapper Trigger="@_trigger">
-    @if (_themeLoader.Complete && _themeLoader2.Complete)
+    @if (_themeLoader2.Complete)
     {
 @*         <CascadingValue Value="@ElementClickHandler"> *@
-            @_themeLoader.RenderLink()
+@*             @_themeLoader.RenderLink() *@
             @_themeLoader2.RenderStylesheets()
             @Body
         // </CascadingValue>
         
-         @_themeLoader.RenderDropdown()
+@*          @_themeLoader.RenderDropdown() *@
          @_themeLoader2.RenderDropdown()
     }
 </TriggerWrapper>

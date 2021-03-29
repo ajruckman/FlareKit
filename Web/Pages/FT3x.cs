@@ -73,6 +73,7 @@ namespace Web.Pages
 
             _flareTable1.OnRowClickDetail += (record, ctrl, shift, mid) =>
                 Console.WriteLine($"Click detail: {record.Name} | Ctrl: {ctrl} | Shift: {shift} | Mid: {mid}");
+            
         }
 
         protected override async Task OnInitializedAsync()

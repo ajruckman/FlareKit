@@ -13,7 +13,7 @@ namespace FlareSelect
                 {
                     Superset.Web.ResourceSets.FocusElement, 
                     Superset.Web.ResourceSets.Listeners,
-                    ShapeSet.ResourceSets.ShapeSet, 
+                    // ShapeSet.ResourceSets.ShapeSet, 
                 }
                 );
     }
